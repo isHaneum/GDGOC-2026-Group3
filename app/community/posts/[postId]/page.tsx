@@ -6,6 +6,17 @@ import Image from 'next/image'
 import { useParams } from 'next/navigation'
 import { getPost, addComment, togglePostLike } from '@src/api/client'
 import type { PostWithComments } from '@shared/types'
+import {
+  communityCopy,
+  formatCommunityTimeAgo,
+  getLocalizedCategoryName,
+  getLocalizedCommentContent,
+  getLocalizedPostContent,
+  getLocalizedPostTitle,
+  readStoredCommunityLocale,
+  writeStoredCommunityLocale,
+  type CommunityLocale,
+} from '@src/lib/communityTranslations'
 
 type Comment = PostWithComments['comments'][number]
 
@@ -20,6 +31,11 @@ export default function PostDetailPage() {
   const [commentText, setCommentText] = useState('')
   const [submittingComment, setSubmittingComment] = useState(false)
   const [comments, setComments] = useState<Comment[]>([])
+  const [communityLocale, setCommunityLocale] = useState<CommunityLocale>('ko')
+
+  useEffect(() => {
+    setCommunityLocale(readStoredCommunityLocale())
+  }, [])
 
   useEffect(() => {
     setLoading(true)
@@ -63,16 +79,13 @@ export default function PostDetailPage() {
     }
   }
 
-  function timeAgo(dateStr: string) {
-    const diff = Date.now() - new Date(dateStr).getTime()
-    const h = Math.floor(diff / 3600000)
-    if (h < 1) return '방금 전'
-    if (h < 24) return `${h}h ago`
-    return `${Math.floor(h / 24)}d ago`
-  }
-
   function getAuthorName(author: PostWithComments['author'] | PostWithComments['comments'][number]['author']): string {
     return author.nickname ?? 'Guest'
+  }
+
+  function setLocale(locale: CommunityLocale) {
+    setCommunityLocale(locale)
+    writeStoredCommunityLocale(locale)
   }
 
   const categoryBadgeColor = (slug: string) => {
@@ -81,6 +94,8 @@ export default function PostDetailPage() {
     if (slug === 'growth') return 'bg-bridge-blue/10 text-bridge-blue'
     return 'bg-gray-100 text-gray-500'
   }
+
+  const copy = communityCopy[communityLocale]
 
   if (loading) {
     return (
@@ -101,38 +116,58 @@ export default function PostDetailPage() {
     return (
       <div className="min-h-screen bg-bridge-paper flex items-center justify-center">
         <div className="text-center">
-          <p className="text-bridge-coral font-bold mb-4">{error ?? '포스트를 찾을 수 없습니다.'}</p>
-          <Link href="/community/posts" className="text-body text-bridge-primary font-bold hover:underline">← 커뮤니티로</Link>
+          <p className="text-bridge-coral font-bold mb-4">{error ?? copy.postNotFound}</p>
+          <Link href="/community/posts" className="text-body text-bridge-primary font-bold hover:underline">{copy.backToCommunity}</Link>
         </div>
       </div>
     )
   }
 
+  const postTitle = getLocalizedPostTitle(post, communityLocale)
+  const postContent = getLocalizedPostContent(post, communityLocale)
+
   return (
     <div className="min-h-screen bg-bridge-paper">
       <div className="container mx-auto max-w-2xl px-4 py-8 space-y-5">
 
-        <Link href="/community/posts" className="text-body font-bold text-gray-400 hover:text-bridge-primary transition-colors">
-          ← 커뮤니티로
-        </Link>
+        <div className="flex items-center justify-between gap-3">
+          <Link href="/community/posts" className="text-body font-bold text-gray-400 hover:text-bridge-primary transition-colors">
+            {copy.backToCommunity}
+          </Link>
+          <div className="inline-flex rounded-xl border border-gray-200 bg-white p-1">
+            {(['ko', 'ja'] as const).map((locale) => (
+              <button
+                key={locale}
+                type="button"
+                aria-pressed={communityLocale === locale}
+                onClick={() => setLocale(locale)}
+                className={`rounded-lg px-3 py-1.5 text-caption font-black uppercase tracking-widest transition-colors ${
+                  communityLocale === locale ? 'bg-ink text-white' : 'text-gray-400 hover:text-ink'
+                }`}
+              >
+                {locale === 'ko' ? 'KR' : 'JP'}
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* Post card */}
         <article className="bg-white rounded-xl border border-gray-100 shadow-panel p-5">
           <div className="flex items-center gap-2 mb-3">
             <span className={`text-caption font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${categoryBadgeColor(post.category?.slug ?? '')}`}>
-              {post.category?.name ?? '—'}
+              {getLocalizedCategoryName(post.category, communityLocale)}
             </span>
             <span className="text-caption text-gray-400">{getAuthorName(post.author)}</span>
             <span className="text-caption text-gray-300">·</span>
-            <span className="text-caption text-gray-400">{timeAgo(post.created_at)}</span>
+            <span className="text-caption text-gray-400">{formatCommunityTimeAgo(post.created_at, communityLocale)}</span>
           </div>
-          <h1 className="text-h1 font-bold text-ink mb-4">{post.title}</h1>
+          <h1 className="text-h1 font-bold text-ink mb-4">{postTitle}</h1>
           {post.image_url && (
             <div className="relative w-full rounded-xl overflow-hidden mb-4 border border-gray-100">
               <Image src={post.image_url} alt="" width={640} height={360} className="w-full object-cover max-h-80" />
             </div>
           )}
-          <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">{post.content}</p>
+          <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">{postContent}</p>
 
           {/* Like button */}
           <div className="mt-6 flex items-center gap-3">
@@ -154,7 +189,7 @@ export default function PostDetailPage() {
         {/* Comments */}
         <section>
           <p className="text-caption font-black uppercase tracking-widest text-gray-400 mb-4">
-            댓글 {comments.length}개
+            {copy.comments} {comments.length}{copy.commentUnit}
           </p>
 
           {comments.length > 0 && (
@@ -162,8 +197,8 @@ export default function PostDetailPage() {
               {comments.map((comment) => (
                 <div key={comment.id} className="bg-white rounded-xl border border-gray-100 px-4 py-3">
                   <p className="text-caption font-bold text-bridge-teal mb-1">{getAuthorName(comment.author)}</p>
-                  <p className="text-body text-gray-700 leading-relaxed">{comment.content}</p>
-                  <p className="text-caption text-gray-400 mt-1.5">{timeAgo(comment.created_at)}</p>
+                  <p className="text-body text-gray-700 leading-relaxed">{getLocalizedCommentContent(comment, communityLocale)}</p>
+                  <p className="text-caption text-gray-400 mt-1.5">{formatCommunityTimeAgo(comment.created_at, communityLocale)}</p>
                 </div>
               ))}
             </div>
@@ -175,7 +210,7 @@ export default function PostDetailPage() {
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               rows={3}
-              placeholder="댓글을 작성하세요..."
+              placeholder={copy.commentPlaceholder}
               className="w-full rounded-xl border border-gray-200 px-3 py-2 text-body focus:outline-none focus:ring-2 focus:ring-bridge-primary resize-none"
             />
             <div className="flex justify-end">
@@ -184,7 +219,7 @@ export default function PostDetailPage() {
                 disabled={submittingComment || !commentText.trim()}
                 className="bg-ink text-white px-4 py-2 rounded-xl text-body font-bold hover:bg-black disabled:opacity-50"
               >
-                {submittingComment ? '올리는 중...' : '댓글 작성'}
+                {submittingComment ? copy.submittingComment : copy.submitComment}
               </button>
             </div>
           </form>
