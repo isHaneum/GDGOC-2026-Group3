@@ -1,0 +1,72 @@
+[
+  {
+    "companyName": "PayPay",
+    "targetRoles": ["Backend Engineer", "Mobile Engineer", "SRE / DevOps Engineer"],
+    "fieldsToVerify": ["salary", "location", "languageRequirement", "experienceRange"],
+    "preferredSourceTypes": ["official role-specific job page", "engineering recruitment page"],
+    "notes": "Use official role-specific pages. Do not rely on generic career landing pages. Confirm multilingual team expectations separately from hard language requirements."
+  },
+  {
+    "companyName": "Mercari",
+    "targetRoles": ["Backend Engineer", "SRE / DevOps Engineer", "Frontend Engineer"],
+    "fieldsToVerify": ["salary", "requiredTechStacks", "languageRequirement", "workStyle"],
+    "preferredSourceTypes": ["official role-specific job page", "engineering careers page"],
+    "notes": "Prioritize role pages that mention Go, platform operations, or product engineering scope."
+  },
+  {
+    "companyName": "SmartHR",
+    "targetRoles": ["Frontend Engineer", "Backend Engineer", "Product Engineer"],
+    "fieldsToVerify": ["salary", "requiredTechStacks", "preferredTechStacks", "location"],
+    "preferredSourceTypes": ["official role-specific job page", "engineering recruitment page"],
+    "notes": "Different product teams may have different stack requirements. Keep role profiles separate."
+  },
+  {
+    "companyName": "SmartNews",
+    "targetRoles": ["Backend Engineer", "Data Engineer", "Machine Learning Engineer"],
+    "fieldsToVerify": ["salary", "languageRequirement", "location", "workStyle"],
+    "preferredSourceTypes": ["official role-specific job page", "global engineering hiring page"],
+    "notes": "Verify whether English is preferred or required for each role instead of applying one global assumption."
+  },
+  {
+    "companyName": "LayerX",
+    "targetRoles": ["Product Engineer", "Backend Engineer", "Machine Learning Engineer"],
+    "fieldsToVerify": ["salary", "roleTitle", "requiredTechStacks", "experienceRange"],
+    "preferredSourceTypes": ["official role-specific job page", "engineering recruitment page"],
+    "notes": "Avoid inventing Product Engineer specifics from brand copy. Confirm the exact public role naming first."
+  },
+  {
+    "companyName": "Plaid",
+    "targetRoles": ["Platform Engineer", "Data Engineer", "Machine Learning Engineer"],
+    "fieldsToVerify": ["salary", "requiredTechStacks", "location", "languageRequirement"],
+    "preferredSourceTypes": ["official role-specific job page", "engineering recruitment page"],
+    "notes": "Treat each role page as a separate source artifact and preserve differences instead of merging into one generic profile."
+  },
+  {
+    "companyName": "Ubie",
+    "targetRoles": ["Machine Learning Engineer", "SRE / DevOps Engineer", "Backend Engineer"],
+    "fieldsToVerify": ["salary", "requiredTechStacks", "workStyle", "languageRequirement"],
+    "preferredSourceTypes": ["official role-specific job page", "engineering recruitment page"],
+    "notes": "HealthTech roles often split by product, platform, and ML operations. Capture each separately."
+  },
+  {
+    "companyName": "HENNGE",
+    "targetRoles": ["Security Engineer", "Backend Engineer", "Platform Engineer"],
+    "fieldsToVerify": ["salary", "requiredTechStacks", "languageRequirement", "sourceUrl"],
+    "preferredSourceTypes": ["official role-specific job page", "security engineering recruiting page"],
+    "notes": "Do not infer a security role only from company industry once an official security page is available."
+  },
+  {
+    "companyName": "Money Forward",
+    "targetRoles": ["Backend Engineer", "Platform Engineer", "Security Engineer"],
+    "fieldsToVerify": ["salary", "requiredTechStacks", "experienceRange", "location"],
+    "preferredSourceTypes": ["official role-specific job page", "engineering recruitment page"],
+    "notes": "Fintech domain copy is not enough. Look for role pages that explicitly mention architecture, compliance, or platform scope."
+  },
+  {
+    "companyName": "ZOZO",
+    "targetRoles": ["Frontend Engineer", "Backend Engineer", "Mobile Engineer"],
+    "fieldsToVerify": ["salary", "requiredTechStacks", "languageRequirement", "workStyle"],
+    "preferredSourceTypes": ["official role-specific job page", "engineering recruitment page"],
+    "notes": "Keep consumer product UI roles separate from backend commerce roles. Do not reuse one generic software engineer profile."
+  }
+]

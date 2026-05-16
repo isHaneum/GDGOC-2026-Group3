@@ -28,6 +28,7 @@ import {
   loadFitEngineMetadata,
   loadSampleDeveloperProfiles
 } from "../lib/companyCriteria";
+import { translateText } from "../lib/translationService";
 import {
   rankCompaniesForDeveloper,
   rankDevelopersForCompany,
@@ -54,6 +55,16 @@ type DashboardData = {
   developerProfiles: DeveloperPreference[];
   metadata: FitEngineMetadata | null;
   validationSummary: CompanyJobProfilesValidationSummary;
+};
+
+type TranslationProvider = "mock" | "server" | "none";
+
+type TranslatedDeveloperContent = {
+  resumeText: string;
+  motivation: string;
+  concerns: string[];
+  provider: TranslationProvider;
+  locale: Locale;
 };
 
 type LoadState = "loading" | "ready" | "error";
@@ -219,7 +230,48 @@ const dashboardCopy = {
     experienceLevelMatch: "Experience level match",
     locationWorkstyleMatch: "Location and workstyle match",
     motivationMatch: "Motivation match",
-    evidenceConfidence: "Evidence confidence"
+    evidenceConfidence: "Evidence confidence",
+    whatMatches: "What matches",
+    whatYouStillNeed: "What you still need",
+    strongPoints: "Strong points",
+    qualifications: "Qualifications",
+    techStack: "Tech stack",
+    language: "Language ability",
+    experience: "Experience",
+    evidence: "Evidence / proof",
+    missingEvidence: "Missing evidence",
+    locationMatch: "Location",
+    salaryMatch: "Salary",
+    languageMatch: "Language",
+    topReason: "Why it fits",
+    missingSummary: "Need next",
+    fit: "Fit",
+    fitLevel: "Fit level",
+    translateProfile: "Translate profile to selected language",
+    translatingProfile: "Translating profile...",
+    translationMockNote: "Translation API is not connected. Showing original text.",
+    translationReadyNote: "Translated content is shown in the selected language.",
+    fitExcellent: "Excellent fit",
+    fitStrong: "Strong fit",
+    fitPotential: "Potential fit",
+    fitNeedsPreparation: "Needs preparation",
+    fitLow: "Low fit",
+    actionApplyNow: "Apply now",
+    actionTrialProject: "Trial project",
+    actionCasualInterview: "Casual interview",
+    actionResearchCompany: "Research company",
+    actionRewriteMotivation: "Rewrite motivation",
+    actionBridgeLabs: "Bridge Labs activity",
+    actionSaveCandidate: "Save candidate",
+    actionRequestPassport: "Request passport",
+    actionInviteOfficeTour: "Invite office tour",
+    actionRecommendBridgeLabs: "Recommend Bridge Labs",
+    matchGood: "good match",
+    matchPartial: "partial match",
+    needsConfirmation: "needs confirmation",
+    missingLocation: "Missing location",
+    missingTechStack: "Missing tech stack",
+    unknownFields: "Unknown fields"
   },
   ko: {
     twoSidedFitEngine: "양방향 핏 엔진",
@@ -371,7 +423,48 @@ const dashboardCopy = {
     experienceLevelMatch: "경력 수준 일치",
     locationWorkstyleMatch: "지역/근무 방식 일치",
     motivationMatch: "동기 일치",
-    evidenceConfidence: "증거 신뢰도"
+    evidenceConfidence: "증거 신뢰도",
+    whatMatches: "맞는 점",
+    whatYouStillNeed: "아직 더 필요한 점",
+    strongPoints: "강점",
+    qualifications: "자격 / 기준 충족",
+    techStack: "기술 스택",
+    language: "언어 능력",
+    experience: "경험",
+    evidence: "증거 / 증명",
+    missingEvidence: "부족한 증거",
+    locationMatch: "지역",
+    salaryMatch: "연봉",
+    languageMatch: "언어",
+    topReason: "맞는 이유",
+    missingSummary: "다음에 보강할 점",
+    fit: "핏",
+    fitLevel: "핏 수준",
+    translateProfile: "선택한 언어로 프로필 번역",
+    translatingProfile: "프로필 번역 중...",
+    translationMockNote: "번역 API가 연결되지 않았습니다. 원문을 그대로 표시합니다.",
+    translationReadyNote: "선택한 언어 기준으로 번역된 내용을 표시합니다.",
+    fitExcellent: "매우 적합",
+    fitStrong: "강한 적합",
+    fitPotential: "가능성 있음",
+    fitNeedsPreparation: "준비 필요",
+    fitLow: "낮은 적합",
+    actionApplyNow: "바로 지원",
+    actionTrialProject: "트라이얼 프로젝트",
+    actionCasualInterview: "캐주얼 인터뷰",
+    actionResearchCompany: "회사 리서치",
+    actionRewriteMotivation: "지원 동기 재작성",
+    actionBridgeLabs: "Bridge Labs 활동 추천",
+    actionSaveCandidate: "후보 저장",
+    actionRequestPassport: "패스포트 요청",
+    actionInviteOfficeTour: "오피스 투어 제안",
+    actionRecommendBridgeLabs: "Bridge Labs 추천",
+    matchGood: "잘 맞음",
+    matchPartial: "부분적으로 맞음",
+    needsConfirmation: "확인 필요",
+    missingLocation: "지역 정보 누락",
+    missingTechStack: "기술 스택 누락",
+    unknownFields: "알 수 없는 필드"
   },
   ja: {
     twoSidedFitEngine: "双方向フィットエンジン",
@@ -523,7 +616,48 @@ const dashboardCopy = {
     experienceLevelMatch: "経験レベル一致",
     locationWorkstyleMatch: "勤務地/勤務スタイル一致",
     motivationMatch: "志望動機一致",
-    evidenceConfidence: "証明信頼度"
+    evidenceConfidence: "証明信頼度",
+    whatMatches: "合っている点",
+    whatYouStillNeed: "まだ必要な点",
+    strongPoints: "強み",
+    qualifications: "資格 / 条件充足",
+    techStack: "技術スタック",
+    language: "言語力",
+    experience: "経験",
+    evidence: "証拠 / 実績",
+    missingEvidence: "不足している証拠",
+    locationMatch: "勤務地",
+    salaryMatch: "年収",
+    languageMatch: "言語",
+    topReason: "合う理由",
+    missingSummary: "次に補強する点",
+    fit: "フィット",
+    fitLevel: "フィットレベル",
+    translateProfile: "選択中の言語にプロフィールを翻訳",
+    translatingProfile: "プロフィールを翻訳中...",
+    translationMockNote: "翻訳APIは未接続です。原文をそのまま表示します。",
+    translationReadyNote: "選択中の言語で翻訳済みの内容を表示しています。",
+    fitExcellent: "非常に高いフィット",
+    fitStrong: "高いフィット",
+    fitPotential: "可能性あり",
+    fitNeedsPreparation: "準備が必要",
+    fitLow: "低いフィット",
+    actionApplyNow: "今すぐ応募",
+    actionTrialProject: "トライアルプロジェクト",
+    actionCasualInterview: "カジュアル面談",
+    actionResearchCompany: "企業リサーチ",
+    actionRewriteMotivation: "志望動機の書き直し",
+    actionBridgeLabs: "Bridge Labsアクティビティ",
+    actionSaveCandidate: "候補者を保存",
+    actionRequestPassport: "パスポートを依頼",
+    actionInviteOfficeTour: "オフィス見学を提案",
+    actionRecommendBridgeLabs: "Bridge Labsを案内",
+    matchGood: "よく合う",
+    matchPartial: "一部合う",
+    needsConfirmation: "確認が必要",
+    missingLocation: "勤務地未入力",
+    missingTechStack: "技術スタック未入力",
+    unknownFields: "不明フィールド"
   }
 } satisfies Record<Locale, Record<string, string>>;
 
@@ -551,7 +685,9 @@ const companyScoreRows: Array<[keyof CompanyToDeveloperScoreBreakdown, CopyKey]>
 
 const warningExamples = [
   "missing salary",
+  "missing location",
   "missing language requirement",
+  "missing tech stack",
   "fallback source",
   "low source confidence",
   "missing experience range",
@@ -657,7 +793,9 @@ function deriveKeySignals(result: CompanyToDeveloperFitResult, developer: Develo
 function warningLabel(warning: string, t: (key: CopyKey) => string) {
   const warningMap: Record<string, CopyKey> = {
     "missing salary": "missingSalary",
+    "missing location": "missingLocation",
     "missing language requirement": "missingLanguageRequirement",
+    "missing tech stack": "missingTechStack",
     "fallback source": "fallbackSource",
     "low source confidence": "lowSourceConfidence",
     "missing experience range": "missingExperienceRange",
@@ -1026,6 +1164,575 @@ function CompanyProfilePanel({
   );
 }
 
+function fitLabelKey(score: number): CopyKey {
+  if (score >= 85) return "fitExcellent";
+  if (score >= 75) return "fitStrong";
+  if (score >= 65) return "fitPotential";
+  if (score >= 50) return "fitNeedsPreparation";
+  return "fitLow";
+}
+
+function fitTone(score: number): ChipTone {
+  if (score >= 85) return "green";
+  if (score >= 65) return "blue";
+  if (score >= 50) return "amber";
+  return "rose";
+}
+
+function nextStepLabelKey(step: DeveloperToCompanyFitResult["recommendedNextStep"]): CopyKey {
+  const labels: Record<DeveloperToCompanyFitResult["recommendedNextStep"], CopyKey> = {
+    apply_now: "actionApplyNow",
+    trial_project: "actionTrialProject",
+    casual_interview: "actionCasualInterview",
+    research_company: "actionResearchCompany",
+    rewrite_motivation: "actionRewriteMotivation",
+    bridge_labs_activity: "actionBridgeLabs"
+  };
+
+  return labels[step];
+}
+
+function recruiterActionLabelKey(action: CompanyToDeveloperFitResult["recommendedRecruiterAction"]): CopyKey {
+  const labels: Record<CompanyToDeveloperFitResult["recommendedRecruiterAction"], CopyKey> = {
+    save_candidate: "actionSaveCandidate",
+    request_passport: "actionRequestPassport",
+    invite_office_tour: "actionInviteOfficeTour",
+    casual_interview: "actionCasualInterview",
+    trial_project: "actionTrialProject",
+    recommend_bridge_labs: "actionRecommendBridgeLabs"
+  };
+
+  return labels[action];
+}
+
+function matchSummaryKey(score: number): CopyKey {
+  if (score >= 80) return "matchGood";
+  if (score >= 60) return "matchPartial";
+  return "needsConfirmation";
+}
+
+function displayDeveloperContent(
+  developer: DeveloperPreference | null | undefined,
+  translatedContent: TranslatedDeveloperContent | null | undefined
+) {
+  return {
+    resumeText: translatedContent?.resumeText ?? developer?.resumeText ?? "",
+    motivation: translatedContent?.motivation ?? developer?.motivation ?? "",
+    concerns: translatedContent?.concerns ?? developer?.concerns ?? [],
+    provider: translatedContent?.provider ?? "none"
+  } as const;
+}
+
+function formatRoleLocationSummary(profile: CompanyJobProfile | undefined, score: number, t: (key: CopyKey) => string) {
+  if (!profile || !profile.locations.length || profile.locations.includes("unknown")) {
+    return `${t("unknown")} - ${t("needsConfirmation")}`;
+  }
+
+  const parts = [...profile.locations.slice(0, 2)];
+  if (profile.workStyle !== "unknown") {
+    parts.push(humanize(profile.workStyle));
+  }
+
+  return `${parts.join(" / ")} - ${t(matchSummaryKey(score))}`;
+}
+
+function formatRoleSalarySummary(profile: CompanyJobProfile | undefined, score: number, t: (key: CopyKey) => string) {
+  if (!profile) return `${t("unknown")} - ${t("needsConfirmation")}`;
+
+  const salaryRange = formatSalary(profile.salaryMin, profile.salaryMax, profile.salaryCurrency, t("unknown"));
+  if (salaryRange === t("unknown")) {
+    return `${salaryRange} - ${t("needsConfirmation")}`;
+  }
+
+  return `${salaryRange} - ${t(matchSummaryKey(score))}`;
+}
+
+function formatRoleLanguageSummary(profile: CompanyJobProfile | undefined, score: number, t: (key: CopyKey) => string) {
+  if (!profile) return `${t("unknown")} - ${t("needsConfirmation")}`;
+
+  const languages = profile.requiredLanguages.length
+    ? formatLanguages(profile.requiredLanguages, t("unknown"))
+    : profile.preferredLanguages?.length
+      ? formatLanguages(profile.preferredLanguages, t("unknown"))
+      : t("unknown");
+
+  return `${languages} - ${t(matchSummaryKey(score))}`;
+}
+
+type StrongPointGroup = {
+  titleKey: CopyKey;
+  items: string[];
+};
+
+function buildStrongPointGroups(result: CompanyToDeveloperFitResult, developer: DeveloperPreference | undefined): StrongPointGroup[] {
+  if (!developer) return [];
+
+  const qualifications = unique([
+    ...developer.languageCertifications
+      .map((item) => item.certification)
+      .filter((value): value is string => Boolean(value)),
+    ...developer.targetRoles.slice(0, 2)
+  ]).slice(0, 4);
+
+  const language = unique(
+    developer.languageCertifications.map((item) => `${item.language} ${item.level}${item.certification ? ` (${item.certification})` : ""}`)
+  ).slice(0, 4);
+
+  const experience = unique([
+    `${developer.yearsOfExperience}y`,
+    ...developer.targetRoles.slice(0, 2),
+    developer.workStylePreference !== "any" ? humanize(developer.workStylePreference) : ""
+  ]).slice(0, 4);
+
+  const evidence = unique([
+    developer.portfolioText ? "Portfolio evidence available" : "",
+    developer.motivation ? "Motivation statement available" : "",
+    ...result.topMatchSignals.filter((signal) => /collaboration|documentation|product|proof|evidence|motivation/i.test(signal))
+  ]).slice(0, 4);
+
+  const groups: StrongPointGroup[] = [
+    { titleKey: "qualifications", items: qualifications },
+    { titleKey: "techStack", items: unique(developer.availableTechStacks).slice(0, 6) },
+    { titleKey: "language", items: language },
+    { titleKey: "experience", items: experience },
+    { titleKey: "evidence", items: evidence }
+  ];
+
+  return groups.filter((group) => group.items.length > 0);
+}
+
+function TranslationHint({ provider, t }: { provider: TranslationProvider; t: (key: CopyKey) => string }) {
+  if (provider === "mock") {
+    return <p className="text-xs font-medium text-amber-700">{t("translationMockNote")}</p>;
+  }
+
+  if (provider === "server") {
+    return <p className="text-xs font-medium text-green-700">{t("translationReadyNote")}</p>;
+  }
+
+  return null;
+}
+
+function ProductDeveloperProfilePanel({
+  developers,
+  selectedDeveloper,
+  selectedDeveloperId,
+  displayedContent,
+  translating,
+  onSelect,
+  onTranslate,
+  t
+}: {
+  developers: DeveloperPreference[];
+  selectedDeveloper: DeveloperPreference | null;
+  selectedDeveloperId: string;
+  displayedContent: ReturnType<typeof displayDeveloperContent>;
+  translating: boolean;
+  onSelect: (developerId: string) => void;
+  onTranslate: () => void;
+  t: (key: CopyKey) => string;
+}) {
+  return (
+    <Card className="p-5">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <p className="text-sm font-bold uppercase tracking-wide text-green-700">{t("developerProfile")}</p>
+          <h2 className="mt-1 text-xl font-bold text-slate-950">{t("candidatePreferenceView")}</h2>
+        </div>
+        <div className="grid gap-2">
+          <select
+            value={selectedDeveloperId}
+            onChange={(event) => onSelect(event.target.value)}
+            className="min-h-11 rounded-md border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-900 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          >
+            {developers.map((developer) => (
+              <option key={developer.developerId} value={developer.developerId}>
+                {developer.name}
+              </option>
+            ))}
+          </select>
+          <button
+            type="button"
+            onClick={onTranslate}
+            disabled={!selectedDeveloper || translating}
+            className="inline-flex min-h-10 items-center justify-center rounded-md border border-slate-200 bg-white px-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {translating ? t("translatingProfile") : t("translateProfile")}
+          </button>
+          <TranslationHint provider={displayedContent.provider} t={t} />
+        </div>
+      </div>
+
+      {!developers.length ? (
+        <div className="mt-5">
+          <EmptyPanel message={t("noSampleDevelopers")} />
+        </div>
+      ) : selectedDeveloper ? (
+        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          <Field label={t("name")} value={selectedDeveloper.name} />
+          <Field label={t("nationality")} value={selectedDeveloper.nationality} />
+          <Field
+            label={t("preferredSalary")}
+            value={formatSalary(selectedDeveloper.preferredSalaryMin, selectedDeveloper.preferredSalaryMax, selectedDeveloper.preferredCurrency, t("unknown"))}
+          />
+          <Field label={t("preferredLocations")} value={formatList(selectedDeveloper.preferredLocations, t("unknown"))} />
+          <Field label={t("availableTechStacks")} value={formatList(selectedDeveloper.availableTechStacks, t("unknown"))} wide />
+          <Field label={t("languageCertifications")} value={formatDeveloperLanguages(selectedDeveloper, t("unknown"))} wide />
+          <Field label={t("yearsOfExperience")} value={selectedDeveloper.yearsOfExperience} />
+          <Field label={t("targetRoles")} value={formatList(selectedDeveloper.targetRoles, t("unknown"))} />
+          <Field label={t("workStylePreference")} value={humanize(selectedDeveloper.workStylePreference)} />
+          <Field label={t("relocationAvailability")} value={selectedDeveloper.relocationAvailable ? t("available") : t("notAvailable")} />
+          <Field label={t("visaSupportNeeded")} value={selectedDeveloper.visaSupportNeeded ? t("needed") : t("notNeeded")} />
+          <Field label={t("preferredCompanyTypes")} value={formatList(selectedDeveloper.preferredCompanyTypes, t("unknown"))} />
+          <Field label={t("resumeSummary")} value={displayedContent.resumeText || t("unknown")} wide />
+          <Field label={t("motivation")} value={displayedContent.motivation || t("unknown")} wide />
+          <Field label={t("concerns")} value={formatList(displayedContent.concerns, t("noConcernsListed"))} wide />
+        </div>
+      ) : null}
+    </Card>
+  );
+}
+
+function CompanyTopRankingList({
+  results,
+  profiles,
+  selectedRoleId,
+  onSelect,
+  t
+}: {
+  results: DeveloperToCompanyFitResult[];
+  profiles: CompanyJobProfile[];
+  selectedRoleId: string;
+  onSelect: (roleId: string) => void;
+  t: (key: CopyKey) => string;
+}) {
+  const profilesByRoleId = new Map(profiles.map((profile) => [profile.roleId, profile]));
+
+  return (
+    <Card className="p-5">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="text-sm font-bold uppercase tracking-wide text-green-700">{t("top10RankedByEngine")}</p>
+          <h3 className="text-xl font-bold text-slate-950">{t("bestFitCompaniesRoles")}</h3>
+        </div>
+        <Badge tone="green" icon={Target}>{t("humanReviewRequired")}</Badge>
+      </div>
+
+      <div className="mt-5 grid gap-3">
+        {results.map((result, index) => {
+          const profile = profilesByRoleId.get(result.roleId);
+          const isSelected = selectedRoleId === result.roleId;
+
+          return (
+            <button
+              key={`${result.companyId}-${result.roleId}`}
+              type="button"
+              onClick={() => onSelect(result.roleId)}
+              className={classNames(
+                "grid gap-4 rounded-xl border p-4 text-left transition lg:grid-cols-[72px_minmax(0,1.3fr)_minmax(0,1.1fr)_minmax(0,1.1fr)]",
+                isSelected
+                  ? "border-green-500 bg-green-50 shadow-sm"
+                  : "border-slate-200 bg-white hover:border-green-200 hover:bg-green-50/40"
+              )}
+            >
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wide text-slate-500">{t("rank")}</p>
+                <p className="mt-1 text-3xl font-black text-green-700">#{index + 1}</p>
+              </div>
+
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-2">
+                  <p className="truncate text-lg font-bold text-slate-950">{result.companyName}</p>
+                  <Badge tone={fitTone(result.overallFitScore)}>{t(fitLabelKey(result.overallFitScore))}</Badge>
+                  <span className="text-sm font-semibold text-slate-500">{clampScore(result.overallFitScore)}</span>
+                </div>
+                <p className="mt-1 text-sm font-semibold text-slate-600">{result.roleTitle}</p>
+                <div className="mt-3 grid gap-2 text-sm text-slate-600">
+                  <p><span className="font-semibold text-slate-800">{t("locationMatch")}: </span>{formatRoleLocationSummary(profile, result.scoreBreakdown.locationFit, t)}</p>
+                  <p><span className="font-semibold text-slate-800">{t("salaryMatch")}: </span>{formatRoleSalarySummary(profile, result.scoreBreakdown.salaryFit, t)}</p>
+                  <p><span className="font-semibold text-slate-800">{t("languageMatch")}: </span>{formatRoleLanguageSummary(profile, result.scoreBreakdown.languageFit, t)}</p>
+                </div>
+              </div>
+
+              <div className="grid gap-2 text-sm text-slate-600">
+                <p><span className="font-semibold text-slate-800">{t("topReason")}: </span>{result.matchedReasons[0] ?? t("noMatchesYet")}</p>
+                <p><span className="font-semibold text-slate-800">{t("missingSummary")}: </span>{result.missingSignals[0] ?? t("noMissingSignals")}</p>
+              </div>
+
+              <div className="flex flex-col items-start gap-2">
+                <Badge tone="blue">{t(nextStepLabelKey(result.recommendedNextStep))}</Badge>
+                <span className="inline-flex min-h-9 items-center justify-center rounded-md border border-slate-200 bg-white px-3 text-sm font-bold text-slate-700">
+                  {isSelected ? t("selected") : t("viewDetails")}
+                </span>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </Card>
+  );
+}
+
+function ProductCompanyDetailPanel({
+  result,
+  profile,
+  rank,
+  t
+}: {
+  result: DeveloperToCompanyFitResult | null;
+  profile: CompanyJobProfile | null;
+  rank: number;
+  t: (key: CopyKey) => string;
+}) {
+  if (!result) {
+    return <EmptyPanel message={t("rankingFailed")} />;
+  }
+
+  const missions = result.recommendedMissions.slice(0, 4);
+
+  return (
+    <Card className="overflow-hidden">
+      <div className="border-b border-slate-200 bg-slate-50 p-5">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge tone="green">#{rank}</Badge>
+              <Badge tone={fitTone(result.overallFitScore)}>{t(fitLabelKey(result.overallFitScore))}</Badge>
+              <Badge tone="blue">{t(nextStepLabelKey(result.recommendedNextStep))}</Badge>
+            </div>
+            <h3 className="mt-3 text-3xl font-bold text-slate-950">{result.companyName}</h3>
+            <p className="mt-1 text-base font-semibold text-slate-600">{result.roleTitle}</p>
+            <p className="mt-4 max-w-4xl text-sm leading-6 text-slate-600">{result.explanation}</p>
+          </div>
+          <div className="rounded-lg border border-green-200 bg-white px-5 py-4 text-center shadow-sm">
+            <p className="text-xs font-bold uppercase tracking-wide text-slate-500">{t("fit")}</p>
+            <p className="mt-1 text-5xl font-black text-green-600">{clampScore(result.overallFitScore)}</p>
+          </div>
+        </div>
+
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          <Field label={t("locationMatch")} value={formatRoleLocationSummary(profile ?? undefined, result.scoreBreakdown.locationFit, t)} />
+          <Field label={t("salaryMatch")} value={formatRoleSalarySummary(profile ?? undefined, result.scoreBreakdown.salaryFit, t)} />
+          <Field label={t("languageMatch")} value={formatRoleLanguageSummary(profile ?? undefined, result.scoreBreakdown.languageFit, t)} />
+        </div>
+      </div>
+
+      <div className="grid gap-6 p-5">
+        <div>
+          <p className="mb-3 text-sm font-bold text-slate-900">{t("whatMatches")}</p>
+          <ChipList title={t("whatMatches")} values={result.matchedReasons} tone="green" emptyLabel={t("noMatchesYet")} limit={6} />
+        </div>
+
+        <div>
+          <p className="mb-3 text-sm font-bold text-slate-900">{t("whatYouStillNeed")}</p>
+          <ChipList title={t("whatYouStillNeed")} values={result.missingSignals} tone="amber" emptyLabel={t("noMissingSignals")} limit={6} />
+        </div>
+
+        <div>
+          <p className="mb-3 text-sm font-bold text-slate-900">{t("recommendedEvidenceMissions")}</p>
+          {missions.length ? (
+            <div className="grid gap-3 lg:grid-cols-2">
+              {missions.map((mission) => (
+                <MissionCard key={mission.missionId} mission={mission} t={t} />
+              ))}
+            </div>
+          ) : (
+            <EmptyPanel message={t("noMissions")} />
+          )}
+        </div>
+
+        {result.risks.length ? <ChipList title={t("risks")} values={result.risks} tone="rose" emptyLabel={t("noRisks")} limit={4} /> : null}
+
+        <ScoreAccordion title={t("detailedScoreBreakdown")}>
+          {developerScoreRows.map(([key, labelKey]) => (
+            <ScoreBar key={key} label={t(labelKey)} value={result.scoreBreakdown[key]} />
+          ))}
+        </ScoreAccordion>
+      </div>
+    </Card>
+  );
+}
+
+function ProductCandidateSummaryList({
+  results,
+  developers,
+  selectedCandidateId,
+  onSelect,
+  t
+}: {
+  results: CompanyToDeveloperFitResult[];
+  developers: DeveloperPreference[];
+  selectedCandidateId: string;
+  onSelect: (developerId: string) => void;
+  t: (key: CopyKey) => string;
+}) {
+  return (
+    <Card className="p-5">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="text-sm font-bold uppercase tracking-wide text-green-700">{t("recommendedCandidates")}</p>
+          <h3 className="text-xl font-bold text-slate-950">{t("top10Candidates")}</h3>
+        </div>
+        <Badge tone="green" icon={BadgeCheck}>{t("humanReviewRequired")}</Badge>
+      </div>
+
+      <div className="mt-5 grid gap-3">
+        {results.map((result, index) => {
+          const developer = developers.find((item) => item.developerId === result.developerId);
+          const keySignals = deriveKeySignals(result, developer);
+          const isSelected = selectedCandidateId === result.developerId;
+
+          return (
+            <button
+              key={`${result.companyId}-${result.roleId}-${result.developerId}`}
+              type="button"
+              onClick={() => onSelect(result.developerId)}
+              className={classNames(
+                "grid gap-4 rounded-xl border p-4 text-left transition lg:grid-cols-[72px_minmax(0,1.1fr)_minmax(0,1.3fr)_minmax(180px,0.9fr)]",
+                isSelected
+                  ? "border-green-500 bg-green-50 shadow-sm"
+                  : "border-slate-200 bg-white hover:border-green-200 hover:bg-green-50/40"
+              )}
+            >
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wide text-slate-500">{t("rank")}</p>
+                <p className="mt-1 text-3xl font-black text-green-700">#{index + 1}</p>
+              </div>
+
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-2">
+                  <p className="truncate text-lg font-bold text-slate-950">{result.developerName}</p>
+                  <Badge tone={fitTone(result.overallFitScore)}>{t(fitLabelKey(result.overallFitScore))}</Badge>
+                </div>
+                <p className="mt-1 text-sm font-semibold text-slate-500">{developer?.nationality ?? t("unknown")}</p>
+                <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-500">{t("keySignals")}</p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {keySignals.map((signal) => (
+                    <Badge key={`${result.developerId}-${signal}`} tone="slate">
+                      {signal}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid gap-2 text-sm text-slate-600">
+                <p><span className="font-semibold text-slate-800">{t("fitLevel")}: </span>{t(fitLabelKey(result.overallFitScore))}</p>
+                <p><span className="font-semibold text-slate-800">{t("recommendedRecruiterAction")}: </span>{t(recruiterActionLabelKey(result.recommendedRecruiterAction))}</p>
+              </div>
+
+              <div className="flex flex-col items-start gap-2">
+                <span className="text-sm font-semibold text-slate-500">{clampScore(result.overallFitScore)}</span>
+                <span className="inline-flex min-h-9 items-center justify-center rounded-md border border-slate-200 bg-white px-3 text-sm font-bold text-slate-700">
+                  {isSelected ? t("selected") : t("viewDetails")}
+                </span>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </Card>
+  );
+}
+
+function ProductCandidateDetailPanel({
+  result,
+  developer,
+  displayedContent,
+  translating,
+  onTranslate,
+  t
+}: {
+  result: CompanyToDeveloperFitResult | null;
+  developer: DeveloperPreference | undefined;
+  displayedContent: ReturnType<typeof displayDeveloperContent>;
+  translating: boolean;
+  onTranslate: () => void;
+  t: (key: CopyKey) => string;
+}) {
+  if (!result) {
+    return <EmptyPanel message={t("rankingFailed")} />;
+  }
+
+  const strongPoints = buildStrongPointGroups(result, developer);
+
+  return (
+    <Card className="overflow-hidden">
+      <div className="border-b border-slate-200 bg-slate-50 p-5">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-wide text-green-700">{t("candidateDetail")}</p>
+            <h3 className="mt-1 text-3xl font-bold text-slate-950">{result.developerName}</h3>
+            <p className="mt-1 text-sm font-semibold text-slate-600">
+              {developer?.nationality ?? t("unknown")} / {formatList(developer?.targetRoles, t("unknown"))}
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Badge tone={fitTone(result.overallFitScore)}>{t(fitLabelKey(result.overallFitScore))}</Badge>
+              <Badge tone="blue">{t(recruiterActionLabelKey(result.recommendedRecruiterAction))}</Badge>
+            </div>
+          </div>
+
+          <div className="grid gap-2 justify-items-end">
+            <button
+              type="button"
+              onClick={onTranslate}
+              disabled={!developer || translating}
+              className="inline-flex min-h-10 items-center justify-center rounded-md border border-slate-200 bg-white px-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {translating ? t("translatingProfile") : t("translateProfile")}
+            </button>
+            <TranslationHint provider={displayedContent.provider} t={t} />
+          </div>
+        </div>
+      </div>
+
+      <div className="grid gap-5 p-5">
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Field label={t("name")} value={result.developerName} />
+          <Field label={t("nationality")} value={developer?.nationality ?? t("unknown")} />
+          <Field label={t("targetRoles")} value={formatList(developer?.targetRoles, t("unknown"))} />
+          <Field label={t("yearsOfExperience")} value={developer?.yearsOfExperience ?? t("unknown")} />
+          <Field label={t("availableTechStacks")} value={formatList(developer?.availableTechStacks, t("unknown"))} wide />
+          <Field label={t("languageCertifications")} value={developer ? formatDeveloperLanguages(developer, t("unknown")) : t("unknown")} wide />
+          <Field label={t("resumeSummary")} value={displayedContent.resumeText || t("unknown")} wide />
+          <Field label={t("motivation")} value={displayedContent.motivation || t("unknown")} wide />
+        </div>
+
+        <div>
+          <p className="mb-3 text-sm font-bold text-slate-900">{t("strongPoints")}</p>
+          <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+            {strongPoints.map((group) => (
+              <ChipList
+                key={group.titleKey}
+                title={t(group.titleKey)}
+                values={group.items}
+                tone="green"
+                emptyLabel={t("unknown")}
+                limit={6}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="grid gap-4 lg:grid-cols-2">
+          <ChipList title={t("missingEvidence")} values={result.missingSignals} tone="amber" emptyLabel={t("noMissingSignals")} limit={6} />
+          <ChipList title={t("risks")} values={result.risks} tone="rose" emptyLabel={t("noRisks")} limit={6} />
+        </div>
+
+        <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900">
+          <p className="font-bold">{t("recommendedRecruiterAction")}</p>
+          <p className="mt-1">{t(recruiterActionLabelKey(result.recommendedRecruiterAction))}</p>
+        </div>
+
+        <ScoreAccordion title={t("detailedScoreBreakdown")}>
+          {companyScoreRows.map(([key, labelKey]) => (
+            <ScoreBar key={key} label={t(labelKey)} value={result.scoreBreakdown[key]} />
+          ))}
+        </ScoreAccordion>
+      </div>
+    </Card>
+  );
+}
+
 function CompanyRankNavigator({
   results,
   selectedIndex,
@@ -1302,10 +2009,9 @@ function CandidateDetailPanel({
 }
 
 function ValidationPanel({ summary, t }: { summary: CompanyJobProfilesValidationSummary; t: (key: CopyKey) => string }) {
-  const commonWarnings = getCommonWarnings(summary);
-  const warningLookup = new Set(commonWarnings.map(([warning]) => warning));
-  const displayedWarnings = commonWarnings.length
-    ? commonWarnings.slice(0, 8)
+  const warningLookup = new Set(summary.commonWarnings.map((item) => item.warning));
+  const displayedWarnings = summary.commonWarnings.length
+    ? summary.commonWarnings.slice(0, 8).map((item) => [item.warning, item.count] as [string, number])
     : warningExamples.map((warning) => [warning, warningLookup.has(warning) ? 1 : 0] as [string, number]);
 
   return (
@@ -1346,10 +2052,13 @@ export function TwoSidedFitDashboard() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [selectedDeveloperId, setSelectedDeveloperId] = useState("");
   const [selectedCompanyRoleId, setSelectedCompanyRoleId] = useState("");
+  const [selectedDeveloperCompanyRoleId, setSelectedDeveloperCompanyRoleId] = useState("");
   const [selectedCompanyRankIndex, setSelectedCompanyRankIndex] = useState(0);
   const [selectedCandidateId, setSelectedCandidateId] = useState("");
   const [activeTab, setActiveTab] = useState<TabKey>("developerToCompany");
   const [locale, setLocale] = useState<Locale>("en");
+  const [translatedProfiles, setTranslatedProfiles] = useState<Record<string, TranslatedDeveloperContent>>({});
+  const [activeTranslationKey, setActiveTranslationKey] = useState("");
 
   const t = (key: CopyKey) => dashboardCopy[locale][key] ?? dashboardCopy.en[key] ?? key;
 
@@ -1454,10 +2163,34 @@ export function TwoSidedFitDashboard() {
     }
   }, [companyRanking.results, selectedCandidateId]);
 
-  const selectedCompanyResult = developerRanking.results[selectedCompanyRankIndex] ?? developerRanking.results[0] ?? null;
+  useEffect(() => {
+    const firstRoleId = developerRanking.results[0]?.roleId ?? "";
+    const currentRoleExists = developerRanking.results.some((result) => result.roleId === selectedDeveloperCompanyRoleId);
+
+    if (!currentRoleExists) {
+      setSelectedDeveloperCompanyRoleId(firstRoleId);
+    }
+  }, [developerRanking.results, selectedDeveloperCompanyRoleId]);
+
+  const selectedCompanyResult =
+    developerRanking.results.find((result) => result.roleId === selectedDeveloperCompanyRoleId) ?? developerRanking.results[0] ?? null;
+  const selectedCompanyResultRank = selectedCompanyResult
+    ? developerRanking.results.findIndex((result) => result.roleId === selectedCompanyResult.roleId) + 1
+    : 0;
+  const selectedDeveloperTranslationKey = selectedDeveloper ? `${selectedDeveloper.developerId}:${locale}` : "";
+  const selectedDeveloperContent = displayDeveloperContent(
+    selectedDeveloper,
+    selectedDeveloper ? translatedProfiles[selectedDeveloperTranslationKey] : null
+  );
   const selectedCandidateResult =
     companyRanking.results.find((result) => result.developerId === selectedCandidateId) ?? companyRanking.results[0] ?? null;
   const selectedCandidateDeveloper = data?.developerProfiles.find((developer) => developer.developerId === selectedCandidateResult?.developerId);
+  const selectedCandidateTranslationKey = selectedCandidateDeveloper ? `${selectedCandidateDeveloper.developerId}:${locale}` : "";
+  const selectedCandidateContent = displayDeveloperContent(
+    selectedCandidateDeveloper,
+    selectedCandidateDeveloper ? translatedProfiles[selectedCandidateTranslationKey] : null
+  );
+  const selectedCompanyResultProfile = data?.companyJobProfiles.find((profile) => profile.roleId === selectedCompanyResult?.roleId) ?? null;
 
   const allProfilesHaveWarnings = Boolean(
     data &&
@@ -1480,6 +2213,41 @@ export function TwoSidedFitDashboard() {
       if (!developerRanking.results.length) return 0;
       return current === developerRanking.results.length - 1 ? 0 : current + 1;
     });
+  }
+
+  async function handleTranslateProfile(profile: DeveloperPreference | null | undefined) {
+    if (!profile) return;
+
+    const translationKey = `${profile.developerId}:${locale}`;
+    setActiveTranslationKey(translationKey);
+
+    try {
+      const [resumeResult, motivationResult, concernResults] = await Promise.all([
+        translateText({ text: profile.resumeText, sourceLocale: "auto", targetLocale: locale, context: "resume" }),
+        translateText({ text: profile.motivation ?? "", sourceLocale: "auto", targetLocale: locale, context: "explanation" }),
+        Promise.all(
+          (profile.concerns ?? []).map((concern) =>
+            translateText({ text: concern, sourceLocale: "auto", targetLocale: locale, context: "explanation" })
+          )
+        )
+      ]);
+
+      const providers = [resumeResult.provider, motivationResult.provider, ...concernResults.map((item) => item.provider)];
+      const provider = providers.includes("server") ? "server" : providers.includes("mock") ? "mock" : "none";
+
+      setTranslatedProfiles((current) => ({
+        ...current,
+        [translationKey]: {
+          resumeText: resumeResult.translatedText,
+          motivation: motivationResult.translatedText,
+          concerns: concernResults.map((item) => item.translatedText),
+          provider,
+          locale
+        }
+      }));
+    } finally {
+      setActiveTranslationKey((current) => (current === translationKey ? "" : current));
+    }
   }
 
   return (
@@ -1599,11 +2367,16 @@ export function TwoSidedFitDashboard() {
 
         {activeTab === "developerToCompany" ? (
           <section className="grid gap-6 xl:grid-cols-[minmax(320px,0.85fr)_minmax(0,1.45fr)]">
-            <DeveloperProfilePanel
+            <ProductDeveloperProfilePanel
               developers={data.developerProfiles}
               selectedDeveloper={selectedDeveloper}
               selectedDeveloperId={selectedDeveloperId}
+              displayedContent={selectedDeveloperContent}
+              translating={activeTranslationKey === selectedDeveloperTranslationKey}
               onSelect={setSelectedDeveloperId}
+              onTranslate={() => {
+                void handleTranslateProfile(selectedDeveloper);
+              }}
               t={t}
             />
             <div className="grid gap-4">
@@ -1620,15 +2393,14 @@ export function TwoSidedFitDashboard() {
                 <EmptyPanel message={t("noCompanyProfiles")} />
               ) : developerRanking.results.length && selectedCompanyResult ? (
                 <>
-                  <CompanyRankNavigator
+                  <CompanyTopRankingList
                     results={developerRanking.results}
-                    selectedIndex={selectedCompanyRankIndex}
-                    onSelect={setSelectedCompanyRankIndex}
-                    onPrevious={handlePreviousCompany}
-                    onNext={handleNextCompany}
+                    profiles={data.companyJobProfiles}
+                    selectedRoleId={selectedCompanyResult.roleId}
+                    onSelect={setSelectedDeveloperCompanyRoleId}
                     t={t}
                   />
-                  <SelectedCompanyMatchCard result={selectedCompanyResult} rank={selectedCompanyRankIndex + 1} t={t} />
+                  <ProductCompanyDetailPanel result={selectedCompanyResult} profile={selectedCompanyResultProfile} rank={selectedCompanyResultRank} t={t} />
                 </>
               ) : (
                 <EmptyPanel message={t("rankingFailed")} />
@@ -1658,14 +2430,23 @@ export function TwoSidedFitDashboard() {
                 <EmptyPanel message={t("noSampleDevelopers")} />
               ) : companyRanking.results.length ? (
                 <>
-                  <CandidateRankingList
+                  <ProductCandidateSummaryList
                     results={companyRanking.results}
                     developers={data.developerProfiles}
                     selectedCandidateId={selectedCandidateResult?.developerId ?? ""}
                     onSelect={setSelectedCandidateId}
                     t={t}
                   />
-                  <CandidateDetailPanel result={selectedCandidateResult} developer={selectedCandidateDeveloper} t={t} />
+                  <ProductCandidateDetailPanel
+                    result={selectedCandidateResult}
+                    developer={selectedCandidateDeveloper}
+                    displayedContent={selectedCandidateContent}
+                    translating={activeTranslationKey === selectedCandidateTranslationKey}
+                    onTranslate={() => {
+                      void handleTranslateProfile(selectedCandidateDeveloper);
+                    }}
+                    t={t}
+                  />
                 </>
               ) : (
                 <EmptyPanel message={t("rankingFailed")} />
@@ -1675,23 +2456,6 @@ export function TwoSidedFitDashboard() {
         )}
 
         <ValidationPanel summary={data.validationSummary} t={t} />
-
-        <details className="group rounded-lg border border-slate-200 bg-white shadow-panel">
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-left">
-            <div>
-              <p className="text-sm font-bold uppercase tracking-wide text-green-700">{t("rawDebugJson")}</p>
-              <h2 className="mt-1 text-xl font-bold text-slate-950">{t("inspectSelectedInputs")}</h2>
-            </div>
-            <ChevronDown className="shrink-0 text-slate-500 transition group-open:rotate-180" size={22} />
-          </summary>
-          <div className="grid gap-4 border-t border-slate-200 p-5">
-            <JsonBlock title={t("selectedDeveloperJson")} value={selectedDeveloper} />
-            <JsonBlock title={t("selectedCompanyProfileJson")} value={selectedCompanyProfile} />
-            <JsonBlock title={t("selectedDeveloperToCompanyResultJson")} value={selectedCompanyResult} />
-            <JsonBlock title={t("selectedCompanyToDeveloperResultJson")} value={selectedCandidateResult} />
-            <JsonBlock title={t("validationSummaryJson")} value={data.validationSummary} />
-          </div>
-        </details>
 
         <footer className="rounded-lg border border-blue-200 bg-blue-50 p-4 text-sm leading-6 text-blue-900">
           <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
