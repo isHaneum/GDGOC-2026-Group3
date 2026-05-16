@@ -2,9 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { MARKETS, getCurrentMarket } from "@shared/market";
-import { mapResumeContext } from "@src/api/client";
-import { evaluateCandidate } from "@src/lib/candidateEvaluation";
+
 import {
   loadCompanyJobProfiles,
   loadCompanyRubrics,
@@ -12,424 +10,284 @@ import {
   loadSampleDeveloperProfiles
 } from "@src/lib/companyCriteria";
 import {
-  buildCandidateEvaluationInput,
-  buildResumeContextRequest,
-  filterDevelopersForMarket,
-  getMarketDirection
-} from "@src/lib/marketAdapter";
+  formatCompanyLogo,
+  formatCompanySalarySummary,
+  formatExperienceRange,
+  formatLanguageSummary,
+  formatLocationSummary,
+  formatQualificationSummary,
+  formatRoleTitle
+} from "@src/lib/fitDisplayHelpers";
 import { rankDevelopersForCompany } from "@src/lib/twoSidedFitEngine";
 import type {
-  CandidateEvaluationResult,
   CompanyEvaluationRubric,
   CompanyHiringSignal,
   CompanyJobProfile,
   CompanyToDeveloperFitResult,
   DeveloperPreference
 } from "@shared/companyCriteriaTypes";
-import type { ResumeContextMappingResult } from "@shared/types";
+
+type LoadState = "loading" | "ready" | "error";
+
+function formatList(values: string[] | undefined, fallback = "확인 필요") {
+  return values && values.length ? values.join(", ") : fallback;
+}
+
+function normalizeWorkStyle(value: CompanyJobProfile["workStyle"] | DeveloperPreference["workStylePreference"]) {
+  if (value === "hybrid") return "Hybrid";
+  if (value === "remote") return "Remote";
+  if (value === "onsite") return "On-site";
+  return "Any";
+}
+
+function CompanyLogo({ company }: { company: CompanyJobProfile }) {
+  const [broken, setBroken] = useState(false);
+  const logo = broken ? null : formatCompanyLogo(company);
+
+  if (!logo) {
+    return (
+      <div className="flex h-12 w-20 shrink-0 items-center justify-center rounded-xl border border-gray-100 bg-gray-50 text-xs font-black text-gray-400">
+        {company.companyName.slice(0, 2).toUpperCase()}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={logo.src}
+      alt={logo.alt}
+      onError={() => setBroken(true)}
+      className="h-12 w-20 shrink-0 rounded-xl border border-gray-100 bg-white object-contain p-2"
+    />
+  );
+}
+
+function CandidateSummary({
+  result,
+  developer
+}: {
+  result: CompanyToDeveloperFitResult;
+  developer: DeveloperPreference | null;
+}) {
+  return (
+    <article className="rounded-2xl border border-gray-100 bg-bridge-paper p-4">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h3 className="font-black text-ink">{result.developerName}</h3>
+          <p className="mt-1 text-sm font-bold text-gray-500">
+            {formatList(developer?.targetRoles.slice(0, 2), "직무 확인 필요")}
+          </p>
+        </div>
+        <span className="rounded-full bg-bridge-primary/20 px-3 py-1 text-sm font-black text-bridge-teal">
+          {Math.round(result.overallFitScore)}
+        </span>
+      </div>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {result.topMatchSignals.slice(0, 3).map((signal) => (
+          <span key={`${result.developerId}-${signal}`} className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-bold text-gray-600">
+            {signal}
+          </span>
+        ))}
+      </div>
+      <p className="mt-3 text-sm leading-6 text-gray-600">
+        {result.explanation}
+      </p>
+    </article>
+  );
+}
 
 export default function EmployerDashboard() {
-  const [market, setMarket] = useState(MARKETS["kr-jp"]);
-  const [mounted, setMounted] = useState(false);
-  const [jobProfiles, setJobProfiles] = useState<CompanyJobProfile[]>([]);
+  const [loadState, setLoadState] = useState<LoadState>("loading");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [companies, setCompanies] = useState<CompanyJobProfile[]>([]);
+  const [developers, setDevelopers] = useState<DeveloperPreference[]>([]);
   const [rubrics, setRubrics] = useState<CompanyEvaluationRubric[]>([]);
   const [signals, setSignals] = useState<CompanyHiringSignal[]>([]);
-  const [developers, setDevelopers] = useState<DeveloperPreference[]>([]);
-  const [dataError, setDataError] = useState<string | null>(null);
-  const [selectedDeveloperId, setSelectedDeveloperId] = useState<string | null>(null);
-  const [evaluation, setEvaluation] = useState<CandidateEvaluationResult | null>(null);
-  const [resumeContext, setResumeContext] = useState<ResumeContextMappingResult | null>(null);
-  const [evaluationLoading, setEvaluationLoading] = useState(false);
-  const [resumeLoading, setResumeLoading] = useState(false);
-  const [evaluationLocked, setEvaluationLocked] = useState<string | null>(null);
-  const [resumeLocked, setResumeLocked] = useState<string | null>(null);
-
-  useEffect(() => {
-    setMarket(getCurrentMarket());
-    setMounted(true);
-  }, []);
+  const [selectedRoleId, setSelectedRoleId] = useState("");
 
   useEffect(() => {
     let cancelled = false;
 
     async function loadData() {
       try {
-        const [nextJobProfiles, nextRubrics, nextSignals, nextDevelopers] = await Promise.all([
+        const [nextCompanies, nextDevelopers, nextRubrics, nextSignals] = await Promise.all([
           loadCompanyJobProfiles(),
+          loadSampleDeveloperProfiles(),
           loadCompanyRubrics(),
-          loadCompanySignals(),
-          loadSampleDeveloperProfiles()
+          loadCompanySignals()
         ]);
 
         if (cancelled) return;
-        setJobProfiles(nextJobProfiles);
+        setCompanies(nextCompanies);
+        setDevelopers(nextDevelopers);
         setRubrics(nextRubrics);
         setSignals(nextSignals);
-        setDevelopers(nextDevelopers);
+        setSelectedRoleId(nextCompanies[0]?.roleId ?? "");
+        setLoadState("ready");
       } catch (error) {
-        if (!cancelled) {
-          setDataError(error instanceof Error ? error.message : "Unable to load matching data.");
-        }
+        if (cancelled) return;
+        setErrorMessage(error instanceof Error ? error.message : "기업 홈 데이터를 불러오지 못했습니다.");
+        setLoadState("error");
       }
     }
 
-    loadData();
+    void loadData();
     return () => {
       cancelled = true;
     };
   }, []);
 
-  const direction = getMarketDirection(market);
-  const company = useMemo(
-    () => jobProfiles.find((profile) => profile.country === direction.targetCountry) ?? jobProfiles[0] ?? null,
-    [direction.targetCountry, jobProfiles]
+  const selectedCompany = useMemo(
+    () => companies.find((company) => company.roleId === selectedRoleId) ?? companies[0] ?? null,
+    [companies, selectedRoleId]
   );
-  const marketDevelopers = useMemo(
-    () => filterDevelopersForMarket(developers, market),
-    [developers, market]
-  );
-  const rankedMatches = useMemo(() => {
-    if (!company || !marketDevelopers.length) return [];
-    return rankDevelopersForCompany(company, marketDevelopers, rubrics, signals).slice(0, 5);
-  }, [company, marketDevelopers, rubrics, signals]);
-  const selectedMatch =
-    rankedMatches.find((match) => match.developerId === selectedDeveloperId) ?? rankedMatches[0] ?? null;
-  const selectedCandidate =
-    marketDevelopers.find((developer) => developer.developerId === selectedMatch?.developerId) ??
-    marketDevelopers[0] ??
-    null;
 
-  useEffect(() => {
-    setEvaluation(null);
-    setResumeContext(null);
-    setEvaluationLocked(null);
-    setResumeLocked(null);
-  }, [market.id, selectedCandidate?.developerId]);
+  const recommendations = useMemo<CompanyToDeveloperFitResult[]>(() => {
+    if (!selectedCompany || !developers.length) return [];
+    return rankDevelopersForCompany(selectedCompany, developers, rubrics, signals).slice(0, 6);
+  }, [developers, rubrics, selectedCompany, signals]);
 
-  async function handleEvaluateCandidate() {
-    if (!company || !selectedCandidate) return;
+  const managedApplicants = recommendations.slice(0, 4);
 
-    setEvaluationLoading(true);
-    setEvaluationLocked(null);
-
-    try {
-      const response = await evaluateCandidate(company.companyId, buildCandidateEvaluationInput(selectedCandidate));
-      setEvaluation(response);
-    } catch (error) {
-      setEvaluation(null);
-      setEvaluationLocked(error instanceof Error ? error.message : "Candidate evaluation is unavailable.");
-    } finally {
-      setEvaluationLoading(false);
-    }
+  if (loadState === "loading") {
+    return <div className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-12 text-center text-gray-500">기업 홈 데이터를 불러오는 중입니다.</div>;
   }
 
-  async function handleMapResumeContext() {
-    if (!selectedCandidate) return;
-
-    setResumeLoading(true);
-    setResumeLocked(null);
-
-    try {
-      const response = await mapResumeContext(buildResumeContextRequest(selectedCandidate, market));
-      setResumeContext(response);
-    } catch (error) {
-      setResumeContext(null);
-      setResumeLocked(error instanceof Error ? error.message : "Resume context mapping is unavailable.");
-    } finally {
-      setResumeLoading(false);
-    }
+  if (loadState === "error") {
+    return <div className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-12 text-center text-bridge-coral">{errorMessage}</div>;
   }
-
-  if (!mounted) return <div className="min-h-screen bg-bridge-paper" />;
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl">
-      <header className="mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-        <div>
-          <h1 className="text-3xl font-bold mb-2">Employer Matchmaker</h1>
-          <p className="text-gray-500">
-            Finding {market.sourceCountry} developers with deep {market.targetCountry} resonance.
-          </p>
-          <Link href="/signal-lab" className="mt-3 inline-flex text-sm font-semibold text-bridge-primary hover:underline">
-            후보 추천 보기
-          </Link>
-        </div>
-
-        <div className="flex items-center space-x-4">
-          <div className="bg-white border border-gray-200 px-4 py-2 rounded-xl text-sm font-bold shadow-sm">
-            {company ? company.roleTitle : "Loading role"}
+    <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-8">
+      <div className="mx-auto max-w-7xl space-y-6">
+        <header className="rounded-2xl border border-gray-100 bg-white p-6 shadow-panel">
+          <p className="text-xs font-black uppercase tracking-widest text-bridge-coral">Employer Home</p>
+          <div className="mt-3 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h1 className="text-3xl font-black tracking-tight text-ink">기업 추천 흐름</h1>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-gray-500">
+                추천 개발자, 지원자 관리, 기업/직무 조건만 분리해서 관리합니다.
+              </p>
+            </div>
+            <label className="block min-w-80">
+              <span className="text-xs font-black uppercase tracking-widest text-gray-400">기업/직무 선택</span>
+              <select
+                value={selectedRoleId}
+                onChange={(event) => setSelectedRoleId(event.target.value)}
+                className="mt-2 w-full rounded-xl border border-gray-200 bg-bridge-paper px-4 py-3 text-sm font-bold text-ink outline-none focus:border-bridge-teal"
+              >
+                {companies.map((company) => (
+                  <option key={company.roleId} value={company.roleId}>
+                    {company.companyName} / {company.roleTitle}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
-          <div className="bg-bridge-primary/10 px-3 py-1 rounded-full flex items-center">
-            <span className="text-[10px] font-black text-bridge-teal uppercase tracking-tighter">
-              AI credits on demand
-            </span>
+        </header>
+
+        <section id="recommended-developers" className="rounded-2xl border border-gray-100 bg-white p-6 shadow-panel">
+          <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm font-bold text-bridge-teal">추천 개발자</p>
+              <h2 className="mt-1 text-2xl font-black text-ink">직무 조건 기준 상위 후보</h2>
+            </div>
+            <Link href="/signal-lab?role=employer" className="rounded-full bg-ink px-4 py-2 text-sm font-bold text-white hover:bg-black">
+              Signal Lab에서 보기
+            </Link>
           </div>
-        </div>
-      </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <aside className="lg:col-span-1 space-y-8">
-          <div className="bg-white p-6 rounded-2xl shadow-panel border border-gray-100">
-            <h2 className="text-sm font-black text-gray-400 uppercase tracking-widest mb-6">
-              Qualitative Filters
-            </h2>
-
-            <div className="space-y-6">
-              <FilterGroup
-                title="Cultural Strong Point"
-                options={["Keigo Proficiency", "UI Localization", "Workplace Etiquette", "Team Harmony"]}
+          <div className="grid gap-4 lg:grid-cols-3">
+            {recommendations.slice(0, 3).map((result) => (
+              <CandidateSummary
+                key={result.developerId}
+                result={result}
+                developer={developers.find((developer) => developer.developerId === result.developerId) ?? null}
               />
-              <div className="pt-6 border-t border-gray-100">
-                <label className="block text-sm font-bold text-ink mb-3">Language Focus</label>
-                <select className="w-full bg-gray-50 border-none rounded-xl px-4 py-3 text-sm font-medium focus:ring-2 focus:ring-bridge-primary">
-                  <option>N1 / Native</option>
-                  <option>N2 / Business</option>
-                  <option>N3 / Conversational</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-bridge-primary/5 p-6 rounded-2xl border border-bridge-primary/20">
-            <h3 className="text-sm font-bold text-bridge-teal mb-2">Quality Guarantee</h3>
-            <p className="text-xs text-gray-600 leading-relaxed">
-              Deterministic ranking is shown first. Gemini-backed evaluation and resume context mapping run only when
-              the recruiter explicitly requests them.
-            </p>
-          </div>
-        </aside>
-
-        <main className="lg:col-span-3 space-y-6">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold text-ink">Relevant Matches</h2>
-            <span className="text-sm text-gray-400 font-medium">
-              {company ? `Matching against ${company.companyName}` : "Loading company profile"}
-            </span>
-          </div>
-
-          {dataError ? (
-            <div className="rounded-xl border border-bridge-coral/30 bg-bridge-coral/10 p-4">
-              <p className="text-sm font-bold text-bridge-coral">Matching data unavailable</p>
-              <p className="mt-1 text-sm text-gray-600">{dataError}</p>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {rankedMatches.map((match) => (
-                <CandidateCard
-                  key={match.developerId}
-                  match={match}
-                  selected={match.developerId === selectedMatch?.developerId}
-                  onSelect={() => setSelectedDeveloperId(match.developerId)}
-                />
-              ))}
-            </div>
-          )}
-
-          {selectedCandidate && selectedMatch ? (
-            <section className="bg-white p-6 rounded-2xl shadow-panel border border-gray-100">
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
-                <div>
-                  <p className="text-[10px] font-black text-bridge-teal uppercase tracking-widest">
-                    Candidate Profile
-                  </p>
-                  <h2 className="text-2xl font-black text-ink">{selectedCandidate.name}</h2>
-                  <p className="mt-1 text-sm text-gray-500">
-                    {selectedCandidate.targetRoles.join(", ")} · {selectedCandidate.yearsOfExperience} years ·{" "}
-                    {selectedCandidate.workStylePreference}
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <button
-                    onClick={handleEvaluateCandidate}
-                    disabled={evaluationLoading}
-                    className="bg-ink text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-black disabled:opacity-50"
-                  >
-                    {evaluationLoading ? "Evaluating..." : "Run Candidate Evaluation"}
-                  </button>
-                  <button
-                    onClick={handleMapResumeContext}
-                    disabled={resumeLoading}
-                    className="bg-bridge-primary text-ink px-4 py-2 rounded-xl text-xs font-bold hover:opacity-90 disabled:opacity-50"
-                  >
-                    {resumeLoading ? "Mapping..." : "Map Resume Context"}
-                  </button>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                <div className="space-y-4">
-                  <ProfileBlock title="Deterministic Match" items={selectedMatch.topMatchSignals} />
-                  <ProfileBlock title="Missing Signals" items={selectedMatch.missingSignals} />
-                  <ProfileBlock title="Risks" items={selectedMatch.risks} />
-                  <p className="rounded-xl bg-gray-50 p-4 text-sm text-gray-600 leading-relaxed">
-                    {selectedMatch.explanation}
-                  </p>
-                </div>
-
-                <div className="space-y-4">
-                  <AiPanel title="Candidate Evaluation" locked={evaluationLocked}>
-                    {evaluation ? (
-                      <div className="space-y-4">
-                        <div className="flex items-end justify-between rounded-xl bg-gray-50 p-4">
-                          <span className="text-sm font-bold text-gray-500">Overall Fit</span>
-                          <span className="text-3xl font-black text-ink">{evaluation.overallFitScore}</span>
-                        </div>
-                        <ProfileBlock title="Strengths" items={evaluation.strengths} />
-                        <ProfileBlock title="Gaps" items={evaluation.gaps} />
-                        <p className="text-sm text-gray-600 leading-relaxed">{evaluation.recruiterLensSummary}</p>
-                      </div>
-                    ) : (
-                      <p className="text-sm text-gray-500">
-                        Run the evaluation to call the Gemini-backed candidate evaluation API.
-                      </p>
-                    )}
-                  </AiPanel>
-
-                  <AiPanel title="Resume Context Mapping" locked={resumeLocked}>
-                    {resumeContext ? (
-                      <div className="space-y-4">
-                        {resumeContext.items.slice(0, 5).map((item) => (
-                          <div key={`${item.name}-${item.mappedName}`} className="rounded-xl bg-gray-50 p-4">
-                            <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">
-                              {item.mappedName}
-                            </p>
-                            <p className="mt-2 text-sm text-gray-700 leading-relaxed">{item.mappedContent}</p>
-                            {item.contextNotes[0] ? (
-                              <p className="mt-2 text-xs text-bridge-teal">
-                                {item.contextNotes[0].note} ({item.contextNotes[0].confidence})
-                              </p>
-                            ) : null}
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="text-sm text-gray-500">
-                        Map this candidate's profile into recruiter-facing context for {market.targetCountry}.
-                      </p>
-                    )}
-                  </AiPanel>
-                </div>
-              </div>
-            </section>
-          ) : null}
-        </main>
-      </div>
-    </div>
-  );
-}
-
-function FilterGroup({ title, options }: { title: string; options: string[] }) {
-  return (
-    <div>
-      <label className="block text-sm font-bold text-ink mb-3">{title}</label>
-      <div className="space-y-2">
-        {options.map((filter) => (
-          <label key={filter} className="flex items-center group cursor-pointer">
-            <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-bridge-primary focus:ring-bridge-primary" />
-            <span className="ml-3 text-sm text-gray-600 group-hover:text-bridge-primary transition-colors">
-              {filter}
-            </span>
-          </label>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function CandidateCard({
-  match,
-  selected,
-  onSelect
-}: {
-  match: CompanyToDeveloperFitResult;
-  selected: boolean;
-  onSelect: () => void;
-}) {
-  return (
-    <div
-      className={`bg-white p-6 rounded-2xl shadow-panel border transition-all group ${
-        selected ? "border-bridge-primary" : "border-gray-100 hover:border-bridge-primary"
-      }`}
-    >
-      <div className="flex flex-col md:flex-row justify-between gap-6">
-        <div className="flex-1">
-          <div className="flex items-center space-x-3 mb-2">
-            <h3 className="text-xl font-bold group-hover:text-bridge-primary transition-colors">
-              {match.developerName}
-            </h3>
-            <span className="bg-bridge-teal/10 text-bridge-teal text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-tighter">
-              {match.overallFitScore}/100
-            </span>
-          </div>
-          <p className="text-bridge-teal font-bold text-sm mb-4">{match.roleTitle}</p>
-
-          <div className="flex flex-wrap gap-2 mb-6">
-            {match.topMatchSignals.slice(0, 4).map((tag) => (
-              <span key={tag} className="bg-gray-50 text-gray-500 text-[10px] font-bold px-2 py-1 rounded-lg border border-gray-100">
-                {tag}
-              </span>
             ))}
           </div>
+        </section>
 
-          <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 italic text-sm text-gray-600 leading-relaxed">
-            <span className="font-bold text-bridge-primary not-italic block mb-1">Deterministic Fit Insight:</span>
-            {match.explanation}
+        <section id="applicants" className="rounded-2xl border border-gray-100 bg-white p-6 shadow-panel">
+          <div className="mb-5">
+            <p className="text-sm font-bold text-bridge-teal">지원자 관리</p>
+            <h2 className="mt-1 text-2xl font-black text-ink">후보 진행 상태</h2>
           </div>
-        </div>
 
-        <div className="flex flex-col justify-between items-end md:w-36">
-          <button
-            onClick={onSelect}
-            className="w-full bg-bridge-primary text-ink py-2 rounded-xl font-bold text-xs hover:opacity-90 transition-opacity shadow-sm"
-          >
-            View Profile
-          </button>
-          <span className="text-gray-400 text-xs font-bold py-2 text-right">
-            {match.recommendedRecruiterAction.replace(/_/g, " ")}
-          </span>
-        </div>
+          <div className="overflow-hidden rounded-2xl border border-gray-100">
+            <div className="grid grid-cols-[1.2fr_1fr_1fr_100px] bg-bridge-paper px-4 py-3 text-xs font-black uppercase tracking-widest text-gray-400">
+              <span>Candidate</span>
+              <span>Fit signal</span>
+              <span>Next action</span>
+              <span className="text-right">Score</span>
+            </div>
+            {managedApplicants.map((result, index) => {
+              const developer = developers.find((item) => item.developerId === result.developerId);
+              const nextAction =
+                index === 0 ? "캐주얼 인터뷰 제안" : index === 1 ? "포트폴리오 확인" : "추가 증거 요청";
+              return (
+                <div key={`${result.developerId}-pipeline`} className="grid grid-cols-[1.2fr_1fr_1fr_100px] items-center border-t border-gray-100 px-4 py-4 text-sm">
+                  <div>
+                    <p className="font-black text-ink">{result.developerName}</p>
+                    <p className="text-xs font-bold text-gray-400">{developer?.nationality ?? "국적 확인 필요"}</p>
+                  </div>
+                  <p className="text-gray-600">{result.topMatchSignals[0] ?? "신호 확인 필요"}</p>
+                  <p className="font-bold text-bridge-teal">{nextAction}</p>
+                  <p className="text-right text-lg font-black text-ink">{Math.round(result.overallFitScore)}</p>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <section id="profile" className="rounded-2xl border border-gray-100 bg-white p-6 shadow-panel">
+          <div className="mb-5">
+            <p className="text-sm font-bold text-bridge-teal">기업/직무 조건</p>
+            <h2 className="mt-1 text-2xl font-black text-ink">추천 기준으로 쓰는 역할 프로필</h2>
+          </div>
+
+          {selectedCompany ? (
+            <div className="grid gap-5 lg:grid-cols-[320px_minmax(0,1fr)]">
+              <div className="rounded-2xl border border-gray-100 bg-bridge-paper p-5">
+                <div className="flex items-start gap-3">
+                  <CompanyLogo company={selectedCompany} />
+                  <div>
+                    <h3 className="font-black text-ink">{selectedCompany.companyName}</h3>
+                    <p className="text-sm font-bold text-bridge-teal">{formatRoleTitle(selectedCompany)}</p>
+                  </div>
+                </div>
+                <div className="mt-4 space-y-2 text-sm text-gray-600">
+                  <p><span className="font-bold text-ink">지역: </span>{formatLocationSummary(selectedCompany, "위치 확인 필요")}</p>
+                  <p><span className="font-bold text-ink">근무 방식: </span>{normalizeWorkStyle(selectedCompany.workStyle)}</p>
+                  <p><span className="font-bold text-ink">연봉: </span>{formatCompanySalarySummary(selectedCompany, "연봉 확인 필요")}</p>
+                  <p><span className="font-bold text-ink">경력: </span>{formatExperienceRange(selectedCompany, "경력 확인 필요")}</p>
+                </div>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="rounded-2xl border border-gray-100 bg-bridge-paper p-4">
+                  <p className="text-sm font-black text-ink">필수 조건</p>
+                  <p className="mt-3 text-sm leading-6 text-gray-600">
+                    {formatList(selectedCompany.requiredTechStacks)} · {formatLanguageSummary(selectedCompany, "언어 조건 확인 필요")}
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-gray-100 bg-bridge-paper p-4">
+                  <p className="text-sm font-black text-ink">자격/우대 조건</p>
+                  <p className="mt-3 text-sm leading-6 text-gray-600">
+                    {formatQualificationSummary(selectedCompany, "자격 요건 확인 필요")} · {formatList(selectedCompany.preferredTechStacks, "우대 기술 확인 필요")}
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-gray-100 bg-bridge-paper p-4 md:col-span-2">
+                  <p className="text-sm font-black text-ink">추천 엔진 기준</p>
+                  <p className="mt-3 text-sm leading-6 text-gray-600">
+                    회사의 필수 기술, 언어 조건, 경력 범위, 근무 방식, 동기 적합도를 함께 반영합니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          ) : null}
+        </section>
       </div>
-    </div>
-  );
-}
-
-function ProfileBlock({ title, items }: { title: string; items: string[] }) {
-  return (
-    <div>
-      <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">{title}</h3>
-      <div className="space-y-2">
-        {items.slice(0, 4).map((item) => (
-          <p key={item} className="rounded-lg bg-gray-50 px-3 py-2 text-sm text-gray-700">
-            {item}
-          </p>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function AiPanel({
-  title,
-  locked,
-  children
-}: {
-  title: string;
-  locked: string | null;
-  children: ReactNode;
-}) {
-  return (
-    <div className="rounded-2xl border border-gray-100 p-5">
-      <h3 className="text-sm font-black uppercase tracking-widest text-ink mb-4">{title}</h3>
-      {locked ? (
-        <div className="rounded-xl border border-bridge-coral/30 bg-bridge-coral/10 p-4">
-          <p className="text-sm font-bold text-bridge-coral">AI section locked</p>
-          <p className="mt-1 text-sm text-gray-600">
-            {locked} Configure the Gemini API key and retry this action.
-          </p>
-        </div>
-      ) : (
-        children
-      )}
-    </div>
+    </main>
   );
 }

@@ -47,23 +47,23 @@ function normalizeRubric(rubric: RawRubric): CompanyEvaluationRubric {
 
 export async function loadCompanyRubrics(): Promise<CompanyEvaluationRubric[]> {
   const rubrics = await loadJson<RawRubric[]>(
-    "/api/company-criteria/rubrics",
-    "/data/company-criteria/companyRubrics.json"
+    "/data/company-criteria/companyRubrics.json",
+    "/api/company-criteria/rubrics"
   );
   return rubrics.map(normalizeRubric);
 }
 
 export function loadCompanySignals(): Promise<CompanyHiringSignal[]> {
   return loadJson<CompanyHiringSignal[]>(
-    "/api/company-criteria/signals",
-    "/data/company-criteria/companySignals.json"
+    "/data/company-criteria/companySignals.json",
+    "/api/company-criteria/signals"
   );
 }
 
 export function loadCompanyJobProfiles(): Promise<CompanyJobProfile[]> {
   return loadJson<CompanyJobProfile[]>(
-    "/api/company-criteria/job-profiles",
-    "/data/company-criteria/companyJobProfiles.json"
+    "/data/company-criteria/companyJobProfiles.json",
+    "/api/company-criteria/job-profiles"
   );
 }
 

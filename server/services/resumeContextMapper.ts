@@ -236,13 +236,15 @@ export async function mapResumeContext(
   const createdAt = new Date().toISOString();
   const response = normalizeGeminiResult(geminiResult, request, id, createdAt);
 
-  await supabaseServer.from("resume_context_mappings").insert({
-    id,
-    target_locale: request.targetLocale,
-    detected_source_locale: response.detectedSourceLocale,
-    request,
-    response
-  });
+  if (supabaseServer) {
+    await supabaseServer.from("resume_context_mappings").insert({
+      id,
+      target_locale: request.targetLocale,
+      detected_source_locale: response.detectedSourceLocale,
+      request,
+      response
+    });
+  }
 
   return response;
 }
