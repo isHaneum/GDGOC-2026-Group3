@@ -104,6 +104,12 @@ export function deriveKeySignals(result: CompanyToDeveloperFitResult, developer:
   ]).slice(0, 3);
 }
 
+function formatToK(value: number): string {
+  const inK = Math.round(value / 1000);
+  const formatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
+  return `${formatter.format(inK)}K`;
+}
+
 export function formatSalaryRange(
   min: number | null | undefined,
   max: number | null | undefined,
@@ -115,8 +121,7 @@ export function formatSalaryRange(
     return note ? `${fallback} (${note})` : fallback;
   }
 
-  const formatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
-  return `${currency} ${formatter.format(min)} - ${formatter.format(max)}`;
+  return `${currency} ${formatToK(min)} - ${formatToK(max)}`;
 }
 
 export function formatCompanySalarySummary(profile: CompanyJobProfile, fallback: string): string {
@@ -144,8 +149,7 @@ export function formatCompanySalarySummary(profile: CompanyJobProfile, fallback:
     displayProfile.startingSalaryCurrency &&
     displayProfile.startingSalaryCurrency !== "unknown"
   ) {
-    const formatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
-    return `Average ${displayProfile.startingSalaryCurrency} ${formatter.format(displayProfile.averageAnnualSalary)}`;
+    return `Average ${displayProfile.startingSalaryCurrency} ${formatToK(displayProfile.averageAnnualSalary)}`;
   }
 
   return displayProfile.salaryNote ? `${fallback} (${displayProfile.salaryNote})` : fallback;
