@@ -1,72 +1,432 @@
 [
   {
     "companyName": "PayPay",
-    "targetRoles": ["Backend Engineer", "Mobile Engineer", "SRE / DevOps Engineer"],
-    "fieldsToVerify": ["salary", "location", "languageRequirement", "experienceRange"],
-    "preferredSourceTypes": ["official role-specific job page", "engineering recruitment page"],
-    "notes": "Use official role-specific pages. Do not rely on generic career landing pages. Confirm multilingual team expectations separately from hard language requirements."
+    "targetRoles": [
+      "Backend Engineer",
+      "Mobile Engineer",
+      "SRE / DevOps Engineer"
+    ],
+    "fieldsToVerify": [
+      "salary",
+      "location",
+      "languageRequirement",
+      "experienceRange",
+      "jobPostingUrl",
+      "jobPostingStatus",
+      "hiringPeriod",
+      "applicationDeadline",
+      "qualificationSummary",
+      "jobDescriptionSummary",
+      "selectionProcess",
+      "sourceConfidence"
+    ],
+    "preferredSourceTypes": [
+      "official role-specific job page",
+      "engineering recruitment page",
+      "official engineering recruitment page",
+      "official new graduate recruitment page"
+    ],
+    "notes": "Use official role-specific pages. Do not rely on generic career landing pages. Confirm multilingual team expectations separately from hard language requirements. Current dataset uses official company/engineering pages as source anchors and marks salary, exact location, and language requirements as missing until role-specific pages verify them. Also verify job posting URL, opening status, hiring period, application deadline, qualification summary, job description summary, and selection process before raising source confidence.",
+    "status": "needs_verification",
+    "sourceUrls": [
+      "https://about.paypay.ne.jp/career/"
+    ],
+    "updatedAt": "2026-05-17"
   },
   {
     "companyName": "Mercari",
-    "targetRoles": ["Backend Engineer", "SRE / DevOps Engineer", "Frontend Engineer"],
-    "fieldsToVerify": ["salary", "requiredTechStacks", "languageRequirement", "workStyle"],
-    "preferredSourceTypes": ["official role-specific job page", "engineering careers page"],
-    "notes": "Prioritize role pages that mention Go, platform operations, or product engineering scope."
+    "targetRoles": [
+      "Backend Engineer",
+      "SRE / DevOps Engineer",
+      "Frontend Engineer"
+    ],
+    "fieldsToVerify": [
+      "salary",
+      "requiredTechStacks",
+      "languageRequirement",
+      "workStyle",
+      "jobPostingUrl",
+      "jobPostingStatus",
+      "hiringPeriod",
+      "applicationDeadline",
+      "qualificationSummary",
+      "jobDescriptionSummary",
+      "selectionProcess",
+      "sourceConfidence"
+    ],
+    "preferredSourceTypes": [
+      "official role-specific job page",
+      "engineering careers page",
+      "official engineering recruitment page",
+      "official new graduate recruitment page"
+    ],
+    "notes": "Prioritize role pages that mention Go, platform operations, or product engineering scope. Current dataset uses official company/engineering pages as source anchors and marks salary, exact location, and language requirements as missing until role-specific pages verify them. Also verify job posting URL, opening status, hiring period, application deadline, qualification summary, job description summary, and selection process before raising source confidence.",
+    "status": "needs_verification",
+    "sourceUrls": [
+      "https://careers.mercari.com/jobs/engineering/"
+    ],
+    "updatedAt": "2026-05-17"
   },
   {
     "companyName": "SmartHR",
-    "targetRoles": ["Frontend Engineer", "Backend Engineer", "Product Engineer"],
-    "fieldsToVerify": ["salary", "requiredTechStacks", "preferredTechStacks", "location"],
-    "preferredSourceTypes": ["official role-specific job page", "engineering recruitment page"],
-    "notes": "Different product teams may have different stack requirements. Keep role profiles separate."
+    "targetRoles": [
+      "Frontend Engineer",
+      "Backend Engineer",
+      "Product Engineer"
+    ],
+    "fieldsToVerify": [
+      "salary",
+      "requiredTechStacks",
+      "preferredTechStacks",
+      "location",
+      "jobPostingUrl",
+      "jobPostingStatus",
+      "hiringPeriod",
+      "applicationDeadline",
+      "qualificationSummary",
+      "jobDescriptionSummary",
+      "selectionProcess",
+      "sourceConfidence"
+    ],
+    "preferredSourceTypes": [
+      "official role-specific job page",
+      "engineering recruitment page",
+      "official engineering recruitment page",
+      "official new graduate recruitment page"
+    ],
+    "notes": "Different product teams may have different stack requirements. Keep role profiles separate. Current dataset uses official company/engineering pages as source anchors and marks salary, exact location, and language requirements as missing until role-specific pages verify them. Also verify job posting URL, opening status, hiring period, application deadline, qualification summary, job description summary, and selection process before raising source confidence.",
+    "status": "needs_verification",
+    "sourceUrls": [
+      "https://hello-world.smarthr.co.jp/"
+    ],
+    "updatedAt": "2026-05-17"
   },
   {
     "companyName": "SmartNews",
-    "targetRoles": ["Backend Engineer", "Data Engineer", "Machine Learning Engineer"],
-    "fieldsToVerify": ["salary", "languageRequirement", "location", "workStyle"],
-    "preferredSourceTypes": ["official role-specific job page", "global engineering hiring page"],
-    "notes": "Verify whether English is preferred or required for each role instead of applying one global assumption."
+    "targetRoles": [
+      "Backend Engineer",
+      "Data Engineer",
+      "Machine Learning Engineer"
+    ],
+    "fieldsToVerify": [
+      "salary",
+      "languageRequirement",
+      "location",
+      "workStyle",
+      "jobPostingUrl",
+      "jobPostingStatus",
+      "hiringPeriod",
+      "applicationDeadline",
+      "qualificationSummary",
+      "jobDescriptionSummary",
+      "selectionProcess",
+      "sourceConfidence"
+    ],
+    "preferredSourceTypes": [
+      "official role-specific job page",
+      "global engineering hiring page",
+      "official engineering recruitment page",
+      "official new graduate recruitment page"
+    ],
+    "notes": "Verify whether English is preferred or required for each role instead of applying one global assumption. Current dataset uses official company/engineering pages as source anchors and marks salary, exact location, and language requirements as missing until role-specific pages verify them. Also verify job posting URL, opening status, hiring period, application deadline, qualification summary, job description summary, and selection process before raising source confidence.",
+    "status": "needs_verification",
+    "sourceUrls": [
+      "https://careers.smartnews.com/"
+    ],
+    "updatedAt": "2026-05-17"
   },
   {
     "companyName": "LayerX",
-    "targetRoles": ["Product Engineer", "Backend Engineer", "Machine Learning Engineer"],
-    "fieldsToVerify": ["salary", "roleTitle", "requiredTechStacks", "experienceRange"],
-    "preferredSourceTypes": ["official role-specific job page", "engineering recruitment page"],
-    "notes": "Avoid inventing Product Engineer specifics from brand copy. Confirm the exact public role naming first."
+    "targetRoles": [
+      "Product Engineer",
+      "Backend Engineer",
+      "Machine Learning Engineer"
+    ],
+    "fieldsToVerify": [
+      "salary",
+      "roleTitle",
+      "requiredTechStacks",
+      "experienceRange",
+      "jobPostingUrl",
+      "jobPostingStatus",
+      "hiringPeriod",
+      "applicationDeadline",
+      "qualificationSummary",
+      "jobDescriptionSummary",
+      "selectionProcess",
+      "sourceConfidence"
+    ],
+    "preferredSourceTypes": [
+      "official role-specific job page",
+      "engineering recruitment page",
+      "official engineering recruitment page",
+      "official new graduate recruitment page"
+    ],
+    "notes": "Avoid inventing Product Engineer specifics from brand copy. Confirm the exact public role naming first. Current dataset uses official company/engineering pages as source anchors and marks salary, exact location, and language requirements as missing until role-specific pages verify them. Also verify job posting URL, opening status, hiring period, application deadline, qualification summary, job description summary, and selection process before raising source confidence.",
+    "status": "needs_verification",
+    "sourceUrls": [
+      "https://jobs.layerx.co.jp/"
+    ],
+    "updatedAt": "2026-05-17"
   },
   {
     "companyName": "Plaid",
-    "targetRoles": ["Platform Engineer", "Data Engineer", "Machine Learning Engineer"],
-    "fieldsToVerify": ["salary", "requiredTechStacks", "location", "languageRequirement"],
-    "preferredSourceTypes": ["official role-specific job page", "engineering recruitment page"],
-    "notes": "Treat each role page as a separate source artifact and preserve differences instead of merging into one generic profile."
+    "targetRoles": [
+      "Platform Engineer",
+      "Data Engineer",
+      "Machine Learning Engineer"
+    ],
+    "fieldsToVerify": [
+      "salary",
+      "requiredTechStacks",
+      "location",
+      "languageRequirement",
+      "jobPostingUrl",
+      "jobPostingStatus",
+      "hiringPeriod",
+      "applicationDeadline",
+      "qualificationSummary",
+      "jobDescriptionSummary",
+      "selectionProcess",
+      "sourceConfidence"
+    ],
+    "preferredSourceTypes": [
+      "official role-specific job page",
+      "engineering recruitment page",
+      "official engineering recruitment page",
+      "official new graduate recruitment page"
+    ],
+    "notes": "Treat each role page as a separate source artifact and preserve differences instead of merging into one generic profile. Current dataset uses official company/engineering pages as source anchors and marks salary, exact location, and language requirements as missing until role-specific pages verify them. Also verify job posting URL, opening status, hiring period, application deadline, qualification summary, job description summary, and selection process before raising source confidence.",
+    "status": "needs_verification",
+    "sourceUrls": [
+      "https://plaid.co.jp/career/"
+    ],
+    "updatedAt": "2026-05-17"
   },
   {
     "companyName": "Ubie",
-    "targetRoles": ["Machine Learning Engineer", "SRE / DevOps Engineer", "Backend Engineer"],
-    "fieldsToVerify": ["salary", "requiredTechStacks", "workStyle", "languageRequirement"],
-    "preferredSourceTypes": ["official role-specific job page", "engineering recruitment page"],
-    "notes": "HealthTech roles often split by product, platform, and ML operations. Capture each separately."
+    "targetRoles": [
+      "Machine Learning Engineer",
+      "SRE / DevOps Engineer",
+      "Backend Engineer"
+    ],
+    "fieldsToVerify": [
+      "salary",
+      "requiredTechStacks",
+      "workStyle",
+      "languageRequirement",
+      "jobPostingUrl",
+      "jobPostingStatus",
+      "hiringPeriod",
+      "applicationDeadline",
+      "qualificationSummary",
+      "jobDescriptionSummary",
+      "selectionProcess",
+      "sourceConfidence"
+    ],
+    "preferredSourceTypes": [
+      "official role-specific job page",
+      "engineering recruitment page",
+      "official engineering recruitment page",
+      "official new graduate recruitment page"
+    ],
+    "notes": "HealthTech roles often split by product, platform, and ML operations. Capture each separately. Current dataset uses official company/engineering pages as source anchors and marks salary, exact location, and language requirements as missing until role-specific pages verify them. Also verify job posting URL, opening status, hiring period, application deadline, qualification summary, job description summary, and selection process before raising source confidence.",
+    "status": "needs_verification",
+    "sourceUrls": [
+      "https://recruit.ubie.life/"
+    ],
+    "updatedAt": "2026-05-17"
   },
   {
     "companyName": "HENNGE",
-    "targetRoles": ["Security Engineer", "Backend Engineer", "Platform Engineer"],
-    "fieldsToVerify": ["salary", "requiredTechStacks", "languageRequirement", "sourceUrl"],
-    "preferredSourceTypes": ["official role-specific job page", "security engineering recruiting page"],
-    "notes": "Do not infer a security role only from company industry once an official security page is available."
+    "targetRoles": [
+      "Security Engineer",
+      "Backend Engineer",
+      "Platform Engineer"
+    ],
+    "fieldsToVerify": [
+      "salary",
+      "requiredTechStacks",
+      "languageRequirement",
+      "sourceUrl",
+      "jobPostingUrl",
+      "jobPostingStatus",
+      "hiringPeriod",
+      "applicationDeadline",
+      "qualificationSummary",
+      "jobDescriptionSummary",
+      "selectionProcess",
+      "sourceConfidence"
+    ],
+    "preferredSourceTypes": [
+      "official role-specific job page",
+      "security engineering recruiting page",
+      "official engineering recruitment page",
+      "official new graduate recruitment page"
+    ],
+    "notes": "Do not infer a security role only from company industry once an official security page is available. Current dataset uses official company/engineering pages as source anchors and marks salary, exact location, and language requirements as missing until role-specific pages verify them. Also verify job posting URL, opening status, hiring period, application deadline, qualification summary, job description summary, and selection process before raising source confidence.",
+    "status": "needs_verification",
+    "sourceUrls": [
+      "https://recruit.hennge.com/en/"
+    ],
+    "updatedAt": "2026-05-17"
   },
   {
     "companyName": "Money Forward",
-    "targetRoles": ["Backend Engineer", "Platform Engineer", "Security Engineer"],
-    "fieldsToVerify": ["salary", "requiredTechStacks", "experienceRange", "location"],
-    "preferredSourceTypes": ["official role-specific job page", "engineering recruitment page"],
-    "notes": "Fintech domain copy is not enough. Look for role pages that explicitly mention architecture, compliance, or platform scope."
+    "targetRoles": [
+      "Backend Engineer",
+      "Platform Engineer",
+      "Security Engineer"
+    ],
+    "fieldsToVerify": [
+      "salary",
+      "requiredTechStacks",
+      "experienceRange",
+      "location",
+      "jobPostingUrl",
+      "jobPostingStatus",
+      "hiringPeriod",
+      "applicationDeadline",
+      "qualificationSummary",
+      "jobDescriptionSummary",
+      "selectionProcess",
+      "sourceConfidence"
+    ],
+    "preferredSourceTypes": [
+      "official role-specific job page",
+      "engineering recruitment page",
+      "official engineering recruitment page",
+      "official new graduate recruitment page"
+    ],
+    "notes": "Fintech domain copy is not enough. Look for role pages that explicitly mention architecture, compliance, or platform scope. Current dataset uses official company/engineering pages as source anchors and marks salary, exact location, and language requirements as missing until role-specific pages verify them. Also verify job posting URL, opening status, hiring period, application deadline, qualification summary, job description summary, and selection process before raising source confidence.",
+    "status": "needs_verification",
+    "sourceUrls": [
+      "https://recruit.moneyforward.com/"
+    ],
+    "updatedAt": "2026-05-17"
   },
   {
     "companyName": "ZOZO",
-    "targetRoles": ["Frontend Engineer", "Backend Engineer", "Mobile Engineer"],
-    "fieldsToVerify": ["salary", "requiredTechStacks", "languageRequirement", "workStyle"],
-    "preferredSourceTypes": ["official role-specific job page", "engineering recruitment page"],
-    "notes": "Keep consumer product UI roles separate from backend commerce roles. Do not reuse one generic software engineer profile."
+    "targetRoles": [
+      "Frontend Engineer",
+      "Backend Engineer",
+      "Mobile Engineer"
+    ],
+    "fieldsToVerify": [
+      "salary",
+      "requiredTechStacks",
+      "languageRequirement",
+      "workStyle",
+      "jobPostingUrl",
+      "jobPostingStatus",
+      "hiringPeriod",
+      "applicationDeadline",
+      "qualificationSummary",
+      "jobDescriptionSummary",
+      "selectionProcess",
+      "sourceConfidence"
+    ],
+    "preferredSourceTypes": [
+      "official role-specific job page",
+      "engineering recruitment page",
+      "official engineering recruitment page",
+      "official new graduate recruitment page"
+    ],
+    "notes": "Keep consumer product UI roles separate from backend commerce roles. Do not reuse one generic software engineer profile. Current dataset uses official company/engineering pages as source anchors and marks salary, exact location, and language requirements as missing until role-specific pages verify them. Also verify job posting URL, opening status, hiring period, application deadline, qualification summary, job description summary, and selection process before raising source confidence.",
+    "status": "needs_verification",
+    "sourceUrls": [
+      "https://corp.zozo.com/recruit/"
+    ],
+    "updatedAt": "2026-05-17"
+  },
+  {
+    "companyName": "GREE",
+    "targetRoles": [
+      "Mobile Engineer"
+    ],
+    "fieldsToVerify": [
+      "salary",
+      "languageRequirement",
+      "requiredTechStacks",
+      "jobPostingUrl",
+      "jobPostingStatus",
+      "hiringPeriod",
+      "applicationDeadline",
+      "qualificationSummary",
+      "jobDescriptionSummary",
+      "selectionProcess",
+      "sourceConfidence"
+    ],
+    "preferredSourceTypes": [
+      "official role-specific job page",
+      "official engineering recruitment page",
+      "official new graduate recruitment page"
+    ],
+    "notes": "Create role-specific records from official job pages only. Keep salary, hiring period, deadline, qualifications, and posting status as confirmation-needed until an official role page verifies them.",
+    "status": "needs_verification",
+    "sourceUrls": [
+      "https://corp.gree.net/jp/en/recruit/"
+    ],
+    "updatedAt": "2026-05-17"
+  },
+  {
+    "companyName": "BizReach",
+    "targetRoles": [
+      "SRE / DevOps Engineer"
+    ],
+    "fieldsToVerify": [
+      "salary",
+      "languageRequirement",
+      "requiredTechStacks",
+      "jobPostingUrl",
+      "jobPostingStatus",
+      "hiringPeriod",
+      "applicationDeadline",
+      "qualificationSummary",
+      "jobDescriptionSummary",
+      "selectionProcess",
+      "sourceConfidence"
+    ],
+    "preferredSourceTypes": [
+      "official role-specific job page",
+      "official engineering recruitment page",
+      "official new graduate recruitment page"
+    ],
+    "notes": "Create role-specific records from official job pages only. Keep salary, hiring period, deadline, qualifications, and posting status as confirmation-needed until an official role page verifies them.",
+    "status": "needs_verification",
+    "sourceUrls": [
+      "https://www.visional.inc/en/careers/"
+    ],
+    "updatedAt": "2026-05-17"
+  },
+  {
+    "companyName": "Cybozu",
+    "targetRoles": [
+      "Software Engineer"
+    ],
+    "fieldsToVerify": [
+      "salary",
+      "languageRequirement",
+      "requiredTechStacks",
+      "jobPostingUrl",
+      "jobPostingStatus",
+      "hiringPeriod",
+      "applicationDeadline",
+      "qualificationSummary",
+      "jobDescriptionSummary",
+      "selectionProcess",
+      "sourceConfidence"
+    ],
+    "preferredSourceTypes": [
+      "official role-specific job page",
+      "official engineering recruitment page",
+      "official new graduate recruitment page"
+    ],
+    "notes": "Create role-specific records from official job pages only. Keep salary, hiring period, deadline, qualifications, and posting status as confirmation-needed until an official role page verifies them.",
+    "status": "needs_verification",
+    "sourceUrls": [
+      "https://cybozu.co.jp/recruit/"
+    ],
+    "updatedAt": "2026-05-17"
   }
 ]

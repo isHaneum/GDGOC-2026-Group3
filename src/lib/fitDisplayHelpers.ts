@@ -22,6 +22,48 @@ export type RecruiterActionKey =
   | "actionTrialProject"
   | "actionRecommendBridgeLabs";
 
+export type MissingDataLabelKey =
+  | "missingLogo"
+  | "missingSalary"
+  | "missingLocation"
+  | "missingLanguageRequirement"
+  | "missingExperienceRange"
+  | "missingRequiredTechStacks"
+  | "missingPreferredTechStacks"
+  | "missingWorkStyle"
+  | "missingRoleSpecificSource"
+  | "missingOfficialSourceUrl"
+  | "missingOfficialJobPostingUrl"
+  | "missingHiringPeriod"
+  | "missingQualificationSummary"
+  | "missingJobDescriptionSummary"
+  | "missingApplicationDeadline";
+
+type CompanyJobProfileDisplayFields = CompanyJobProfile & {
+  logoUrl?: string | null;
+  logoAlt?: string | null;
+  salaryNote?: string;
+  startingSalaryMin?: number | null;
+  startingSalaryMax?: number | null;
+  startingSalaryCurrency?: CompanyJobProfile["salaryCurrency"];
+  startingSalaryNote?: string;
+  jobPostingUrl?: string;
+  jobPostingStatus?: "open" | "closed" | "unknown";
+  hiringPeriod?: {
+    startDate?: string | null;
+    endDate?: string | null;
+    note?: string;
+  };
+  applicationDeadline?: string | null;
+  employmentType?: "full-time" | "internship" | "contract" | "new-grad" | "unknown";
+  qualificationSummary?: string[];
+  jobDescriptionSummary?: string;
+  benefitsSummary?: string[];
+  selectionProcess?: string[];
+  lastVerifiedAt?: string;
+  missingFields?: string[];
+};
+
 function normalizeText(value: string): string {
   return value.toLowerCase().replace(/[^a-z0-9가-힣一-龥ぁ-んァ-ン]+/g, "");
 }
@@ -63,17 +105,107 @@ export function deriveKeySignals(result: CompanyToDeveloperFitResult, developer:
 }
 
 export function formatSalaryRange(
-  min: number | undefined,
-  max: number | undefined,
+  min: number | null | undefined,
+  max: number | null | undefined,
   currency: CompanyJobProfile["salaryCurrency"] | DeveloperPreference["preferredCurrency"],
-  fallback: string
+  fallback: string,
+  note?: string
 ): string {
   if (currency === "unknown" || typeof min !== "number" || typeof max !== "number") {
-    return fallback;
+    return note ? `${fallback} (${note})` : fallback;
   }
 
   const formatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
   return `${currency} ${formatter.format(min)} - ${formatter.format(max)}`;
+}
+
+export function formatCompanySalarySummary(profile: CompanyJobProfile, fallback: string): string {
+  const displayProfile = profile as CompanyJobProfileDisplayFields;
+  const salary = formatSalaryRange(profile.salaryMin, profile.salaryMax, profile.salaryCurrency, fallback, displayProfile.salaryNote);
+  if (salary !== fallback && !salary.startsWith(fallback)) return salary;
+
+  if (
+    typeof displayProfile.startingSalaryMin === "number" &&
+    typeof displayProfile.startingSalaryMax === "number" &&
+    displayProfile.startingSalaryCurrency &&
+    displayProfile.startingSalaryCurrency !== "unknown"
+  ) {
+    return `Starting ${formatSalaryRange(
+      displayProfile.startingSalaryMin,
+      displayProfile.startingSalaryMax,
+      displayProfile.startingSalaryCurrency,
+      fallback,
+      displayProfile.startingSalaryNote
+    )}`;
+  }
+
+  return displayProfile.salaryNote ? `${fallback} (${displayProfile.salaryNote})` : fallback;
+}
+
+export function formatCompanyLogo(profile: CompanyJobProfile): { src: string; alt: string } | null {
+  const displayProfile = profile as CompanyJobProfileDisplayFields;
+  if (!displayProfile.logoUrl) return null;
+  return {
+    src: displayProfile.logoUrl,
+    alt: displayProfile.logoAlt ?? `${profile.companyName} logo`
+  };
+}
+
+export function formatHiringPeriodSummary(profile: CompanyJobProfile, fallback: string): string {
+  const period = (profile as CompanyJobProfileDisplayFields).hiringPeriod;
+  if (!period) return fallback;
+  if (period.startDate && period.endDate) return `${period.startDate} - ${period.endDate}`;
+  if (period.startDate) return `${period.startDate} -`;
+  if (period.endDate) return `Until ${period.endDate}`;
+  return period.note && period.note !== "Confirmation needed" ? period.note : fallback;
+}
+
+export function formatJobPostingStatus(profile: CompanyJobProfile, fallback: string): string {
+  const status = (profile as CompanyJobProfileDisplayFields).jobPostingStatus;
+  if (!status || status === "unknown") return fallback;
+  return status === "open" ? "Open" : "Closed";
+}
+
+export function formatQualificationSummary(profile: CompanyJobProfile, fallback: string): string {
+  const qualificationSummary = (profile as CompanyJobProfileDisplayFields).qualificationSummary;
+  if (qualificationSummary?.length) return qualificationSummary.slice(0, 4).join(", ");
+  return fallback;
+}
+
+export function getJobPostingUrl(profile: CompanyJobProfile): string {
+  return (profile as CompanyJobProfileDisplayFields).jobPostingUrl ?? "";
+}
+
+export function formatRoleTitle(profile: CompanyJobProfile): string {
+  return `${profile.companyName} · ${profile.roleTitle}`;
+}
+
+export function formatSourceConfidence(profile: CompanyJobProfile): string {
+  return profile.sourceConfidence === "fallback"
+    ? "Fallback source"
+    : `${profile.sourceConfidence[0].toUpperCase()}${profile.sourceConfidence.slice(1)} confidence`;
+}
+
+export function getMissingDataLabel(field: string): MissingDataLabelKey {
+  const labels: Record<string, MissingDataLabelKey> = {
+    logo: "missingLogo",
+    salary: "missingSalary",
+    location: "missingLocation",
+    languageRequirement: "missingLanguageRequirement",
+    experienceRange: "missingExperienceRange",
+    requiredTechStacks: "missingRequiredTechStacks",
+    preferredTechStacks: "missingPreferredTechStacks",
+    workStyle: "missingWorkStyle",
+    roleSpecificSource: "missingRoleSpecificSource",
+    officialSourceUrl: "missingOfficialSourceUrl",
+    officialJobPostingUrl: "missingOfficialJobPostingUrl",
+    hiringPeriod: "missingHiringPeriod",
+    qualificationSummary: "missingQualificationSummary",
+    jobDescriptionSummary: "missingJobDescriptionSummary",
+    applicationDeadline: "missingApplicationDeadline"
+  };
+
+  return labels[field] ?? "missingRoleSpecificSource";
 }
 
 export function formatLocationSummary(profile: CompanyJobProfile, fallback: string): string {
