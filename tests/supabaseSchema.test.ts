@@ -10,8 +10,8 @@ function read(path: string) {
 
 describe('community schema scope', () => {
   it('does not expose tags in the forum database schema or API routes', () => {
-    const forumMigration = read('server/supabase/migrations/002_forum.sql')
-    const rlsMigration = read('server/supabase/migrations/003_rls.sql')
+    const forumMigration = read('supabase/migrations/20260101000002_forum.sql')
+    const rlsMigration = read('supabase/migrations/20260101000003_rls.sql')
 
     expect(forumMigration).not.toMatch(/\btags\b/)
     expect(forumMigration).not.toMatch(/\bpost_tags\b/)
@@ -21,7 +21,7 @@ describe('community schema scope', () => {
   })
 
   it('grants PostgREST roles table privileges used by RLS policies', () => {
-    const rlsMigration = read('server/supabase/migrations/003_rls.sql')
+    const rlsMigration = read('supabase/migrations/20260101000003_rls.sql')
 
     expect(rlsMigration).toContain('GRANT USAGE ON SCHEMA public TO anon, authenticated;')
     expect(rlsMigration).toContain('GRANT SELECT ON public.posts TO anon, authenticated;')
@@ -32,7 +32,7 @@ describe('community schema scope', () => {
   })
 
   it('backfills profiles for auth users that existed before migrations were rerun', () => {
-    const authMigration = read('server/supabase/migrations/001_auth_profile.sql')
+    const authMigration = read('supabase/migrations/20260101000001_auth_profile.sql')
 
     expect(authMigration).toContain('FROM auth.users')
     expect(authMigration).toContain('ON CONFLICT (user_id) DO NOTHING')
@@ -40,7 +40,7 @@ describe('community schema scope', () => {
   })
 
   it('defines the signup profile schema without company database tables', () => {
-    const migration = read('server/supabase/migrations/009_signup_profile_schema.sql')
+    const migration = read('supabase/migrations/20260516201508_signup_profile_schema.sql')
 
     expect(migration).toContain("CHECK (role IN ('employee', 'employer'))")
     expect(migration).toContain("CHECK (market IN ('KR_TO_JP', 'JP_TO_KR'))")
