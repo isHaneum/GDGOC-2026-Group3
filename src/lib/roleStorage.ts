@@ -2,7 +2,16 @@ export type BridgeUserRole = "developer" | "employer";
 
 export const BRIDGE_USER_ROLE_KEY = "bridge_user_role";
 
-const publicBridgeRoutes = new Set(["/", "/get-started", "/onboarding", "/community", "/forums", "/companies"]);
+const publicBridgeRoutes = new Set([
+  "/",
+  "/signin",
+  "/signup",
+  "/signup/onboarding",
+  "/signup/profile",
+  "/community",
+  "/community/posts",
+  "/not-found"
+]);
 
 export function isBridgeUserRole(value: unknown): value is BridgeUserRole {
   return value === "developer" || value === "employer";
@@ -40,16 +49,15 @@ export function clearBridgeUserRole() {
 }
 
 export function getRequiredBridgeRouteRole(pathname: string, roleParam?: string | null): BridgeUserRole | null {
-  if (pathname.startsWith("/developer") || pathname === "/apply") return "developer";
+  if (pathname.startsWith("/employee") || pathname === "/signup/portfolio") return "developer";
   if (pathname.startsWith("/employer")) return "employer";
-  if (pathname === "/signal-lab" && isBridgeUserRole(roleParam)) return roleParam;
   return null;
 }
 
 export function isPublicBridgeRoute(pathname: string) {
-  return publicBridgeRoutes.has(pathname) || pathname.startsWith("/community/") || pathname.endsWith("/register");
+  return publicBridgeRoutes.has(pathname) || pathname.startsWith("/community/posts/");
 }
 
 export function bridgeRoleLabel(role: BridgeUserRole) {
-  return role === "developer" ? "Developer" : "Employer";
+  return role === "developer" ? "Applicant" : "Employer";
 }

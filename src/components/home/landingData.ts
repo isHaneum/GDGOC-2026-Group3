@@ -11,13 +11,13 @@ export const landingAudiences: Array<{
     id: "developer",
     label: "Developer",
     eyebrow: "Find companies",
-    destination: "/developer"
+    destination: "/employee/companies"
   },
   {
     id: "employer",
     label: "Employer",
     eyebrow: "Find applicants",
-    destination: "/employer"
+    destination: "/employer/applicants"
   }
 ];
 

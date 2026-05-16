@@ -8,6 +8,10 @@ export async function GET() {
     const data = await getMe(db)
     return jsonResponse(data)
   } catch (error) {
+    if (error instanceof Error && error.message === 'Not authenticated') {
+      return jsonResponse({ user: null, profile: null, authenticated: false })
+    }
+
     return jsonError(error)
   }
 }

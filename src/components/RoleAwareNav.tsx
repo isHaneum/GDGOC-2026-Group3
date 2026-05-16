@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
-import MarketSelector from "./MarketSelector";
 import {
   type BridgeUserRole,
   getRequiredBridgeRouteRole,
@@ -17,18 +16,17 @@ type NavItem = {
 };
 
 const developerNav: NavItem[] = [
-  { href: "/developer", label: "기업별 구인정보" },
-  { href: "/companies", label: "채용중인 회사" },
-  { href: "/signal-lab?role=developer", label: "추천 직무" },
-  { href: "/apply", label: "자기소개서" },
-  { href: "/community", label: "커뮤니티" }
+  { href: "/employee/companies", label: "채용중인 회사" },
+  { href: "/employee/portfolio", label: "내 포트폴리오" },
+  { href: "/community/posts", label: "커뮤니티" },
+  { href: "/account", label: "계정" }
 ];
 
 const employerNav: NavItem[] = [
-  { href: "/employer", label: "지원자 관리" },
-  { href: "/signal-lab?role=employer", label: "추천 개발자" },
-  { href: "/employer/register", label: "기업/직무 조건" },
-  { href: "/community", label: "커뮤니티" }
+  { href: "/employer/postings", label: "채용 공고" },
+  { href: "/employer/applicants", label: "지원자" },
+  { href: "/community/posts", label: "커뮤니티" },
+  { href: "/account", label: "계정" }
 ];
 
 export default function RoleAwareNav() {
@@ -63,19 +61,27 @@ export default function RoleAwareNav() {
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 px-4 py-3 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
-        <Link href="/" className="shrink-0 text-xl font-bold tracking-tight" aria-label="Bridge IT home">
+        <Link href="/signin" className="shrink-0 text-xl font-bold tracking-tight" aria-label="Bridge IT home">
           <span className="text-bridge-primary">Bridge</span>
           <span className="text-ink"> IT</span>
         </Link>
 
         <div className="flex min-w-0 items-center gap-3">
           {minimal ? (
-            <Link
-              href="/get-started"
-              className="rounded-full bg-ink px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-black"
-            >
-              Get Started
-            </Link>
+            <div className="flex items-center gap-2">
+              <Link
+                href="/signin"
+                className="rounded-full px-4 py-2 text-sm font-bold text-gray-500 transition-colors hover:bg-gray-50 hover:text-ink"
+              >
+                Sign in
+              </Link>
+              <Link
+                href="/signup/onboarding"
+                className="rounded-full bg-ink px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-black"
+              >
+                Sign up
+              </Link>
+            </div>
           ) : (
             <div className="flex min-w-0 items-center gap-2 overflow-x-auto">
               {navItems.map((item) => (
@@ -93,14 +99,13 @@ export default function RoleAwareNav() {
                 </Link>
               ))}
               <Link
-                href="/get-started"
+                href="/signup/onboarding"
                 className="whitespace-nowrap rounded-full px-3 py-2 text-xs font-bold text-gray-400 transition-colors hover:bg-gray-50 hover:text-ink"
               >
                 Switch Role
               </Link>
             </div>
           )}
-          <MarketSelector />
         </div>
       </div>
     </nav>
