@@ -6,11 +6,10 @@ import type {
   CompanyHiringSignal,
   CompanyJobProfile,
   CompanyRubricCriterion,
-  DeveloperLanguageCertification,
   DeveloperPreference,
 } from "../../shared/companyCriteriaTypes";
 import type { EmployeeRecommendationsResponse } from "../../shared/employeeRecommendations";
-import type { CvContent, DeveloperProfileFull } from "../../shared/types";
+import type { EmployeeProfileFull } from "../../shared/types";
 import { mergeCompanySalaryDataList } from "../../src/lib/companySalaryEnrichment";
 import { rankCompaniesForDeveloper } from "../../src/lib/twoSidedFitEngine";
 
@@ -45,35 +44,29 @@ function normalizeWorkStyle(value?: string | null): DeveloperPreference["workSty
 }
 
 function normalizeLanguageCertifications(
-  values?: DeveloperLanguageCertification[] | null
+  value?: string | null
 ): DeveloperPreference["languageCertifications"] {
-  return (values ?? []).map((item) => ({
-    language: item.language === "Japanese" || item.language === "Korean" || item.language === "English" ? item.language : "Other",
-    level: item.level,
-    certification: item.certification,
-  }));
-}
-
-function parseYearsOfExperience(...texts: Array<string | undefined>): number {
-  for (const text of texts) {
-    if (!text) continue;
-    const match = text.match(/(\d+)\s*(?:년|years?)/i);
-    if (match) return Number(match[1]);
-  }
-
-  return 0;
-}
-
-function buildCvText(contents: CvContent[] | null | undefined): string {
-  return (contents ?? [])
-    .map((item) => {
-      const name = sanitizeString(item.name);
-      const content = sanitizeString(item.content);
-      if (!content) return "";
-      return name ? `${name}: ${content}` : content;
-    })
+  return (value ?? "")
+    .split(/[,，、\n/;]+/)
+    .map((item) => item.trim())
     .filter(Boolean)
-    .join("\n\n");
+    .map((item) => {
+      const normalized = item.toLowerCase();
+      const language =
+        normalized.includes("japan") || normalized.includes("jlpt") || normalized.includes("일본")
+          ? "Japanese"
+          : normalized.includes("korean") || normalized.includes("한국") || normalized.includes("topik")
+            ? "Korean"
+            : normalized.includes("english") || normalized.includes("toeic") || normalized.includes("ielts")
+              ? "English"
+              : "Other";
+
+      return {
+        language,
+        level: item,
+        certification: item,
+      };
+    });
 }
 
 function normalizeRubrics(rubrics: RawCompanyEvaluationRubric[]): CompanyEvaluationRubric[] {
@@ -88,42 +81,38 @@ function normalizeRubrics(rubrics: RawCompanyEvaluationRubric[]): CompanyEvaluat
   }));
 }
 
-export function mapDeveloperProfileFullToPreference(record: DeveloperProfileFull): DeveloperPreference {
-  const { profile, devProfile, cv } = record;
-  const cvText = buildCvText(cv?.contents);
-  const techStack = (devProfile.tech_stack ?? []).filter(Boolean);
-  const targetRoles = (devProfile.target_roles?.length ? devProfile.target_roles : [devProfile.target_role]).filter(Boolean) as string[];
-  const projectExperience = sanitizeString(devProfile.key_project_experience);
-  const selfIntroduction = sanitizeString(devProfile.self_introduction);
-  const motivation = sanitizeString(devProfile.motivation);
+export function mapDeveloperProfileFullToPreference(record: EmployeeProfileFull): DeveloperPreference {
+  const { profile, employeeProfile } = record;
+  const techStack = (employeeProfile.tech_stack ?? []).filter(Boolean);
+  const targetRoles = (employeeProfile.target_roles ?? []).filter(Boolean);
+  const projectExperience = sanitizeString(employeeProfile.key_project_experience);
+  const selfIntroduction = sanitizeString(employeeProfile.self_introduction);
+  const motivation = sanitizeString(employeeProfile.motivation);
+  const concerns = sanitizeString(employeeProfile.concerns);
 
   return {
     developerId: String(profile.user_id ?? profile.id),
-    name: sanitizeString(devProfile.full_name) ?? "지원자",
-    nationality: normalizeNationality(devProfile.nationality),
-    preferredSalaryMin: typeof devProfile.preferred_salary_min === "number" ? devProfile.preferred_salary_min : undefined,
-    preferredSalaryMax: typeof devProfile.preferred_salary_max === "number" ? devProfile.preferred_salary_max : undefined,
-    preferredCurrency: normalizeCurrency(devProfile.preferred_currency),
-    preferredLocations: (devProfile.preferred_locations ?? []).filter(Boolean),
+    name: sanitizeString(employeeProfile.full_name) ?? "지원자",
+    nationality: normalizeNationality(employeeProfile.nationality),
+    preferredSalaryMin: typeof employeeProfile.preferred_salary_min === "number" ? employeeProfile.preferred_salary_min : undefined,
+    preferredSalaryMax: typeof employeeProfile.preferred_salary_max === "number" ? employeeProfile.preferred_salary_max : undefined,
+    preferredCurrency: normalizeCurrency(employeeProfile.preferred_currency),
+    preferredLocations: (employeeProfile.preferred_locations ?? []).filter(Boolean),
     availableTechStacks: techStack,
-    languageCertifications: normalizeLanguageCertifications(devProfile.language_certifications),
-    yearsOfExperience:
-      typeof devProfile.years_of_experience === "number"
-        ? devProfile.years_of_experience
-        : parseYearsOfExperience(projectExperience, cvText),
+    languageCertifications: normalizeLanguageCertifications(employeeProfile.language_certifications),
+    yearsOfExperience: employeeProfile.years_of_experience,
     targetRoles: targetRoles.length ? targetRoles : ["Software Engineer"],
-    preferredCompanyTypes: (devProfile.preferred_company_types ?? []).filter(Boolean),
-    workStylePreference: normalizeWorkStyle(devProfile.work_style_preference),
-    relocationAvailable: Boolean(devProfile.relocation_available),
-    visaSupportNeeded: typeof devProfile.visa_support_needed === "boolean" ? devProfile.visa_support_needed : undefined,
-    resumeText: [selfIntroduction, projectExperience, cvText, techStack.join(", ")].filter(Boolean).join("\n\n"),
+    preferredCompanyTypes: (employeeProfile.preferred_company_types ?? []).filter(Boolean),
+    workStylePreference: normalizeWorkStyle(employeeProfile.work_style_preference),
+    relocationAvailable: Boolean(employeeProfile.relocation_available),
+    visaSupportNeeded: employeeProfile.visa_support_needed,
+    resumeText: [selfIntroduction, projectExperience, motivation, techStack.join(", ")].filter(Boolean).join("\n\n"),
     portfolioText: [
-      sanitizeString(devProfile.portfolio_url),
-      sanitizeString(devProfile.github_url),
+      sanitizeString(employeeProfile.github_url),
       projectExperience,
     ].filter(Boolean).join("\n\n") || undefined,
     motivation,
-    concerns: (devProfile.concerns ?? []).filter(Boolean),
+    concerns: concerns ? [concerns] : [],
   };
 }
 
@@ -137,7 +126,7 @@ function hasEnoughRecommendationInput(developer: DeveloperPreference): boolean {
   );
 }
 
-export function buildEmployeeRecommendationsPayload(record: DeveloperProfileFull): EmployeeRecommendationsResponse {
+export function buildEmployeeRecommendationsPayload(record: EmployeeProfileFull): EmployeeRecommendationsResponse {
   const developer = mapDeveloperProfileFullToPreference(record);
   const summary = {
     developerId: developer.developerId,

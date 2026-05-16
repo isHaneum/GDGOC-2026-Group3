@@ -34,6 +34,6 @@ describe('company salary enrichment', () => {
 
     expect(mercari).toBeDefined()
     expect(mercari?.averageAnnualSalary).toBe(11660000)
-    expect(formatCompanySalarySummary(mercari!, 'Confirmation needed')).toBe('Average JPY 11,660,000')
+    expect(formatCompanySalarySummary(mercari!, 'Confirmation needed')).toBe('Average ¥11,660K')
   })
 })

@@ -14,19 +14,15 @@ import { type BridgeUserRole, readBridgeUserRole, writeBridgeUserRole } from "@s
 const SIGNUP_PROFILE_DRAFT_KEY = "bridge_signup_profile_draft";
 
 type SignupProfileDraft = {
-  loginId: string;
   nickname: string;
-  profileImageUrl: string;
   email: string;
-  phone: string;
+  companyId: string;
 };
 
 const emptyDraft: SignupProfileDraft = {
-  loginId: "",
   nickname: "",
-  profileImageUrl: "",
   email: "",
-  phone: ""
+  companyId: ""
 };
 
 function readDraft(): SignupProfileDraft {
@@ -84,10 +80,12 @@ export default function SignupProfilePage() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: draft.email,
+        email: draft.email.trim(),
         password,
+        nickname: draft.nickname.trim(),
         role,
-        market: marketForSignup()
+        market: marketForSignup(),
+        companyId: role === "employer" ? draft.companyId.trim() || undefined : undefined,
       })
     });
 
@@ -98,7 +96,7 @@ export default function SignupProfilePage() {
     }
 
     writeBridgeUserRole(role);
-    router.replace(role === "developer" ? "/signup/portfolio" : destinationForRole(role));
+    router.replace(role === "employee" ? "/signup/portfolio" : destinationForRole(role));
   }
 
   return (
@@ -107,9 +105,9 @@ export default function SignupProfilePage() {
         <p className="text-caption font-black uppercase tracking-widest text-bridge-teal">
           회원가입 프로필
         </p>
-        <h1 className="mt-3 text-h1 font-bold text-ink">프로필 작성</h1>
+        <h1 className="mt-3 text-h1 font-bold text-ink">계정 정보 입력</h1>
         <p className="mt-2 text-body leading-6 text-gray-500">
-          로그인 계정과 기본 연락처 정보를 입력합니다. 역할은 온보딩에서 선택한 값으로 저장됩니다.
+          가입에 필요한 이메일, 비밀번호, 닉네임을 입력합니다. 채용자는 회사 식별자도 함께 저장할 수 있습니다.
         </p>
 
         {!role ? (
@@ -122,19 +120,18 @@ export default function SignupProfilePage() {
         ) : null}
 
         <form onSubmit={handleSubmit} className="mt-6 grid gap-4 md:grid-cols-2">
-          <Field label="아이디" value={draft.loginId} onChange={(value) => updateDraft("loginId", value)} />
+          <Field
+            label="닉네임"
+            value={draft.nickname}
+            onChange={(value) => updateDraft("nickname", value)}
+            required
+          />
           <Field
             label="비밀번호"
             type="password"
             value={password}
             onChange={setPassword}
             required
-          />
-          <Field label="닉네임" value={draft.nickname} onChange={(value) => updateDraft("nickname", value)} />
-          <Field
-            label="프로필 이미지 URL"
-            value={draft.profileImageUrl}
-            onChange={(value) => updateDraft("profileImageUrl", value)}
           />
           <Field
             label="이메일"
@@ -143,7 +140,18 @@ export default function SignupProfilePage() {
             onChange={(value) => updateDraft("email", value)}
             required
           />
-          <Field label="연락처" value={draft.phone} onChange={(value) => updateDraft("phone", value)} />
+          {role === "employer" ? (
+            <Field
+              label="회사 ID"
+              value={draft.companyId}
+              onChange={(value) => updateDraft("companyId", value)}
+              placeholder="예: mercari"
+            />
+          ) : (
+            <div className="rounded-xl border border-dashed border-gray-200 bg-bridge-paper px-4 py-3 text-body text-gray-500">
+              지원자는 다음 단계에서 포트폴리오 스키마를 모두 입력합니다.
+            </div>
+          )}
 
           {errorMessage ? (
             <p className="md:col-span-2 rounded-xl border border-bridge-coral/30 bg-bridge-coral/10 p-3 text-body font-bold text-bridge-coral">
@@ -160,7 +168,7 @@ export default function SignupProfilePage() {
               {status === "submitting" ? "계정 생성 중..." : "계속하기"}
             </button>
             <span className="text-body text-gray-400">
-              현재 역할: {role === "developer" ? "지원자" : role === "employer" ? "채용자" : "선택 안 됨"}
+              현재 역할: {role === "employee" ? "지원자" : role === "employer" ? "채용자" : "선택 안 됨"}
             </span>
           </div>
         </form>
@@ -174,13 +182,15 @@ function Field({
   value,
   onChange,
   type = "text",
-  required = false
+  required = false,
+  placeholder,
 }: {
   label: string;
   value: string;
   onChange: (value: string) => void;
   type?: string;
   required?: boolean;
+  placeholder?: string;
 }) {
   return (
     <label className="block">
@@ -189,10 +199,10 @@ function Field({
         type={type}
         required={required}
         value={value}
+        placeholder={placeholder}
         onChange={(event) => onChange(event.target.value)}
         className="mt-2 w-full rounded-xl border border-gray-200 bg-bridge-paper px-4 py-3 text-body text-ink outline-none focus:border-bridge-teal"
       />
     </label>
   );
 }
-

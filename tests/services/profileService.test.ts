@@ -1,21 +1,41 @@
 import { describe, it, expect, vi } from 'vitest'
 import {
-  getDeveloperProfile,
-  updateDeveloperProfile,
-  upsertCv,
+  getEmployeeProfile,
+  upsertEmployeeProfile,
 } from '../../server/services/profileService'
-import type { CvContent } from '../../shared/types'
 
-const PROFILE = { id: 'profile-1', user_id: 'user-1', role: 'developer', market: 'KR' }
-const DEV_PROFILE = { id: 'dev-1', profile_id: 'profile-1', full_name: 'Test Dev', tech_stack: [] }
-const CV = { id: 'cv-1', developer_profile_id: 'dev-1', contents: [] }
+const PROFILE = { id: 'profile-1', user_id: 'user-1', role: 'employee', market: 'KR_TO_JP' }
+const EMPLOYEE_PROFILE = {
+  id: 'employee-1',
+  profile_id: 'profile-1',
+  full_name: '김민서',
+  birth_date: '2000-01-01',
+  gender: 'female',
+  nationality: 'korean',
+  years_of_experience: 2,
+  target_roles: ['Frontend Engineer'],
+  tech_stack: ['React'],
+  language_certifications: 'Japanese JLPT N2',
+  preferred_salary_min: 5000000,
+  preferred_salary_max: 7000000,
+  preferred_currency: 'JPY',
+  preferred_locations: ['Tokyo'],
+  preferred_company_types: ['SaaS'],
+  work_style_preference: 'hybrid',
+  relocation_available: true,
+  visa_support_needed: true,
+  self_introduction: '안녕하세요.',
+  key_project_experience: 'Next.js 프로젝트',
+  motivation: '일본 제품 팀에서 성장하고 싶습니다.',
+  concerns: '비즈니스 일본어 보고 경험',
+  github_url: 'https://github.com/example',
+}
 
-function makeDb(options: { cv?: unknown } = {}) {
+function makeDb() {
   let callIndex = 0
   const results = [
     { data: PROFILE, error: null },
-    { data: DEV_PROFILE, error: null },
-    { data: 'cv' in options ? options.cv : CV, error: null },
+    { data: EMPLOYEE_PROFILE, error: null },
   ]
 
   const builder = {
@@ -23,6 +43,7 @@ function makeDb(options: { cv?: unknown } = {}) {
     eq: vi.fn().mockReturnThis(),
     update: vi.fn().mockReturnThis(),
     insert: vi.fn().mockReturnThis(),
+    upsert: vi.fn().mockReturnThis(),
     ilike: vi.fn().mockReturnThis(),
     single: vi.fn().mockImplementation(() => Promise.resolve(results[callIndex++] ?? { data: null, error: null })),
   }
@@ -30,61 +51,35 @@ function makeDb(options: { cv?: unknown } = {}) {
   return { from: vi.fn().mockReturnValue(builder), _builder: builder }
 }
 
-describe('getDeveloperProfile', () => {
-  it('returns profile, devProfile, and cv', async () => {
+describe('getEmployeeProfile', () => {
+  it('returns profile and employeeProfile', async () => {
     const db = makeDb()
-    const result = await getDeveloperProfile(db as any, 'user-1')
+    const result = await getEmployeeProfile(db as any, 'user-1')
     expect(result.profile.id).toBe('profile-1')
-    expect(result.devProfile.id).toBe('dev-1')
-    expect(result.cv?.id).toBe('cv-1')
-  })
-
-  it('returns null cv when none exists', async () => {
-    const db = makeDb({ cv: null })
-    const result = await getDeveloperProfile(db as any, 'user-1')
-    expect(result.cv).toBeNull()
+    expect(result.employeeProfile.id).toBe('employee-1')
   })
 })
 
-describe('updateDeveloperProfile', () => {
-  it('updates and returns developer profile', async () => {
+describe('upsertEmployeeProfile', () => {
+  it('upserts and returns employee profile', async () => {
     let callIndex = 0
     const results = [
       { data: PROFILE, error: null },
-      { data: { ...DEV_PROFILE, full_name: 'Updated' }, error: null },
+      { data: { ...EMPLOYEE_PROFILE, full_name: 'Updated' }, error: null },
     ]
     const builder = {
       select: vi.fn().mockReturnThis(),
       eq: vi.fn().mockReturnThis(),
-      update: vi.fn().mockReturnThis(),
+      upsert: vi.fn().mockReturnThis(),
       single: vi.fn().mockImplementation(() => Promise.resolve(results[callIndex++])),
     }
     const db = { from: vi.fn().mockReturnValue(builder) }
 
-    const result = await updateDeveloperProfile(db as any, 'user-1', { full_name: 'Updated' })
+    const result = await upsertEmployeeProfile(db as any, 'user-1', { ...EMPLOYEE_PROFILE, full_name: 'Updated' })
     expect(result.full_name).toBe('Updated')
-  })
-})
-
-describe('upsertCv', () => {
-  it('inserts cv when none exists', async () => {
-    let callIndex = 0
-    const results = [
-      { data: PROFILE, error: null },
-      { data: DEV_PROFILE, error: null },
-      { data: null, error: null },
-      { data: { ...CV, contents: [{ name: 'Skills', content: 'React' }] }, error: null },
-    ]
-    const builder = {
-      select: vi.fn().mockReturnThis(),
-      eq: vi.fn().mockReturnThis(),
-      insert: vi.fn().mockReturnThis(),
-      single: vi.fn().mockImplementation(() => Promise.resolve(results[callIndex++])),
-    }
-    const db = { from: vi.fn().mockReturnValue(builder) }
-
-    const contents: CvContent[] = [{ name: 'Skills', content: 'React' }]
-    const result = await upsertCv(db as any, 'user-1', contents)
-    expect(result.contents).toEqual([{ name: 'Skills', content: 'React' }])
+    expect(builder.upsert).toHaveBeenCalledWith(
+      expect.objectContaining({ profile_id: 'profile-1', full_name: 'Updated' }),
+      { onConflict: 'profile_id' }
+    )
   })
 })

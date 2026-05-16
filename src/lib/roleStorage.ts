@@ -1,4 +1,4 @@
-export type BridgeUserRole = "developer" | "employer";
+export type BridgeUserRole = "employee" | "employer";
 
 export const BRIDGE_USER_ROLE_KEY = "bridge_user_role";
 
@@ -14,7 +14,13 @@ const publicBridgeRoutes = new Set([
 ]);
 
 export function isBridgeUserRole(value: unknown): value is BridgeUserRole {
-  return value === "developer" || value === "employer";
+  return value === "employee" || value === "employer";
+}
+
+export function normalizeBridgeUserRole(value: unknown): BridgeUserRole | null {
+  if (value === "employee" || value === "developer") return "employee";
+  if (value === "employer") return "employer";
+  return null;
 }
 
 export function readBridgeUserRole(): BridgeUserRole | null {
@@ -22,7 +28,7 @@ export function readBridgeUserRole(): BridgeUserRole | null {
 
   try {
     const storedRole = window.localStorage.getItem(BRIDGE_USER_ROLE_KEY);
-    return isBridgeUserRole(storedRole) ? storedRole : null;
+    return normalizeBridgeUserRole(storedRole);
   } catch {
     return null;
   }
@@ -49,7 +55,7 @@ export function clearBridgeUserRole() {
 }
 
 export function getRequiredBridgeRouteRole(pathname: string, roleParam?: string | null): BridgeUserRole | null {
-  if (pathname.startsWith("/employee") || pathname === "/signup/portfolio") return "developer";
+  if (pathname.startsWith("/employee") || pathname === "/signup/portfolio") return "employee";
   if (pathname.startsWith("/employer")) return "employer";
   return null;
 }
@@ -59,5 +65,5 @@ export function isPublicBridgeRoute(pathname: string) {
 }
 
 export function bridgeRoleLabel(role: BridgeUserRole) {
-  return role === "developer" ? "Applicant" : "Employer";
+  return role === "employee" ? "Applicant" : "Employer";
 }

@@ -22,7 +22,7 @@ function makeDb() {
       select: vi.fn().mockReturnThis(),
       eq: vi.fn().mockReturnThis(),
       single: vi.fn().mockResolvedValue({
-        data: { id: 'profile-1', user_id: 'user-1', role: 'developer', market: 'KR' },
+        data: { id: 'profile-1', user_id: 'user-1', role: 'employee', market: 'KR_TO_JP' },
         error: null,
       }),
     }),
@@ -32,11 +32,17 @@ function makeDb() {
 describe('signUp', () => {
   it('passes email, password, and metadata to supabase', async () => {
     const db = makeDb()
-    await signUp(db as any, { email: 'a@test.com', password: 'pass123', role: 'developer', market: 'KR' })
+    await signUp(db as any, {
+      email: 'a@test.com',
+      password: 'pass123',
+      role: 'employee',
+      market: 'KR_TO_JP',
+      nickname: '민서',
+    })
     expect(db.auth.signUp).toHaveBeenCalledWith({
       email: 'a@test.com',
       password: 'pass123',
-      options: { data: { role: 'developer', market: 'KR' } },
+      options: { data: { role: 'employee', market: 'KR_TO_JP', nickname: '민서' } },
     })
   })
 
@@ -44,7 +50,7 @@ describe('signUp', () => {
     const db = makeDb()
     db.auth.signUp.mockResolvedValue({ data: null, error: { message: 'Email already registered' } })
     await expect(
-      signUp(db as any, { email: 'a@test.com', password: 'x', role: 'developer', market: 'KR' })
+      signUp(db as any, { email: 'a@test.com', password: 'x', role: 'employee', market: 'KR_TO_JP', nickname: '민서' })
     ).rejects.toThrow('Email already registered')
   })
 })

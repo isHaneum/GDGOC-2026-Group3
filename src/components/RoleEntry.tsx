@@ -12,7 +12,7 @@ import {
 } from "@src/lib/roleStorage";
 
 function roleDestination(role: BridgeUserRole) {
-  return role === "developer" ? "/signup/profile" : "/signup/profile";
+  return role === "employee" ? "/signup/profile" : "/signup/profile";
 }
 
 export default function RoleEntry() {
@@ -59,7 +59,7 @@ export default function RoleEntry() {
         <div className="grid w-full gap-5 md:grid-cols-2">
           <button
             type="button"
-            onClick={() => selectRole("developer")}
+            onClick={() => selectRole("employee")}
             className="group rounded-2xl border border-gray-200 bg-white p-7 text-left shadow-panel transition-all hover:-translate-y-0.5 hover:border-bridge-primary"
           >
             <p className="text-caption font-black uppercase tracking-widest text-bridge-teal">Applicant</p>
