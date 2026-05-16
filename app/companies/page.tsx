@@ -42,7 +42,7 @@ export default function HiringCompaniesPage() {
               </div>
 
               <div className="mt-5 flex flex-wrap gap-2">
-                {[...company.requiredTechStacks, ...company.preferredTechStacks].slice(0, 5).map((stack) => (
+                {[...new Set([...company.requiredTechStacks, ...company.preferredTechStacks])].slice(0, 5).map((stack) => (
                   <span key={stack} className="rounded-lg border border-gray-100 bg-gray-50 px-2 py-1 text-[10px] font-bold text-gray-500">
                     {stack}
                   </span>

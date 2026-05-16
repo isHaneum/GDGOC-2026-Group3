@@ -1,9 +1,10 @@
 import { type NextRequest } from 'next/server'
-import { supabaseServer } from '../../../server/services/supabase'
+import { requireSupabaseServer } from '../../../server/services/supabase'
 import { jsonResponse, jsonError } from '../_lib/respond'
 
 export async function POST(request: NextRequest) {
   try {
+    const supabaseServer = requireSupabaseServer()
     const formData = await request.formData()
     const file = formData.get('file') as File | null
     if (!file) return jsonError(new Error('file is required'))
