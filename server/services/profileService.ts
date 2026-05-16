@@ -1,7 +1,12 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
-import type { DbDeveloperProfile, CvContent } from '../../shared/types'
+import type { DbEmployeeProfile, CvContent } from '../../shared/types'
 
-export async function getDeveloperProfile(db: SupabaseClient, userId: string) {
+export type EmployeeProfileUpsert = Omit<
+  DbEmployeeProfile,
+  'id' | 'profile_id' | 'created_at' | 'updated_at'
+>
+
+export async function getEmployeeProfile(db: SupabaseClient, userId: string) {
   const { data: profile, error: e1 } = await db
     .from('profiles')
     .select('*')
@@ -9,26 +14,20 @@ export async function getDeveloperProfile(db: SupabaseClient, userId: string) {
     .single()
   if (e1) throw new Error(e1.message)
 
-  const { data: devProfile, error: e2 } = await db
-    .from('developer_profiles')
+  const { data: employeeProfile, error: e2 } = await db
+    .from('employee_profiles')
     .select('*')
     .eq('profile_id', profile.id)
     .single()
   if (e2) throw new Error(e2.message)
 
-  const { data: cv } = await db
-    .from('cvs')
-    .select('*')
-    .eq('developer_profile_id', devProfile.id)
-    .single()
-
-  return { profile, devProfile, cv: cv ?? null }
+  return { profile, employeeProfile }
 }
 
-export async function updateDeveloperProfile(
+export async function upsertEmployeeProfile(
   db: SupabaseClient,
   userId: string,
-  updates: Partial<Omit<DbDeveloperProfile, 'id' | 'profile_id' | 'created_at' | 'updated_at'>>
+  updates: EmployeeProfileUpsert
 ) {
   const { data: profile, error: e1 } = await db
     .from('profiles')
@@ -38,13 +37,25 @@ export async function updateDeveloperProfile(
   if (e1) throw new Error(e1.message)
 
   const { data, error } = await db
-    .from('developer_profiles')
-    .update(updates)
-    .eq('profile_id', profile.id)
+    .from('employee_profiles')
+    .upsert({ ...updates, profile_id: profile.id }, { onConflict: 'profile_id' })
     .select()
     .single()
   if (error) throw new Error(error.message)
   return data
+}
+
+export async function getDeveloperProfile(db: SupabaseClient, userId: string) {
+  const { profile, employeeProfile } = await getEmployeeProfile(db, userId)
+  return { profile, devProfile: employeeProfile, cv: null }
+}
+
+export async function updateDeveloperProfile(
+  db: SupabaseClient,
+  userId: string,
+  updates: EmployeeProfileUpsert
+) {
+  return upsertEmployeeProfile(db, userId, updates)
 }
 
 export async function upsertCv(

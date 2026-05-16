@@ -3,8 +3,10 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 export type SignUpInput = {
   email: string
   password: string
-  role: 'developer' | 'employer'
-  market: 'KR' | 'JP'
+  role: 'employee' | 'employer'
+  market: 'KR_TO_JP' | 'JP_TO_KR'
+  nickname: string
+  companyId?: string
 }
 
 export type SignInInput = {
@@ -13,10 +15,20 @@ export type SignInInput = {
 }
 
 export async function signUp(db: SupabaseClient, input: SignUpInput) {
+  const metadata: Record<string, string> = {
+    role: input.role,
+    market: input.market,
+    nickname: input.nickname,
+  }
+
+  if (input.role === 'employer') {
+    metadata.companyId = input.companyId ?? 'mercari'
+  }
+
   const { data, error } = await db.auth.signUp({
     email: input.email,
     password: input.password,
-    options: { data: { role: input.role, market: input.market } },
+    options: { data: metadata },
   })
   if (error) throw new Error(error.message)
   return data

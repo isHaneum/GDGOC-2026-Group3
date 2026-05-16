@@ -55,7 +55,7 @@ export default function PostDetailPage() {
       const newComment = await addComment(postId, commentText.trim())
       setComments((prev) => [
         ...prev,
-        { ...newComment, post_id: Number(postId), author_id: 0, updated_at: newComment.created_at, author: { id: 0, role: 'developer', market: 'KR', developer_profiles: [] } }
+        { ...newComment, post_id: Number(postId), author_id: 0, updated_at: newComment.created_at, author: { id: 0, role: 'employee', market: 'KR_TO_JP', developer_profiles: [] } }
       ])
       setCommentText('')
     } catch (err) {

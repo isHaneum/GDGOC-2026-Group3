@@ -63,3 +63,7 @@ export const setMarket = (id: string) => {
     localStorage.setItem('bridge_market', id);
   }
 };
+
+export function getDbMarketId(market: MarketConfig): "KR_TO_JP" | "JP_TO_KR" {
+  return market.id === "jp-kr" ? "JP_TO_KR" : "KR_TO_JP";
+}

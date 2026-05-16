@@ -15,7 +15,7 @@ type NavItem = {
   label: string;
 };
 
-const developerNav: NavItem[] = [
+const employeeNav: NavItem[] = [
   { href: "/employee/companies", label: "채용중인 회사" },
   { href: "/employee/recommends", label: "추천 직무" },
   { href: "/employee/portfolio", label: "내 포트폴리오" },
@@ -46,14 +46,14 @@ export default function RoleAwareNav() {
     return storedRole;
   }, [pathname, roleParam, storedRole]);
 
-  const navItems = activeRole === "developer" ? developerNav : activeRole === "employer" ? employerNav : [];
+  const navItems = activeRole === "employee" ? employeeNav : activeRole === "employer" ? employerNav : [];
   const minimal = navItems.length === 0;
 
   function isActive(href: string) {
     const [hrefPath, hrefSearchOrHash] = href.split(/[?#]/);
     if (pathname !== hrefPath) return false;
 
-    if (href.includes("role=developer")) return roleParam === "developer" || (!roleParam && activeRole === "developer");
+    if (href.includes("role=employee")) return roleParam === "employee" || (!roleParam && activeRole === "employee");
     if (href.includes("role=employer")) return roleParam === "employer" || (!roleParam && activeRole === "employer");
 
     return !hrefSearchOrHash || href.includes("#");

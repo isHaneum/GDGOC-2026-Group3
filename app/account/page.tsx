@@ -70,7 +70,7 @@ export default function AccountPage() {
       if (role) writeBridgeUserRole(role);
 
       setEmail(account.user.email ?? "");
-      setRoleLabel(role === "developer" ? "Applicant" : role === "employer" ? "Employer" : "Unknown");
+      setRoleLabel(role === "employee" ? "Applicant" : role === "employer" ? "Employer" : "Unknown");
       setMarket(account.profile?.market ?? String(account.user.user_metadata?.market ?? "Unknown"));
       setDraft(readDraft());
       setLoading(false);
@@ -188,4 +188,3 @@ function Field({
     </label>
   );
 }
-

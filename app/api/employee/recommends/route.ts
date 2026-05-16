@@ -1,6 +1,6 @@
 import { createClient, hasSupabaseEnv } from '../../../_lib/supabase'
 import { buildEmployeeRecommendationsPayload } from '../../../../server/services/developerRecommendationService'
-import { getDeveloperProfile } from '../../../../server/services/profileService'
+import { getEmployeeProfile } from '../../../../server/services/profileService'
 import type { EmployeeRecommendationsResponse } from '../../../../shared/employeeRecommendations'
 import { jsonError, jsonResponse } from '../../_lib/respond'
 
@@ -27,7 +27,7 @@ export async function GET() {
       return jsonResponse(unauthenticatedResponse('로그인 후 추천 직무를 확인할 수 있습니다.'))
     }
 
-    const data = await getDeveloperProfile(db, user.id)
+    const data = await getEmployeeProfile(db, user.id)
     return jsonResponse(buildEmployeeRecommendationsPayload(data))
   } catch (error) {
     return jsonError(error)

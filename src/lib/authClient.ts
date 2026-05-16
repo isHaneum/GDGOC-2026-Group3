@@ -1,7 +1,7 @@
-import { getCurrentMarket } from "@shared/market";
-import type { BridgeUserRole } from "./roleStorage";
+import { getCurrentMarket, getDbMarketId } from "@shared/market";
+import { normalizeBridgeUserRole, type BridgeUserRole } from "./roleStorage";
 
-export type AccountMarket = "KR" | "JP";
+export type AccountMarket = "KR_TO_JP" | "JP_TO_KR";
 
 export type AccountProfile = {
   role?: BridgeUserRole;
@@ -19,21 +19,15 @@ export type CurrentAccount = {
 };
 
 export function destinationForRole(role: BridgeUserRole) {
-  return role === "developer" ? "/employee/companies" : "/employer/postings";
+  return role === "employee" ? "/employee/companies" : "/employer/postings";
 }
 
 export function marketForSignup(): AccountMarket {
-  return getCurrentMarket().id === "jp-kr" ? "JP" : "KR";
+  return getDbMarketId(getCurrentMarket());
 }
 
 export function resolveAccountRole(account: CurrentAccount): BridgeUserRole | null {
-  const profileRole = account.profile?.role;
-  if (profileRole === "developer" || profileRole === "employer") return profileRole;
-
-  const metadataRole = account.user.user_metadata?.role;
-  if (metadataRole === "developer" || metadataRole === "employer") return metadataRole;
-
-  return null;
+  return normalizeBridgeUserRole(account.profile?.role) ?? normalizeBridgeUserRole(account.user.user_metadata?.role);
 }
 
 export async function fetchCurrentAccount(): Promise<CurrentAccount | null> {
@@ -54,4 +48,3 @@ export async function apiErrorMessage(response: Response, fallback: string) {
     return fallback;
   }
 }
-

@@ -39,18 +39,21 @@ describe('community schema scope', () => {
     expect(authMigration).toContain('INSERT INTO public.developer_profiles (profile_id)')
   })
 
-  it('persists salary enrichment fields for company job profiles in both migration trees', () => {
-    const serverMigration = read('server/supabase/migrations/008_company_salary_enrichment.sql')
-    const supabaseMigration = read('supabase/migrations/20260517000011_company_salary_enrichment.sql')
+  it('defines the signup profile schema without company database tables', () => {
+    const migration = read('server/supabase/migrations/009_signup_profile_schema.sql')
 
-    for (const migration of [serverMigration, supabaseMigration]) {
-      expect(migration).toContain('ADD COLUMN IF NOT EXISTS salary_note text')
-      expect(migration).toContain('ADD COLUMN IF NOT EXISTS starting_salary_min bigint')
-      expect(migration).toContain('ADD COLUMN IF NOT EXISTS average_annual_salary bigint')
-      expect(migration).toContain('ADD COLUMN IF NOT EXISTS salary_source_links jsonb')
-      expect(migration).toContain('UPDATE public.company_job_profiles AS profiles')
-      expect(migration).toContain("('mercari'")
-      expect(migration).toContain("('zozo'")
-    }
+    expect(migration).toContain("CHECK (role IN ('employee', 'employer'))")
+    expect(migration).toContain("CHECK (market IN ('KR_TO_JP', 'JP_TO_KR'))")
+    expect(migration).toContain('ADD COLUMN IF NOT EXISTS nickname text')
+    expect(migration).toContain('CREATE TABLE IF NOT EXISTS public.employee_profiles')
+    expect(migration).toContain("gender text NOT NULL CHECK (gender IN ('male', 'female'))")
+    expect(migration).toContain("nationality text NOT NULL CHECK (nationality IN ('korean', 'japanese'))")
+    expect(migration).toContain("preferred_currency text NOT NULL CHECK (preferred_currency IN ('KRW', 'JPY'))")
+    expect(migration).toContain("work_style_preference text NOT NULL CHECK (work_style_preference IN ('remote', 'hybrid', 'onsite', 'any'))")
+    expect(migration).toContain('CREATE TABLE IF NOT EXISTS public.employer_profiles')
+    expect(migration).toContain('company_id text NOT NULL')
+    expect(migration).toContain('DROP TABLE IF EXISTS public.company_job_profiles CASCADE')
+    expect(migration).toContain('DROP TABLE IF EXISTS public.company_evaluation_rubrics CASCADE')
+    expect(migration).toContain('DROP TABLE IF EXISTS public.company_hiring_signals CASCADE')
   })
 })

@@ -150,40 +150,41 @@ export interface CareerSignalState {
 export interface DbProfile {
   id: number
   user_id: string  // uuid — references auth.users
-  role: 'developer' | 'employer'
-  market: 'KR' | 'JP'
+  role: 'employee' | 'employer'
+  market: 'KR_TO_JP' | 'JP_TO_KR'
   created_at: string
   updated_at: string
 }
 
-export interface DbDeveloperProfile {
+export interface DbEmployeeProfile {
   id: number
   profile_id: number
-  full_name: string | null
-  nationality: string | null
-  target_country: string | null
-  target_role: string | null
-  tech_stack: string[]
-  language_certifications: DeveloperLanguageCertification[]
-  preferred_salary_min: number | null
-  preferred_salary_max: number | null
-  preferred_currency: 'JPY' | 'KRW' | 'USD' | null
-  preferred_locations: string[]
-  work_style_preference: 'remote' | 'hybrid' | 'onsite' | 'any' | null
-  relocation_available: boolean
-  visa_support_needed: boolean | null
-  motivation: string | null
-  concerns: string[]
-  years_of_experience: number | null
+  full_name: string
+  birth_date: string
+  gender: 'male' | 'female'
+  nationality: 'korean' | 'japanese'
+  years_of_experience: number
   target_roles: string[]
+  tech_stack: string[]
+  language_certifications: string
+  preferred_salary_min: number
+  preferred_salary_max: number
+  preferred_currency: 'JPY' | 'KRW'
+  preferred_locations: string[]
   preferred_company_types: string[]
-  portfolio_url: string | null
-  github_url: string | null
-  self_introduction: string | null
-  key_project_experience: string | null
+  work_style_preference: 'remote' | 'hybrid' | 'onsite' | 'any'
+  relocation_available: boolean
+  visa_support_needed: boolean
+  self_introduction: string
+  key_project_experience: string
+  motivation: string
+  concerns: string
+  github_url: string
   created_at: string
   updated_at: string
 }
+
+export type DbDeveloperProfile = DbEmployeeProfile
 
 export interface CvContent {
   name: string
@@ -244,8 +245,10 @@ export interface PostWithComments extends DbPost {
   comments: (DbComment & { author: AuthorWithName })[]
 }
 
-export interface DeveloperProfileFull {
+export interface EmployeeProfileFull {
   profile: DbProfile
-  devProfile: DbDeveloperProfile
-  cv: DbCv | null
+  employeeProfile: DbEmployeeProfile
+  cv?: DbCv | null
 }
+
+export type DeveloperProfileFull = EmployeeProfileFull
