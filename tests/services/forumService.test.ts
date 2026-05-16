@@ -5,7 +5,6 @@ import {
   updatePost,
   deletePost,
   listCategories,
-  listTags,
   toggleLike,
   createComment,
   updateComment,
@@ -105,22 +104,6 @@ describe('listCategories', () => {
 
     const result = await listCategories(db as any)
     expect(result).toEqual(cats)
-  })
-})
-
-describe('listTags', () => {
-  it('returns tags filtered by query', async () => {
-    const tags = [{ id: 'tag-1', name: 'React', slug: 'react' }]
-    const builder = {
-      select: vi.fn().mockReturnThis(),
-      order: vi.fn().mockReturnThis(),
-      limit: vi.fn().mockReturnThis(),
-      ilike: vi.fn().mockResolvedValue({ data: tags, error: null }),
-    }
-    const db = { from: vi.fn().mockReturnValue(builder) }
-
-    const result = await listTags(db as any, 'Rea')
-    expect(result[0].name).toBe('React')
   })
 })
 

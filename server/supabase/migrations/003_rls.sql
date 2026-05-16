@@ -3,9 +3,7 @@ ALTER TABLE public.profiles          ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.developer_profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.cvs               ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.categories        ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.tags              ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.posts             ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.post_tags         ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.comments          ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.post_likes        ENABLE ROW LEVEL SECURITY;
 
@@ -49,25 +47,6 @@ CREATE POLICY "cvs_delete_own"  ON public.cvs FOR DELETE
 -- categories: read-only for users (managed by admin via SQL)
 CREATE POLICY "categories_select_all" ON public.categories FOR SELECT USING (true);
 
--- tags
-CREATE POLICY "tags_select_all"    ON public.tags FOR SELECT USING (true);
-CREATE POLICY "tags_insert_auth"   ON public.tags FOR INSERT WITH CHECK (auth.uid() IS NOT NULL);
-
--- post_tags
-CREATE POLICY "post_tags_select_all"  ON public.post_tags FOR SELECT USING (true);
-CREATE POLICY "post_tags_insert_own"  ON public.post_tags FOR INSERT
-  WITH CHECK (EXISTS (
-    SELECT 1 FROM public.posts ps
-    JOIN public.profiles p ON p.id = ps.author_id
-    WHERE ps.id = post_id AND p.user_id = auth.uid()
-  ));
-CREATE POLICY "post_tags_delete_own"  ON public.post_tags FOR DELETE
-  USING (EXISTS (
-    SELECT 1 FROM public.posts ps
-    JOIN public.profiles p ON p.id = ps.author_id
-    WHERE ps.id = post_id AND p.user_id = auth.uid()
-  ));
-
 -- posts
 CREATE POLICY "posts_select_all"   ON public.posts FOR SELECT USING (true);
 CREATE POLICY "posts_insert_own"   ON public.posts FOR INSERT
@@ -102,3 +81,23 @@ CREATE POLICY "comments_delete_own"  ON public.comments FOR DELETE
 CREATE POLICY "post_likes_select_all"  ON public.post_likes FOR SELECT USING (true);
 CREATE POLICY "post_likes_insert_own"  ON public.post_likes FOR INSERT WITH CHECK (auth.uid() = user_id);
 CREATE POLICY "post_likes_delete_own"  ON public.post_likes FOR DELETE USING (auth.uid() = user_id);
+
+-- PostgREST roles still need table privileges before RLS policies are evaluated.
+GRANT USAGE ON SCHEMA public TO anon, authenticated;
+
+GRANT SELECT ON public.profiles TO anon, authenticated;
+GRANT SELECT ON public.developer_profiles TO anon, authenticated;
+GRANT SELECT ON public.cvs TO anon, authenticated;
+GRANT SELECT ON public.categories TO anon, authenticated;
+GRANT SELECT ON public.posts TO anon, authenticated;
+GRANT SELECT ON public.comments TO anon, authenticated;
+GRANT SELECT ON public.post_likes TO anon, authenticated;
+
+GRANT UPDATE ON public.profiles TO authenticated;
+GRANT INSERT, UPDATE, DELETE ON public.developer_profiles TO authenticated;
+GRANT INSERT, UPDATE, DELETE ON public.cvs TO authenticated;
+GRANT INSERT, UPDATE, DELETE ON public.posts TO authenticated;
+GRANT INSERT, UPDATE, DELETE ON public.comments TO authenticated;
+GRANT INSERT, DELETE ON public.post_likes TO authenticated;
+
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO authenticated;
