@@ -62,7 +62,7 @@ export default function RoleAwareNav() {
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 px-4 py-3 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
-        <Link href="/signin" className="shrink-0 text-xl font-bold tracking-tight" aria-label="Bridge IT home">
+        <Link href="/signin" className="shrink-0 text-h2 font-bold tracking-tight" aria-label="Bridge IT home">
           <span className="text-bridge-primary">Bridge</span>
           <span className="text-ink"> IT</span>
         </Link>
@@ -72,13 +72,13 @@ export default function RoleAwareNav() {
             <div className="flex items-center gap-2">
               <Link
                 href="/signin"
-                className="rounded-full px-4 py-2 text-sm font-bold text-gray-500 transition-colors hover:bg-gray-50 hover:text-ink"
+                className="rounded-full px-4 py-2 text-body font-bold text-gray-500 transition-colors hover:bg-gray-50 hover:text-ink"
               >
                 로그인
               </Link>
               <Link
                 href="/signup/onboarding"
-                className="rounded-full bg-ink px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-black"
+                className="rounded-full bg-ink px-4 py-2 text-body font-bold text-white transition-colors hover:bg-black"
               >
                 회원가입
               </Link>
@@ -90,7 +90,7 @@ export default function RoleAwareNav() {
                   key={item.href}
                   href={item.href}
                   className={[
-                    "whitespace-nowrap rounded-full px-4 py-2 text-sm font-bold transition-colors",
+                    "whitespace-nowrap rounded-full px-4 py-2 text-body font-bold transition-colors",
                     isActive(item.href)
                       ? "bg-bridge-primary text-white"
                       : "text-gray-500 hover:bg-gray-50 hover:text-ink"
@@ -101,7 +101,7 @@ export default function RoleAwareNav() {
               ))}
               <Link
                 href="/signup/onboarding"
-                className="whitespace-nowrap rounded-full px-3 py-2 text-xs font-bold text-gray-400 transition-colors hover:bg-gray-50 hover:text-ink"
+                className="whitespace-nowrap rounded-full px-3 py-2 text-caption font-bold text-gray-400 transition-colors hover:bg-gray-50 hover:text-ink"
               >
                 역할 전환
               </Link>

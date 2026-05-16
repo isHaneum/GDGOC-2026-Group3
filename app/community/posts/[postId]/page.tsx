@@ -104,7 +104,7 @@ export default function PostDetailPage() {
       <div className="min-h-screen bg-bridge-paper flex items-center justify-center">
         <div className="text-center">
           <p className="text-bridge-coral font-bold mb-4">{error ?? '포스트를 찾을 수 없습니다.'}</p>
-          <Link href="/community/posts" className="text-sm text-bridge-primary font-bold hover:underline">← 커뮤니티로</Link>
+          <Link href="/community/posts" className="text-body text-bridge-primary font-bold hover:underline">← 커뮤니티로</Link>
         </div>
       </div>
     )
@@ -114,21 +114,21 @@ export default function PostDetailPage() {
     <div className="min-h-screen bg-bridge-paper">
       <div className="container mx-auto max-w-2xl px-4 py-8 space-y-5">
 
-        <Link href="/community/posts" className="text-sm font-bold text-gray-400 hover:text-bridge-primary transition-colors">
+        <Link href="/community/posts" className="text-body font-bold text-gray-400 hover:text-bridge-primary transition-colors">
           ← 커뮤니티로
         </Link>
 
         {/* Post card */}
         <article className="bg-white rounded-xl border border-gray-100 shadow-panel p-5">
           <div className="flex items-center gap-2 mb-3">
-            <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${categoryBadgeColor(post.category?.slug ?? '')}`}>
+            <span className={`text-micro font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${categoryBadgeColor(post.category?.slug ?? '')}`}>
               {post.category?.name ?? '—'}
             </span>
-            <span className="text-[10px] text-gray-400">{getAuthorName(post.author)}</span>
-            <span className="text-[10px] text-gray-300">·</span>
-            <span className="text-[10px] text-gray-400">{timeAgo(post.created_at)}</span>
+            <span className="text-micro text-gray-400">{getAuthorName(post.author)}</span>
+            <span className="text-micro text-gray-300">·</span>
+            <span className="text-micro text-gray-400">{timeAgo(post.created_at)}</span>
           </div>
-          <h1 className="text-2xl font-bold text-ink mb-4">{post.title}</h1>
+          <h1 className="text-h1 font-bold text-ink mb-4">{post.title}</h1>
           {post.image_url && (
             <div className="relative w-full rounded-xl overflow-hidden mb-4 border border-gray-100">
               <Image src={post.image_url} alt="" width={640} height={360} className="w-full object-cover max-h-80" />
@@ -141,7 +141,7 @@ export default function PostDetailPage() {
             <button
               onClick={handleLike}
               disabled={liking}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold border transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-body font-bold border transition-all ${
                 liked
                   ? 'bg-bridge-primary/10 border-bridge-primary text-bridge-teal'
                   : 'bg-white border-gray-200 text-gray-500 hover:border-bridge-primary hover:text-bridge-teal'
@@ -155,7 +155,7 @@ export default function PostDetailPage() {
 
         {/* Comments */}
         <section>
-          <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-4">
+          <p className="text-micro font-black uppercase tracking-widest text-gray-400 mb-4">
             댓글 {comments.length}개
           </p>
 
@@ -163,9 +163,9 @@ export default function PostDetailPage() {
             <div className="space-y-3 mb-6">
               {comments.map((comment) => (
                 <div key={comment.id} className="bg-white rounded-xl border border-gray-100 px-4 py-3">
-                  <p className="text-[10px] font-bold text-bridge-teal mb-1">{getAuthorName(comment.author)}</p>
-                  <p className="text-sm text-gray-700 leading-relaxed">{comment.content}</p>
-                  <p className="text-[10px] text-gray-400 mt-1.5">{timeAgo(comment.created_at)}</p>
+                  <p className="text-micro font-bold text-bridge-teal mb-1">{getAuthorName(comment.author)}</p>
+                  <p className="text-body text-gray-700 leading-relaxed">{comment.content}</p>
+                  <p className="text-micro text-gray-400 mt-1.5">{timeAgo(comment.created_at)}</p>
                 </div>
               ))}
             </div>
@@ -178,13 +178,13 @@ export default function PostDetailPage() {
               onChange={(e) => setCommentText(e.target.value)}
               rows={3}
               placeholder="댓글을 작성하세요..."
-              className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bridge-primary resize-none"
+              className="w-full rounded-xl border border-gray-200 px-3 py-2 text-body focus:outline-none focus:ring-2 focus:ring-bridge-primary resize-none"
             />
             <div className="flex justify-end">
               <button
                 type="submit"
                 disabled={submittingComment || !commentText.trim()}
-                className="bg-ink text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-black disabled:opacity-50"
+                className="bg-ink text-white px-4 py-2 rounded-xl text-body font-bold hover:bg-black disabled:opacity-50"
               >
                 {submittingComment ? '올리는 중...' : '댓글 작성'}
               </button>

@@ -45,7 +45,7 @@ export function BridgeDirectionMap({
           <text
             x="360"
             y="265"
-            className={`text-[9px] font-black uppercase tracking-[0.2em] transition-all duration-500 ${
+            className={`text-micro font-black uppercase tracking-[0.2em] transition-all duration-500 ${
               hovered === "jp-kr" ? "fill-bridge-teal opacity-100" : "fill-gray-400 opacity-100"
             }`}
           >
@@ -87,7 +87,7 @@ export function BridgeDirectionMap({
           <text
             x="620"
             y="250"
-            className={`text-[9px] font-black uppercase tracking-[0.2em] transition-all duration-500 ${
+            className={`text-micro font-black uppercase tracking-[0.2em] transition-all duration-500 ${
               hovered === "kr-jp" ? "fill-bridge-teal opacity-100" : "fill-gray-400 opacity-100"
             }`}
           >
@@ -120,15 +120,15 @@ export function BridgeDirectionMap({
         }`}
       >
         <div className="bg-white/90 backdrop-blur-md px-6 py-4 rounded-2xl shadow-panel border border-bridge-primary/20">
-          <h3 className="text-bridge-teal font-black text-xs uppercase tracking-widest mb-2">
+          <h3 className="text-bridge-teal font-black text-caption uppercase tracking-widest mb-2">
             {hovered === "kr-jp" ? "South Korea 🇰🇷 → Japan 🇯🇵" : "Japan 🇯🇵 → South Korea 🇰🇷"}
           </h3>
-          <p className="text-gray-600 text-[14px] font-medium leading-relaxed">
+          <p className="text-gray-600 text-body font-medium leading-relaxed">
             {hovered === "kr-jp"
               ? "하이컨텍스트 기술 커뮤니케이션과 UI 정교함에 중점을 둔 일본 IT 생태계에 합류하세요."
               : "민첩성과 다문화 기술 리더십을 활용하여 빠른 속도의 한국 스타트업 환경에 진출하세요."}
           </p>
-          <div className="mt-4 text-[14px] font-bold text-bridge-primary">
+          <div className="mt-4 text-body font-bold text-bridge-primary">
             클릭하여 역할 선택 &rarr;
           </div>
         </div>

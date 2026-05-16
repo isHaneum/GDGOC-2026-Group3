@@ -3,6 +3,15 @@ import type { Config } from "tailwindcss";
 export default {
   content: ["./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   theme: {
+    fontSize: {
+      display1: ["3rem", { lineHeight: "1", letterSpacing: "-0.03em" }],
+      display2: ["2.25rem", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
+      h1: ["1.75rem", { lineHeight: "1.2", letterSpacing: "-0.02em" }],
+      h2: ["1.25rem", { lineHeight: "1.4", letterSpacing: "-0.01em" }],
+      body: ["0.9375rem", { lineHeight: "1.6" }],
+      caption: ["0.8125rem", { lineHeight: "1.5" }],
+      micro: ["0.625rem", { lineHeight: "1.4" }],
+    },
     extend: {
       colors: {
         ink: "#0f172a",

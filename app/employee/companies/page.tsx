@@ -60,17 +60,17 @@ export default function HiringCompaniesPage() {
       <div className="container mx-auto max-w-6xl px-4 py-8">
         <header className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-bridge-teal">
+            <p className="text-micro font-black uppercase tracking-[0.3em] text-bridge-teal">
               채용 기업
             </p>
-            <h1 className="mt-3 text-2xl font-bold text-ink">더 브릿지에서 채용 중인 기업</h1>
+            <h1 className="mt-3 text-h1 font-bold text-ink">더 브릿지에서 채용 중인 기업</h1>
             <p className="mt-3 max-w-2xl text-gray-500 leading-relaxed">
               매칭 엔진에서 사용하는 활성 기업 프로필입니다. 각 카드에서 채용 상황을 명확히 확인한 후 AI 기반 매칭을 시작하세요.
             </p>
           </div>
           <div className="rounded-xl border border-gray-100 bg-white px-4 py-3 text-right shadow-panel">
-            <span className="block text-[10px] font-black uppercase tracking-widest text-gray-400">채용 중인 포지션</span>
-            <span className="text-2xl font-black text-bridge-primary">{companies.length}</span>
+            <span className="block text-micro font-black uppercase tracking-widest text-gray-400">채용 중인 포지션</span>
+            <span className="text-h1 font-black text-bridge-primary">{companies.length}</span>
           </div>
         </header>
 
@@ -94,34 +94,34 @@ export default function HiringCompaniesPage() {
                               className="h-12 w-12 shrink-0 rounded-xl border border-gray-100 bg-white object-contain p-1.5 shadow-sm"
                             />
                           ) : (
-                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-gray-100 bg-gray-50 text-xs font-black text-gray-400 shadow-sm">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-gray-100 bg-gray-50 text-caption font-black text-gray-400 shadow-sm">
                               {getCompanyInitials(company.companyName)}
                             </div>
                           )}
                           <div className="mt-0.5">
-                            <h2 className="text-lg font-black tracking-tight text-ink line-clamp-1">{company.companyName}</h2>
-                            <p className="mt-0.5 text-sm font-bold text-bridge-teal line-clamp-1">{company.roleTitle}</p>
+                            <h2 className="text-h2 font-black tracking-tight text-ink line-clamp-1">{company.companyName}</h2>
+                            <p className="mt-0.5 text-body font-bold text-bridge-teal line-clamp-1">{company.roleTitle}</p>
                           </div>
                         </div>
-                        <span className="shrink-0 rounded-full bg-bridge-primary/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-bridge-teal mt-1">
+                        <span className="shrink-0 rounded-full bg-bridge-primary/10 px-2.5 py-1 text-micro font-black uppercase tracking-widest text-bridge-teal mt-1">
                           {company.country}
                         </span>
                       </div>
 
                       <div className="flex flex-wrap gap-1.5">
                         {stacks.slice(0, 4).map((stack) => (
-                          <span key={stack} className="rounded-md border border-gray-100 bg-white px-2 py-1 text-[10px] font-bold text-gray-500 shadow-sm">
+                          <span key={stack} className="rounded-md border border-gray-100 bg-white px-2 py-1 text-micro font-bold text-gray-500 shadow-sm">
                             {stack}
                           </span>
                         ))}
                         {!stacks.length ? (
-                          <span className="rounded-md border border-gray-100 bg-white px-2 py-1 text-[10px] font-bold text-gray-400 shadow-sm">
+                          <span className="rounded-md border border-gray-100 bg-white px-2 py-1 text-micro font-bold text-gray-400 shadow-sm">
                             기술 스택 미지정
                           </span>
                         ) : null}
                       </div>
 
-                      <div className="rounded-xl border border-gray-100 bg-gray-50 p-3.5 text-xs">
+                      <div className="rounded-xl border border-gray-100 bg-gray-50 p-3.5 text-caption">
                         <div className="flex justify-between items-center mb-2.5">
                           <span className="font-bold text-gray-400">경력/방식</span>
                           <span className="font-bold text-ink">
@@ -130,7 +130,7 @@ export default function HiringCompaniesPage() {
                         </div>
                         <div className="flex justify-between items-center pt-2.5 border-t border-gray-200/60">
                           <span className="font-bold text-gray-400">급여 요약</span>
-                          <span className="font-black text-bridge-primary text-[13px]">
+                          <span className="font-black text-bridge-primary text-caption">
                             {formatCompanySalarySummary(company, "확인 필요")}
                           </span>
                         </div>
@@ -144,7 +144,7 @@ export default function HiringCompaniesPage() {
                               href={link.url}
                               target="_blank"
                               rel="noreferrer"
-                              className="rounded-lg border border-gray-200 bg-white px-2.5 py-1.5 text-[10px] font-bold text-gray-400 shadow-sm transition hover:border-bridge-teal hover:text-bridge-teal"
+                              className="rounded-lg border border-gray-200 bg-white px-2.5 py-1.5 text-micro font-bold text-gray-400 shadow-sm transition hover:border-bridge-teal hover:text-bridge-teal"
                             >
                               {getLinkLabel(link.label, link.supports)}
                             </a>
@@ -156,7 +156,7 @@ export default function HiringCompaniesPage() {
                     <div className="mt-5 pt-4 border-t border-gray-50">
                       <Link
                         href={`/employee/companies/${company.companyId}`}
-                        className="flex w-full justify-center rounded-xl bg-bridge-primary px-4 py-3 text-sm font-black text-white shadow-sm transition-transform hover:scale-[1.02] active:scale-95"
+                        className="flex w-full justify-center rounded-xl bg-bridge-primary px-4 py-3 text-body font-black text-white shadow-sm transition-transform hover:scale-[1.02] active:scale-95"
                       >
                         상세 보기
                       </Link>

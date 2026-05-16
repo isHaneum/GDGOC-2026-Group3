@@ -81,7 +81,7 @@ function Button({
     <button
       {...props}
       className={classNames(
-        "inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-4 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-bridge-teal focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60",
+        "inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-4 text-body font-semibold transition focus:outline-none focus:ring-2 focus:ring-bridge-teal focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60",
         variant === "primary" && "bg-bridge-teal text-white hover:bg-[#0B6867]",
         variant === "secondary" && "border border-slate-300 bg-white text-ink hover:bg-slate-50",
         variant === "ghost" && "text-slate-700 hover:bg-slate-100",
@@ -97,7 +97,7 @@ function Button({
 
 function EmptyState({ title }: { title: string }) {
   return (
-    <div className="rounded-md border border-dashed border-slate-300 bg-white px-4 py-8 text-center text-sm text-slate-500">
+    <div className="rounded-md border border-dashed border-slate-300 bg-white px-4 py-8 text-center text-body text-slate-500">
       {title}
     </div>
   );
@@ -117,7 +117,7 @@ function Tag({
     amber: "border-amber-200 bg-amber-50 text-amber-900"
   };
   return (
-    <span className={classNames("inline-flex rounded-md border px-2 py-1 text-xs font-medium", tones[tone])}>
+    <span className={classNames("inline-flex rounded-md border px-2 py-1 text-caption font-medium", tones[tone])}>
       {children}
     </span>
   );
@@ -128,8 +128,8 @@ function ScoreBar({ label, value }: { label: string; value: number }) {
   return (
     <div className="rounded-md border border-slate-200 bg-white p-4">
       <div className="mb-3 flex items-center justify-between gap-3">
-        <span className="text-sm font-semibold text-slate-700">{label}</span>
-        <span className="text-xl font-bold text-ink">{value}</span>
+        <span className="text-body font-semibold text-slate-700">{label}</span>
+        <span className="text-h2 font-bold text-ink">{value}</span>
       </div>
       <div className="h-2 overflow-hidden rounded-full bg-slate-100">
         <div
@@ -144,8 +144,8 @@ function ScoreBar({ label, value }: { label: string; value: number }) {
 function SectionTitle({ title, eyebrow }: { title: string; eyebrow?: string }) {
   return (
     <div className="mb-4">
-      {eyebrow ? <p className="text-xs font-semibold uppercase tracking-wide text-bridge-blue">{eyebrow}</p> : null}
-      <h2 className="text-xl font-bold text-ink">{title}</h2>
+      {eyebrow ? <p className="text-caption font-semibold uppercase tracking-wide text-bridge-blue">{eyebrow}</p> : null}
+      <h2 className="text-h2 font-bold text-ink">{title}</h2>
     </div>
   );
 }
@@ -163,7 +163,7 @@ function SignalList({
 }) {
   return (
     <div>
-      <p className="mb-2 text-sm font-semibold text-slate-700">{title}</p>
+      <p className="mb-2 text-body font-semibold text-slate-700">{title}</p>
       <div className="flex flex-wrap gap-2">
         {values.length ? (
           values.map((value, index) => (
@@ -172,7 +172,7 @@ function SignalList({
             </Tag>
           ))
         ) : (
-          <span className="text-sm text-slate-400">{emptyLabel}</span>
+          <span className="text-body text-slate-400">{emptyLabel}</span>
         )}
       </div>
     </div>
@@ -192,8 +192,8 @@ function RecommendationList({
       {items.map((item) => (
         <article key={item.activity} className="rounded-md border border-slate-200 bg-white p-4 shadow-sm">
           <h3 className="font-bold text-ink">{item.activity}</h3>
-          <p className="mt-2 text-sm text-slate-600">{item.reason}</p>
-          <div className="mt-3 grid gap-2 text-sm">
+          <p className="mt-2 text-body text-slate-600">{item.reason}</p>
+          <div className="mt-3 grid gap-2 text-body">
             <p>
               <span className="font-semibold text-slate-700">{copy.recommendations.outcome}</span>{" "}
               {item.expectedOutcome}
@@ -358,18 +358,18 @@ function App() {
               <BriefcaseBusiness size={22} />
             </div>
             <div>
-              <p className="text-sm font-semibold text-bridge-blue">BridgePass</p>
-              <h1 className="text-2xl font-bold text-ink">{copy.appTitle}</h1>
+              <p className="text-body font-semibold text-bridge-blue">BridgePass</p>
+              <h1 className="text-h1 font-bold text-ink">{copy.appTitle}</h1>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <label className="inline-flex min-h-10 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700">
+            <label className="inline-flex min-h-10 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 text-body font-semibold text-slate-700">
               <span>{copy.language}</span>
               <select
                 value={locale}
                 onChange={(event) => handleLocaleChange(event.target.value as Locale)}
-                className="bg-transparent text-sm font-semibold outline-none"
+                className="bg-transparent text-body font-semibold outline-none"
               >
                 {localeOptions.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -385,7 +385,7 @@ function App() {
                   key={screen.id}
                   onClick={() => setActiveScreen(screen.id)}
                   className={classNames(
-                    "inline-flex min-h-10 items-center gap-2 rounded-md px-3 text-sm font-semibold transition",
+                    "inline-flex min-h-10 items-center gap-2 rounded-md px-3 text-body font-semibold transition",
                     activeScreen === screen.id
                       ? "bg-ink text-white"
                       : "border border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
@@ -402,7 +402,7 @@ function App() {
 
       <main className="mx-auto max-w-7xl px-4 py-6">
         {error ? (
-          <div className="mb-5 rounded-md border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-800">
+          <div className="mb-5 rounded-md border border-rose-200 bg-rose-50 px-4 py-3 text-body font-medium text-rose-800">
             {error}
           </div>
         ) : null}
@@ -416,8 +416,8 @@ function App() {
                 className="rounded-md border border-slate-200 bg-white p-5 text-left shadow-panel transition hover:-translate-y-0.5 hover:border-bridge-teal"
               >
                 <Database className="mb-5 text-bridge-teal" size={28} />
-                <h3 className="text-lg font-bold text-ink">{copy.cards.load}</h3>
-                <p className="mt-2 text-sm text-slate-600">
+                <h3 className="text-h2 font-bold text-ink">{copy.cards.load}</h3>
+                <p className="mt-2 text-body text-slate-600">
                   {formatCount(state.sources.length, copy.cards.sampleSuffix, locale)}
                 </p>
               </button>
@@ -430,8 +430,8 @@ function App() {
                 ) : (
                   <Sparkles className="mb-5 text-bridge-blue" size={28} />
                 )}
-                <h3 className="text-lg font-bold text-ink">{copy.cards.extract}</h3>
-                <p className="mt-2 text-sm text-slate-600">
+                <h3 className="text-h2 font-bold text-ink">{copy.cards.extract}</h3>
+                <p className="mt-2 text-body text-slate-600">
                   {formatCount(state.signals.length, copy.cards.signalSuffix, locale)}
                 </p>
               </button>
@@ -444,8 +444,8 @@ function App() {
                 ) : (
                   <Layers3 className="mb-5 text-bridge-amber" size={28} />
                 )}
-                <h3 className="text-lg font-bold text-ink">{copy.cards.baseline}</h3>
-                <p className="mt-2 text-sm text-slate-600">
+                <h3 className="text-h2 font-bold text-ink">{copy.cards.baseline}</h3>
+                <p className="mt-2 text-body text-slate-600">
                   {formatCount(state.baselines.length, copy.cards.baselineSuffix, locale)}
                 </p>
               </button>
@@ -459,7 +459,7 @@ function App() {
                     <div
                       key={message}
                       className={classNames(
-                        "rounded-md border p-3 text-sm font-semibold",
+                        "rounded-md border p-3 text-body font-semibold",
                         index >= 4
                           ? "border-teal-200 bg-teal-50 text-teal-900"
                           : "border-slate-200 bg-slate-50 text-slate-700"
@@ -491,7 +491,7 @@ function App() {
                 <select
                   value={selectedRole}
                   onChange={(event) => setSelectedRole(event.target.value)}
-                  className="min-h-11 rounded-md border border-slate-300 bg-white px-3 text-sm font-semibold"
+                  className="min-h-11 rounded-md border border-slate-300 bg-white px-3 text-body font-semibold"
                 >
                   {roleOptions.map((role) => (
                     <option key={role.value} value={role.value}>
@@ -523,7 +523,7 @@ function App() {
                           <Tag>{source.industry}</Tag>
                         </div>
                         <h3 className="font-bold text-ink">{source.title}</h3>
-                        <p className="mt-2 text-sm leading-6 text-slate-600">{source.summaryText}</p>
+                        <p className="mt-2 text-body leading-6 text-slate-600">{source.summaryText}</p>
                       </article>
                     ))
                   ) : (
@@ -662,7 +662,7 @@ function App() {
                   <SectionTitle title={copy.analysis.recommendedActions} />
                   <RecommendationList items={analysis.recommendedActions} copy={copy} />
                 </section>
-                <p className="rounded-md border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600">
+                <p className="rounded-md border border-slate-200 bg-white px-4 py-3 text-body text-slate-600">
                   {analysis.safetyNote}
                 </p>
               </div>
@@ -684,13 +684,13 @@ function App() {
               <div className="grid gap-5 lg:grid-cols-2">
                 <article className="rounded-md border border-slate-200 bg-white p-5 shadow-panel">
                   <h3 className="mb-3 font-bold text-ink">{copy.recruiter.original}</h3>
-                  <p className="whitespace-pre-wrap text-sm leading-6 text-slate-600">
+                  <p className="whitespace-pre-wrap text-body leading-6 text-slate-600">
                     {recruiterLens.originalSelfIntroduction}
                   </p>
                 </article>
                 <article className="rounded-md border border-teal-200 bg-white p-5 shadow-panel">
                   <h3 className="mb-3 font-bold text-ink">{copy.recruiter.rewritten}</h3>
-                  <p className="whitespace-pre-wrap text-sm leading-6 text-slate-700">
+                  <p className="whitespace-pre-wrap text-body leading-6 text-slate-700">
                     {recruiterLens.rewrittenSelfIntroduction}
                   </p>
                 </article>
@@ -718,15 +718,15 @@ function App() {
                       <UserRound size={26} />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-ink">{profile.name}</h3>
-                      <p className="text-sm text-slate-600">
+                      <h3 className="text-h2 font-bold text-ink">{profile.name}</h3>
+                      <p className="text-body text-slate-600">
                         {locale === "en"
                           ? `${profile.nationality} ${copy.passport.applicantTargeting} ${countryLabel(profile.targetCountry, locale)}`
                           : `${profile.nationality} ${copy.passport.applicantTargeting}: ${countryLabel(profile.targetCountry, locale)}`}
                       </p>
                     </div>
                   </div>
-                  <div className="grid gap-3 text-sm">
+                  <div className="grid gap-3 text-body">
                     <PassportRow label={copy.passport.targetRole} value={formatRole(profile.targetRole, locale)} />
                     <PassportRow label={copy.passport.evidenceLevel} value={`${analysis.evidenceConfidenceScore}/100`} />
                     <PassportRow label={copy.passport.recommendedNextStep} value={nextCompanyStep(analysis, copy)} />
@@ -745,7 +745,7 @@ function App() {
                 </article>
                 <article className="rounded-md border border-slate-200 bg-white p-5 shadow-panel lg:col-span-2">
                   <h3 className="mb-3 font-bold text-ink">{copy.passport.summary}</h3>
-                  <p className="text-sm leading-6 text-slate-700">{analysis.rewrittenSelfIntroduction}</p>
+                  <p className="text-body leading-6 text-slate-700">{analysis.rewrittenSelfIntroduction}</p>
                 </article>
               </div>
             ) : (
@@ -761,8 +761,8 @@ function App() {
 function StatusRow({ label, value }: { label: string; value: number }) {
   return (
     <div className="flex items-center justify-between rounded-md border border-slate-200 bg-slate-50 px-3 py-2">
-      <span className="text-sm font-medium text-slate-600">{label}</span>
-      <span className="text-lg font-bold text-ink">{value}</span>
+      <span className="text-body font-medium text-slate-600">{label}</span>
+      <span className="text-h2 font-bold text-ink">{value}</span>
     </div>
   );
 }
@@ -770,11 +770,11 @@ function StatusRow({ label, value }: { label: string; value: number }) {
 function Field({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void }) {
   return (
     <label className="grid gap-2">
-      <span className="text-sm font-semibold text-slate-700">{label}</span>
+      <span className="text-body font-semibold text-slate-700">{label}</span>
       <input
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="min-h-11 rounded-md border border-slate-300 bg-white px-3 text-sm outline-none transition focus:border-bridge-teal focus:ring-2 focus:ring-teal-100"
+        className="min-h-11 rounded-md border border-slate-300 bg-white px-3 text-body outline-none transition focus:border-bridge-teal focus:ring-2 focus:ring-teal-100"
       />
     </label>
   );
@@ -793,11 +793,11 @@ function SelectField({
 }) {
   return (
     <label className="grid gap-2">
-      <span className="text-sm font-semibold text-slate-700">{label}</span>
+      <span className="text-body font-semibold text-slate-700">{label}</span>
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="min-h-11 rounded-md border border-slate-300 bg-white px-3 text-sm outline-none transition focus:border-bridge-teal focus:ring-2 focus:ring-teal-100"
+        className="min-h-11 rounded-md border border-slate-300 bg-white px-3 text-body outline-none transition focus:border-bridge-teal focus:ring-2 focus:ring-teal-100"
       >
         {options.map((option) => {
           const optionValue = typeof option === "string" ? option : option.value;
@@ -826,12 +826,12 @@ function TextArea({
 }) {
   return (
     <label className="grid gap-2">
-      <span className="text-sm font-semibold text-slate-700">{label}</span>
+      <span className="text-body font-semibold text-slate-700">{label}</span>
       <textarea
         rows={rows}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm leading-6 outline-none transition focus:border-bridge-teal focus:ring-2 focus:ring-teal-100"
+        className="rounded-md border border-slate-300 bg-white px-3 py-2 text-body leading-6 outline-none transition focus:border-bridge-teal focus:ring-2 focus:ring-teal-100"
       />
     </label>
   );

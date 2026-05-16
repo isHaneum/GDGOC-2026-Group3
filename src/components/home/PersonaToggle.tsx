@@ -24,10 +24,10 @@ export function PersonaToggle({
               }`}
               aria-pressed={active}
             >
-              <span className="block text-[10px] font-black uppercase tracking-widest opacity-60">
+              <span className="block text-micro font-black uppercase tracking-widest opacity-60">
                 {audience.eyebrow}
               </span>
-              <span className="block text-sm font-black">{audience.label}</span>
+              <span className="block text-body font-black">{audience.label}</span>
             </button>
           );
         })}

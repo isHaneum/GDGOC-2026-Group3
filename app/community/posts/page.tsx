@@ -127,12 +127,12 @@ export default function CommunityPage() {
         {/* Header */}
         <div className="flex items-end justify-between mb-6">
           <div>
-            <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal mb-1">문화 포럼</p>
-            <h1 className="text-2xl font-bold text-ink">커뮤니티</h1>
+            <p className="text-micro font-black uppercase tracking-widest text-bridge-teal mb-1">문화 포럼</p>
+            <h1 className="text-h1 font-bold text-ink">커뮤니티</h1>
           </div>
           <button
             onClick={() => setShowForm(true)}
-            className="bg-ink text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-black transition-colors"
+            className="bg-ink text-white px-4 py-2 rounded-xl text-body font-bold hover:bg-black transition-colors"
           >
             + 글쓰기
           </button>
@@ -145,12 +145,12 @@ export default function CommunityPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="게시글 검색"
-            className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-bridge-primary pr-9"
+            className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-body focus:outline-none focus:ring-2 focus:ring-bridge-primary pr-9"
           />
           {search && (
             <button
               onClick={() => setSearch('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-ink text-xs font-bold"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-ink text-caption font-bold"
             >
               ✕
             </button>
@@ -163,7 +163,7 @@ export default function CommunityPage() {
             <button
               key={cat.id}
               onClick={() => setActiveSlug(activeSlug === cat.slug ? null : cat.slug)}
-              className={`rounded-full px-4 py-1.5 text-[10px] font-black uppercase tracking-widest transition-colors ${
+              className={`rounded-full px-4 py-1.5 text-micro font-black uppercase tracking-widest transition-colors ${
                 activeSlug === cat.slug ? 'bg-ink text-white' : 'bg-white border border-gray-200 text-gray-500 hover:border-ink'
               }`}
             >
@@ -180,11 +180,11 @@ export default function CommunityPage() {
             ))}
           </div>
         ) : error ? (
-          <div className="rounded-xl bg-bridge-coral/10 border border-bridge-coral/30 p-4 text-sm text-bridge-coral font-bold">
+          <div className="rounded-xl bg-bridge-coral/10 border border-bridge-coral/30 p-4 text-body text-bridge-coral font-bold">
             {error}
           </div>
         ) : posts.length === 0 ? (
-          <div className="rounded-xl bg-white border border-gray-100 p-10 text-center text-gray-400 text-sm">
+          <div className="rounded-xl bg-white border border-gray-100 p-10 text-center text-gray-400 text-body">
             {search ? `"${search}" 검색 결과가 없습니다.` : '아직 게시글이 없습니다.'}
           </div>
         ) : (
@@ -199,24 +199,24 @@ export default function CommunityPage() {
               >
                 {/* Like count */}
                 <div className="text-center min-w-[36px]">
-                  <div className="font-black text-base text-bridge-teal">{post.like_count}</div>
-                  <div className="text-[9px] text-gray-400 font-bold uppercase">좋아요</div>
+                  <div className="font-black text-body text-bridge-teal">{post.like_count}</div>
+                  <div className="text-micro text-gray-400 font-bold uppercase">좋아요</div>
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${categoryBadgeColor(post.category?.slug ?? '')}`}>
+                    <span className={`text-micro font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${categoryBadgeColor(post.category?.slug ?? '')}`}>
                       {post.category?.name ?? '—'}
                     </span>
                   </div>
-                  <div className="font-bold text-sm text-ink group-hover:text-bridge-teal transition-colors truncate">
+                  <div className="font-bold text-body text-ink group-hover:text-bridge-teal transition-colors truncate">
                     {post.title}
                   </div>
-                  <div className="text-[11px] text-gray-400 mt-0.5 truncate">
+                  <div className="text-micro text-gray-400 mt-0.5 truncate">
                     {post.content.slice(0, 80)}{post.content.length > 80 ? '…' : ''}
                   </div>
-                  <div className="text-[10px] text-gray-300 mt-0.5">
+                  <div className="text-micro text-gray-300 mt-0.5">
                     {timeAgo(post.created_at)} · 댓글 {getCommentCount(post)}개
                   </div>
                 </div>
@@ -239,16 +239,16 @@ export default function CommunityPage() {
           <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-4">
             <div className="bg-white rounded-xl shadow-panel border border-gray-100 p-5 w-full max-w-lg max-h-[90vh] overflow-y-auto">
               <div className="flex justify-between items-center mb-5">
-                <h2 className="font-black text-lg text-ink">새 글 작성</h2>
-                <button onClick={() => setShowForm(false)} className="text-gray-400 hover:text-ink text-sm font-bold">✕</button>
+                <h2 className="font-black text-h2 text-ink">새 글 작성</h2>
+                <button onClick={() => setShowForm(false)} className="text-gray-400 hover:text-ink text-body font-bold">✕</button>
               </div>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-1.5">카테고리</label>
+                  <label className="text-micro font-black uppercase tracking-widest text-gray-400 block mb-1.5">카테고리</label>
                   <select
                     value={formCategoryId ?? ''}
                     onChange={(e) => setFormCategoryId(Number(e.target.value))}
-                    className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bridge-primary"
+                    className="w-full rounded-xl border border-gray-200 px-3 py-2 text-body focus:outline-none focus:ring-2 focus:ring-bridge-primary"
                   >
                     {categories.map((cat) => (
                       <option key={cat.id} value={cat.id}>{cat.name}</option>
@@ -256,42 +256,42 @@ export default function CommunityPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-1.5">제목</label>
+                  <label className="text-micro font-black uppercase tracking-widest text-gray-400 block mb-1.5">제목</label>
                   <input
                     type="text"
                     value={formTitle}
                     onChange={(e) => setFormTitle(e.target.value)}
                     placeholder="제목을 입력하세요"
-                    className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bridge-primary"
+                    className="w-full rounded-xl border border-gray-200 px-3 py-2 text-body focus:outline-none focus:ring-2 focus:ring-bridge-primary"
                     required
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-1.5">내용</label>
+                  <label className="text-micro font-black uppercase tracking-widest text-gray-400 block mb-1.5">내용</label>
                   <textarea
                     value={formContent}
                     onChange={(e) => setFormContent(e.target.value)}
                     rows={4}
                     placeholder="내용을 입력하세요"
-                    className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bridge-primary resize-none"
+                    className="w-full rounded-xl border border-gray-200 px-3 py-2 text-body focus:outline-none focus:ring-2 focus:ring-bridge-primary resize-none"
                     required
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-1.5">이미지 (선택)</label>
+                  <label className="text-micro font-black uppercase tracking-widest text-gray-400 block mb-1.5">이미지 (선택)</label>
                   {formImagePreview ? (
                     <div className="relative rounded-xl overflow-hidden border border-gray-200">
                       <Image src={formImagePreview} alt="preview" width={480} height={200} className="w-full object-cover max-h-48" />
                       <button
                         type="button"
                         onClick={clearImage}
-                        className="absolute top-2 right-2 bg-black/50 text-white rounded-full w-6 h-6 text-xs flex items-center justify-center hover:bg-black/70"
+                        className="absolute top-2 right-2 bg-black/50 text-white rounded-full w-6 h-6 text-caption flex items-center justify-center hover:bg-black/70"
                       >
                         ✕
                       </button>
                     </div>
                   ) : (
-                    <label className="flex items-center justify-center gap-2 w-full rounded-xl border-2 border-dashed border-gray-200 py-6 text-sm text-gray-400 cursor-pointer hover:border-bridge-primary hover:text-bridge-teal transition-colors">
+                    <label className="flex items-center justify-center gap-2 w-full rounded-xl border-2 border-dashed border-gray-200 py-6 text-body text-gray-400 cursor-pointer hover:border-bridge-primary hover:text-bridge-teal transition-colors">
                       <span>📷 이미지 첨부</span>
                       <input
                         ref={fileInputRef}
@@ -304,11 +304,11 @@ export default function CommunityPage() {
                   )}
                 </div>
                 <div className="flex justify-end gap-3 pt-1">
-                  <button type="button" onClick={() => setShowForm(false)} className="px-4 py-2 text-sm font-bold text-gray-500 hover:text-ink">취소</button>
+                  <button type="button" onClick={() => setShowForm(false)} className="px-4 py-2 text-body font-bold text-gray-500 hover:text-ink">취소</button>
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="bg-ink text-white px-5 py-2 rounded-xl text-sm font-bold hover:bg-black disabled:opacity-50"
+                    className="bg-ink text-white px-5 py-2 rounded-xl text-body font-bold hover:bg-black disabled:opacity-50"
                   >
                     {submitting ? '올리는 중...' : '게시'}
                   </button>
@@ -323,9 +323,9 @@ export default function CommunityPage() {
       {/* Popular posts sidebar */}
       <aside className="hidden lg:block w-72 flex-shrink-0 ml-4">
         <div className="sticky top-24 bg-white rounded-xl border border-gray-100 shadow-panel p-5">
-          <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal mb-5">🔥 인기글</p>
+          <p className="text-micro font-black uppercase tracking-widest text-bridge-teal mb-5">🔥 인기글</p>
           {popularPosts.length === 0 ? (
-            <p className="text-sm text-gray-400">아직 게시글이 없습니다.</p>
+            <p className="text-body text-gray-400">아직 게시글이 없습니다.</p>
           ) : (
             <ol className="space-y-4">
               {popularPosts.map((post, i) => (
@@ -334,17 +334,17 @@ export default function CommunityPage() {
                     href={`/community/posts/${post.id}`}
                     className="flex items-start gap-3 group"
                   >
-                    <span className="text-sm font-black text-gray-200 mt-0.5 min-w-[18px]">{i + 1}</span>
+                    <span className="text-body font-black text-gray-200 mt-0.5 min-w-[18px]">{i + 1}</span>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-sm">
+                        <span className="text-body">
                           {categoryFlag(post.category?.slug ?? '')}
                         </span>
-                        <span className="text-[10px] font-bold text-bridge-teal">
+                        <span className="text-micro font-bold text-bridge-teal">
                           ♥ {post.like_count}
                         </span>
                       </div>
-                      <p className="text-sm font-bold text-ink group-hover:text-bridge-teal transition-colors line-clamp-2 leading-snug">
+                      <p className="text-body font-bold text-ink group-hover:text-bridge-teal transition-colors line-clamp-2 leading-snug">
                         {post.title}
                       </p>
                     </div>

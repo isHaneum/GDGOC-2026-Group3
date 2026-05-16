@@ -104,18 +104,18 @@ export default function SignupProfilePage() {
   return (
     <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-8">
       <section className="mx-auto max-w-3xl rounded-xl border border-gray-100 bg-white p-5 shadow-panel">
-        <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal">
+        <p className="text-micro font-black uppercase tracking-widest text-bridge-teal">
           회원가입 프로필
         </p>
-        <h1 className="mt-3 text-2xl font-bold text-ink">프로필 작성</h1>
-        <p className="mt-2 text-sm leading-6 text-gray-500">
+        <h1 className="mt-3 text-h1 font-bold text-ink">프로필 작성</h1>
+        <p className="mt-2 text-body leading-6 text-gray-500">
           로그인 계정과 기본 연락처 정보를 입력합니다. 역할은 온보딩에서 선택한 값으로 저장됩니다.
         </p>
 
         {!role ? (
           <div className="mt-5 rounded-xl border border-bridge-coral/30 bg-bridge-coral/10 p-4">
-            <p className="text-sm font-bold text-bridge-coral">역할 선택이 필요합니다.</p>
-            <Link href="/signup/onboarding" className="mt-3 inline-flex text-sm font-black text-ink underline">
+            <p className="text-body font-bold text-bridge-coral">역할 선택이 필요합니다.</p>
+            <Link href="/signup/onboarding" className="mt-3 inline-flex text-body font-black text-ink underline">
               온보딩으로 이동
             </Link>
           </div>
@@ -146,7 +146,7 @@ export default function SignupProfilePage() {
           <Field label="연락처" value={draft.phone} onChange={(value) => updateDraft("phone", value)} />
 
           {errorMessage ? (
-            <p className="md:col-span-2 rounded-xl border border-bridge-coral/30 bg-bridge-coral/10 p-3 text-sm font-bold text-bridge-coral">
+            <p className="md:col-span-2 rounded-xl border border-bridge-coral/30 bg-bridge-coral/10 p-3 text-body font-bold text-bridge-coral">
               {errorMessage}
             </p>
           ) : null}
@@ -155,11 +155,11 @@ export default function SignupProfilePage() {
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="rounded-xl bg-bridge-primary px-5 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+              className="rounded-xl bg-bridge-primary px-5 py-3 text-body font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
             >
               {status === "submitting" ? "계정 생성 중..." : "계속하기"}
             </button>
-            <span className="text-sm text-gray-400">
+            <span className="text-body text-gray-400">
               현재 역할: {role === "developer" ? "지원자" : role === "employer" ? "채용자" : "선택 안 됨"}
             </span>
           </div>
@@ -184,13 +184,13 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="text-xs font-black uppercase tracking-widest text-gray-400">{label}</span>
+      <span className="text-caption font-black uppercase tracking-widest text-gray-400">{label}</span>
       <input
         type={type}
         required={required}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-2 w-full rounded-xl border border-gray-200 bg-bridge-paper px-4 py-3 text-sm text-ink outline-none focus:border-bridge-teal"
+        className="mt-2 w-full rounded-xl border border-gray-200 bg-bridge-paper px-4 py-3 text-body text-ink outline-none focus:border-bridge-teal"
       />
     </label>
   );

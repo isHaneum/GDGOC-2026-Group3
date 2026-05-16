@@ -51,13 +51,13 @@ export default function RoleRouteGate({ children }: { children: ReactNode }) {
   return (
     <section className="min-h-[70vh] bg-bridge-paper px-4 py-16">
       <div className="mx-auto max-w-xl rounded-2xl border border-gray-100 bg-white p-6 shadow-panel">
-        <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal">
+        <p className="text-micro font-black uppercase tracking-widest text-bridge-teal">
           Route Access
         </p>
-        <h1 className="mt-3 text-2xl font-black text-ink">
+        <h1 className="mt-3 text-h1 font-black text-ink">
           {requiredRoleLabel} area
         </h1>
-        <p className="mt-3 text-sm leading-6 text-gray-600">
+        <p className="mt-3 text-body leading-6 text-gray-600">
           This page is scoped to the {requiredRoleLabel.toLowerCase()} flow. Current role:{" "}
           <span className="font-bold text-ink">{currentRoleLabel}</span>.
         </p>
@@ -65,13 +65,13 @@ export default function RoleRouteGate({ children }: { children: ReactNode }) {
           <button
             type="button"
             onClick={switchRole}
-            className="rounded-full bg-bridge-primary px-5 py-3 text-sm font-black text-white transition-opacity hover:opacity-90"
+            className="rounded-full bg-bridge-primary px-5 py-3 text-body font-black text-white transition-opacity hover:opacity-90"
           >
             Continue as {requiredRoleLabel}
           </button>
           <Link
             href="/signup/onboarding"
-            className="rounded-full border border-gray-200 px-5 py-3 text-center text-sm font-black text-gray-500 transition-colors hover:border-bridge-primary hover:text-ink"
+            className="rounded-full border border-gray-200 px-5 py-3 text-center text-body font-black text-gray-500 transition-colors hover:border-bridge-primary hover:text-ink"
           >
             Choose role
           </Link>

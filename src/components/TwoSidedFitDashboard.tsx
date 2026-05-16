@@ -569,7 +569,7 @@ function Badge({ children, tone = "slate", icon: Icon }: { children: React.React
   };
 
   return (
-    <span className={classNames("inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs font-semibold", tones[tone])}>
+    <span className={classNames("inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-caption font-semibold", tones[tone])}>
       {Icon ? <Icon size={14} /> : null}
       {children}
     </span>
@@ -579,8 +579,8 @@ function Badge({ children, tone = "slate", icon: Icon }: { children: React.React
 function Field({ label, value, wide }: { label: string; value: React.ReactNode; wide?: boolean }) {
   return (
     <div className={classNames("min-w-0 rounded-lg border border-slate-200 bg-slate-50 p-3", wide && "sm:col-span-2")}>
-      <p className="text-xs font-bold uppercase tracking-wide text-slate-500">{label}</p>
-      <div className="mt-1 break-words text-sm font-semibold leading-6 text-slate-900">{value}</div>
+      <p className="text-caption font-bold uppercase tracking-wide text-slate-500">{label}</p>
+      <div className="mt-1 break-words text-body font-semibold leading-6 text-slate-900">{value}</div>
     </div>
   );
 }
@@ -598,7 +598,7 @@ function ChipList({
 }) {
   const displayed = typeof limit === "number" ? values.slice(0, limit) : values;
 
-  if (!displayed.length) return <p className="text-sm text-slate-400">{emptyLabel}</p>;
+  if (!displayed.length) return <p className="text-body text-slate-400">{emptyLabel}</p>;
 
   return (
     <div className="flex flex-wrap gap-2">
@@ -618,8 +618,8 @@ function ScoreBar({ label, value }: { label: string; value: number }) {
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-3">
       <div className="mb-2 flex items-center justify-between gap-3">
-        <span className="min-w-0 truncate text-sm font-semibold text-slate-700">{label}</span>
-        <span className="shrink-0 text-sm font-bold text-slate-950">{score}</span>
+        <span className="min-w-0 truncate text-body font-semibold text-slate-700">{label}</span>
+        <span className="shrink-0 text-body font-bold text-slate-950">{score}</span>
       </div>
       <div className="h-2 overflow-hidden rounded-full bg-slate-100">
         <div className={classNames("h-full rounded-full", tone)} style={{ width: `${score}%` }} />
@@ -631,7 +631,7 @@ function ScoreBar({ label, value }: { label: string; value: number }) {
 function ScoreAccordion({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <details className="group rounded-lg border border-slate-200 bg-slate-50">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-4 text-sm font-bold text-slate-900">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-4 text-body font-bold text-slate-900">
         {title}
         <ChevronDown className="shrink-0 text-slate-500 transition group-open:rotate-180" size={18} />
       </summary>
@@ -642,7 +642,7 @@ function ScoreAccordion({ title, children }: { title: string; children: React.Re
 
 function EmptyPanel({ message }: { message: string }) {
   return (
-    <div className="rounded-lg border border-dashed border-slate-300 bg-white p-8 text-center text-sm font-medium text-slate-500">
+    <div className="rounded-lg border border-dashed border-slate-300 bg-white p-8 text-center text-body font-medium text-slate-500">
       {message}
     </div>
   );
@@ -667,7 +667,7 @@ function ErrorPanel({ message }: { message: string }) {
       <div className="mx-auto flex min-h-[70vh] max-w-7xl items-center justify-center">
         <Card className="w-full max-w-xl p-6">
           <Badge tone="rose" icon={AlertTriangle}>{copy.en.loadFailed}</Badge>
-          <p className="mt-3 text-sm text-slate-600">{message}</p>
+          <p className="mt-3 text-body text-slate-600">{message}</p>
         </Card>
       </div>
     </main>
@@ -693,13 +693,13 @@ function DeveloperProfileSummary({
     <Card className="p-5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-xs font-bold uppercase tracking-wide text-green-700">{t("developerProfile")}</p>
-          <h2 className="text-xl font-bold text-slate-950">{selectedDeveloper?.name ?? t("unknown")}</h2>
+          <p className="text-caption font-bold uppercase tracking-wide text-green-700">{t("developerProfile")}</p>
+          <h2 className="text-h2 font-bold text-slate-950">{selectedDeveloper?.name ?? t("unknown")}</h2>
         </div>
         <select
           value={selectedDeveloperId}
           onChange={(event) => onSelect(event.target.value)}
-          className="min-h-11 rounded-md border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-900 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          className="min-h-11 rounded-md border border-slate-300 bg-white px-3 text-body font-semibold text-slate-900 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
         >
           {developers.map((developer) => (
             <option key={developer.developerId} value={developer.developerId}>
@@ -727,7 +727,7 @@ function DeveloperProfileSummary({
             />
           </div>
           <details className="group mt-4 rounded-lg border border-slate-200 bg-slate-50">
-            <summary className="flex cursor-pointer list-none items-center justify-between p-3 text-sm font-bold text-slate-800">
+            <summary className="flex cursor-pointer list-none items-center justify-between p-3 text-body font-bold text-slate-800">
               {t("profileDetails")}
               <ChevronDown className="transition group-open:rotate-180" size={18} />
             </summary>
@@ -763,13 +763,13 @@ function CompanyRolePanel({
     <Card className="p-5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-xs font-bold uppercase tracking-wide text-green-700">{t("companyProfile")}</p>
-          <h2 className="text-xl font-bold text-slate-950">{selectedProfile?.companyName ?? t("unknown")}</h2>
+          <p className="text-caption font-bold uppercase tracking-wide text-green-700">{t("companyProfile")}</p>
+          <h2 className="text-h2 font-bold text-slate-950">{selectedProfile?.companyName ?? t("unknown")}</h2>
         </div>
         <select
           value={selectedRoleId}
           onChange={(event) => onSelect(event.target.value)}
-          className="min-h-11 rounded-md border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-900 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          className="min-h-11 rounded-md border border-slate-300 bg-white px-3 text-body font-semibold text-slate-900 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
         >
           {profiles.map((profile) => (
             <option key={profile.roleId} value={profile.roleId}>
@@ -790,7 +790,7 @@ function CompanyRolePanel({
           </div>
 
           <details className="group mt-4 rounded-lg border border-slate-200 bg-slate-50">
-            <summary className="flex cursor-pointer list-none items-center justify-between p-3 text-sm font-bold text-slate-800">
+            <summary className="flex cursor-pointer list-none items-center justify-between p-3 text-body font-bold text-slate-800">
               {t("roleDetails")}
               <ChevronDown className="transition group-open:rotate-180" size={18} />
             </summary>
@@ -829,8 +829,8 @@ function CompanyRankingList({
   return (
     <Card className="p-5">
       <div className="mb-5">
-        <p className="text-xs font-bold uppercase tracking-wide text-green-700">{t("top10Companies")}</p>
-        <h2 className="text-2xl font-bold text-slate-950">{t("bestFitCompanies")}</h2>
+        <p className="text-caption font-bold uppercase tracking-wide text-green-700">{t("top10Companies")}</p>
+        <h2 className="text-h1 font-bold text-slate-950">{t("bestFitCompanies")}</h2>
       </div>
       <div className="grid gap-3">
         {results.map((result, index) => {
@@ -843,21 +843,21 @@ function CompanyRankingList({
               className={classNames("rounded-xl border p-4 transition", selected ? "border-green-500 bg-green-50 shadow-sm" : "border-slate-200 bg-white")}
             >
               <div className="grid gap-4 lg:grid-cols-[64px_minmax(0,1.3fr)_minmax(0,1fr)_150px] lg:items-start">
-                <div className="text-3xl font-black text-green-700">#{index + 1}</div>
+                <div className="text-h1 font-black text-green-700">#{index + 1}</div>
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="truncate text-xl font-bold text-slate-950">{result.companyName}</h3>
+                    <h3 className="truncate text-h2 font-bold text-slate-950">{result.companyName}</h3>
                     <Badge tone={fitTone(result.overallFitScore)}>{t(fitLabelKey(result.overallFitScore))}</Badge>
-                    <span className="text-xs font-semibold text-slate-500">{t("score")} {clampScore(result.overallFitScore)}</span>
+                    <span className="text-caption font-semibold text-slate-500">{t("score")} {clampScore(result.overallFitScore)}</span>
                   </div>
-                  <p className="mt-1 text-sm font-semibold text-slate-600">{result.roleTitle}</p>
-                  <div className="mt-3 flex flex-wrap gap-2 text-sm text-slate-600">
+                  <p className="mt-1 text-body font-semibold text-slate-600">{result.roleTitle}</p>
+                  <div className="mt-3 flex flex-wrap gap-2 text-body text-slate-600">
                     <Badge tone="slate">{formatRoleLocation(profile, t)}</Badge>
                     <Badge tone="slate">{formatRoleSalary(profile, t)}</Badge>
                     <Badge tone="slate">{formatRoleLanguages(profile, t)}</Badge>
                   </div>
                 </div>
-                <div className="grid gap-3 text-sm text-slate-600">
+                <div className="grid gap-3 text-body text-slate-600">
                   <p>
                     <span className="font-semibold text-slate-900">{t("whatMatches")}: </span>
                     {result.matchedReasons[0] ?? t("noMatches")}
@@ -872,7 +872,7 @@ function CompanyRankingList({
                   type="button"
                   onClick={() => onSelect(result.roleId)}
                   className={classNames(
-                    "inline-flex min-h-10 items-center justify-center rounded-md px-3 text-sm font-bold transition",
+                    "inline-flex min-h-10 items-center justify-center rounded-md px-3 text-body font-bold transition",
                     selected ? "bg-green-600 text-white" : "border border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
                   )}
                 >
@@ -894,8 +894,8 @@ function MissionCard({ mission, t }: { mission: EvidenceMission; t: (key: CopyKe
         <p className="font-bold text-slate-950">{mission.title}</p>
         <Badge tone="green">{mission.category}</Badge>
       </div>
-      <p className="mt-2 text-sm text-slate-600">{mission.reason}</p>
-      <p className="mt-2 text-xs font-semibold text-slate-500">{mission.proofCreated}</p>
+      <p className="mt-2 text-body text-slate-600">{mission.reason}</p>
+      <p className="mt-2 text-caption font-semibold text-slate-500">{mission.proofCreated}</p>
     </article>
   );
 }
@@ -919,34 +919,34 @@ function CompanyDetail({
             <Badge tone={fitTone(result.overallFitScore)}>{t(fitLabelKey(result.overallFitScore))}</Badge>
             <Badge tone="blue">{t(developerActionKey(result.recommendedNextStep))}</Badge>
           </div>
-          <h3 className="mt-3 text-2xl font-bold text-slate-950">{result.companyName}</h3>
-          <p className="mt-1 text-sm font-semibold text-slate-600">{result.roleTitle}</p>
+          <h3 className="mt-3 text-h1 font-bold text-slate-950">{result.companyName}</h3>
+          <p className="mt-1 text-body font-semibold text-slate-600">{result.roleTitle}</p>
         </div>
         <div className="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-center">
-          <p className="text-xs font-bold uppercase tracking-wide text-slate-500">{t("fit")}</p>
-          <p className="text-3xl font-black text-green-700">{clampScore(result.overallFitScore)}</p>
+          <p className="text-caption font-bold uppercase tracking-wide text-slate-500">{t("fit")}</p>
+          <p className="text-h1 font-black text-green-700">{clampScore(result.overallFitScore)}</p>
         </div>
       </div>
 
       <div className="mt-5 grid gap-5">
         <div className="grid gap-4 lg:grid-cols-2">
           <div>
-            <p className="mb-2 text-sm font-bold text-slate-950">{t("whatMatches")}</p>
+            <p className="mb-2 text-body font-bold text-slate-950">{t("whatMatches")}</p>
             <ChipList values={result.matchedReasons} tone="green" emptyLabel={t("noMatches")} limit={5} />
           </div>
           <div>
-            <p className="mb-2 text-sm font-bold text-slate-950">{t("whatYouNeedNext")}</p>
+            <p className="mb-2 text-body font-bold text-slate-950">{t("whatYouNeedNext")}</p>
             <ChipList values={result.missingSignals} tone="amber" emptyLabel={t("noMissing")} limit={5} />
           </div>
         </div>
 
         <div>
-          <p className="mb-2 text-sm font-bold text-slate-950">{t("nextStep")}</p>
+          <p className="mb-2 text-body font-bold text-slate-950">{t("nextStep")}</p>
           <Badge tone="blue">{t(developerActionKey(result.recommendedNextStep))}</Badge>
         </div>
 
         <div>
-          <p className="mb-2 text-sm font-bold text-slate-950">{t("evidenceMissions")}</p>
+          <p className="mb-2 text-body font-bold text-slate-950">{t("evidenceMissions")}</p>
           {result.recommendedMissions.length ? (
             <div className="grid gap-3 lg:grid-cols-2">
               {result.recommendedMissions.slice(0, 4).map((mission) => (
@@ -954,7 +954,7 @@ function CompanyDetail({
               ))}
             </div>
           ) : (
-            <p className="text-sm text-slate-400">{t("noMissions")}</p>
+            <p className="text-body text-slate-400">{t("noMissions")}</p>
           )}
         </div>
 
@@ -992,8 +992,8 @@ function CandidateList({
   return (
     <Card className="p-5">
       <div className="mb-5">
-        <p className="text-xs font-bold uppercase tracking-wide text-green-700">{t("top10Candidates")}</p>
-        <h2 className="text-2xl font-bold text-slate-950">{t("bestFitCandidates")}</h2>
+        <p className="text-caption font-bold uppercase tracking-wide text-green-700">{t("top10Candidates")}</p>
+        <h2 className="text-h1 font-bold text-slate-950">{t("bestFitCandidates")}</h2>
       </div>
       <div className="grid gap-3">
         {results.map((result, index) => {
@@ -1007,10 +1007,10 @@ function CandidateList({
               className={classNames("rounded-xl border p-4 transition", selected ? "border-green-500 bg-green-50 shadow-sm" : "border-slate-200 bg-white")}
             >
               <div className="grid gap-4 lg:grid-cols-[64px_minmax(0,1.1fr)_minmax(0,1.1fr)_minmax(0,0.9fr)_140px] lg:items-center">
-                <div className="text-3xl font-black text-green-700">#{index + 1}</div>
+                <div className="text-h1 font-black text-green-700">#{index + 1}</div>
                 <div>
-                  <h3 className="text-xl font-bold text-slate-950">{result.developerName}</h3>
-                  <p className="text-sm font-semibold text-slate-500">{developer?.nationality ?? t("unknown")}</p>
+                  <h3 className="text-h2 font-bold text-slate-950">{result.developerName}</h3>
+                  <p className="text-body font-semibold text-slate-500">{developer?.nationality ?? t("unknown")}</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {signals.map((signal) => (
@@ -1027,7 +1027,7 @@ function CandidateList({
                   type="button"
                   onClick={() => onSelect(result.developerId)}
                   className={classNames(
-                    "inline-flex min-h-10 items-center justify-center rounded-md px-3 text-sm font-bold transition",
+                    "inline-flex min-h-10 items-center justify-center rounded-md px-3 text-body font-bold transition",
                     selected ? "bg-green-600 text-white" : "border border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
                   )}
                 >
@@ -1059,9 +1059,9 @@ function CandidateDetail({
     <Card className="p-5">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="text-xs font-bold uppercase tracking-wide text-green-700">{t("candidateDetail")}</p>
-          <h3 className="mt-1 text-2xl font-bold text-slate-950">{result.developerName}</h3>
-          <p className="mt-1 text-sm font-semibold text-slate-600">
+          <p className="text-caption font-bold uppercase tracking-wide text-green-700">{t("candidateDetail")}</p>
+          <h3 className="mt-1 text-h1 font-bold text-slate-950">{result.developerName}</h3>
+          <p className="mt-1 text-body font-semibold text-slate-600">
             {developer?.nationality ?? t("unknown")} / {formatList(developer?.targetRoles, t("unknown"), 2)}
           </p>
         </div>
@@ -1078,11 +1078,11 @@ function CandidateDetail({
         </div>
 
         <div>
-          <p className="mb-3 text-sm font-bold text-slate-950">{t("strongPoints")}</p>
+          <p className="mb-3 text-body font-bold text-slate-950">{t("strongPoints")}</p>
           <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
             {groups.map((group) => (
               <div key={group.key}>
-                <p className="mb-2 text-xs font-bold uppercase tracking-wide text-slate-500">{t(group.key)}</p>
+                <p className="mb-2 text-caption font-bold uppercase tracking-wide text-slate-500">{t(group.key)}</p>
                 <ChipList values={group.items} tone="green" emptyLabel={t("unknown")} limit={5} />
               </div>
             ))}
@@ -1091,18 +1091,18 @@ function CandidateDetail({
 
         <div className="grid gap-4 lg:grid-cols-2">
           <div>
-            <p className="mb-2 text-sm font-bold text-slate-950">{t("missingEvidence")}</p>
+            <p className="mb-2 text-body font-bold text-slate-950">{t("missingEvidence")}</p>
             <ChipList values={result.missingSignals} tone="amber" emptyLabel={t("noMissing")} limit={6} />
           </div>
           <div>
-            <p className="mb-2 text-sm font-bold text-slate-950">{t("risks")}</p>
+            <p className="mb-2 text-body font-bold text-slate-950">{t("risks")}</p>
             <ChipList values={result.risks} tone="rose" emptyLabel={t("noRisks")} limit={6} />
           </div>
         </div>
 
         <div className="rounded-lg border border-blue-200 bg-blue-50 p-4">
-          <p className="text-sm font-bold text-blue-900">{t("recruiterAction")}</p>
-          <p className="mt-1 text-sm text-blue-900">{t(recruiterActionKey(result.recommendedRecruiterAction))}</p>
+          <p className="text-body font-bold text-blue-900">{t("recruiterAction")}</p>
+          <p className="mt-1 text-body text-blue-900">{t(recruiterActionKey(result.recommendedRecruiterAction))}</p>
         </div>
 
         <ScoreAccordion title={t("scoreBreakdown")}>
@@ -1142,9 +1142,9 @@ function DebugPanel({
     <Card className="p-5">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div>
-          <p className="text-xs font-bold uppercase tracking-wide text-green-700">{t("debugDetails")}</p>
-          <h2 className="text-xl font-bold text-slate-950">{t("dataQuality")}</h2>
-          <p className="mt-2 text-sm text-slate-600">{t("unknownFieldsNote")}</p>
+          <p className="text-caption font-bold uppercase tracking-wide text-green-700">{t("debugDetails")}</p>
+          <h2 className="text-h2 font-bold text-slate-950">{t("dataQuality")}</h2>
+          <p className="mt-2 text-body text-slate-600">{t("unknownFieldsNote")}</p>
         </div>
       </div>
       <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -1154,7 +1154,7 @@ function DebugPanel({
         <Field label={t("invalidProfiles")} value={data.validationSummary.invalidProfiles} />
       </div>
       <div className="mt-5">
-        <p className="mb-2 text-sm font-bold text-slate-950">{t("commonWarnings")}</p>
+        <p className="mb-2 text-body font-bold text-slate-950">{t("commonWarnings")}</p>
         <div className="flex flex-wrap gap-2">
           {data.validationSummary.commonWarnings.slice(0, 8).map((warning) => (
             <Badge key={warning.warning} tone="amber">
@@ -1164,15 +1164,15 @@ function DebugPanel({
         </div>
       </div>
       <details className="group mt-5 rounded-lg border border-slate-200 bg-slate-950">
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-4 text-sm font-bold text-white">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-4 text-body font-bold text-white">
           <span className="inline-flex items-center gap-2"><FileJson size={16} />{t("rawJson")}</span>
           <ChevronDown className="transition group-open:rotate-180" size={18} />
         </summary>
         <div className="grid gap-3 border-t border-white/10 p-4">
           {jsonBlocks.map(([title, value]) => (
             <section key={title} className="rounded-lg border border-white/10">
-              <p className="border-b border-white/10 px-3 py-2 text-xs font-bold uppercase tracking-wide text-slate-300">{title}</p>
-              <pre className="max-h-72 overflow-auto p-3 text-xs leading-5 text-slate-200 thin-scrollbar">
+              <p className="border-b border-white/10 px-3 py-2 text-caption font-bold uppercase tracking-wide text-slate-300">{title}</p>
+              <pre className="max-h-72 overflow-auto p-3 text-caption leading-5 text-slate-200 thin-scrollbar">
                 {JSON.stringify(value, null, 2)}
               </pre>
             </section>
@@ -1292,11 +1292,11 @@ export function TwoSidedFitDashboard() {
         <header className="rounded-lg border border-slate-200 bg-white p-5 shadow-panel">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-md bg-green-600 px-3 py-1.5 text-sm font-bold text-white">
+              <div className="inline-flex items-center gap-2 rounded-md bg-green-600 px-3 py-1.5 text-body font-bold text-white">
                 <Sparkles size={16} />
                 BridgePass
               </div>
-              <h1 className="mt-3 text-3xl font-black tracking-tight text-slate-950 md:text-4xl">{t("appTitle")}</h1>
+              <h1 className="mt-3 text-display2 font-black tracking-tight text-slate-950 md:text-display1">{t("appTitle")}</h1>
             </div>
             <div className="flex flex-col gap-3 sm:items-end">
               <div className="flex rounded-md border border-slate-200 bg-slate-50 p-1">
@@ -1306,7 +1306,7 @@ export function TwoSidedFitDashboard() {
                     type="button"
                     onClick={() => setLocale(option.locale)}
                     className={classNames(
-                      "min-h-9 rounded-md px-3 text-sm font-bold transition",
+                      "min-h-9 rounded-md px-3 text-body font-bold transition",
                       locale === option.locale ? "bg-white text-green-700 shadow-sm" : "text-slate-500 hover:text-slate-900"
                     )}
                   >
@@ -1321,7 +1321,7 @@ export function TwoSidedFitDashboard() {
               type="button"
               onClick={() => setActiveTab("developerToCompany")}
               className={classNames(
-                "flex min-h-12 items-center justify-center gap-2 rounded-md px-4 text-sm font-bold transition",
+                "flex min-h-12 items-center justify-center gap-2 rounded-md px-4 text-body font-bold transition",
                 activeTab === "developerToCompany" ? "bg-green-600 text-white shadow-sm" : "bg-slate-50 text-slate-600 hover:bg-slate-100"
               )}
             >
@@ -1332,7 +1332,7 @@ export function TwoSidedFitDashboard() {
               type="button"
               onClick={() => setActiveTab("companyToDeveloper")}
               className={classNames(
-                "flex min-h-12 items-center justify-center gap-2 rounded-md px-4 text-sm font-bold transition",
+                "flex min-h-12 items-center justify-center gap-2 rounded-md px-4 text-body font-bold transition",
                 activeTab === "companyToDeveloper" ? "bg-green-600 text-white shadow-sm" : "bg-slate-50 text-slate-600 hover:bg-slate-100"
               )}
             >
@@ -1412,7 +1412,7 @@ export function TwoSidedFitDashboard() {
           />
         ) : null}
 
-        <footer className="rounded-lg border border-blue-200 bg-blue-50 p-4 text-sm leading-6 text-blue-900">
+        <footer className="rounded-lg border border-blue-200 bg-blue-50 p-4 text-body leading-6 text-blue-900">
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <div className="flex gap-3">
               <ShieldCheck className="mt-0.5 shrink-0" size={20} />
@@ -1421,7 +1421,7 @@ export function TwoSidedFitDashboard() {
             <button
               type="button"
               onClick={() => setDebugMode((current) => !current)}
-              className="inline-flex min-h-9 items-center justify-center rounded-md border border-blue-200 bg-white/70 px-3 text-xs font-bold text-blue-900"
+              className="inline-flex min-h-9 items-center justify-center rounded-md border border-blue-200 bg-white/70 px-3 text-caption font-bold text-blue-900"
             >
               {t("debugMode")}: {debugMode ? "on" : "off"}
             </button>

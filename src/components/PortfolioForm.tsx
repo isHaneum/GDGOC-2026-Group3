@@ -194,11 +194,11 @@ export default function PortfolioForm({
     <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-8">
       <div className="mx-auto max-w-5xl space-y-5">
         <header className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
-          <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal">
+          <p className="text-micro font-black uppercase tracking-widest text-bridge-teal">
             Applicant Portfolio
           </p>
-          <h1 className="mt-2 text-2xl font-black text-ink">{title}</h1>
-          <p className="mt-2 text-sm leading-6 text-gray-500">{description}</p>
+          <h1 className="mt-2 text-h1 font-black text-ink">{title}</h1>
+          <p className="mt-2 text-body leading-6 text-gray-500">{description}</p>
         </header>
 
         <section className="grid gap-4 rounded-xl border border-gray-100 bg-white p-5 shadow-sm md:grid-cols-2">
@@ -228,16 +228,16 @@ export default function PortfolioForm({
             type="button"
             onClick={handleSave}
             disabled={saveState === "saving"}
-            className="rounded-full bg-bridge-primary px-5 py-2.5 text-sm font-black text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+            className="rounded-full bg-bridge-primary px-5 py-2.5 text-body font-black text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {saveState === "saving" ? "저장 중" : "포트폴리오 저장"}
           </button>
           {statusMessage ? (
-            <span className={["text-sm font-bold", saveState === "error" ? "text-bridge-coral" : "text-bridge-teal"].join(" ")}>{statusMessage}</span>
+            <span className={["text-body font-bold", saveState === "error" ? "text-bridge-coral" : "text-bridge-teal"].join(" ")}>{statusMessage}</span>
           ) : savedAt ? (
-            <span className="text-sm font-bold text-bridge-teal">로컬 저장 완료: {savedAt}</span>
+            <span className="text-body font-bold text-bridge-teal">로컬 저장 완료: {savedAt}</span>
           ) : (
-            <span className="text-sm text-gray-400">저장 전까지 브라우저 임시 상태로만 유지됩니다.</span>
+            <span className="text-body text-gray-400">저장 전까지 브라우저 임시 상태로만 유지됩니다.</span>
           )}
         </div>
       </div>
@@ -258,12 +258,12 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="text-xs font-black uppercase tracking-widest text-gray-400">{label}</span>
+      <span className="text-caption font-black uppercase tracking-widest text-gray-400">{label}</span>
       <input
         type={type}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-2 w-full rounded-xl border border-gray-200 bg-bridge-paper px-4 py-3 text-sm text-ink outline-none focus:border-bridge-teal"
+        className="mt-2 w-full rounded-xl border border-gray-200 bg-bridge-paper px-4 py-3 text-body text-ink outline-none focus:border-bridge-teal"
       />
     </label>
   );
@@ -282,12 +282,12 @@ function Textarea({
 }) {
   return (
     <label className="block">
-      <span className="text-xs font-black uppercase tracking-widest text-gray-400">{label}</span>
+      <span className="text-caption font-black uppercase tracking-widest text-gray-400">{label}</span>
       <textarea
         value={value}
         rows={rows}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-2 w-full resize-y rounded-xl border border-gray-200 bg-bridge-paper px-4 py-3 text-sm leading-6 text-ink outline-none focus:border-bridge-teal"
+        className="mt-2 w-full resize-y rounded-xl border border-gray-200 bg-bridge-paper px-4 py-3 text-body leading-6 text-ink outline-none focus:border-bridge-teal"
       />
     </label>
   );
