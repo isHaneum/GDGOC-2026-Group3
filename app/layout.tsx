@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 const navItems = [
-  { href: "/forums", label: "Community" },
+  { href: "/community", label: "Community" },
   { href: "/employer", label: "Applicants" },
   { href: "/companies", label: "Hiring Companies" },
   { href: "/signal-lab", label: "Signal Lab" },
