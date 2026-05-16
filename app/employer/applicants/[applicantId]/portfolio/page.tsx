@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import type { DeveloperPreference } from "@shared/companyCriteriaTypes";
 import {
-  findApplicantById,
   formatApplicantLanguages,
   formatApplicantList,
   formatApplicantSalary,
@@ -11,15 +10,9 @@ import {
   formatVisaSupportLabel,
   formatWorkStyle
 } from "@src/lib/applicantProfiles";
-import sampleDeveloperProfiles from "../../../../../public/data/company-criteria/sampleDeveloperProfiles.json";
+import { loadSampleDeveloperProfiles } from "@src/lib/companyCriteria";
 
-const applicants = sampleDeveloperProfiles as DeveloperPreference[];
-
-export function generateStaticParams() {
-  return applicants.map((applicant) => ({
-    applicantId: applicant.developerId
-  }));
-}
+export const dynamic = "force-dynamic";
 
 export default async function ApplicantProfilePage({
   params
@@ -27,7 +20,9 @@ export default async function ApplicantProfilePage({
   params: Promise<{ applicantId: string }>;
 }) {
   const { applicantId } = await params;
-  const applicant = findApplicantById(applicants, applicantId);
+  const decodedId = decodeURIComponent(applicantId);
+  const applicants = await loadSampleDeveloperProfiles();
+  const applicant = applicants.find((a) => a.developerId === decodedId);
 
   if (!applicant) notFound();
 
