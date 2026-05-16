@@ -13,7 +13,7 @@
 - `/community` redirects to `/community/posts`.
 - `/community/posts` and `/community/posts/[postId]` are public community pages.
 - `/employee` redirects to `/employee/companies`.
-- `/employee/companies`, `/employee/companies/[companyId]`, and `/employee/portfolio` are applicant-only.
+- `/employee/companies`, `/employee/companies/[companyId]`, `/employee/recommends`, and `/employee/portfolio` are applicant-only.
 - `/employee/applications` is a placeholder page.
 - `/employer` redirects to `/employer/postings`.
 - `/employer/applicants` and `/employer/applicants/[applicantId]/portfolio` are employer-only.
@@ -52,6 +52,7 @@ Before role selection or login:
 Allowed applicant nav:
 
 - 채용중인 회사 (`/employee/companies`)
+- 추천 직무 (`/employee/recommends`)
 - 내 포트폴리오 (`/employee/portfolio`)
 - 커뮤니티 (`/community/posts`)
 - 계정 (`/account`)

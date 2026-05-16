@@ -17,6 +17,7 @@ type NavItem = {
 
 const developerNav: NavItem[] = [
   { href: "/employee/companies", label: "채용중인 회사" },
+  { href: "/employee/recommends", label: "추천 직무" },
   { href: "/employee/portfolio", label: "내 포트폴리오" },
   { href: "/community/posts", label: "커뮤니티" },
   { href: "/account", label: "계정" }
