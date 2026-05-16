@@ -5,19 +5,17 @@ import path from "node:path";
 import type {
   ResumeContextConfidence,
   ResumeContextMappedItem,
-  ResumeContextMappingRecord,
   ResumeContextMappingRequest,
   ResumeContextMappingResult,
   ResumeDetectedLocale
 } from "../../shared/types";
 import { generateGeminiJson, hasGeminiKey } from "./gemini";
 import { resumeContextMappingSchema } from "./schemas";
-import { readJsonFile, writeJsonFile } from "./storage";
+import { supabaseServer } from "./supabase";
 
 const MAX_CONTENT_ITEMS = 30;
 const MAX_ITEM_CONTENT_LENGTH = 4000;
 const MAX_TOTAL_CONTENT_LENGTH = 40000;
-const STORAGE_FILENAME = "resumeContextMappings.json";
 const PROMPT_PATH = path.join(process.cwd(), "server/prompts/resume-context-mapping.md");
 
 const detectedLocales = new Set<ResumeDetectedLocale>(["ko", "ja", "mixed", "unknown"]);
@@ -237,18 +235,14 @@ export async function mapResumeContext(
   const id = randomUUID();
   const createdAt = new Date().toISOString();
   const response = normalizeGeminiResult(geminiResult, request, id, createdAt);
-  const existingRecords = await readJsonFile<ResumeContextMappingRecord[]>(STORAGE_FILENAME, []);
-  const records = Array.isArray(existingRecords) ? existingRecords : [];
 
-  await writeJsonFile<ResumeContextMappingRecord[]>(STORAGE_FILENAME, [
-    ...records,
-    {
-      id,
-      createdAt,
-      request,
-      response
-    }
-  ]);
+  await supabaseServer.from("resume_context_mappings").insert({
+    id,
+    target_locale: request.targetLocale,
+    detected_source_locale: response.detectedSourceLocale,
+    request,
+    response
+  });
 
   return response;
 }

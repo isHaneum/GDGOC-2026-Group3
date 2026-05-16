@@ -1,3 +1,6 @@
+import type { DeveloperLanguageCertification } from "./companyCriteriaTypes";
+export type { DeveloperLanguageCertification };
+
 export type SourceType = "job_posting" | "career_review" | "community_post";
 export type Country = "Japan" | "Korea";
 export type Locale = "en" | "ko" | "ja";
@@ -161,7 +164,19 @@ export interface DbDeveloperProfile {
   target_country: string | null
   target_role: string | null
   tech_stack: string[]
-  target_language_level: string | null
+  language_certifications: DeveloperLanguageCertification[]
+  preferred_salary_min: number | null
+  preferred_salary_max: number | null
+  preferred_currency: 'JPY' | 'KRW' | 'USD' | null
+  preferred_locations: string[]
+  work_style_preference: 'remote' | 'hybrid' | 'onsite' | 'any' | null
+  relocation_available: boolean
+  visa_support_needed: boolean | null
+  motivation: string | null
+  concerns: string[]
+  years_of_experience: number | null
+  target_roles: string[]
+  preferred_company_types: string[]
   portfolio_url: string | null
   github_url: string | null
   self_introduction: string | null
