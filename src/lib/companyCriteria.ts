@@ -1,4 +1,11 @@
-import type { CompanyEvaluationRubric, CompanyRubricCriterion } from "../../shared/companyCriteriaTypes";
+import type {
+  CompanyEvaluationRubric,
+  CompanyHiringSignal,
+  CompanyJobProfile,
+  CompanyRubricCriterion,
+  DeveloperPreference,
+  FitEngineMetadata
+} from "../../shared/companyCriteriaTypes";
 
 type RawRubricCriterion = Omit<CompanyRubricCriterion, "recommendedVerificationActivity"> & {
   recommendedVerificationActivity: string | string[];
@@ -7,6 +14,15 @@ type RawRubricCriterion = Omit<CompanyRubricCriterion, "recommendedVerificationA
 type RawRubric = Omit<CompanyEvaluationRubric, "criteria"> & {
   criteria: RawRubricCriterion[];
 };
+
+async function loadJson<T>(path: string): Promise<T> {
+  const response = await fetch(path);
+  if (!response.ok) {
+    throw new Error(`Failed to load ${path}`);
+  }
+
+  return response.json() as Promise<T>;
+}
 
 function normalizeCriterion(criterion: RawRubricCriterion): CompanyRubricCriterion {
   return {
@@ -25,13 +41,24 @@ function normalizeRubric(rubric: RawRubric): CompanyEvaluationRubric {
 }
 
 export async function loadCompanyRubrics(): Promise<CompanyEvaluationRubric[]> {
-  const response = await fetch("/data/company-criteria/companyRubrics.json");
-  if (!response.ok) {
-    throw new Error("Failed to load company rubrics");
-  }
-
-  const rubrics = (await response.json()) as RawRubric[];
+  const rubrics = await loadJson<RawRubric[]>("/data/company-criteria/companyRubrics.json");
   return rubrics.map(normalizeRubric);
+}
+
+export function loadCompanySignals(): Promise<CompanyHiringSignal[]> {
+  return loadJson<CompanyHiringSignal[]>("/data/company-criteria/companySignals.json");
+}
+
+export function loadCompanyJobProfiles(): Promise<CompanyJobProfile[]> {
+  return loadJson<CompanyJobProfile[]>("/data/company-criteria/companyJobProfiles.json");
+}
+
+export function loadSampleDeveloperProfiles(): Promise<DeveloperPreference[]> {
+  return loadJson<DeveloperPreference[]>("/data/company-criteria/sampleDeveloperProfiles.json");
+}
+
+export function loadFitEngineMetadata(): Promise<FitEngineMetadata> {
+  return loadJson<FitEngineMetadata>("/data/company-criteria/fitEngineMetadata.json");
 }
 
 export async function findCompanyRubric(companyId: string): Promise<CompanyEvaluationRubric | null> {
