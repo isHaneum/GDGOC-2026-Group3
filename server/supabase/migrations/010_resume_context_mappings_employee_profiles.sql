@@ -12,3 +12,5 @@ ALTER TABLE public.resume_context_mappings ENABLE ROW LEVEL SECURITY;
 
 GRANT USAGE ON SCHEMA public TO service_role;
 GRANT INSERT, SELECT ON public.resume_context_mappings TO service_role;
+
+NOTIFY pgrst, 'reload schema';
