@@ -158,7 +158,7 @@ function DefinitionList({ rows }: { rows: [string, string][] }) {
     <dl className="grid grid-cols-1 gap-y-2.5 sm:grid-cols-2 lg:grid-cols-1">
       {rows.map(([label, value]) => (
         <div key={label} className="flex flex-col">
-          <dt className="text-micro font-bold uppercase tracking-wider text-gray-400">{label}</dt>
+          <dt className="text-caption font-bold uppercase tracking-wider text-gray-400">{label}</dt>
           <dd className="text-caption font-medium text-gray-700 break-words mt-0.5">{value}</dd>
         </div>
       ))}

@@ -121,12 +121,12 @@ export default function PostDetailPage() {
         {/* Post card */}
         <article className="bg-white rounded-xl border border-gray-100 shadow-panel p-5">
           <div className="flex items-center gap-2 mb-3">
-            <span className={`text-micro font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${categoryBadgeColor(post.category?.slug ?? '')}`}>
+            <span className={`text-caption font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${categoryBadgeColor(post.category?.slug ?? '')}`}>
               {post.category?.name ?? '—'}
             </span>
-            <span className="text-micro text-gray-400">{getAuthorName(post.author)}</span>
-            <span className="text-micro text-gray-300">·</span>
-            <span className="text-micro text-gray-400">{timeAgo(post.created_at)}</span>
+            <span className="text-caption text-gray-400">{getAuthorName(post.author)}</span>
+            <span className="text-caption text-gray-300">·</span>
+            <span className="text-caption text-gray-400">{timeAgo(post.created_at)}</span>
           </div>
           <h1 className="text-h1 font-bold text-ink mb-4">{post.title}</h1>
           {post.image_url && (
@@ -155,7 +155,7 @@ export default function PostDetailPage() {
 
         {/* Comments */}
         <section>
-          <p className="text-micro font-black uppercase tracking-widest text-gray-400 mb-4">
+          <p className="text-caption font-black uppercase tracking-widest text-gray-400 mb-4">
             댓글 {comments.length}개
           </p>
 
@@ -163,9 +163,9 @@ export default function PostDetailPage() {
             <div className="space-y-3 mb-6">
               {comments.map((comment) => (
                 <div key={comment.id} className="bg-white rounded-xl border border-gray-100 px-4 py-3">
-                  <p className="text-micro font-bold text-bridge-teal mb-1">{getAuthorName(comment.author)}</p>
+                  <p className="text-caption font-bold text-bridge-teal mb-1">{getAuthorName(comment.author)}</p>
                   <p className="text-body text-gray-700 leading-relaxed">{comment.content}</p>
-                  <p className="text-micro text-gray-400 mt-1.5">{timeAgo(comment.created_at)}</p>
+                  <p className="text-caption text-gray-400 mt-1.5">{timeAgo(comment.created_at)}</p>
                 </div>
               ))}
             </div>

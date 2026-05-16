@@ -127,7 +127,7 @@ export default function CommunityPage() {
         {/* Header */}
         <div className="flex items-end justify-between mb-6">
           <div>
-            <p className="text-micro font-black uppercase tracking-widest text-bridge-teal mb-1">문화 포럼</p>
+            <p className="text-caption font-black uppercase tracking-widest text-bridge-teal mb-1">문화 포럼</p>
             <h1 className="text-h1 font-bold text-ink">커뮤니티</h1>
           </div>
           <button
@@ -163,7 +163,7 @@ export default function CommunityPage() {
             <button
               key={cat.id}
               onClick={() => setActiveSlug(activeSlug === cat.slug ? null : cat.slug)}
-              className={`rounded-full px-4 py-1.5 text-micro font-black uppercase tracking-widest transition-colors ${
+              className={`rounded-full px-4 py-1.5 text-caption font-black uppercase tracking-widest transition-colors ${
                 activeSlug === cat.slug ? 'bg-ink text-white' : 'bg-white border border-gray-200 text-gray-500 hover:border-ink'
               }`}
             >
@@ -200,23 +200,23 @@ export default function CommunityPage() {
                 {/* Like count */}
                 <div className="text-center min-w-[36px]">
                   <div className="font-black text-body text-bridge-teal">{post.like_count}</div>
-                  <div className="text-micro text-gray-400 font-bold uppercase">좋아요</div>
+                  <div className="text-caption text-gray-400 font-bold uppercase">좋아요</div>
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className={`text-micro font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${categoryBadgeColor(post.category?.slug ?? '')}`}>
+                    <span className={`text-caption font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${categoryBadgeColor(post.category?.slug ?? '')}`}>
                       {post.category?.name ?? '—'}
                     </span>
                   </div>
                   <div className="font-bold text-body text-ink group-hover:text-bridge-teal transition-colors truncate">
                     {post.title}
                   </div>
-                  <div className="text-micro text-gray-400 mt-0.5 truncate">
+                  <div className="text-caption text-gray-400 mt-0.5 truncate">
                     {post.content.slice(0, 80)}{post.content.length > 80 ? '…' : ''}
                   </div>
-                  <div className="text-micro text-gray-300 mt-0.5">
+                  <div className="text-caption text-gray-300 mt-0.5">
                     {timeAgo(post.created_at)} · 댓글 {getCommentCount(post)}개
                   </div>
                 </div>
@@ -244,7 +244,7 @@ export default function CommunityPage() {
               </div>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="text-micro font-black uppercase tracking-widest text-gray-400 block mb-1.5">카테고리</label>
+                  <label className="text-caption font-black uppercase tracking-widest text-gray-400 block mb-1.5">카테고리</label>
                   <select
                     value={formCategoryId ?? ''}
                     onChange={(e) => setFormCategoryId(Number(e.target.value))}
@@ -256,7 +256,7 @@ export default function CommunityPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-micro font-black uppercase tracking-widest text-gray-400 block mb-1.5">제목</label>
+                  <label className="text-caption font-black uppercase tracking-widest text-gray-400 block mb-1.5">제목</label>
                   <input
                     type="text"
                     value={formTitle}
@@ -267,7 +267,7 @@ export default function CommunityPage() {
                   />
                 </div>
                 <div>
-                  <label className="text-micro font-black uppercase tracking-widest text-gray-400 block mb-1.5">내용</label>
+                  <label className="text-caption font-black uppercase tracking-widest text-gray-400 block mb-1.5">내용</label>
                   <textarea
                     value={formContent}
                     onChange={(e) => setFormContent(e.target.value)}
@@ -278,7 +278,7 @@ export default function CommunityPage() {
                   />
                 </div>
                 <div>
-                  <label className="text-micro font-black uppercase tracking-widest text-gray-400 block mb-1.5">이미지 (선택)</label>
+                  <label className="text-caption font-black uppercase tracking-widest text-gray-400 block mb-1.5">이미지 (선택)</label>
                   {formImagePreview ? (
                     <div className="relative rounded-xl overflow-hidden border border-gray-200">
                       <Image src={formImagePreview} alt="preview" width={480} height={200} className="w-full object-cover max-h-48" />
@@ -323,7 +323,7 @@ export default function CommunityPage() {
       {/* Popular posts sidebar */}
       <aside className="hidden lg:block w-72 flex-shrink-0 ml-4">
         <div className="sticky top-24 bg-white rounded-xl border border-gray-100 shadow-panel p-5">
-          <p className="text-micro font-black uppercase tracking-widest text-bridge-teal mb-5">🔥 인기글</p>
+          <p className="text-caption font-black uppercase tracking-widest text-bridge-teal mb-5">🔥 인기글</p>
           {popularPosts.length === 0 ? (
             <p className="text-body text-gray-400">아직 게시글이 없습니다.</p>
           ) : (
@@ -340,7 +340,7 @@ export default function CommunityPage() {
                         <span className="text-body">
                           {categoryFlag(post.category?.slug ?? '')}
                         </span>
-                        <span className="text-micro font-bold text-bridge-teal">
+                        <span className="text-caption font-bold text-bridge-teal">
                           ♥ {post.like_count}
                         </span>
                       </div>

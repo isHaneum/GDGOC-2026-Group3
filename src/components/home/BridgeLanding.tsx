@@ -28,7 +28,7 @@ export function BridgeLanding() {
   return (
     <div className="min-h-[calc(100vh-64px)] bg-bridge-paper flex flex-col items-center justify-center px-4 overflow-hidden">
       <header className="text-center mb-6 relative z-10">
-        <p className="text-micro font-black uppercase tracking-widest text-bridge-teal mb-2">
+        <p className="text-caption font-black uppercase tracking-widest text-bridge-teal mb-2">
           방향 선택
         </p>
         <h1 className="text-display1 font-black text-ink mb-3 tracking-tight">
@@ -47,7 +47,7 @@ export function BridgeLanding() {
 
       <footer className="mt-6 flex flex-col items-center gap-3">
         <div className="rounded-xl bg-white/70 px-4 py-2 text-center shadow-sm border border-gray-100">
-          <p className="text-micro font-black uppercase tracking-widest text-gray-400">
+          <p className="text-caption font-black uppercase tracking-widest text-gray-400">
             현재 상태
           </p>
           <p className="mt-0.5 text-caption font-bold text-ink">
@@ -58,11 +58,11 @@ export function BridgeLanding() {
         <div className="flex items-center space-x-5">
           <div className="flex items-center space-x-2">
             <div className="w-1.5 h-1.5 rounded-full bg-bridge-primary shadow-[0_0_8px_#10b981]" />
-            <span className="text-micro font-bold text-gray-400 uppercase tracking-widest">활성화된 지역</span>
+            <span className="text-caption font-bold text-gray-400 uppercase tracking-widest">활성화된 지역</span>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 rounded-full bg-gray-200" />
-            <span className="text-micro font-bold text-gray-400 uppercase tracking-widest">오픈 예정</span>
+            <span className="text-caption font-bold text-gray-400 uppercase tracking-widest">오픈 예정</span>
           </div>
         </div>
       </footer>

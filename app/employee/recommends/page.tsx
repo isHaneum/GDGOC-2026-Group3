@@ -346,7 +346,7 @@ function RoleDetail({ recommendation, company }: { recommendation: DeveloperToCo
 function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl bg-bridge-paper p-3">
-      <dt className="text-micro font-black uppercase tracking-widest text-gray-400">{label}</dt>
+      <dt className="text-caption font-black uppercase tracking-widest text-gray-400">{label}</dt>
       <dd className="mt-1 font-bold text-ink">{value}</dd>
     </div>
   );

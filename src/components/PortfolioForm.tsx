@@ -194,7 +194,7 @@ export default function PortfolioForm({
     <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-8">
       <div className="mx-auto max-w-5xl space-y-5">
         <header className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
-          <p className="text-micro font-black uppercase tracking-widest text-bridge-teal">
+          <p className="text-caption font-black uppercase tracking-widest text-bridge-teal">
             Applicant Portfolio
           </p>
           <h1 className="mt-2 text-h1 font-black text-ink">{title}</h1>

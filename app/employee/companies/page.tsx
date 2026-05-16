@@ -60,7 +60,7 @@ export default function HiringCompaniesPage() {
       <div className="container mx-auto max-w-6xl px-4 py-8">
         <header className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-micro font-black uppercase tracking-[0.3em] text-bridge-teal">
+            <p className="text-caption font-black uppercase tracking-[0.3em] text-bridge-teal">
               채용 기업
             </p>
             <h1 className="mt-3 text-h1 font-bold text-ink">더 브릿지에서 채용 중인 기업</h1>
@@ -69,7 +69,7 @@ export default function HiringCompaniesPage() {
             </p>
           </div>
           <div className="rounded-xl border border-gray-100 bg-white px-4 py-3 text-right shadow-panel">
-            <span className="block text-micro font-black uppercase tracking-widest text-gray-400">채용 중인 포지션</span>
+            <span className="block text-caption font-black uppercase tracking-widest text-gray-400">채용 중인 포지션</span>
             <span className="text-h1 font-black text-bridge-primary">{companies.length}</span>
           </div>
         </header>
@@ -103,19 +103,19 @@ export default function HiringCompaniesPage() {
                             <p className="mt-0.5 text-body font-bold text-bridge-teal line-clamp-1">{company.roleTitle}</p>
                           </div>
                         </div>
-                        <span className="shrink-0 rounded-full bg-bridge-primary/10 px-2.5 py-1 text-micro font-black uppercase tracking-widest text-bridge-teal mt-1">
+                        <span className="shrink-0 rounded-full bg-bridge-primary/10 px-2.5 py-1 text-caption font-black uppercase tracking-widest text-bridge-teal mt-1">
                           {company.country}
                         </span>
                       </div>
 
                       <div className="flex flex-wrap gap-1.5">
                         {stacks.slice(0, 4).map((stack) => (
-                          <span key={stack} className="rounded-md border border-gray-100 bg-white px-2 py-1 text-micro font-bold text-gray-500 shadow-sm">
+                          <span key={stack} className="rounded-md border border-gray-100 bg-white px-2 py-1 text-caption font-bold text-gray-500 shadow-sm">
                             {stack}
                           </span>
                         ))}
                         {!stacks.length ? (
-                          <span className="rounded-md border border-gray-100 bg-white px-2 py-1 text-micro font-bold text-gray-400 shadow-sm">
+                          <span className="rounded-md border border-gray-100 bg-white px-2 py-1 text-caption font-bold text-gray-400 shadow-sm">
                             기술 스택 미지정
                           </span>
                         ) : null}
@@ -144,7 +144,7 @@ export default function HiringCompaniesPage() {
                               href={link.url}
                               target="_blank"
                               rel="noreferrer"
-                              className="rounded-lg border border-gray-200 bg-white px-2.5 py-1.5 text-micro font-bold text-gray-400 shadow-sm transition hover:border-bridge-teal hover:text-bridge-teal"
+                              className="rounded-lg border border-gray-200 bg-white px-2.5 py-1.5 text-caption font-bold text-gray-400 shadow-sm transition hover:border-bridge-teal hover:text-bridge-teal"
                             >
                               {getLinkLabel(link.label, link.supports)}
                             </a>

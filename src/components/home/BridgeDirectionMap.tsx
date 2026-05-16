@@ -45,7 +45,7 @@ export function BridgeDirectionMap({
           <text
             x="360"
             y="265"
-            className={`text-micro font-black uppercase tracking-[0.2em] transition-all duration-500 ${
+            className={`text-caption font-black uppercase tracking-[0.2em] transition-all duration-500 ${
               hovered === "jp-kr" ? "fill-bridge-teal opacity-100" : "fill-gray-400 opacity-100"
             }`}
           >
@@ -87,7 +87,7 @@ export function BridgeDirectionMap({
           <text
             x="620"
             y="250"
-            className={`text-micro font-black uppercase tracking-[0.2em] transition-all duration-500 ${
+            className={`text-caption font-black uppercase tracking-[0.2em] transition-all duration-500 ${
               hovered === "kr-jp" ? "fill-bridge-teal opacity-100" : "fill-gray-400 opacity-100"
             }`}
           >

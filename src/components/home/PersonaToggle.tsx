@@ -24,7 +24,7 @@ export function PersonaToggle({
               }`}
               aria-pressed={active}
             >
-              <span className="block text-micro font-black uppercase tracking-widest opacity-60">
+              <span className="block text-caption font-black uppercase tracking-widest opacity-60">
                 {audience.eyebrow}
               </span>
               <span className="block text-body font-black">{audience.label}</span>

@@ -95,20 +95,20 @@ export default function AccountPage() {
   return (
     <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-8">
       <section className="mx-auto max-w-3xl rounded-xl border border-gray-100 bg-white p-5 shadow-panel">
-        <p className="text-micro font-black uppercase tracking-widest text-bridge-teal">계정</p>
+        <p className="text-caption font-black uppercase tracking-widest text-bridge-teal">계정</p>
         <h1 className="mt-3 text-h1 font-bold text-ink">계정 정보</h1>
 
         <dl className="mt-5 grid gap-3 rounded-xl bg-bridge-paper p-4 text-body sm:grid-cols-3">
           <div>
-            <dt className="text-micro font-black uppercase tracking-widest text-gray-400">이메일</dt>
+            <dt className="text-caption font-black uppercase tracking-widest text-gray-400">이메일</dt>
             <dd className="mt-1 font-bold text-ink break-words">{email}</dd>
           </div>
           <div>
-            <dt className="text-micro font-black uppercase tracking-widest text-gray-400">역할</dt>
+            <dt className="text-caption font-black uppercase tracking-widest text-gray-400">역할</dt>
             <dd className="mt-1 font-bold text-ink">{roleLabel}</dd>
           </div>
           <div>
-            <dt className="text-micro font-black uppercase tracking-widest text-gray-400">시장</dt>
+            <dt className="text-caption font-black uppercase tracking-widest text-gray-400">시장</dt>
             <dd className="mt-1 font-bold text-ink">{market}</dd>
           </div>
         </dl>

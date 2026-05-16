@@ -104,7 +104,7 @@ export default function SignupProfilePage() {
   return (
     <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-8">
       <section className="mx-auto max-w-3xl rounded-xl border border-gray-100 bg-white p-5 shadow-panel">
-        <p className="text-micro font-black uppercase tracking-widest text-bridge-teal">
+        <p className="text-caption font-black uppercase tracking-widest text-bridge-teal">
           회원가입 프로필
         </p>
         <h1 className="mt-3 text-h1 font-bold text-ink">프로필 작성</h1>

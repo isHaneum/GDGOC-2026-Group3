@@ -98,7 +98,7 @@ export default function EmployerDashboard() {
             {company ? company.roleTitle : "역할 불러오는 중"}
           </div>
           <div className="bg-bridge-primary/10 px-3 py-1 rounded-full flex items-center">
-            <span className="text-micro font-black text-bridge-teal uppercase tracking-tighter">
+            <span className="text-caption font-black text-bridge-teal uppercase tracking-tighter">
               지원자 목록
             </span>
           </div>
@@ -108,7 +108,7 @@ export default function EmployerDashboard() {
       {/* Top Filter Bar */}
       <div className="mb-6 flex flex-col items-start justify-between gap-4 rounded-xl border border-gray-100 bg-white p-4 shadow-panel md:flex-row md:items-center">
         <div className="flex w-full flex-col gap-3 md:w-auto md:flex-row md:items-center">
-          <h2 className="shrink-0 text-micro font-black uppercase tracking-widest text-gray-400">
+          <h2 className="shrink-0 text-caption font-black uppercase tracking-widest text-gray-400">
             문화적 강점
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -124,7 +124,7 @@ export default function EmployerDashboard() {
         </div>
 
         <div className="flex w-full items-center gap-3 md:w-auto">
-          <label className="shrink-0 text-micro font-black uppercase tracking-widest text-gray-400">언어 수준</label>
+          <label className="shrink-0 text-caption font-black uppercase tracking-widest text-gray-400">언어 수준</label>
           <select className="rounded-lg border border-gray-100 bg-gray-50 px-3 py-1.5 text-caption font-bold outline-none focus:ring-2 focus:ring-bridge-primary">
             <option>N1 / 원어민</option>
             <option>N2 / 비즈니스</option>
@@ -179,14 +179,14 @@ function CandidateCard({
             </h3>
             <p className="mt-0.5 text-body font-bold text-bridge-teal">{match.roleTitle}</p>
           </div>
-          <span className="shrink-0 rounded-full bg-bridge-teal/10 px-2.5 py-1 text-micro font-black uppercase tracking-tighter text-bridge-teal">
+          <span className="shrink-0 rounded-full bg-bridge-teal/10 px-2.5 py-1 text-caption font-black uppercase tracking-tighter text-bridge-teal">
             {match.overallFitScore}/100
           </span>
         </div>
 
         <div className="mt-4 flex flex-wrap gap-1.5">
           {match.topMatchSignals.slice(0, 3).map((tag) => (
-            <span key={tag} className="rounded-md border border-gray-100 bg-gray-50 px-2 py-1 text-micro font-bold text-gray-500">
+            <span key={tag} className="rounded-md border border-gray-100 bg-gray-50 px-2 py-1 text-caption font-bold text-gray-500">
               {tag}
             </span>
           ))}
@@ -199,7 +199,7 @@ function CandidateCard({
       </div>
 
       <div className="mt-5 flex flex-col gap-3 border-t border-gray-100 pt-4">
-        <span className="text-center text-micro font-bold uppercase tracking-widest text-gray-400">
+        <span className="text-center text-caption font-bold uppercase tracking-widest text-gray-400">
           {match.recommendedRecruiterAction.replace(/_/g, " ")}
         </span>
         <Link

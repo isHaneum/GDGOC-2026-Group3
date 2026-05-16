@@ -36,7 +36,7 @@ export default async function EmployeeCompanyDetailPage({
         </Link>
 
         <header className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
-          <p className="text-micro font-black uppercase tracking-widest text-bridge-teal">
+          <p className="text-caption font-black uppercase tracking-widest text-bridge-teal">
             기업 상세 정보
           </p>
           <div className="mt-2 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -93,7 +93,7 @@ export default async function EmployeeCompanyDetailPage({
 function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-lg bg-bridge-paper p-3">
-      <dt className="text-micro font-black uppercase tracking-widest text-gray-400">{label}</dt>
+      <dt className="text-caption font-black uppercase tracking-widest text-gray-400">{label}</dt>
       <dd className="mt-1 font-bold text-ink">{value}</dd>
     </div>
   );

@@ -51,7 +51,7 @@ export default function RoleRouteGate({ children }: { children: ReactNode }) {
   return (
     <section className="min-h-[70vh] bg-bridge-paper px-4 py-16">
       <div className="mx-auto max-w-xl rounded-2xl border border-gray-100 bg-white p-6 shadow-panel">
-        <p className="text-micro font-black uppercase tracking-widest text-bridge-teal">
+        <p className="text-caption font-black uppercase tracking-widest text-bridge-teal">
           Route Access
         </p>
         <h1 className="mt-3 text-h1 font-black text-ink">
