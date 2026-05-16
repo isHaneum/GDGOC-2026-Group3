@@ -61,6 +61,5 @@ export const getCurrentMarket = () => {
 export const setMarket = (id: string) => {
   if (MARKETS[id] && typeof window !== 'undefined') {
     localStorage.setItem('bridge_market', id);
-    window.location.reload();
   }
 };
