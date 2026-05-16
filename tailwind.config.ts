@@ -7,6 +7,8 @@ export default {
       colors: {
         ink: "#17202A",
         bridge: {
+          primary: "#adebad",
+          white: "#ffffff",
           teal: "#0E7C7B",
           blue: "#2F5E8F",
           coral: "#D45D55",
