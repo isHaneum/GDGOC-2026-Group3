@@ -255,7 +255,11 @@ export interface DbPost {
   author_id: number
   category_id: number
   title: string
+  title_ko?: string | null
+  title_ja?: string | null
   content: string
+  content_ko?: string | null
+  content_ja?: string | null
   image_url: string | null
   like_count: number
   created_at: string
@@ -267,6 +271,8 @@ export interface DbComment {
   post_id: number
   author_id: number
   content: string
+  content_ko?: string | null
+  content_ja?: string | null
   created_at: string
   updated_at: string
 }

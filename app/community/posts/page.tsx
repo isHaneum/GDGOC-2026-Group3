@@ -5,6 +5,16 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getCategories, getPosts, createPost, uploadImage } from '@src/api/client'
 import type { DbCategory, PostWithMeta } from '@shared/types'
+import {
+  communityCopy,
+  formatCommunityTimeAgo,
+  getLocalizedCategoryName,
+  getLocalizedPostContent,
+  getLocalizedPostTitle,
+  readStoredCommunityLocale,
+  writeStoredCommunityLocale,
+  type CommunityLocale,
+} from '@src/lib/communityTranslations'
 
 export default function CommunityPage() {
   const [categories, setCategories] = useState<DbCategory[]>([])
@@ -14,6 +24,7 @@ export default function CommunityPage() {
   const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [communityLocale, setCommunityLocale] = useState<CommunityLocale>('ko')
 
   // Write form state
   const [showForm, setShowForm] = useState(false)
@@ -24,6 +35,10 @@ export default function CommunityPage() {
   const [formImagePreview, setFormImagePreview] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    setCommunityLocale(readStoredCommunityLocale())
+  }, [])
 
   useEffect(() => {
     getCategories()
@@ -96,12 +111,9 @@ export default function CommunityPage() {
     return 0
   }
 
-  function timeAgo(dateStr: string) {
-    const diff = Date.now() - new Date(dateStr).getTime()
-    const h = Math.floor(diff / 3600000)
-    if (h < 1) return '방금 전'
-    if (h < 24) return `${h}h ago`
-    return `${Math.floor(h / 24)}d ago`
+  function setLocale(locale: CommunityLocale) {
+    setCommunityLocale(locale)
+    writeStoredCommunityLocale(locale)
   }
 
   const categoryBadgeColor = (slug: string) => {
@@ -117,6 +129,8 @@ export default function CommunityPage() {
     return 'ALL'
   }
 
+  const copy = communityCopy[communityLocale]
+
   return (
     <div className="min-h-screen bg-bridge-paper">
       <div className="mx-auto max-w-5xl px-4 py-8">
@@ -127,15 +141,32 @@ export default function CommunityPage() {
         {/* Header */}
         <div className="flex items-end justify-between mb-6">
           <div>
-            <p className="text-caption font-black uppercase tracking-widest text-bridge-teal mb-1">문화 포럼</p>
-            <h1 className="text-h1 font-bold text-ink">커뮤니티</h1>
+            <p className="text-caption font-black uppercase tracking-widest text-bridge-teal mb-1">{copy.eyebrow}</p>
+            <h1 className="text-h1 font-bold text-ink">{copy.heading}</h1>
           </div>
-          <button
-            onClick={() => setShowForm(true)}
-            className="bg-ink text-white px-4 py-2 rounded-xl text-body font-bold hover:bg-black transition-colors"
-          >
-            + 글쓰기
-          </button>
+          <div className="flex items-center gap-3">
+            <div className="inline-flex rounded-xl border border-gray-200 bg-white p-1">
+              {(['ko', 'ja'] as const).map((locale) => (
+                <button
+                  key={locale}
+                  type="button"
+                  aria-pressed={communityLocale === locale}
+                  onClick={() => setLocale(locale)}
+                  className={`rounded-lg px-3 py-1.5 text-caption font-black uppercase tracking-widest transition-colors ${
+                    communityLocale === locale ? 'bg-ink text-white' : 'text-gray-400 hover:text-ink'
+                  }`}
+                >
+                  {locale === 'ko' ? 'KR' : 'JP'}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={() => setShowForm(true)}
+              className="bg-ink text-white px-4 py-2 rounded-xl text-body font-bold hover:bg-black transition-colors"
+            >
+              {copy.writePost}
+            </button>
+          </div>
         </div>
 
         {/* Search */}
@@ -144,7 +175,7 @@ export default function CommunityPage() {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="게시글 검색"
+            placeholder={copy.searchPlaceholder}
             className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-body focus:outline-none focus:ring-2 focus:ring-bridge-primary pr-9"
           />
           {search && (
@@ -167,7 +198,7 @@ export default function CommunityPage() {
                 activeSlug === cat.slug ? 'bg-ink text-white' : 'bg-white border border-gray-200 text-gray-500 hover:border-ink'
               }`}
             >
-              {cat.name}
+              {getLocalizedCategoryName(cat, communityLocale)}
             </button>
           ))}
         </div>
@@ -185,11 +216,15 @@ export default function CommunityPage() {
           </div>
         ) : posts.length === 0 ? (
           <div className="rounded-xl bg-white border border-gray-100 p-10 text-center text-gray-400 text-body">
-            {search ? `"${search}" 검색 결과가 없습니다.` : '아직 게시글이 없습니다.'}
+            {search ? copy.noSearchResults(search) : copy.noPosts}
           </div>
         ) : (
           <div className="overflow-hidden rounded-xl border border-gray-100">
-            {posts.map((post, i) => (
+            {posts.map((post, i) => {
+              const title = getLocalizedPostTitle(post, communityLocale)
+              const content = getLocalizedPostContent(post, communityLocale)
+
+              return (
               <Link
                 key={post.id}
                 href={`/community/posts/${post.id}`}
@@ -200,24 +235,24 @@ export default function CommunityPage() {
                 {/* Like count */}
                 <div className="text-center min-w-[36px]">
                   <div className="font-black text-body text-bridge-teal">{post.like_count}</div>
-                  <div className="text-caption text-gray-400 font-bold uppercase">좋아요</div>
+                  <div className="text-caption text-gray-400 font-bold uppercase">{copy.likes}</div>
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <span className={`text-caption font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${categoryBadgeColor(post.category?.slug ?? '')}`}>
-                      {post.category?.name ?? '—'}
+                      {getLocalizedCategoryName(post.category, communityLocale)}
                     </span>
                   </div>
                   <div className="font-bold text-body text-ink group-hover:text-bridge-teal transition-colors truncate">
-                    {post.title}
+                    {title}
                   </div>
                   <div className="text-caption text-gray-400 mt-0.5 truncate">
-                    {post.content.slice(0, 80)}{post.content.length > 80 ? '…' : ''}
+                    {content.slice(0, 80)}{content.length > 80 ? '…' : ''}
                   </div>
                   <div className="text-caption text-gray-300 mt-0.5">
-                    {timeAgo(post.created_at)} · 댓글 {getCommentCount(post)}개
+                    {formatCommunityTimeAgo(post.created_at, communityLocale)} · {copy.comments} {getCommentCount(post)}{copy.commentUnit}
                   </div>
                 </div>
 
@@ -230,7 +265,8 @@ export default function CommunityPage() {
 
                 <span className="text-gray-300 group-hover:text-bridge-primary transition-colors">›</span>
               </Link>
-            ))}
+              )
+            })}
           </div>
         )}
 
@@ -239,46 +275,46 @@ export default function CommunityPage() {
           <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-4">
             <div className="bg-white rounded-xl shadow-panel border border-gray-100 p-5 w-full max-w-lg max-h-[90vh] overflow-y-auto">
               <div className="flex justify-between items-center mb-5">
-                <h2 className="font-black text-h2 text-ink">새 글 작성</h2>
+                <h2 className="font-black text-h2 text-ink">{copy.newPost}</h2>
                 <button onClick={() => setShowForm(false)} className="text-gray-400 hover:text-ink text-body font-bold">✕</button>
               </div>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="text-caption font-black uppercase tracking-widest text-gray-400 block mb-1.5">카테고리</label>
+                  <label className="text-caption font-black uppercase tracking-widest text-gray-400 block mb-1.5">{copy.category}</label>
                   <select
                     value={formCategoryId ?? ''}
                     onChange={(e) => setFormCategoryId(Number(e.target.value))}
                     className="w-full rounded-xl border border-gray-200 px-3 py-2 text-body focus:outline-none focus:ring-2 focus:ring-bridge-primary"
                   >
                     {categories.map((cat) => (
-                      <option key={cat.id} value={cat.id}>{cat.name}</option>
+                      <option key={cat.id} value={cat.id}>{getLocalizedCategoryName(cat, communityLocale)}</option>
                     ))}
                   </select>
                 </div>
                 <div>
-                  <label className="text-caption font-black uppercase tracking-widest text-gray-400 block mb-1.5">제목</label>
+                  <label className="text-caption font-black uppercase tracking-widest text-gray-400 block mb-1.5">{copy.title}</label>
                   <input
                     type="text"
                     value={formTitle}
                     onChange={(e) => setFormTitle(e.target.value)}
-                    placeholder="제목을 입력하세요"
+                    placeholder={copy.titlePlaceholder}
                     className="w-full rounded-xl border border-gray-200 px-3 py-2 text-body focus:outline-none focus:ring-2 focus:ring-bridge-primary"
                     required
                   />
                 </div>
                 <div>
-                  <label className="text-caption font-black uppercase tracking-widest text-gray-400 block mb-1.5">내용</label>
+                  <label className="text-caption font-black uppercase tracking-widest text-gray-400 block mb-1.5">{copy.content}</label>
                   <textarea
                     value={formContent}
                     onChange={(e) => setFormContent(e.target.value)}
                     rows={4}
-                    placeholder="내용을 입력하세요"
+                    placeholder={copy.contentPlaceholder}
                     className="w-full rounded-xl border border-gray-200 px-3 py-2 text-body focus:outline-none focus:ring-2 focus:ring-bridge-primary resize-none"
                     required
                   />
                 </div>
                 <div>
-                  <label className="text-caption font-black uppercase tracking-widest text-gray-400 block mb-1.5">이미지 (선택)</label>
+                  <label className="text-caption font-black uppercase tracking-widest text-gray-400 block mb-1.5">{copy.imageOptional}</label>
                   {formImagePreview ? (
                     <div className="relative rounded-xl overflow-hidden border border-gray-200">
                       <Image src={formImagePreview} alt="preview" width={480} height={200} className="w-full object-cover max-h-48" />
@@ -292,7 +328,7 @@ export default function CommunityPage() {
                     </div>
                   ) : (
                     <label className="flex items-center justify-center gap-2 w-full rounded-xl border-2 border-dashed border-gray-200 py-6 text-body text-gray-400 cursor-pointer hover:border-bridge-primary hover:text-bridge-teal transition-colors">
-                      <span>📷 이미지 첨부</span>
+                      <span>{copy.attachImage}</span>
                       <input
                         ref={fileInputRef}
                         type="file"
@@ -304,13 +340,13 @@ export default function CommunityPage() {
                   )}
                 </div>
                 <div className="flex justify-end gap-3 pt-1">
-                  <button type="button" onClick={() => setShowForm(false)} className="px-4 py-2 text-body font-bold text-gray-500 hover:text-ink">취소</button>
+                  <button type="button" onClick={() => setShowForm(false)} className="px-4 py-2 text-body font-bold text-gray-500 hover:text-ink">{copy.cancel}</button>
                   <button
                     type="submit"
                     disabled={submitting}
                     className="bg-ink text-white px-5 py-2 rounded-xl text-body font-bold hover:bg-black disabled:opacity-50"
                   >
-                    {submitting ? '올리는 중...' : '게시'}
+                    {submitting ? copy.submittingPost : copy.submitPost}
                   </button>
                 </div>
               </form>
@@ -323,9 +359,9 @@ export default function CommunityPage() {
       {/* Popular posts sidebar */}
       <aside className="hidden lg:block w-72 flex-shrink-0 ml-4">
         <div className="sticky top-24 bg-white rounded-xl border border-gray-100 shadow-panel p-5">
-          <p className="text-caption font-black uppercase tracking-widest text-bridge-teal mb-5">🔥 인기글</p>
+          <p className="text-caption font-black uppercase tracking-widest text-bridge-teal mb-5">{copy.popularPosts}</p>
           {popularPosts.length === 0 ? (
-            <p className="text-body text-gray-400">아직 게시글이 없습니다.</p>
+            <p className="text-body text-gray-400">{copy.noPosts}</p>
           ) : (
             <ol className="space-y-4">
               {popularPosts.map((post, i) => (
@@ -345,7 +381,7 @@ export default function CommunityPage() {
                         </span>
                       </div>
                       <p className="text-body font-bold text-ink group-hover:text-bridge-teal transition-colors line-clamp-2 leading-snug">
-                        {post.title}
+                        {getLocalizedPostTitle(post, communityLocale)}
                       </p>
                     </div>
                   </Link>

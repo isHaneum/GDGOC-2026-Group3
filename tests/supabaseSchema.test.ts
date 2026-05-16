@@ -58,12 +58,25 @@ describe('community schema scope', () => {
   })
 
   it('recreates resume context mappings for employee profiles after signup schema cleanup', () => {
-    const migration = read('server/supabase/migrations/010_resume_context_mappings_employee_profiles.sql')
+    const migration = read('supabase/migrations/20260517000012_resume_context_mappings_employee_profiles.sql')
 
     expect(migration).toContain('CREATE TABLE IF NOT EXISTS public.resume_context_mappings')
     expect(migration).toContain('employee_profile_id bigint REFERENCES public.employee_profiles(id)')
     expect(migration).toContain("target_locale text NOT NULL CHECK (target_locale IN ('ko', 'ja'))")
     expect(migration).toContain('request jsonb NOT NULL')
     expect(migration).toContain('response jsonb NOT NULL')
+  })
+
+  it('adds bilingual community fields for posts and comments', () => {
+    const migration = read('supabase/migrations/20260517000013_community_translations.sql')
+
+    expect(migration).toContain('ADD COLUMN IF NOT EXISTS title_ko text')
+    expect(migration).toContain('ADD COLUMN IF NOT EXISTS title_ja text')
+    expect(migration).toContain('ADD COLUMN IF NOT EXISTS content_ko text')
+    expect(migration).toContain('ADD COLUMN IF NOT EXISTS content_ja text')
+    expect(migration).toContain('ALTER TABLE public.comments')
+    expect(migration).toContain('posts_title_ko_search_idx')
+    expect(migration).toContain('posts_content_ja_search_idx')
+    expect(migration).toContain("NOTIFY pgrst, 'reload schema'")
   })
 })

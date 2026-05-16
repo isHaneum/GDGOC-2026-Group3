@@ -38,7 +38,16 @@ export async function listPosts(
   }
 
   if (params.q) {
-    query = query.or(`title.ilike.%${params.q}%,content.ilike.%${params.q}%`)
+    query = query.or(
+      [
+        `title.ilike.%${params.q}%`,
+        `content.ilike.%${params.q}%`,
+        `title_ko.ilike.%${params.q}%`,
+        `content_ko.ilike.%${params.q}%`,
+        `title_ja.ilike.%${params.q}%`,
+        `content_ja.ilike.%${params.q}%`,
+      ].join(',')
+    )
   }
 
   const { data, error } = await query
