@@ -189,7 +189,7 @@ export default function EmployeeRecommendsPage() {
         <header className="shrink-0 rounded-2xl border border-gray-100 bg-white p-6 shadow-panel">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <p className="text-xs font-black uppercase tracking-widest text-bridge-teal">Recommended Roles</p>
+              <p className="text-xs font-black uppercase tracking-widest text-bridge-teal">추천 직무 안내</p>
               <h1 className="mt-2 text-3xl font-black tracking-tight text-ink">추천 직무</h1>
               <p className="mt-2 max-w-3xl text-sm leading-6 text-gray-500">
                 로그인한 지원자의 포트폴리오와 프로필을 기준으로 계산한 상위 직무 추천입니다.
@@ -205,7 +205,7 @@ export default function EmployeeRecommendsPage() {
               <Link href="/employee/companies" className="rounded-full border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 hover:border-bridge-primary hover:text-ink">
                 채용중인 회사 보기
               </Link>
-              <Link href="/employee/portfolio" className="rounded-full bg-ink px-4 py-2 text-sm font-bold text-white hover:bg-black">
+              <Link href="/employee/portfolio" className="rounded-full bg-bridge-primary px-4 py-2 text-sm font-bold text-white hover:opacity-90">
                 내 포트폴리오
               </Link>
             </div>
@@ -216,7 +216,7 @@ export default function EmployeeRecommendsPage() {
           <section className="rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-panel">
             <p className="text-sm font-bold text-bridge-teal">추천 직무를 준비하려면 포트폴리오 저장이 필요합니다.</p>
             <p className="mt-2 text-sm text-gray-500">{payload?.message ?? "로그인 후 포트폴리오를 저장하면 API가 현재 사용자 기준 추천을 계산합니다."}</p>
-            <Link href="/employee/portfolio" className="mt-5 inline-flex rounded-full bg-ink px-5 py-3 text-sm font-black text-white">
+            <Link href="/employee/portfolio" className="mt-5 inline-flex rounded-full bg-bridge-primary px-5 py-3 text-sm font-black text-white hover:opacity-90">
               포트폴리오 저장하기
             </Link>
           </section>
@@ -225,7 +225,7 @@ export default function EmployeeRecommendsPage() {
             <section className="flex min-h-0 flex-col rounded-2xl border border-gray-100 bg-white p-5 shadow-panel">
               <div className="mb-4 flex shrink-0 items-end justify-between gap-3">
                 <div>
-                  <p className="text-sm font-bold text-bridge-teal">Top matches</p>
+                  <p className="text-sm font-bold text-bridge-teal">매칭률 상위 포지션</p>
                   <h2 className="mt-1 text-2xl font-black text-ink">상위 추천 직무</h2>
                 </div>
                 <span className="text-sm font-bold text-gray-400">Top {recommendations.length}</span>
@@ -274,7 +274,7 @@ function RoleDetail({ recommendation, company }: { recommendation: DeveloperToCo
       <div className="flex items-start gap-4">
         <CompanyLogo company={company} />
         <div className="min-w-0 flex-1">
-          <p className="text-xs font-black uppercase tracking-widest text-gray-400">Selected role</p>
+          <p className="text-xs font-black uppercase tracking-widest text-gray-400">선택한 직무</p>
           <h2 className="mt-1 text-2xl font-black text-ink">{recommendation.companyName}</h2>
           <p className="text-sm font-bold text-bridge-teal">{recommendation.roleTitle}</p>
           <p className="mt-1 text-xs font-bold text-gray-400">{formatSourceConfidence(company)}</p>
@@ -285,14 +285,14 @@ function RoleDetail({ recommendation, company }: { recommendation: DeveloperToCo
       </div>
 
       <dl className="mt-5 grid gap-3 text-sm md:grid-cols-2">
-        <Metric label="Location" value={formatLocationSummary(company, "확인 필요")} />
-        <Metric label="Salary" value={formatCompanySalarySummary(company, "확인 필요")} />
-        <Metric label="Language" value={formatLanguageSummary(company, "확인 필요")} />
-        <Metric label="Experience" value={formatExperienceRange(company, "확인 필요")} />
+        <Metric label="근무지" value={formatLocationSummary(company, "확인 필요")} />
+        <Metric label="급여 정보" value={formatCompanySalarySummary(company, "확인 필요")} />
+        <Metric label="언어 수준" value={formatLanguageSummary(company, "확인 필요")} />
+        <Metric label="경력 요건" value={formatExperienceRange(company, "확인 필요")} />
       </dl>
 
       <div className="mt-5 grid gap-4">
-        <InfoPanel title="Required and preferred stack">
+        <InfoPanel title="요구/우대 기술 스택">
           <div className="flex flex-wrap gap-2">
             {formatStacks(company).map((stack) => (
               <span key={stack} className="rounded-lg border border-gray-100 bg-gray-50 px-2 py-1 text-xs font-bold text-gray-500">
@@ -302,19 +302,19 @@ function RoleDetail({ recommendation, company }: { recommendation: DeveloperToCo
           </div>
         </InfoPanel>
 
-        <InfoPanel title="Why it matches">
+        <InfoPanel title="매칭 사유">
           <BulletList items={recommendation.matchedReasons.slice(0, 6)} fallback="프로필과 직무 조건이 일부 일치합니다." />
         </InfoPanel>
 
-        <InfoPanel title="What to prepare next">
+        <InfoPanel title="추가 준비 사항">
           <BulletList items={(recommendation.missingSignals.length ? recommendation.missingSignals : ["추가 보강 신호가 많지 않습니다."]).slice(0, 6)} />
         </InfoPanel>
 
-        <InfoPanel title="Risks to check">
+        <InfoPanel title="체크해야 할 리스크">
           <BulletList items={(recommendation.risks.length ? recommendation.risks : ["특별한 리스크가 크게 감지되지 않았습니다."]).slice(0, 4)} />
         </InfoPanel>
 
-        <InfoPanel title="Sources">
+        <InfoPanel title="출처">
           <div className="flex flex-wrap gap-2">
             {links.map((link) => (
               <a
@@ -332,7 +332,7 @@ function RoleDetail({ recommendation, company }: { recommendation: DeveloperToCo
       </div>
 
       <div className="mt-6 flex flex-wrap gap-2">
-        <Link href={`/employee/companies/${company.companyId}`} className="rounded-full bg-bridge-primary px-4 py-2 text-sm font-bold text-ink hover:opacity-90">
+        <Link href={`/employee/companies/${company.companyId}`} className="rounded-full bg-bridge-primary px-4 py-2 text-sm font-bold text-white hover:opacity-90 shadow-sm">
           회사 상세 보기
         </Link>
         <Link href="/employee/portfolio" className="rounded-full border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 hover:border-bridge-primary hover:text-ink">
