@@ -2,6 +2,7 @@ import companyJobProfiles from '../public/data/company-criteria/companyJobProfil
 import companyRubrics from '../public/data/company-criteria/companyRubrics.json'
 import salaryDataset from '../docs/japan_it_companies_salary_enriched.json'
 import type { CompanyEvaluationRubric, CompanyJobProfile } from '../shared/companyCriteriaTypes'
+import { formatCompanySalarySummary } from '../src/lib/fitDisplayHelpers'
 import { validateCompanyJobProfiles } from '../src/lib/twoSidedFitEngine'
 import { getSalaryEnrichmentCompanyCount, mergeCompanySalaryDataList } from '../src/lib/companySalaryEnrichment'
 import { describe, expect, it } from 'vitest'
@@ -25,5 +26,14 @@ describe('company salary enrichment', () => {
     const summary = validateCompanyJobProfiles(merged, companyRubrics as CompanyEvaluationRubric[])
 
     expect(summary.commonWarnings.find((warning) => warning.warning === 'missing salary')).toBeUndefined()
+  })
+
+  it('shows average salary text when enriched data has no fixed starting salary', () => {
+    const merged = mergeCompanySalaryDataList(companyJobProfiles as CompanyJobProfile[])
+    const mercari = merged.find((profile) => profile.companyId === 'mercari')
+
+    expect(mercari).toBeDefined()
+    expect(mercari?.averageAnnualSalary).toBe(11660000)
+    expect(formatCompanySalarySummary(mercari!, 'Confirmation needed')).toBe('Average JPY 11,660,000')
   })
 })
