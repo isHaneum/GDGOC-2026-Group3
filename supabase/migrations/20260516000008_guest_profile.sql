@@ -23,15 +23,16 @@ INSERT INTO auth.users (
   'authenticated',
   'authenticated',
   'guest@bridge.local',
-  '',
+  '$2a$10$AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
   NOW(),
   NOW(),
   NOW(),
   '{"provider":"email","providers":["email"]}',
   '{"role":"developer","market":"KR"}',
-  false, '', '', '', ''
+  false, NULL, NULL, NULL, NULL
 ) ON CONFLICT (id) DO NOTHING;
 
+-- Note: on_auth_user_created trigger also fires and seeds developer_profiles
 INSERT INTO public.profiles (user_id, role, market)
 VALUES ('00000000-0000-0000-0000-000000000001', 'developer', 'KR')
-ON CONFLICT DO NOTHING;
+ON CONFLICT (user_id) DO NOTHING;
