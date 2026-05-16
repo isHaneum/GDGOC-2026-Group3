@@ -71,55 +71,86 @@ function parseJsonText(text) {
   try {
     return JSON.parse(text)
   } catch {
-    const start = text.indexOf('{')
-    const end = text.lastIndexOf('}')
-    if (start >= 0 && end > start) return JSON.parse(text.slice(start, end + 1))
+    const objStart = text.indexOf('{')
+    const objEnd = text.lastIndexOf('}')
+    const arrStart = text.indexOf('[')
+    const arrEnd = text.lastIndexOf(']')
+    if (arrStart >= 0 && arrEnd > arrStart && (arrStart < objStart || objStart < 0)) {
+      return JSON.parse(text.slice(arrStart, arrEnd + 1))
+    }
+    if (objStart >= 0 && objEnd > objStart) return JSON.parse(text.slice(objStart, objEnd + 1))
     throw new Error('Gemini did not return parseable JSON.')
   }
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+function parseRetryDelay(errorBody) {
+  try {
+    const parsed = JSON.parse(errorBody)
+    const retryInfo = parsed?.error?.details?.find((d) => d['@type']?.endsWith('RetryInfo'))
+    if (retryInfo?.retryDelay) {
+      const seconds = parseInt(retryInfo.retryDelay, 10)
+      if (Number.isFinite(seconds) && seconds > 0) return seconds * 1000
+    }
+  } catch {}
+  return 60_000
 }
 
 async function generateGeminiJson({ apiKey, prompt, schema, temperature = 0.1 }) {
   let lastError = null
 
   for (const model of getGeminiModelCandidates()) {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-goog-api-key': apiKey,
-        },
-        body: JSON.stringify({
-          contents: [
-            {
-              role: 'user',
-              parts: [{ text: prompt }],
-            },
-          ],
-          generationConfig: {
-            temperature,
-            responseMimeType: 'application/json',
-            responseJsonSchema: schema,
+    let retries = 0
+    while (retries <= 8) {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': apiKey,
           },
-        }),
-      }
-    )
+          body: JSON.stringify({
+            contents: [
+              {
+                role: 'user',
+                parts: [{ text: prompt }],
+              },
+            ],
+            generationConfig: {
+              temperature,
+              responseMimeType: 'application/json',
+              responseJsonSchema: schema,
+            },
+          }),
+        }
+      )
 
-    if (!response.ok) {
-      const errorText = await response.text()
-      const error = new Error(`Gemini request failed with ${response.status}: ${errorText}`)
-      if (response.status === 404) {
-        lastError = error
-        continue
+      if (!response.ok) {
+        const errorText = await response.text()
+        if (response.status === 429) {
+          const delayMs = parseRetryDelay(errorText)
+          console.log(`Rate limited — retrying in ${Math.ceil(delayMs / 1000)}s...`)
+          await sleep(delayMs)
+          retries++
+          continue
+        }
+        const error = new Error(`Gemini request failed with ${response.status}: ${errorText}`)
+        if (response.status === 404) {
+          lastError = error
+          break
+        }
+        throw error
       }
-      throw error
+
+      const payload = await response.json()
+      const text = extractTextFromGeminiResponse(payload)
+      if (!text) throw new Error('Gemini returned an empty response.')
+      return parseJsonText(text)
     }
-
-    const payload = await response.json()
-    const text = extractTextFromGeminiResponse(payload)
-    if (!text) throw new Error('Gemini returned an empty response.')
-    return parseJsonText(text)
   }
 
   throw lastError ?? new Error('No supported Gemini model was available.')
@@ -132,55 +163,65 @@ function normalizeString(value, label) {
   return value.trim()
 }
 
-const postTranslationSchema = {
-  type: 'object',
-  properties: {
-    titleKo: { type: 'string' },
-    contentKo: { type: 'string' },
-    titleJa: { type: 'string' },
-    contentJa: { type: 'string' },
+const BATCH_SIZE = 10
+
+const postBatchSchema = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      id: { type: 'number' },
+      titleKo: { type: 'string' },
+      contentKo: { type: 'string' },
+      titleJa: { type: 'string' },
+      contentJa: { type: 'string' },
+    },
+    required: ['id', 'titleKo', 'contentKo', 'titleJa', 'contentJa'],
   },
-  required: ['titleKo', 'contentKo', 'titleJa', 'contentJa'],
 }
 
-const commentTranslationSchema = {
-  type: 'object',
-  properties: {
-    contentKo: { type: 'string' },
-    contentJa: { type: 'string' },
+const commentBatchSchema = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      id: { type: 'number' },
+      contentKo: { type: 'string' },
+      contentJa: { type: 'string' },
+    },
+    required: ['id', 'contentKo', 'contentJa'],
   },
-  required: ['contentKo', 'contentJa'],
 }
 
-function buildPostPrompt(post) {
+function buildPostBatchPrompt(posts) {
   return `You are backfilling bilingual community forum content for BridgePass, a Korean-Japanese hiring community.
 
-Translate the current post into natural Korean and natural Japanese.
+Translate each post into natural Korean and natural Japanese.
 
 Rules:
 - Preserve factual meaning, names, dates, URLs, code identifiers, product names, and markdown structure.
 - Do not summarize, add advice, add claims, or moderate the content.
 - If the source mixes Korean and Japanese, produce complete, natural versions in both languages.
 - Keep a professional community tone, but preserve the author's intent.
-- Return JSON only.
+- Return a JSON array with one object per post, each containing: id, titleKo, contentKo, titleJa, contentJa.
 
-Post:
-${JSON.stringify({ id: post.id, title: post.title, content: post.content }, null, 2)}`
+Posts:
+${JSON.stringify(posts.map((p) => ({ id: p.id, title: p.title, content: p.content })), null, 2)}`
 }
 
-function buildCommentPrompt(comment) {
+function buildCommentBatchPrompt(comments) {
   return `You are backfilling bilingual community comments for BridgePass, a Korean-Japanese hiring community.
 
-Translate the current comment into natural Korean and natural Japanese.
+Translate each comment into natural Korean and natural Japanese.
 
 Rules:
 - Preserve factual meaning, names, dates, URLs, code identifiers, emoji, and the author's tone.
 - Do not summarize, add advice, add claims, or moderate the content.
 - If the source mixes Korean and Japanese, produce complete, natural versions in both languages.
-- Return JSON only.
+- Return a JSON array with one object per comment, each containing: id, contentKo, contentJa.
 
-Comment:
-${JSON.stringify({ id: comment.id, content: comment.content }, null, 2)}`
+Comments:
+${JSON.stringify(comments.map((c) => ({ id: c.id, content: c.content })), null, 2)}`
 }
 
 function postNeedsBackfill(post, force) {
@@ -212,58 +253,80 @@ async function fetchRows(supabase) {
   }
 }
 
-async function translatePosts(apiKey, posts) {
-  const updates = []
+function chunk(arr, size) {
+  const chunks = []
+  for (let i = 0; i < arr.length; i += size) chunks.push(arr.slice(i, i + size))
+  return chunks
+}
 
-  for (const post of posts) {
-    console.log(`Translating post ${post.id}`)
-    const result = await generateGeminiJson({
+async function translateAndSavePosts(apiKey, supabase, posts) {
+  let saved = 0
+  const batches = chunk(posts, BATCH_SIZE)
+
+  for (let b = 0; b < batches.length; b++) {
+    const batch = batches[b]
+    const ids = batch.map((p) => p.id).join(', ')
+    console.log(`Translating posts batch ${b + 1}/${batches.length} (ids: ${ids})`)
+    const results = await generateGeminiJson({
       apiKey,
-      prompt: buildPostPrompt(post),
-      schema: postTranslationSchema,
+      prompt: buildPostBatchPrompt(batch),
+      schema: postBatchSchema,
     })
 
-    updates.push({
-      id: post.id,
-      title_ko: normalizeString(result.titleKo, `post ${post.id} titleKo`),
-      content_ko: normalizeString(result.contentKo, `post ${post.id} contentKo`),
-      title_ja: normalizeString(result.titleJa, `post ${post.id} titleJa`),
-      content_ja: normalizeString(result.contentJa, `post ${post.id} contentJa`),
-    })
+    if (!Array.isArray(results) || results.length !== batch.length) {
+      throw new Error(`Batch ${b + 1}: expected ${batch.length} results, got ${results?.length ?? 0}`)
+    }
+
+    for (const result of results) {
+      const values = {
+        title_ko: normalizeString(result.titleKo, `post ${result.id} titleKo`),
+        content_ko: normalizeString(result.contentKo, `post ${result.id} contentKo`),
+        title_ja: normalizeString(result.titleJa, `post ${result.id} titleJa`),
+        content_ja: normalizeString(result.contentJa, `post ${result.id} contentJa`),
+      }
+      const { error } = await supabase.from('posts').update(values).eq('id', result.id)
+      if (error) throw new Error(`Failed to update post ${result.id}: ${error.message}`)
+      console.log(`Saved post ${result.id}`)
+      saved++
+    }
   }
 
-  return updates
+  return saved
 }
 
-async function translateComments(apiKey, comments) {
-  const updates = []
+async function translateAndSaveComments(apiKey, supabase, comments) {
+  let saved = 0
+  const batches = chunk(comments, BATCH_SIZE)
 
-  for (const comment of comments) {
-    console.log(`Translating comment ${comment.id}`)
-    const result = await generateGeminiJson({
+  for (let b = 0; b < batches.length; b++) {
+    const batch = batches[b]
+    const ids = batch.map((c) => c.id).join(', ')
+    console.log(`Translating comments batch ${b + 1}/${batches.length} (ids: ${ids})`)
+    const results = await generateGeminiJson({
       apiKey,
-      prompt: buildCommentPrompt(comment),
-      schema: commentTranslationSchema,
+      prompt: buildCommentBatchPrompt(batch),
+      schema: commentBatchSchema,
     })
 
-    updates.push({
-      id: comment.id,
-      content_ko: normalizeString(result.contentKo, `comment ${comment.id} contentKo`),
-      content_ja: normalizeString(result.contentJa, `comment ${comment.id} contentJa`),
-    })
+    if (!Array.isArray(results) || results.length !== batch.length) {
+      throw new Error(`Batch ${b + 1}: expected ${batch.length} results, got ${results?.length ?? 0}`)
+    }
+
+    for (const result of results) {
+      const values = {
+        content_ko: normalizeString(result.contentKo, `comment ${result.id} contentKo`),
+        content_ja: normalizeString(result.contentJa, `comment ${result.id} contentJa`),
+      }
+      const { error } = await supabase.from('comments').update(values).eq('id', result.id)
+      if (error) throw new Error(`Failed to update comment ${result.id}: ${error.message}`)
+      console.log(`Saved comment ${result.id}`)
+      saved++
+    }
   }
 
-  return updates
+  return saved
 }
 
-async function applyUpdates(supabase, table, updates) {
-  for (const update of updates) {
-    const { id, ...values } = update
-    const { error } = await supabase.from(table).update(values).eq('id', id)
-    if (error) throw new Error(`Failed to update ${table} ${id}: ${error.message}`)
-    console.log(`Updated ${table} ${id}`)
-  }
-}
 
 async function main() {
   loadLocalEnv()
@@ -307,13 +370,10 @@ async function main() {
   const apiKey = readGeminiKey()
   if (!apiKey) throw new Error('GEMINI_API_KEY or gemini.key is required for translation.')
 
-  const postUpdates = await translatePosts(apiKey, limitedPosts)
-  const commentUpdates = await translateComments(apiKey, limitedComments)
+  const savedPosts = await translateAndSavePosts(apiKey, supabase, limitedPosts)
+  const savedComments = await translateAndSaveComments(apiKey, supabase, limitedComments)
 
-  await applyUpdates(supabase, 'posts', postUpdates)
-  await applyUpdates(supabase, 'comments', commentUpdates)
-
-  console.log(`Backfill complete. Updated ${postUpdates.length} posts and ${commentUpdates.length} comments.`)
+  console.log(`Backfill complete. Updated ${savedPosts} posts and ${savedComments} comments.`)
 }
 
 main().catch((error) => {
