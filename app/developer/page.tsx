@@ -79,6 +79,9 @@ export default function DeveloperDashboard() {
               Your cultural resonance with the{" "}
               <span className="font-semibold text-bridge-teal">{market.targetCountry}</span> market is growing.
             </p>
+            <Link href="/signal-lab" className="mt-3 inline-flex text-sm font-semibold text-bridge-primary hover:underline">
+              추천 엔진 보기
+            </Link>
           </div>
           <div className="bg-white px-6 py-3 rounded-2xl shadow-panel border border-gray-100 flex items-center space-x-4">
             <div className="text-right">

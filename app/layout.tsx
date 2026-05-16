@@ -22,6 +22,9 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
               The Bridge
             </a>
             <div className="hidden md:flex space-x-6">
+              <a href="/developer" className="hover:text-bridge-primary px-1 py-2 text-sm font-medium transition-colors">
+                Developer
+              </a>
               <a href="/forums" className="hover:text-bridge-primary px-1 py-2 text-sm font-medium transition-colors">
                 Community
               </a>
@@ -30,6 +33,9 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
               </a>
               <a href="/companies" className="hover:text-bridge-primary px-1 py-2 text-sm font-medium transition-colors">
                 Hiring Companies
+              </a>
+              <a href="/signal-lab" className="hover:text-bridge-primary px-1 py-2 text-sm font-medium transition-colors">
+                Signal Lab
               </a>
             </div>
           </div>
