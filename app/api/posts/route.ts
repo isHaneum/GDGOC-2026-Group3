@@ -1,7 +1,10 @@
 import { type NextRequest } from 'next/server'
 import { createClient } from '../../_lib/supabase'
+import { supabaseServer } from '../../../server/services/supabase'
 import { listPosts, createPost } from '../../../server/services/forumService'
 import { jsonResponse, jsonError } from '../_lib/respond'
+
+const GUEST_USER_ID = '00000000-0000-0000-0000-000000000001'
 
 export async function GET(request: NextRequest) {
   try {
@@ -21,14 +24,11 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const db = await createClient()
-    const { data: { user }, error } = await db.auth.getUser()
-    if (error || !user) return jsonError(new Error('Not authenticated'))
     const body = await request.json()
     if (!body.title || !body.content || !body.category_id) {
       return jsonError(new Error('title, content, and category_id are required'))
     }
-    const data = await createPost(db, user.id, body)
+    const data = await createPost(supabaseServer, GUEST_USER_ID, body)
     return jsonResponse(data)
   } catch (error) {
     return jsonError(error)
