@@ -201,7 +201,7 @@
 | Name                     | Type          | Constraints |
 | ------------------------ | ------------- | ----------- |
 | `id`                     | `text`        | Primary     |
-| `developer_profile_id`   | `int8`        | Nullable    |
+| `employee_profile_id`    | `int8`        | Nullable    |
 | `target_locale`          | `text`        |             |
 | `detected_source_locale` | `text`        | Nullable    |
 | `request`                | `jsonb`       |             |

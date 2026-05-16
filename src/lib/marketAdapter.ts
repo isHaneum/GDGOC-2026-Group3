@@ -80,30 +80,46 @@ export function buildResumeContextRequest(
   market: MarketConfig
 ): ResumeContextMappingRequest {
   const direction = getMarketDirection(market);
-  const contents = [
-    { name: "Name", content: candidate.name },
-    { name: "Nationality", content: candidate.nationality },
-    { name: "Target Roles", content: candidate.targetRoles.join(", ") },
-    { name: "Core Tech Stack", content: candidate.availableTechStacks.join(", ") },
-    {
-      name: "Target Language Level",
-      content: candidate.languageCertifications
-        .map((certification) =>
-          [certification.language, certification.level, certification.certification].filter(Boolean).join(" ")
-        )
-        .join(", ")
-    },
-    { name: "Years of Experience", content: `${candidate.yearsOfExperience}` },
-    { name: "Preferred Locations", content: candidate.preferredLocations.join(", ") },
-    { name: "Work Style Preference", content: candidate.workStylePreference },
-    { name: "Resume Text", content: candidate.resumeText },
-    { name: "Portfolio Text", content: candidate.portfolioText ?? "Not provided" },
-    { name: "Motivation", content: candidate.motivation ?? "Not provided" },
-    { name: "Recruiter Concerns", content: candidate.concerns?.join(", ") ?? "Not provided" }
-  ];
 
   return {
     targetLocale: direction.targetLocale,
-    contents
+    sourceLocaleHint: direction.sourceLocale,
+    applicant: {
+      applicantId: candidate.developerId,
+      ...(candidate.employeeProfileId ? { employeeProfileId: candidate.employeeProfileId } : {}),
+      name: candidate.name,
+      nationality: candidate.nationality,
+      yearsOfExperience: candidate.yearsOfExperience,
+      targetRoles: candidate.targetRoles
+    },
+    portfolio: {
+      techStack: candidate.availableTechStacks,
+      languageCertifications: candidate.languageCertifications.map((certification) =>
+        [certification.language, certification.level, certification.certification].filter(Boolean).join(" ")
+      ),
+      preferredSalary: formatPreferredSalary(candidate),
+      preferredLocations: candidate.preferredLocations,
+      preferredCompanyTypes: candidate.preferredCompanyTypes,
+      workStylePreference: candidate.workStylePreference,
+      relocationAvailable: candidate.relocationAvailable,
+      visaSupportNeeded: candidate.visaSupportNeeded ?? false,
+      selfIntroduction: candidate.resumeText,
+      keyProjectExperience: candidate.portfolioText ?? "",
+      motivation: candidate.motivation ?? "",
+      concerns: candidate.concerns ?? [],
+      githubUrl: candidate.githubUrl ?? ""
+    }
   };
+}
+
+function formatPreferredSalary(candidate: DeveloperPreference) {
+  const min = candidate.preferredSalaryMin;
+  const max = candidate.preferredSalaryMax;
+
+  if (min === undefined && max === undefined) return "";
+  if (min !== undefined && max !== undefined) {
+    return `${min.toLocaleString("en-US")}-${max.toLocaleString("en-US")} ${candidate.preferredCurrency}`;
+  }
+  if (min !== undefined) return `From ${min.toLocaleString("en-US")} ${candidate.preferredCurrency}`;
+  return `Up to ${max?.toLocaleString("en-US")} ${candidate.preferredCurrency}`;
 }

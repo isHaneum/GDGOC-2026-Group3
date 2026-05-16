@@ -45,6 +45,7 @@ export interface DeveloperLanguageCertification {
 
 export interface DeveloperPreference {
   developerId: string;
+  employeeProfileId?: number;
   name: string;
   nationality: "Korean" | "Japanese" | "Other";
   preferredSalaryMin?: number;
@@ -63,6 +64,7 @@ export interface DeveloperPreference {
   portfolioText?: string;
   motivation?: string;
   concerns?: string[];
+  githubUrl?: string;
 }
 
 export interface CompanyJobLanguageRequirement {
