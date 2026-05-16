@@ -194,6 +194,7 @@ export interface DbProfile {
   user_id: string  // uuid — references auth.users
   role: 'employee' | 'employer'
   market: 'KR_TO_JP' | 'JP_TO_KR'
+  nickname: string
   created_at: string
   updated_at: string
 }
@@ -271,14 +272,12 @@ export interface DbComment {
 }
 
 export interface PostWithMeta extends DbPost {
-  author: Pick<DbProfile, 'id' | 'role' | 'market'>
+  author: Pick<DbProfile, 'id' | 'role' | 'market' | 'nickname'>
   category: DbCategory
   comment_count: number
 }
 
-type AuthorWithName = Pick<DbProfile, 'id' | 'role' | 'market'> & {
-  developer_profiles: Array<{ full_name: string | null }>
-}
+type AuthorWithName = Pick<DbProfile, 'id' | 'role' | 'market' | 'nickname'>
 
 export interface PostWithComments extends DbPost {
   author: AuthorWithName

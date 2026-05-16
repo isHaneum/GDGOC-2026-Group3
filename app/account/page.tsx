@@ -53,6 +53,7 @@ export default function AccountPage() {
   const [market, setMarket] = useState("");
   const [draft, setDraft] = useState<AccountDraft>(emptyDraft);
   const [saved, setSaved] = useState(false);
+  const [saveError, setSaveError] = useState("");
 
   useEffect(() => {
     let cancelled = false;
@@ -72,7 +73,7 @@ export default function AccountPage() {
       setEmail(account.user.email ?? "");
       setRoleLabel(role === "employee" ? "Applicant" : role === "employer" ? "Employer" : "Unknown");
       setMarket(account.profile?.market ?? String(account.user.user_metadata?.market ?? "Unknown"));
-      setDraft(readDraft());
+      setDraft({ ...readDraft(), nickname: (account.profile as { nickname?: string })?.nickname ?? "" });
       setLoading(false);
     }
 
@@ -115,10 +116,22 @@ export default function AccountPage() {
 
         <form
           className="mt-6 grid gap-4 md:grid-cols-2"
-          onSubmit={(event) => {
+          onSubmit={async (event) => {
             event.preventDefault();
+            setSaved(false);
+            setSaveError("");
             writeDraft(draft);
-            setSaved(true);
+            const res = await fetch("/api/auth/me", {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ nickname: draft.nickname }),
+            });
+            if (res.ok) {
+              setSaved(true);
+            } else {
+              const data = await res.json() as { error?: string };
+              setSaveError(data.error ?? "저장에 실패했습니다.");
+            }
           }}
         >
           <Field
@@ -160,7 +173,8 @@ export default function AccountPage() {
             >
               로그아웃
             </button>
-            {saved ? <span className="text-body font-bold text-bridge-teal">로컬에 저장됨</span> : null}
+            {saved ? <span className="text-body font-bold text-bridge-teal">저장됨</span> : null}
+            {saveError ? <span className="text-body font-bold text-bridge-coral">{saveError}</span> : null}
           </div>
         </form>
       </section>

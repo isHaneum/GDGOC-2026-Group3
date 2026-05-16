@@ -52,12 +52,10 @@ export default function PostDetailPage() {
     if (!commentText.trim()) return
     setSubmittingComment(true)
     try {
-      const newComment = await addComment(postId, commentText.trim())
-      setComments((prev) => [
-        ...prev,
-        { ...newComment, post_id: Number(postId), author_id: 0, updated_at: newComment.created_at, author: { id: 0, role: 'employee', market: 'KR_TO_JP', developer_profiles: [] } }
-      ])
+      await addComment(postId, commentText.trim())
       setCommentText('')
+      const refreshed = await getPost(postId)
+      setComments(refreshed.comments ?? [])
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to post comment')
     } finally {
@@ -74,7 +72,7 @@ export default function PostDetailPage() {
   }
 
   function getAuthorName(author: PostWithComments['author'] | PostWithComments['comments'][number]['author']): string {
-    return author.developer_profiles?.[0]?.full_name ?? 'Guest'
+    return author.nickname ?? 'Guest'
   }
 
   const categoryBadgeColor = (slug: string) => {

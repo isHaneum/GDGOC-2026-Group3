@@ -20,7 +20,7 @@ export async function listPosts(
     .from('posts')
     .select(`
       *,
-      author:profiles!author_id(id, role, market),
+      author:profiles!author_id(id, role, market, nickname),
       category:categories!category_id(*),
       comment_count:comments(count)
     `)
@@ -51,9 +51,9 @@ export async function getPost(db: SupabaseClient, postId: string) {
     .from('posts')
     .select(`
       *,
-      author:profiles!author_id(id, role, market, developer_profiles(full_name)),
+      author:profiles!author_id(id, role, market, nickname),
       category:categories!category_id(*),
-      comments(*, author:profiles!author_id(id, role, market, developer_profiles(full_name)))
+      comments(*, author:profiles!author_id(id, role, market, nickname))
     `)
     .eq('id', postId)
     .single()

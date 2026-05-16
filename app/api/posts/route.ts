@@ -1,6 +1,5 @@
-import { type NextRequest } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { createClient, hasSupabaseEnv } from '../../_lib/supabase'
-import { GUEST_USER_ID, requireSupabaseServer } from '../../../server/services/supabase'
 import { listPosts, createPost } from '../../../server/services/forumService'
 import { jsonResponse, jsonError } from '../_lib/respond'
 
@@ -26,11 +25,14 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    const db = await createClient()
+    const { data: { user }, error: authError } = await db.auth.getUser()
+    if (authError || !user) return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
     const body = await request.json()
     if (!body.title || !body.content || !body.category_id) {
       return jsonError(new Error('title, content, and category_id are required'))
     }
-    const data = await createPost(requireSupabaseServer(), GUEST_USER_ID, body)
+    const data = await createPost(db, user.id, body)
     return jsonResponse(data)
   } catch (error) {
     return jsonError(error)

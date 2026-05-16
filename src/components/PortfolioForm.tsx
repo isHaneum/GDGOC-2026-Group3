@@ -11,6 +11,30 @@ import {
 
 const PORTFOLIO_DRAFT_KEY = "bridge_employee_portfolio_draft";
 
+type DbEmployeeProfile = {
+  full_name: string;
+  birth_date: string;
+  gender: "male" | "female";
+  nationality: "korean" | "japanese";
+  years_of_experience: number;
+  target_roles: string[];
+  tech_stack: string[];
+  language_certifications: string;
+  preferred_salary_min: number;
+  preferred_salary_max: number;
+  preferred_currency: "KRW" | "JPY";
+  preferred_locations: string[];
+  preferred_company_types: string[];
+  work_style_preference: "remote" | "hybrid" | "onsite" | "any";
+  relocation_available: boolean;
+  visa_support_needed: boolean;
+  self_introduction: string;
+  key_project_experience: string;
+  motivation: string;
+  concerns: string;
+  github_url: string;
+};
+
 type SaveState = "idle" | "saving" | "saved" | "error";
 
 type SaveApiResponse = {
@@ -66,15 +90,53 @@ const emptyDraft: EmployeeProfileDraft = {
   githubUrl: "",
 };
 
-function readDraft(): EmployeeProfileDraft {
-  if (typeof window === "undefined") return emptyDraft;
+function readDraft(): EmployeeProfileDraft | null {
+  if (typeof window === "undefined") return null;
 
   try {
     const raw = window.localStorage.getItem(PORTFOLIO_DRAFT_KEY);
-    if (!raw) return emptyDraft;
+    if (!raw) return null;
     return { ...emptyDraft, ...(JSON.parse(raw) as Partial<EmployeeProfileDraft>) };
   } catch {
-    return emptyDraft;
+    return null;
+  }
+}
+
+function dbProfileToDraft(p: DbEmployeeProfile): EmployeeProfileDraft {
+  return {
+    fullName: p.full_name ?? "",
+    birthDate: p.birth_date ?? "",
+    gender: p.gender ?? "male",
+    nationality: p.nationality ?? "korean",
+    yearsOfExperience: String(p.years_of_experience ?? ""),
+    targetRoles: (p.target_roles ?? []).join(", "),
+    techStack: (p.tech_stack ?? []).join(", "),
+    languageCertifications: p.language_certifications ?? "",
+    preferredSalaryMin: String(p.preferred_salary_min ?? ""),
+    preferredSalaryMax: String(p.preferred_salary_max ?? ""),
+    preferredCurrency: p.preferred_currency ?? "JPY",
+    preferredLocations: (p.preferred_locations ?? []).join(", "),
+    preferredCompanyTypes: (p.preferred_company_types ?? []).join(", "),
+    workStylePreference: p.work_style_preference ?? "hybrid",
+    relocationAvailable: p.relocation_available ?? false,
+    visaSupportNeeded: p.visa_support_needed ?? false,
+    selfIntroduction: p.self_introduction ?? "",
+    keyProjectExperience: p.key_project_experience ?? "",
+    motivation: p.motivation ?? "",
+    concerns: p.concerns ?? "",
+    githubUrl: p.github_url ?? "",
+  };
+}
+
+async function fetchProfileFromDb(): Promise<EmployeeProfileDraft | null> {
+  try {
+    const res = await fetch("/api/employee/profile", { credentials: "same-origin", cache: "no-store" });
+    if (!res.ok) return null;
+    const data = await res.json() as { authenticated?: boolean; employeeProfile?: DbEmployeeProfile | null };
+    if (!data.authenticated || !data.employeeProfile) return null;
+    return dbProfileToDraft(data.employeeProfile);
+  } catch {
+    return null;
   }
 }
 
@@ -162,7 +224,14 @@ export default function PortfolioForm({
   const [statusMessage, setStatusMessage] = useState("");
 
   useEffect(() => {
-    setDraft(readDraft());
+    const localDraft = readDraft();
+    if (localDraft) {
+      setDraft(localDraft);
+      return;
+    }
+    void fetchProfileFromDb().then((dbDraft) => {
+      if (dbDraft) setDraft(dbDraft);
+    });
   }, []);
 
   function updateDraft<K extends keyof EmployeeProfileDraft>(field: K, value: EmployeeProfileDraft[K]) {
