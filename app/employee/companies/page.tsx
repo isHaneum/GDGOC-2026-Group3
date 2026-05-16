@@ -84,67 +84,67 @@ export default function HiringCompaniesPage() {
                 
                 return (
                   <>
-                    <div>
+                    <div className="flex flex-col gap-4">
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex min-w-0 items-start gap-3">
                           {logo ? (
                             <img
                               src={logo.src}
                               alt={logo.alt}
-                              className="h-10 w-10 shrink-0 rounded-lg border border-gray-100 bg-white object-contain p-1"
+                              className="h-12 w-12 shrink-0 rounded-xl border border-gray-100 bg-white object-contain p-1.5 shadow-sm"
                             />
                           ) : (
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-gray-100 bg-gray-50 text-[10px] font-black text-gray-400">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-gray-100 bg-gray-50 text-xs font-black text-gray-400 shadow-sm">
                               {getCompanyInitials(company.companyName)}
                             </div>
                           )}
-                          <div>
-                            <h2 className="text-lg font-bold text-ink line-clamp-1">{company.companyName}</h2>
+                          <div className="mt-0.5">
+                            <h2 className="text-lg font-black tracking-tight text-ink line-clamp-1">{company.companyName}</h2>
                             <p className="mt-0.5 text-sm font-bold text-bridge-teal line-clamp-1">{company.roleTitle}</p>
                           </div>
                         </div>
-                        <span className="shrink-0 rounded-full bg-bridge-primary/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-bridge-teal">
+                        <span className="shrink-0 rounded-full bg-bridge-primary/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-bridge-teal mt-1">
                           {company.country}
                         </span>
                       </div>
 
-                      <div className="mt-4 flex flex-wrap gap-1.5">
+                      <div className="flex flex-wrap gap-1.5">
                         {stacks.slice(0, 4).map((stack) => (
-                          <span key={stack} className="rounded-md border border-gray-100 bg-gray-50 px-2 py-1 text-[10px] font-bold text-gray-500">
+                          <span key={stack} className="rounded-md border border-gray-100 bg-white px-2 py-1 text-[10px] font-bold text-gray-500 shadow-sm">
                             {stack}
                           </span>
                         ))}
                         {!stacks.length ? (
-                          <span className="rounded-md border border-gray-100 bg-gray-50 px-2 py-1 text-[10px] font-bold text-gray-400">
+                          <span className="rounded-md border border-gray-100 bg-white px-2 py-1 text-[10px] font-bold text-gray-400 shadow-sm">
                             기술 스택 미지정
                           </span>
                         ) : null}
                       </div>
 
-                      <div className="mt-4 rounded-lg bg-gray-50 p-3 text-xs text-gray-600 border border-gray-100">
-                        <div className="flex justify-between items-center mb-1.5">
-                          <span className="font-bold text-gray-500">경력/방식</span>
+                      <div className="rounded-xl border border-gray-100 bg-gray-50 p-3.5 text-xs">
+                        <div className="flex justify-between items-center mb-2.5">
+                          <span className="font-bold text-gray-400">경력/방식</span>
                           <span className="font-bold text-ink">
-                            {formatExperienceRange(company, "확인 필요")} | {workStyleLabels[company.workStyle]}
+                            {formatExperienceRange(company, "확인 필요")} <span className="text-gray-300 font-normal mx-1">|</span> {workStyleLabels[company.workStyle]}
                           </span>
                         </div>
-                        <div className="flex justify-between items-center">
-                          <span className="font-bold text-gray-500">급여 정보</span>
-                          <span className="font-bold text-bridge-primary">
+                        <div className="flex justify-between items-center pt-2.5 border-t border-gray-200/60">
+                          <span className="font-bold text-gray-400">급여 요약</span>
+                          <span className="font-black text-bridge-primary text-[13px]">
                             {formatCompanySalarySummary(company, "확인 필요")}
                           </span>
                         </div>
                       </div>
                       
                       {links.length > 0 && (
-                        <div className="mt-3 flex flex-wrap gap-1.5">
+                        <div className="flex flex-wrap gap-1.5">
                           {links.map((link) => (
                             <a
                               key={link.url}
                               href={link.url}
                               target="_blank"
                               rel="noreferrer"
-                              className="rounded-md border border-gray-200 px-2 py-1 text-[10px] font-bold text-gray-400 transition hover:border-bridge-teal hover:text-bridge-teal"
+                              className="rounded-lg border border-gray-200 bg-white px-2.5 py-1.5 text-[10px] font-bold text-gray-400 shadow-sm transition hover:border-bridge-teal hover:text-bridge-teal"
                             >
                               {getLinkLabel(link.label, link.supports)}
                             </a>
@@ -153,12 +153,14 @@ export default function HiringCompaniesPage() {
                       )}
                     </div>
 
-                    <Link
-                      href={`/employee/companies/${company.companyId}`}
-                      className="mt-5 flex w-full justify-center rounded-xl bg-bridge-primary px-4 py-2.5 text-sm font-bold text-white shadow-sm transition-opacity hover:opacity-90"
-                    >
-                      상세 보기
-                    </Link>
+                    <div className="mt-5 pt-4 border-t border-gray-50">
+                      <Link
+                        href={`/employee/companies/${company.companyId}`}
+                        className="flex w-full justify-center rounded-xl bg-bridge-primary px-4 py-3 text-sm font-black text-white shadow-sm transition-transform hover:scale-[1.02] active:scale-95"
+                      >
+                        상세 보기
+                      </Link>
+                    </div>
                   </>
                 );
               })()}
