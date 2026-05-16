@@ -616,8 +616,23 @@ export function validateCompanyJobProfiles(
     return [{ companyId: profile.companyId, companyName: profile.companyName, roleId: profile.roleId, warnings }];
   });
 
-  const invalidProfiles = profiles.filter((profile) => !profile.companyId || !profile.companyName || !profile.roleId || !profile.roleTitle).length;
-  const warningProfiles = warningsByCompany.filter((item) => item.warnings.length > 0).length - invalidProfiles;
+  const commonWarnings = [...warningsByCompany.reduce((counts, item) => {
+    item.warnings.forEach((warning) => {
+      counts.set(warning, (counts.get(warning) ?? 0) + 1);
+    });
+    return counts;
+  }, new Map<string, number>()).entries()]
+    .map(([warning, count]) => ({ warning, count }))
+    .sort((left, right) => right.count - left.count);
+
+  const invalidRoleIds = new Set(
+    profiles
+      .filter((profile) => !profile.companyId || !profile.companyName || !profile.roleId || !profile.roleTitle)
+      .map((profile) => profile.roleId)
+  );
+
+  const invalidProfiles = invalidRoleIds.size;
+  const warningProfiles = warningsByCompany.filter((item) => item.warnings.length > 0 && !invalidRoleIds.has(item.roleId)).length;
   const validProfiles = profiles.length - invalidProfiles - warningProfiles;
 
   return {
@@ -625,6 +640,7 @@ export function validateCompanyJobProfiles(
     validProfiles,
     warningProfiles,
     invalidProfiles,
+    commonWarnings,
     warningsByCompany
   };
 }

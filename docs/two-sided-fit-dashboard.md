@@ -2,57 +2,85 @@
 
 ## Purpose
 
-`TwoSidedFitDashboard` is an isolated debug/demo surface for the BridgePass Two-sided Fit Engine. It shows why BridgePass is not a normal job board: developers can see company and role fit, while companies can review candidate fit with gaps, risks, and evidence missions.
+`TwoSidedFitDashboard` is a product-ready BridgePass Career Fit page for two core flows:
 
-The dashboard is production-styled but intentionally isolated so it can be imported into the real website later without changing existing backend behavior.
+- Developers find companies and roles that fit them.
+- Companies find candidates that fit a selected role.
 
-## UX Flow
+The page stays isolated from the rest of the app, uses local JSON data, and does not modify backend scoring logic.
 
-The dashboard now uses a guided ranking flow instead of dense stacked result cards.
+## Simplified Product Flow
 
-### Developer To Company
+The default view removes internal report-style sections. Users see only the information needed to compare fit:
 
-The developer side computes the top 10 company matches with `rankCompaniesForDeveloper(...)`.
+- what matches
+- what is missing
+- next step
+- compact details after selection
 
-- A horizontal rank navigator shows `#1` through `#10`.
-- Previous and next buttons step through companies one at a time.
-- Only the selected company detail is expanded.
-- The default view emphasizes overall fit, recommended next step, matched reasons, missing signals, and evidence missions.
-- Detailed score bars are hidden inside a collapsed "Detailed score breakdown" accordion.
+The default view hides raw JSON, validation details, source confidence, rubric IDs, long notes, and internal metadata.
 
-### Company To Developer
+## Developer View
 
-The company side computes the top 10 candidate matches with `rankDevelopersForCompany(...)`.
+The developer view shows:
 
-- Recruiters first see a compact top-10 candidate ranking list.
-- Each candidate summary shows rank, name, nationality, top 3 key signals, fit score, and recommended recruiter action.
-- Clicking a candidate opens a detailed candidate panel below the list.
-- Candidate details include resume summary, motivation, languages, tech stacks, match signals, gaps, risks, recruiter action, and a collapsed score breakdown.
+- compact profile summary
+- vertical Top 10 company list with company names and roles
+- fit label plus small score
+- location, salary, and language confirmation status
+- what matches
+- what needs work
+- next step
 
-## Key Signal Display
+The full profile is available in a collapsed profile details section. Selecting a company opens the focused company detail panel.
 
-Candidate summary cards derive three display signals from:
+## Company View
 
-- developer tech stacks
-- language certifications
-- target roles
-- engine `topMatchSignals`
+The company view shows:
 
-The helper prefers strong tech stack matches first, then language certification, then role/domain signals. These are display-only summaries and do not change scoring.
+- compact selected role summary
+- vertical Top 10 candidate list
+- candidate name, nationality, top 3 key signals, fit label, and recruiter action
+- candidate detail only after selection
 
-## I18n
+Candidate detail groups strong points by qualifications, tech stack, language, experience, and evidence.
 
-The dashboard includes a small dictionary-based i18n layer inside `TwoSidedFitDashboard.tsx`.
+## Score Display
 
-Supported UI locales:
+Detailed score bars are not shown by default. They remain available inside a collapsed "Detailed score breakdown" accordion in selected company and candidate detail panels.
+
+Candidate cards emphasize fit labels instead of large numeric scores:
+
+- Very strong
+- Strong
+- Potential
+- Needs preparation
+- Low fit
+
+## Debug Mode
+
+Debug mode defaults to `false`.
+
+When debug mode is off, the dashboard hides:
+
+- raw JSON
+- validation details
+- source confidence
+- rubric ID
+- long internal notes
+- metadata-style counts
+
+When debug mode is on, the dashboard shows validation status, common warnings, selected input/output JSON, and internal role fields. Unknown fields are intentionally left blank instead of invented.
+
+## Multilingual Support
+
+The component uses a local dictionary for static UI labels:
 
 - Korean (`ko`)
 - Japanese (`ja`)
 - English (`en`)
 
-The language switcher updates practical UI labels such as headers, tabs, section titles, validation labels, safety copy, candidate list labels, and score breakdown labels.
-
-Data values from JSON are not fully translated. Company names, candidate names, role titles, generated explanations, signals, and missions remain in their source language unless the dataset already provides translated values.
+Company names, candidate names, role names, generated fit text, and dataset values are not translated. Translation provider details are not shown in the default product UI.
 
 ## Data Files Used
 
@@ -66,13 +94,13 @@ The component loads local JSON through `src/lib/companyCriteria.ts`:
 
 ## Engine Functions Called
 
-The component calls the existing rule-based fit engine functions from `src/lib/twoSidedFitEngine.ts`:
+The dashboard calls existing rule-based fit engine functions:
 
 - `rankCompaniesForDeveloper(...)`
 - `rankDevelopersForCompany(...)`
 - `validateCompanyJobProfiles(...)`
 
-These functions run in the browser against local JSON data only.
+No scoring engine changes are required for the product UI.
 
 ## Import
 
@@ -80,7 +108,7 @@ These functions run in the browser against local JSON data only.
 import { TwoSidedFitDashboard } from "../components/TwoSidedFitDashboard";
 ```
 
-For the current Next App Router debug route, the import is:
+For the current debug route:
 
 ```tsx
 import { TwoSidedFitDashboard } from "../../../src/components/TwoSidedFitDashboard";
@@ -88,39 +116,17 @@ import { TwoSidedFitDashboard } from "../../../src/components/TwoSidedFitDashboa
 
 ## Demo Route
 
-An isolated demo page is available at:
-
 ```txt
 /debug/two-sided-fit
 ```
 
-The route only renders the dashboard component. It does not modify the existing homepage or existing debug pages.
-
-## Adding It To A Real Route Later
-
-Create a new page and render the component:
-
-```tsx
-import { TwoSidedFitDashboard } from "../../src/components/TwoSidedFitDashboard";
-
-export default function Page() {
-  return <TwoSidedFitDashboard />;
-}
-```
-
-Adjust the relative import path based on the final route location.
-
-## Known Limitations
-
-- Developer profile fields are read-only for now.
-- Salary, language, location, and experience gaps remain visible when source data is unknown.
-- The dashboard depends on the existing public JSON files being present.
-- The i18n layer is intentionally local and lightweight, not a full app-wide translation framework.
-
 ## Safety Note
 
-This dashboard is not an automated hiring decision system. Scores are guidance signals for discovery, preparation, recruiter review, and human decision-making.
+This dashboard is not an automated hiring decision system. Scores are used for discovery, preparation, and human review.
 
-## API Key And Gemini Behavior
+## API Key And Secret Handling
 
-No API keys are required. Gemini is not called from this page. The dashboard does not add `.env`, `gemini.key`, Stitch MCP config, or browser-side secret usage.
+- No API key is required.
+- No `.env` secret is added.
+- No Stitch MCP config is added.
+- Gemini is not called from this page.

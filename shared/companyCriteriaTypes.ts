@@ -171,11 +171,17 @@ export interface CompanyJobProfileValidationItem {
   warnings: string[];
 }
 
+export interface CompanyJobProfileCommonWarning {
+  warning: string;
+  count: number;
+}
+
 export interface CompanyJobProfilesValidationSummary {
   totalProfiles: number;
   validProfiles: number;
   warningProfiles: number;
   invalidProfiles: number;
+  commonWarnings: CompanyJobProfileCommonWarning[];
   warningsByCompany: CompanyJobProfileValidationItem[];
 }
 
