@@ -6,10 +6,9 @@ import { MARKETS, getCurrentMarket } from "@shared/market";
 import {
   loadCompanyJobProfiles,
   loadCompanyRubrics,
-  loadCompanySignals,
-  loadSampleDeveloperProfiles
+  loadCompanySignals
 } from "@src/lib/companyCriteria";
-import { buildApplicantProfilePath } from "@src/lib/applicantProfiles";
+import { buildApplicantProfilePath, loadApplicantProfiles } from "@src/lib/applicantProfiles";
 import {
   filterDevelopersForMarket,
   getMarketDirection
@@ -46,7 +45,7 @@ export default function EmployerDashboard() {
           loadCompanyJobProfiles(),
           loadCompanyRubrics(),
           loadCompanySignals(),
-          loadSampleDeveloperProfiles()
+          loadApplicantProfiles()
         ]);
 
         if (cancelled) return;
@@ -146,7 +145,7 @@ export default function EmployerDashboard() {
             <p className="text-body font-bold text-bridge-coral">매칭 데이터를 불러올 수 없습니다</p>
             <p className="mt-1 text-body text-gray-600">{dataError}</p>
           </div>
-        ) : (
+        ) : rankedMatches.length ? (
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {rankedMatches.map((match) => (
               <CandidateCard
@@ -155,6 +154,13 @@ export default function EmployerDashboard() {
                 profileHref={buildApplicantProfilePath(match.developerId)}
               />
             ))}
+          </div>
+        ) : (
+          <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-panel">
+            <p className="text-body font-bold text-ink">표시할 지원자가 없습니다</p>
+            <p className="mt-1 text-body text-gray-500">
+              Supabase employee_profiles에서 지원자 데이터를 찾지 못했습니다.
+            </p>
           </div>
         )}
       </main>

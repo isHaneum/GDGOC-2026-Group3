@@ -19,9 +19,9 @@ import {
   loadCompanyJobProfiles,
   loadCompanyRubrics,
   loadCompanySignals,
-  loadFitEngineMetadata,
-  loadSampleDeveloperProfiles
+  loadFitEngineMetadata
 } from "../lib/companyCriteria";
+import { loadApplicantProfiles } from "../lib/applicantProfiles";
 import {
   rankCompaniesForDeveloper,
   rankDevelopersForCompany,
@@ -1206,7 +1206,7 @@ export function TwoSidedFitDashboard() {
           loadCompanyJobProfiles(),
           loadCompanyRubrics(),
           loadCompanySignals(),
-          loadSampleDeveloperProfiles(),
+          loadApplicantProfiles(),
           loadFitEngineMetadata().catch(() => null)
         ]);
         const validationSummary = validateCompanyJobProfiles(companyJobProfiles, companyRubrics);

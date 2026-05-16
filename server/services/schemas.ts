@@ -137,15 +137,16 @@ export const resumeContextMappingSchema = {
       items: {
         type: "object",
         properties: {
-          mappedName: { type: "string" },
-          mappedContent: { type: "string" },
+          fieldKey: { type: "string" },
+          mappedLabel: { type: "string" },
+          mappedValue: { type: "string" },
           detectedSourceLocale: resumeDetectedLocaleSchema,
           contextNotes: {
             type: "array",
             items: resumeContextNoteSchema
           }
         },
-        required: ["mappedName", "mappedContent", "detectedSourceLocale", "contextNotes"]
+        required: ["fieldKey", "mappedLabel", "mappedValue", "detectedSourceLocale", "contextNotes"]
       }
     }
   },

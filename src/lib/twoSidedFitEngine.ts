@@ -11,9 +11,9 @@ import type {
 import {
   loadCompanyJobProfiles,
   loadCompanyRubrics,
-  loadCompanySignals,
-  loadSampleDeveloperProfiles
+  loadCompanySignals
 } from "./companyCriteria";
+import { loadApplicantProfiles } from "./applicantProfiles";
 
 type RubricEvidenceSummary = {
   rubricFit: number;
@@ -830,7 +830,7 @@ export async function loadAndRunTwoSidedFitExample(developerId?: string) {
     loadCompanyJobProfiles(),
     loadCompanyRubrics(),
     loadCompanySignals(),
-    loadSampleDeveloperProfiles()
+    loadApplicantProfiles()
   ]);
 
   const selectedDeveloper = developerProfiles.find((developer) => developer.developerId === developerId) ?? developerProfiles[0];

@@ -56,4 +56,14 @@ describe('community schema scope', () => {
     expect(migration).toContain('DROP TABLE IF EXISTS public.company_evaluation_rubrics CASCADE')
     expect(migration).toContain('DROP TABLE IF EXISTS public.company_hiring_signals CASCADE')
   })
+
+  it('recreates resume context mappings for employee profiles after signup schema cleanup', () => {
+    const migration = read('server/supabase/migrations/010_resume_context_mappings_employee_profiles.sql')
+
+    expect(migration).toContain('CREATE TABLE IF NOT EXISTS public.resume_context_mappings')
+    expect(migration).toContain('employee_profile_id bigint REFERENCES public.employee_profiles(id)')
+    expect(migration).toContain("target_locale text NOT NULL CHECK (target_locale IN ('ko', 'ja'))")
+    expect(migration).toContain('request jsonb NOT NULL')
+    expect(migration).toContain('response jsonb NOT NULL')
+  })
 })

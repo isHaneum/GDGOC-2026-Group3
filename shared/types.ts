@@ -98,15 +98,56 @@ export interface RecruiterLensResult {
 export type ResumeContextLocale = "ko" | "ja";
 export type ResumeDetectedLocale = ResumeContextLocale | "mixed" | "unknown";
 export type ResumeContextConfidence = "high" | "medium" | "low";
+export type ResumeContextSourceLocaleHint = ResumeContextLocale | "unknown";
+export type ResumeContextPortfolioFieldKey =
+  | "name"
+  | "nationality"
+  | "yearsOfExperience"
+  | "targetRoles"
+  | "techStack"
+  | "languageCertifications"
+  | "preferredSalary"
+  | "preferredLocations"
+  | "preferredCompanyTypes"
+  | "workStylePreference"
+  | "relocationAvailable"
+  | "visaSupportNeeded"
+  | "selfIntroduction"
+  | "keyProjectExperience"
+  | "motivation"
+  | "concerns"
+  | "githubUrl";
 
-export interface ResumeContextMappingContent {
+export interface ResumeContextApplicantInput {
+  applicantId: string;
+  employeeProfileId?: number;
   name: string;
-  content: string;
+  nationality: "Korean" | "Japanese" | "Other";
+  yearsOfExperience: number;
+  targetRoles: string[];
+}
+
+export interface ResumeContextPortfolioInput {
+  techStack: string[];
+  languageCertifications: string[];
+  preferredSalary: string;
+  preferredLocations: string[];
+  preferredCompanyTypes: string[];
+  workStylePreference: "remote" | "hybrid" | "onsite" | "any";
+  relocationAvailable: boolean;
+  visaSupportNeeded: boolean;
+  selfIntroduction: string;
+  keyProjectExperience: string;
+  motivation: string;
+  concerns: string[];
+  githubUrl: string;
 }
 
 export interface ResumeContextMappingRequest {
   targetLocale: ResumeContextLocale;
-  contents: ResumeContextMappingContent[];
+  sourceLocaleHint: ResumeContextSourceLocaleHint;
+  applicant: ResumeContextApplicantInput;
+  portfolio: ResumeContextPortfolioInput;
 }
 
 export interface ResumeContextNote {
@@ -116,10 +157,11 @@ export interface ResumeContextNote {
 }
 
 export interface ResumeContextMappedItem {
-  name: string;
-  mappedName: string;
-  originalContent: string;
-  mappedContent: string;
+  fieldKey: ResumeContextPortfolioFieldKey;
+  label: string;
+  mappedLabel: string;
+  originalValue: string;
+  mappedValue: string;
   detectedSourceLocale: ResumeDetectedLocale;
   contextNotes: ResumeContextNote[];
 }

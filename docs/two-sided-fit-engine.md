@@ -55,13 +55,14 @@ BridgePass 는 fit 이유를 설명하고, gap 을 드러내고, 지원 전에 m
 
 ## 추가된 라이브러리
 - `src/lib/companyCriteria.ts`
+- `src/lib/applicantProfiles.ts`
 - `src/lib/twoSidedFitEngine.ts`
 
 ## 핵심 함수
 - `loadCompanyRubrics()`
 - `loadCompanySignals()`
 - `loadCompanyJobProfiles()`
-- `loadSampleDeveloperProfiles()`
+- `loadApplicantProfiles()`
 - `rankCompaniesForDeveloper()`
 - `rankDevelopersForCompany()`
 - `getRecommendedEvidenceMissions()`
@@ -75,16 +76,16 @@ BridgePass 는 fit 이유를 설명하고, gap 을 드러내고, 지원 전에 m
 import {
   loadCompanyJobProfiles,
   loadCompanyRubrics,
-  loadCompanySignals,
-  loadSampleDeveloperProfiles
+  loadCompanySignals
 } from "../src/lib/companyCriteria";
+import { loadApplicantProfiles } from "../src/lib/applicantProfiles";
 import { rankCompaniesForDeveloper } from "../src/lib/twoSidedFitEngine";
 
 const [profiles, rubrics, signals, developers] = await Promise.all([
   loadCompanyJobProfiles(),
   loadCompanyRubrics(),
   loadCompanySignals(),
-  loadSampleDeveloperProfiles()
+  loadApplicantProfiles()
 ]);
 
 const result = rankCompaniesForDeveloper(developers[0], profiles, rubrics, signals);

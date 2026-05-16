@@ -1,16 +1,16 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
-import type { DeveloperPreference } from "@shared/companyCriteriaTypes";
 import {
   formatApplicantLanguages,
   formatApplicantList,
   formatApplicantSalary,
+  loadApplicantProfileById,
   formatRelocationLabel,
   formatVisaSupportLabel,
   formatWorkStyle
 } from "@src/lib/applicantProfiles";
-import { loadSampleDeveloperProfiles } from "@src/lib/companyCriteria";
+import { ResumeContextMappingPanel } from "@src/components/ResumeContextMappingPanel";
 
 export const dynamic = "force-dynamic";
 
@@ -20,9 +20,13 @@ export default async function ApplicantProfilePage({
   params: Promise<{ applicantId: string }>;
 }) {
   const { applicantId } = await params;
-  const decodedId = decodeURIComponent(applicantId);
-  const applicants = await loadSampleDeveloperProfiles();
-  const applicant = applicants.find((a) => a.developerId === decodedId);
+  let applicant;
+
+  try {
+    applicant = await loadApplicantProfileById(applicantId);
+  } catch (error) {
+    return <ApplicantLoadUnavailable message={error instanceof Error ? error.message : "Unable to load applicant."} />;
+  }
 
   if (!applicant) notFound();
 
@@ -57,10 +61,7 @@ export default async function ApplicantProfilePage({
           </div>
         </header>
 
-        <div className="mt-3 flex flex-col sm:flex-row sm:items-center gap-2 rounded-lg border border-bridge-primary/20 bg-bridge-primary/5 px-3.5 py-2.5 shadow-sm">
-          <span className="text-caption font-bold text-bridge-teal">Pending AI Evaluation:</span>
-          <span className="text-caption text-gray-600">Company-specific candidate evaluation & resume context mapping will be available later.</span>
-        </div>
+        <ResumeContextMappingPanel applicant={applicant} />
 
         <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-4">
           <div className="flex flex-col gap-3 lg:col-span-1">
@@ -107,7 +108,27 @@ export default async function ApplicantProfilePage({
               <TextSection title="Portfolio Details" value={applicant.portfolioText} />
             </div>
             <TextSection title="Motivation" value={applicant.motivation} />
+            <TextSection title="GitHub" value={applicant.githubUrl} />
           </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ApplicantLoadUnavailable({ message }: { message: string }) {
+  return (
+    <div className="min-h-screen bg-bridge-paper">
+      <div className="container mx-auto max-w-3xl px-4 py-8">
+        <Link
+          href="/employer/applicants"
+          className="inline-flex items-center rounded border border-gray-200 bg-white px-2.5 py-1.5 text-caption font-bold text-ink shadow-sm transition-colors hover:border-bridge-primary"
+        >
+          ← Back to applicants
+        </Link>
+        <div className="mt-4 rounded-lg border border-bridge-coral/30 bg-white p-5 shadow-sm">
+          <p className="text-body font-bold text-bridge-coral">지원자 데이터를 불러올 수 없습니다</p>
+          <p className="mt-1 text-body text-gray-600">{message}</p>
         </div>
       </div>
     </div>
