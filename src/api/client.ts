@@ -6,7 +6,11 @@ import type {
   RecruiterLensResult,
   ResumeContextMappingRequest,
   ResumeContextMappingResult,
-  RoleBaseline
+  RoleBaseline,
+  DbCategory,
+  PostWithMeta,
+  PostWithComments,
+  DbPost
 } from "../../shared/types";
 
 async function fetchJson<T>(path: string, options?: RequestInit): Promise<T> {
@@ -79,4 +83,38 @@ export function mapResumeContext(request: ResumeContextMappingRequest) {
     method: "POST",
     body: JSON.stringify(request)
   });
+}
+
+export function getCategories() {
+  return fetchJson<{ categories: DbCategory[] }>('/api/categories')
+}
+
+export function getPosts(params?: { category?: string; q?: string }) {
+  const qs = new URLSearchParams()
+  if (params?.category) qs.set('category', params.category)
+  if (params?.q) qs.set('q', params.q)
+  const query = qs.toString() ? `?${qs}` : ''
+  return fetchJson<{ posts: PostWithMeta[] }>(`/api/posts${query}`)
+}
+
+export function getPost(id: string | number) {
+  return fetchJson<PostWithComments>(`/api/posts/${id}`)
+}
+
+export function createPost(title: string, content: string, category_id: number) {
+  return fetchJson<DbPost>('/api/posts', {
+    method: 'POST',
+    body: JSON.stringify({ title, content, category_id })
+  })
+}
+
+export function addComment(postId: string | number, content: string) {
+  return fetchJson<{ id: number; content: string; created_at: string }>(
+    `/api/posts/${postId}/comments`,
+    { method: 'POST', body: JSON.stringify({ content }) }
+  )
+}
+
+export function togglePostLike(postId: string | number) {
+  return fetchJson<{ liked: boolean }>(`/api/posts/${postId}/like`, { method: 'POST' })
 }
