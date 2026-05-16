@@ -9,6 +9,7 @@ import type { DbCategory, PostWithMeta } from '@shared/types'
 export default function CommunityPage() {
   const [categories, setCategories] = useState<DbCategory[]>([])
   const [posts, setPosts] = useState<PostWithMeta[]>([])
+  const [popularPosts, setPopularPosts] = useState<PostWithMeta[]>([])
   const [activeSlug, setActiveSlug] = useState<string | null>(null)
   const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(true)
@@ -29,6 +30,13 @@ export default function CommunityPage() {
       .then((res) => {
         setCategories(res.categories)
         if (res.categories.length > 0) setFormCategoryId(res.categories[0].id)
+      })
+      .catch(() => {})
+    // 인기글: 전체 카테고리 기준, like_count 상위 5개
+    getPosts()
+      .then((res) => {
+        const sorted = [...res.posts].sort((a, b) => b.like_count - a.like_count).slice(0, 5)
+        setPopularPosts(sorted)
       })
       .catch(() => {})
   }, [])
@@ -103,9 +111,18 @@ export default function CommunityPage() {
     return 'bg-gray-100 text-gray-500'
   }
 
+  function categoryFlag(slug: string) {
+    if (slug === 'kr') return '🇰🇷'
+    if (slug === 'jp') return '🇯🇵'
+    return 'ALL'
+  }
+
   return (
     <div className="min-h-screen bg-bridge-paper">
-      <div className="container mx-auto max-w-3xl px-4 py-10">
+      <div className="mx-auto max-w-5xl px-4 py-10">
+      <div className="flex gap-6">
+      {/* Main content */}
+      <div className="flex-1 min-w-0">
 
         {/* Header */}
         <div className="flex items-end justify-between mb-6">
@@ -301,7 +318,46 @@ export default function CommunityPage() {
           </div>
         )}
 
-      </div>
+      </div>{/* end main content */}
+
+      {/* Popular posts sidebar */}
+      <aside className="hidden lg:block w-72 flex-shrink-0 ml-4">
+        <div className="sticky top-24 bg-white rounded-2xl border border-gray-100 shadow-panel p-6">
+          <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal mb-5">🔥 인기글</p>
+          {popularPosts.length === 0 ? (
+            <p className="text-sm text-gray-400">아직 게시글이 없습니다.</p>
+          ) : (
+            <ol className="space-y-4">
+              {popularPosts.map((post, i) => (
+                <li key={post.id}>
+                  <Link
+                    href={`/community/${post.id}`}
+                    className="flex items-start gap-3 group"
+                  >
+                    <span className="text-sm font-black text-gray-200 mt-0.5 min-w-[18px]">{i + 1}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-sm">
+                          {categoryFlag(post.category?.slug ?? '')}
+                        </span>
+                        <span className="text-[10px] font-bold text-bridge-teal">
+                          ♥ {post.like_count}
+                        </span>
+                      </div>
+                      <p className="text-sm font-bold text-ink group-hover:text-bridge-teal transition-colors line-clamp-2 leading-snug">
+                        {post.title}
+                      </p>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          )}
+        </div>
+      </aside>
+
+      </div>{/* end flex */}
+      </div>{/* end container */}
     </div>
   )
 }
