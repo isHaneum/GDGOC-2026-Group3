@@ -4,6 +4,7 @@ export type CreatePostInput = {
   title: string
   content: string
   category_id: string
+  image_url?: string
 }
 
 export type UpdatePostInput = Partial<Pick<CreatePostInput, 'title' | 'content' | 'category_id'>>
@@ -50,9 +51,9 @@ export async function getPost(db: SupabaseClient, postId: string) {
     .from('posts')
     .select(`
       *,
-      author:profiles!author_id(id, role, market),
+      author:profiles!author_id(id, role, market, developer_profiles(full_name)),
       category:categories!category_id(*),
-      comments(*, author:profiles!author_id(id, role, market))
+      comments(*, author:profiles!author_id(id, role, market, developer_profiles(full_name)))
     `)
     .eq('id', postId)
     .single()
@@ -74,7 +75,7 @@ export async function createPost(
 
   const { data: post, error } = await db
     .from('posts')
-    .insert({ author_id: profile.id, category_id: input.category_id, title: input.title, content: input.content })
+    .insert({ author_id: profile.id, category_id: input.category_id, title: input.title, content: input.content, image_url: input.image_url ?? null })
     .select()
     .single()
   if (error) throw new Error(error.message)

@@ -1,14 +1,16 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { getCategories, getPosts, createPost } from '@src/api/client'
+import Image from 'next/image'
+import { getCategories, getPosts, createPost, uploadImage } from '@src/api/client'
 import type { DbCategory, PostWithMeta } from '@shared/types'
 
 export default function CommunityPage() {
   const [categories, setCategories] = useState<DbCategory[]>([])
   const [posts, setPosts] = useState<PostWithMeta[]>([])
   const [activeSlug, setActiveSlug] = useState<string | null>(null)
+  const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -17,7 +19,10 @@ export default function CommunityPage() {
   const [formTitle, setFormTitle] = useState('')
   const [formContent, setFormContent] = useState('')
   const [formCategoryId, setFormCategoryId] = useState<number | null>(null)
+  const [formImageFile, setFormImageFile] = useState<File | null>(null)
+  const [formImagePreview, setFormImagePreview] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     getCategories()
@@ -31,23 +36,43 @@ export default function CommunityPage() {
   useEffect(() => {
     setLoading(true)
     setError(null)
-    getPosts(activeSlug ? { category: activeSlug } : undefined)
+    getPosts(activeSlug || search ? { category: activeSlug ?? undefined, q: search || undefined } : undefined)
       .then((res) => setPosts(res.posts))
       .catch((err) => setError(err instanceof Error ? err.message : 'Failed to load posts'))
       .finally(() => setLoading(false))
-  }, [activeSlug])
+  }, [activeSlug, search])
+
+  function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0] ?? null
+    setFormImageFile(file)
+    if (file) {
+      setFormImagePreview(URL.createObjectURL(file))
+    } else {
+      setFormImagePreview(null)
+    }
+  }
+
+  function clearImage() {
+    setFormImageFile(null)
+    setFormImagePreview(null)
+    if (fileInputRef.current) fileInputRef.current.value = ''
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!formTitle.trim() || !formContent.trim() || !formCategoryId) return
     setSubmitting(true)
     try {
-      await createPost(formTitle.trim(), formContent.trim(), formCategoryId)
+      let image_url: string | undefined
+      if (formImageFile) {
+        image_url = await uploadImage(formImageFile)
+      }
+      await createPost(formTitle.trim(), formContent.trim(), formCategoryId, image_url)
       setShowForm(false)
       setFormTitle('')
       setFormContent('')
-      // Refetch
-      const res = await getPosts(activeSlug ? { category: activeSlug } : undefined)
+      clearImage()
+      const res = await getPosts(activeSlug || search ? { category: activeSlug ?? undefined, q: search || undefined } : undefined)
       setPosts(res.posts)
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to create post')
@@ -96,20 +121,31 @@ export default function CommunityPage() {
           </button>
         </div>
 
+        {/* Search */}
+        <div className="relative mb-4">
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="게시글 검색"
+            className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-bridge-primary pr-9"
+          />
+          {search && (
+            <button
+              onClick={() => setSearch('')}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-ink text-xs font-bold"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+
         {/* Category filter */}
         <div className="flex flex-wrap gap-2 mb-6">
-          <button
-            onClick={() => setActiveSlug(null)}
-            className={`rounded-full px-4 py-1.5 text-[10px] font-black uppercase tracking-widest transition-colors ${
-              activeSlug === null ? 'bg-ink text-white' : 'bg-white border border-gray-200 text-gray-500 hover:border-ink'
-            }`}
-          >
-            전체
-          </button>
           {categories.map((cat) => (
             <button
               key={cat.id}
-              onClick={() => setActiveSlug(cat.slug)}
+              onClick={() => setActiveSlug(activeSlug === cat.slug ? null : cat.slug)}
               className={`rounded-full px-4 py-1.5 text-[10px] font-black uppercase tracking-widest transition-colors ${
                 activeSlug === cat.slug ? 'bg-ink text-white' : 'bg-white border border-gray-200 text-gray-500 hover:border-ink'
               }`}
@@ -123,7 +159,7 @@ export default function CommunityPage() {
         {loading ? (
           <div className="space-y-1">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white rounded-xl border border-gray-100 p-4 animate-pulse h-16" />
+              <div key={i} className="bg-white rounded-xl border border-gray-100 p-4 animate-pulse h-20" />
             ))}
           </div>
         ) : error ? (
@@ -132,7 +168,7 @@ export default function CommunityPage() {
           </div>
         ) : posts.length === 0 ? (
           <div className="rounded-xl bg-white border border-gray-100 p-10 text-center text-gray-400 text-sm">
-            아직 게시글이 없습니다.
+            {search ? `"${search}" 검색 결과가 없습니다.` : '아직 게시글이 없습니다.'}
           </div>
         ) : (
           <div className="overflow-hidden rounded-2xl border border-gray-100">
@@ -160,10 +196,20 @@ export default function CommunityPage() {
                   <div className="font-bold text-sm text-ink group-hover:text-bridge-teal transition-colors truncate">
                     {post.title}
                   </div>
-                  <div className="text-[10px] text-gray-400 mt-0.5">
+                  <div className="text-[11px] text-gray-400 mt-0.5 truncate">
+                    {post.content.slice(0, 80)}{post.content.length > 80 ? '…' : ''}
+                  </div>
+                  <div className="text-[10px] text-gray-300 mt-0.5">
                     {timeAgo(post.created_at)} · 댓글 {getCommentCount(post)}개
                   </div>
                 </div>
+
+                {/* Thumbnail */}
+                {post.image_url && (
+                  <div className="relative w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 border border-gray-100">
+                    <Image src={post.image_url} alt="" fill className="object-cover" />
+                  </div>
+                )}
 
                 <span className="text-gray-300 group-hover:text-bridge-primary transition-colors">›</span>
               </Link>
@@ -174,7 +220,7 @@ export default function CommunityPage() {
         {/* Write modal */}
         {showForm && (
           <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-4">
-            <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-lg">
+            <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto">
               <div className="flex justify-between items-center mb-5">
                 <h2 className="font-black text-lg text-ink">새 글 작성</h2>
                 <button onClick={() => setShowForm(false)} className="text-gray-400 hover:text-ink text-sm font-bold">✕</button>
@@ -208,11 +254,37 @@ export default function CommunityPage() {
                   <textarea
                     value={formContent}
                     onChange={(e) => setFormContent(e.target.value)}
-                    rows={5}
+                    rows={4}
                     placeholder="내용을 입력하세요"
                     className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bridge-primary resize-none"
                     required
                   />
+                </div>
+                <div>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-1.5">이미지 (선택)</label>
+                  {formImagePreview ? (
+                    <div className="relative rounded-xl overflow-hidden border border-gray-200">
+                      <Image src={formImagePreview} alt="preview" width={480} height={200} className="w-full object-cover max-h-48" />
+                      <button
+                        type="button"
+                        onClick={clearImage}
+                        className="absolute top-2 right-2 bg-black/50 text-white rounded-full w-6 h-6 text-xs flex items-center justify-center hover:bg-black/70"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ) : (
+                    <label className="flex items-center justify-center gap-2 w-full rounded-xl border-2 border-dashed border-gray-200 py-6 text-sm text-gray-400 cursor-pointer hover:border-bridge-primary hover:text-bridge-teal transition-colors">
+                      <span>📷 이미지 첨부</span>
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept="image/jpeg,image/png,image/gif,image/webp"
+                        onChange={handleImageChange}
+                        className="hidden"
+                      />
+                    </label>
+                  )}
                 </div>
                 <div className="flex justify-end gap-3 pt-1">
                   <button type="button" onClick={() => setShowForm(false)} className="px-4 py-2 text-sm font-bold text-gray-500 hover:text-ink">취소</button>

@@ -101,11 +101,23 @@ export function getPost(id: string | number) {
   return fetchJson<PostWithComments>(`/api/posts/${id}`)
 }
 
-export function createPost(title: string, content: string, category_id: number) {
+export function createPost(title: string, content: string, category_id: number, image_url?: string) {
   return fetchJson<DbPost>('/api/posts', {
     method: 'POST',
-    body: JSON.stringify({ title, content, category_id })
+    body: JSON.stringify({ title, content, category_id, image_url })
   })
+}
+
+export async function uploadImage(file: File): Promise<string> {
+  const formData = new FormData()
+  formData.append('file', file)
+  const res = await fetch('/api/upload', { method: 'POST', body: formData })
+  if (!res.ok) {
+    const payload = await res.json().catch(() => ({}))
+    throw new Error((payload as { error?: string }).error ?? `Upload failed: ${res.status}`)
+  }
+  const data = await res.json() as { url: string }
+  return data.url
 }
 
 export function addComment(postId: string | number, content: string) {
