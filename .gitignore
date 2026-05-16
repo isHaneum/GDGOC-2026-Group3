@@ -2,9 +2,10 @@ node_modules/
 dist/
 .next/
 .env
-.env*.local
+.env.local
+.env.*.local
+gemini.key
 .codex/
-/docs/
 .DS_Store
 npm-debug.log*
 *.tsbuildinfo

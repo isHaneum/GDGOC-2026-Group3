@@ -1,0 +1,1475 @@
+[
+  {
+    "companyId": "anymind",
+    "companyName": "AnyMind Group",
+    "country": "Japan",
+    "industry": "Marketing Tech",
+    "roles": [
+      "Mobile Engineer",
+      "Machine Learning Engineer"
+    ],
+    "requiredTechnicalSkills": [
+      "Go"
+    ],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "Remote",
+      "Hybrid",
+      "CrossFunctional",
+      "GlobalTeam"
+    ],
+    "companyValues": [
+      "Speed",
+      "Transparency"
+    ],
+    "preferredSoftSkills": [
+      "Communication",
+      "LearningAgility"
+    ],
+    "evaluationSignals": [
+      "Go proficiency in real product work",
+      "Communication demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "WeakCommunication",
+      "LimitedCollaboration"
+    ],
+    "recommendedCandidateEvidence": [
+      "ProductDelivery"
+    ],
+    "extractedSummary": "We believe that our technology creates a world where it is exciting for everyone to do business Come join us as we provide technology that forms the business infrastructure for next-generation commerce Asia is currently in a constant state of exciting growth and innovation, and with that, businesses are also in a constant state of growth",
+    "confidenceScore": 0.75,
+    "sourceIds": [
+      "anymind-cheerio"
+    ]
+  },
+  {
+    "companyId": "ateam",
+    "companyName": "Ateam",
+    "country": "Japan",
+    "industry": "Internet Services",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [],
+    "preferredSoftSkills": [
+      "Collaboration"
+    ],
+    "evaluationSignals": [
+      "Collaboration demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "LimitedCollaboration"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "[採用情報 | 株式会社エイチームホールディングス（Ateam Holdings Co 【2026年入社式開催】3名の新入社員がエイチームに仲間入り！ 【社員インタビュー】「よやきゅん♡」から「よやきゅんズ♡♡♡♡♡♡♡♡♡」に！『引越し…",
+    "confidenceScore": 0.5,
+    "sourceIds": [
+      "ateam-cheerio"
+    ]
+  },
+  {
+    "companyId": "bizreach",
+    "companyName": "BizReach",
+    "country": "Japan",
+    "industry": "HR Platform",
+    "roles": [
+      "SRE / DevOps Engineer"
+    ],
+    "requiredTechnicalSkills": [
+      "AWS"
+    ],
+    "preferredTechnicalSkills": [
+      "AWS"
+    ],
+    "languageExpectation": [],
+    "workStyle": [
+      "CrossFunctional"
+    ],
+    "companyValues": [
+      "Transparency"
+    ],
+    "preferredSoftSkills": [
+      "Communication",
+      "LearningAgility",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "AWS proficiency in real product work",
+      "Communication demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "WeakCommunication"
+    ],
+    "recommendedCandidateEvidence": [
+      "ProductDelivery"
+    ],
+    "extractedSummary": "[Careers｜Visional ― 新しい可能性を、次々と オープンポジション（インサイドセールス／フィールドセールス／カスタマーサクセス）／HRMOS事業部 ウェブアプリケーションエンジニア／リクルーティングプロダクト本部",
+    "confidenceScore": 0.75,
+    "sourceIds": [
+      "bizreach-cheerio"
+    ]
+  },
+  {
+    "companyId": "caddi",
+    "companyName": "CADDi",
+    "country": "Japan",
+    "industry": "Manufacturing SaaS",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "CrossFunctional"
+    ],
+    "companyValues": [
+      "Craftsmanship",
+      "Speed",
+      "MissionAlignment",
+      "Transparency"
+    ],
+    "preferredSoftSkills": [
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "PoorQualityDiscipline",
+      "LimitedCollaboration",
+      "AmbiguityHandling"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "Unleash世界最大産業を変革するAIが知の限界を超えていく今、社会が次にぶつかる壁は物的・物理的な限界です その壁を超える鍵は、あらゆる経済を支える巨大な基幹産業の変革にあります キャディは、そこにテクノロジーで挑み、グローバルで本質的なインパクトを生み出していきます",
+    "confidenceScore": 0.6000000000000001,
+    "sourceIds": [
+      "caddi-cheerio"
+    ]
+  },
+  {
+    "companyId": "cookpad",
+    "companyName": "Cookpad",
+    "country": "Japan",
+    "industry": "Consumer Internet",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "CrossFunctional",
+      "GlobalTeam"
+    ],
+    "companyValues": [
+      "Craftsmanship"
+    ],
+    "preferredSoftSkills": [
+      "Communication",
+      "Collaboration"
+    ],
+    "evaluationSignals": [
+      "Communication demonstrated in prior collaboration",
+      "Collaboration demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "WeakCommunication",
+      "LimitedCollaboration"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "[Cookpad hiring fallback summary] Cookpad commonly values user empathy, product iteration, engineering craftsmanship, and collaboration in global teams Strong candidates can show measurable product improvements, readable code, and thoughtful cross-team communication",
+    "confidenceScore": 0.6000000000000001,
+    "sourceIds": [
+      "cookpad-manual_fallback"
+    ]
+  },
+  {
+    "companyId": "cyberagent",
+    "companyName": "CyberAgent",
+    "country": "Japan",
+    "industry": "Internet Services",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [],
+    "preferredSoftSkills": [],
+    "evaluationSignals": [],
+    "riskConcerns": [],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "全社のAI活用レベルを可視化して底上げする、サイバーエージェント流「AI番付」とは サイバーエージェント流「企画書の作り方講座」の募集を開始しました 発足4年目のTech DE&I プロジェクトが紡ぐ、女性エンジニアの新たな繋がり",
+    "confidenceScore": 0.45,
+    "sourceIds": [
+      "cyberagent-cheerio"
+    ]
+  },
+  {
+    "companyId": "cybozu",
+    "companyName": "Cybozu",
+    "country": "Japan",
+    "industry": "Groupware SaaS",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "Remote",
+      "CrossFunctional"
+    ],
+    "companyValues": [],
+    "preferredSoftSkills": [
+      "Communication",
+      "Collaboration",
+      "LearningAgility",
+      "ProblemSolving"
+    ],
+    "evaluationSignals": [
+      "Communication demonstrated in prior collaboration",
+      "Collaboration demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration",
+      "ProblemSolving demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "LimitedCollaboration"
+    ],
+    "recommendedCandidateEvidence": [
+      "ProductDelivery"
+    ],
+    "extractedSummary": "【28新卒ビジネス職向け】1時間でまるわかり！サイボウズ会社説明＆インターン選考説明会 【IT技術でお客様の課題解決】若手社員登壇！職種＆インターン説明会 #IT #技術営業 #SE #システムコンサルティング Cybozu Tech Meetup #26 サイボウズ フロントエンド最前線 - kintoneフロントエンド16年の軌跡 -",
+    "confidenceScore": 0.6000000000000001,
+    "sourceIds": [
+      "cybozu-readability"
+    ]
+  },
+  {
+    "companyId": "dena",
+    "companyName": "DeNA",
+    "country": "Japan",
+    "industry": "Internet Services",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "Remote",
+      "CrossFunctional"
+    ],
+    "companyValues": [
+      "MissionAlignment"
+    ],
+    "preferredSoftSkills": [
+      "Communication",
+      "Collaboration",
+      "LearningAgility",
+      "ProblemSolving",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "Communication demonstrated in prior collaboration",
+      "Collaboration demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration",
+      "ProblemSolving demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "AmbiguityHandling"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "変化に対応し挑戦し続けることで、人生を豊かに彩るエンターテインメント領域と生活をより快適にする社会課題領域の両軸で、世界にひろがる未来につながるDelightを届け続けます 変化に対応し挑戦し続けることで、人生を豊かに彩るエンターテインメント領域と生活をより快適にする社会課題領域の両軸で、世界にひろがる未来につながるDelightを届け続けます リモートワークやシェアオフィス、副業など「新しい働き方」を時代にあわせたそれぞれの働き方で仕事に専念することができます",
+    "confidenceScore": 0.6000000000000001,
+    "sourceIds": [
+      "dena-cheerio"
+    ]
+  },
+  {
+    "companyId": "finatext",
+    "companyName": "Finatext",
+    "country": "Japan",
+    "industry": "Fintech",
+    "roles": [
+      "Backend Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "CrossFunctional"
+    ],
+    "companyValues": [
+      "Craftsmanship"
+    ],
+    "preferredSoftSkills": [
+      "Collaboration",
+      "ProblemSolving"
+    ],
+    "evaluationSignals": [
+      "Collaboration demonstrated in prior collaboration",
+      "ProblemSolving demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "PoorQualityDiscipline"
+    ],
+    "recommendedCandidateEvidence": [
+      "Documentation"
+    ],
+    "extractedSummary": "[Finatext hiring fallback summary] Finatext recruiting commonly emphasizes fintech product development, backend quality, regulatory awareness, and collaborative engineering Strong candidates can show secure service delivery, documentation habits, and practical problem solving in financial systems",
+    "confidenceScore": 0.7,
+    "sourceIds": [
+      "finatext-manual_fallback"
+    ]
+  },
+  {
+    "companyId": "freee",
+    "companyName": "freee",
+    "country": "Japan",
+    "industry": "SaaS",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "CrossFunctional"
+    ],
+    "companyValues": [
+      "Speed",
+      "MissionAlignment"
+    ],
+    "preferredSoftSkills": [
+      "Collaboration",
+      "LearningAgility",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "Collaboration demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "AmbiguityHandling"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "キャリア向け募集要項新卒向け募集要項アルバイト向け募集要項障害者雇用についてだれもが自由に経営できる社会へ スモールビジネスほど、自由で可能性に満ちあふれた仕事はありません しかし人手が少ないからこそ、経営に関する手間で、その自由が奪れています",
+    "confidenceScore": 0.6000000000000001,
+    "sourceIds": [
+      "freee-cheerio"
+    ]
+  },
+  {
+    "companyId": "ga-technologies",
+    "companyName": "GA technologies",
+    "country": "Japan",
+    "industry": "PropTech",
+    "roles": [
+      "SRE / DevOps Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "GlobalTeam"
+    ],
+    "companyValues": [],
+    "preferredSoftSkills": [
+      "Communication",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "Communication demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "WeakCommunication"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "フロントエンド・サーバーサイド・QA・SRE・モバイルアプリエンジニア等 GAテクノロジーズのサービスや事業、働く人たち、業界ニュース等をお届けするオウンドメディア GAテクノロジーズの会社情報や事業、制度、カルチャーについてご紹介します",
+    "confidenceScore": 0.6000000000000001,
+    "sourceIds": [
+      "ga-technologies-readability"
+    ]
+  },
+  {
+    "companyId": "gmo-pepabo",
+    "companyName": "GMO Pepabo",
+    "country": "Japan",
+    "industry": "Internet Services",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "CrossFunctional"
+    ],
+    "companyValues": [
+      "UserFocus",
+      "Transparency",
+      "Ownership"
+    ],
+    "preferredSoftSkills": [
+      "Communication",
+      "Collaboration",
+      "Ownership",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "Communication demonstrated in prior collaboration",
+      "Collaboration demonstrated in prior collaboration",
+      "Ownership demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "LowOwnership",
+      "WeakCommunication",
+      "LimitedCollaboration"
+    ],
+    "recommendedCandidateEvidence": [
+      "ProductDelivery"
+    ],
+    "extractedSummary": "[GMO Pepabo hiring fallback summary] GMO Pepabo recruiting materials often emphasize user value, web service development, engineering ownership, and open collaboration Candidate evidence includes maintaining services in production, communication with teammates, and improving developer workflows",
+    "confidenceScore": 0.65,
+    "sourceIds": [
+      "gmo-pepabo-manual_fallback"
+    ]
+  },
+  {
+    "companyId": "gree",
+    "companyName": "GREE",
+    "country": "Japan",
+    "industry": "Internet Services",
+    "roles": [
+      "Mobile Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [
+      "UserFocus",
+      "MissionAlignment"
+    ],
+    "preferredSoftSkills": [
+      "LearningAgility"
+    ],
+    "evaluationSignals": [
+      "LearningAgility demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "[グリーホールディングス株式会社 (GREE Holdings, Inc グリーグループは、「インターネットを通じて、世界をより良くする 」というミッションの元、まだ世の中にない新しい価値や驚き、喜びやワクワクを、より多くの人々へ提供するために日々挑戦を続けています",
+    "confidenceScore": 0.6000000000000001,
+    "sourceIds": [
+      "gree-readability"
+    ]
+  },
+  {
+    "companyId": "hacobu",
+    "companyName": "Hacobu",
+    "country": "Japan",
+    "industry": "Logistics SaaS",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [
+      "Go"
+    ],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [
+      "MissionAlignment"
+    ],
+    "preferredSoftSkills": [
+      "Collaboration",
+      "LearningAgility",
+      "ProblemSolving"
+    ],
+    "evaluationSignals": [
+      "Go proficiency in real product work",
+      "Collaboration demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration",
+      "ProblemSolving demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "Data-Driven Logistics®物流には課題が山積しています 2030年には、約35%の荷物が運べなくなるという試算もあります 私たちHacobuは、断絶されたデータをつなぎ、物流情報プラットフォームを創り、この難問に立ち向かいます",
+    "confidenceScore": 0.6000000000000001,
+    "sourceIds": [
+      "hacobu-cheerio"
+    ]
+  },
+  {
+    "companyId": "hennge",
+    "companyName": "HENNGE",
+    "country": "Japan",
+    "industry": "Security / SaaS",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [
+      "Transparency"
+    ],
+    "preferredSoftSkills": [
+      "LearningAgility"
+    ],
+    "evaluationSignals": [
+      "LearningAgility demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "AmbiguityHandling"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "LIBERATION OF TECHNOLOGYテクノロジーを、みんなの手に アーリーアダプターでありつづけるために、青い果実を食べつづける アーリーアダプターでありつづけるために、青い果実を食べつづける",
+    "confidenceScore": 0.55,
+    "sourceIds": [
+      "hennge-readability"
+    ]
+  },
+  {
+    "companyId": "kaonavi",
+    "companyName": "Kaonavi",
+    "country": "Japan",
+    "industry": "HR SaaS",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [
+      "UserFocus",
+      "MissionAlignment"
+    ],
+    "preferredSoftSkills": [
+      "Communication",
+      "LearningAgility",
+      "ProblemSolving",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "Communication demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration",
+      "ProblemSolving demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "AmbiguityHandling"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "歩んできた歴史、市場環境の変化、事業展望など、カオナビの「挑戦」にまつわるトピックをご紹介します 「ゲームチェンジャー」として変革を続ける社員の姿を、インタビューを通じてお届けします プロダクトデベロップメント本部 TalentHRカイゼン部 部長",
+    "confidenceScore": 0.55,
+    "sourceIds": [
+      "kaonavi-cheerio"
+    ]
+  },
+  {
+    "companyId": "kayac",
+    "companyName": "KAYAC",
+    "country": "Japan",
+    "industry": "Internet Services",
+    "roles": [
+      "Mobile Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [
+      "UserFocus",
+      "Speed"
+    ],
+    "preferredSoftSkills": [
+      "Communication",
+      "Collaboration",
+      "LearningAgility"
+    ],
+    "evaluationSignals": [
+      "Communication demonstrated in prior collaboration",
+      "Collaboration demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "AmbiguityHandling"
+    ],
+    "recommendedCandidateEvidence": [
+      "GitHubPortfolio",
+      "ProductDelivery"
+    ],
+    "extractedSummary": "[学歴や卒業時期は不問！面白法人カヤックの新卒採用 | 面白法人カヤック] 一生に一度しかない新卒就職で、カヤックという船に乗ることを選択してくれた方 心よりお待ちしております！ー 面白法人カヤック 代表取締役CEO 柳澤大輔新卒の皆さまへカヤックの組織・文化について「面白法人」を名乗るカヤックでは、社員が面白がって働くこと、そして、オリジナリティのあるものをつくり続けることを何よりも大切にしています",
+    "confidenceScore": 0.65,
+    "sourceIds": [
+      "kayac-cheerio"
+    ]
+  },
+  {
+    "companyId": "kubell",
+    "companyName": "kubell",
+    "country": "Japan",
+    "industry": "Business Communication SaaS",
+    "roles": [
+      "Machine Learning Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [
+      "MissionAlignment"
+    ],
+    "preferredSoftSkills": [
+      "Collaboration",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "Collaboration demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "LimitedCollaboration"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "[採用情報 | 株式会社kubell（旧 Chatwork株式会社）] 人とテクノロジーをかけ合わせたBPaaSで、中小企業のDXを実現 国内最大級のビジネスチャット「Chatwork」を起点に、DXされた業務プロセスそのものをクラウド経由で提供するBPaaS事業を展開",
+    "confidenceScore": 0.6000000000000001,
+    "sourceIds": [
+      "kubell-cheerio"
+    ]
+  },
+  {
+    "companyId": "layerx",
+    "companyName": "LayerX",
+    "country": "Japan",
+    "industry": "Fintech / AI SaaS",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [
+      "MissionAlignment",
+      "Transparency"
+    ],
+    "preferredSoftSkills": [],
+    "evaluationSignals": [],
+    "riskConcerns": [
+      "AmbiguityHandling"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "LayerXを知る事業を知るバクラク事業Ai Workforce事業Fintech事業ポジション一覧あなたのための採用情報OpenDoor（カジュアル面談）学生の皆さまへホームLayerXを知る事業を知るバクラク事業Ai Workforce事業Fintech事業ポジション一覧あなたのための採用情報学生の皆さまへ採用ポリシー採用プライバシーポリシーOpen Door（カジュアル面談）イベント行動規範コーポレートサイトBet AI, with LayerXBet AI, with LayerXお知らせ職種や求める働き方を選んで、あなたのための採用ページを作成してみてください未来の希望を、実装しよう 一人ひとりの専門性と情熱を結集し、小さな波を重ねて、AIという技術を希望の力に変えていく その変革の実装者は、変化そのものを「面白い」と感じるあなたです",
+    "confidenceScore": 0.5,
+    "sourceIds": [
+      "layerx-readability"
+    ]
+  },
+  {
+    "companyId": "lycorp",
+    "companyName": "LINE Yahoo",
+    "country": "Japan",
+    "industry": "Internet Platform",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "CrossFunctional"
+    ],
+    "companyValues": [],
+    "preferredSoftSkills": [
+      "Collaboration"
+    ],
+    "evaluationSignals": [
+      "Collaboration demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "LimitedCollaboration"
+    ],
+    "recommendedCandidateEvidence": [
+      "ProductDelivery"
+    ],
+    "extractedSummary": "[LINE Yahoo hiring fallback summary] LINE Yahoo engineering roles often signal large-scale traffic handling, platform reliability, teamwork, and product execution The company looks for practical engineering judgment, collaboration, and evidence of contributing to production systems",
+    "confidenceScore": 0.6000000000000001,
+    "sourceIds": [
+      "lycorp-manual_fallback"
+    ]
+  },
+  {
+    "companyId": "luup",
+    "companyName": "Luup",
+    "country": "Japan",
+    "industry": "Mobility Tech",
+    "roles": [
+      "SRE / DevOps Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [
+      "JapaneseBusiness"
+    ],
+    "workStyle": [
+      "Remote",
+      "FlexibleHours"
+    ],
+    "companyValues": [
+      "Speed",
+      "MissionAlignment",
+      "Transparency"
+    ],
+    "preferredSoftSkills": [
+      "Communication",
+      "Collaboration"
+    ],
+    "evaluationSignals": [
+      "JapaneseBusiness communication readiness",
+      "Communication demonstrated in prior collaboration",
+      "Collaboration demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "WeakCommunication",
+      "LimitedCollaboration",
+      "AmbiguityHandling"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "Mission「街じゅうを「駅前化」するインフラをつくる」🛴私たちは電動・小型・一人乗りの電動マイクロモビリティのシェアリングサービスを通じて、全ての人が自由に移動できる未来を目指しています いかに早く、これからの日本に必要な新しい交通インフラをつくるか Luup創業当初は、主婦や元介護士がスポットで家庭の介護活動をお手伝いする「介護士版Uber」に取り組んでいました",
+    "confidenceScore": 0.7,
+    "sourceIds": [
+      "luup-cheerio"
+    ]
+  },
+  {
+    "companyId": "m3",
+    "companyName": "M3",
+    "country": "Japan",
+    "industry": "HealthTech",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "CrossFunctional"
+    ],
+    "companyValues": [
+      "Ownership"
+    ],
+    "preferredSoftSkills": [
+      "Communication",
+      "Ownership"
+    ],
+    "evaluationSignals": [
+      "Communication demonstrated in prior collaboration",
+      "Ownership demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "LowOwnership",
+      "WeakCommunication"
+    ],
+    "recommendedCandidateEvidence": [
+      "ProductDelivery"
+    ],
+    "extractedSummary": "M3 hiring content typically emphasizes healthcare platform responsibility, scalable product development, and practical engineering execution Candidate evidence should include ownership of production systems, careful communication, and the ability to improve user workflows",
+    "confidenceScore": 0.65,
+    "sourceIds": [
+      "m3-manual_fallback"
+    ]
+  },
+  {
+    "companyId": "mercari",
+    "companyName": "Mercari",
+    "country": "Japan",
+    "industry": "Marketplace",
+    "roles": [
+      "SRE / DevOps Engineer"
+    ],
+    "requiredTechnicalSkills": [
+      "Go"
+    ],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "CrossFunctional"
+    ],
+    "companyValues": [
+      "MissionAlignment"
+    ],
+    "preferredSoftSkills": [],
+    "evaluationSignals": [
+      "Go proficiency in real product work"
+    ],
+    "riskConcerns": [
+      "LimitedCollaboration"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "[Mercari Careers: Join Our Team] MissionAt Mercari, we have a mission we want to achieve with the help of all of our members We take on bold challenges without fear of failure",
+    "confidenceScore": 0.65,
+    "sourceIds": [
+      "mercari-cheerio"
+    ]
+  },
+  {
+    "companyId": "mixi",
+    "companyName": "MIXI",
+    "country": "Japan",
+    "industry": "Internet Services",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [
+      "UserFocus"
+    ],
+    "preferredSoftSkills": [
+      "Collaboration",
+      "LearningAgility"
+    ],
+    "evaluationSignals": [
+      "Collaboration demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "LimitedCollaboration"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "[MIXI GROUP RECRUIT - MIXI GROUPの新卒・中途採用情報です] MIXIではコミュニケーションを一緒につくる仲間を募集しています 【本選考直結】Dive into MIXI 2026夏季（エンジニア）",
+    "confidenceScore": 0.55,
+    "sourceIds": [
+      "mixi-readability"
+    ]
+  },
+  {
+    "companyId": "moneyforward",
+    "companyName": "Money Forward",
+    "country": "Japan",
+    "industry": "Fintech",
+    "roles": [
+      "Backend Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "CrossFunctional"
+    ],
+    "companyValues": [
+      "Craftsmanship"
+    ],
+    "preferredSoftSkills": [
+      "Collaboration"
+    ],
+    "evaluationSignals": [
+      "Collaboration demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "PoorQualityDiscipline"
+    ],
+    "recommendedCandidateEvidence": [
+      "Documentation"
+    ],
+    "extractedSummary": "[Money Forward hiring fallback summary] Money Forward tends to value fintech domain awareness, secure software practices, stable backend implementation, and collaborative product development Strong candidates can show accountability, documentation habits, and experience with quality-focused delivery",
+    "confidenceScore": 0.7,
+    "sourceIds": [
+      "moneyforward-manual_fallback"
+    ]
+  },
+  {
+    "companyId": "paypay",
+    "companyName": "PayPay",
+    "country": "Japan",
+    "industry": "Fintech",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "CrossFunctional"
+    ],
+    "companyValues": [
+      "UserFocus",
+      "Speed",
+      "MissionAlignment"
+    ],
+    "preferredSoftSkills": [
+      "Communication",
+      "Collaboration",
+      "LearningAgility",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "Communication demonstrated in prior collaboration",
+      "Collaboration demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "WeakCommunication",
+      "LimitedCollaboration",
+      "AmbiguityHandling"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "PayPayは約50か国の国と地域から集まった多様なメンバーで構成されています 我々は自分たちの想像を超える未来を創るためにあえて明確なビジョンは必要ないと考えています 常にDay1であるスタンスを忘れずに、誰もが想像できないようなビジョン（未来）を実現していくのがPayPayです",
+    "confidenceScore": 0.6000000000000001,
+    "sourceIds": [
+      "paypay-cheerio"
+    ]
+  },
+  {
+    "companyId": "plaid",
+    "companyName": "Plaid",
+    "country": "Japan",
+    "industry": "Customer Experience SaaS",
+    "roles": [
+      "Mobile Engineer",
+      "Platform Engineer",
+      "Data Engineer",
+      "Machine Learning Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "CrossFunctional"
+    ],
+    "companyValues": [
+      "UserFocus",
+      "MissionAlignment",
+      "Transparency"
+    ],
+    "preferredSoftSkills": [
+      "Collaboration",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "Collaboration demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "プレイドの会社情報や各職種や事業、募集ポジションや関連情報をまとめています プレイドという会社を未来の仲間に最短で理解してもらうため、ミッションや考え方、働き方を紹介しています 各職種ごとに仕事内容、部署が持つ課題やキャリアなどを紹介します",
+    "confidenceScore": 0.65,
+    "sourceIds": [
+      "plaid-cheerio"
+    ]
+  },
+  {
+    "companyId": "prtimes",
+    "companyName": "PR TIMES",
+    "country": "Japan",
+    "industry": "Media SaaS",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "Remote",
+      "CrossFunctional"
+    ],
+    "companyValues": [
+      "UserFocus",
+      "MissionAlignment",
+      "Transparency"
+    ],
+    "preferredSoftSkills": [
+      "Communication",
+      "Collaboration",
+      "LearningAgility",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "Communication demonstrated in prior collaboration",
+      "Collaboration demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [],
+    "recommendedCandidateEvidence": [
+      "ProductDelivery"
+    ],
+    "extractedSummary": "「行動者発の情報が、人の心を揺さぶる時代へ」というMissionとともに、PR TIMESはさまざまなことに挑戦していきます 自身も行動者となり、Missionが実現される時代を一緒につくりあげていくことのできる仲間を探しています PR TIMESの営業の醍醐味とは？「お客様の成功」からぶれない意志と挑戦のエピソード│25新卒採用説明会レポート",
+    "confidenceScore": 0.65,
+    "sourceIds": [
+      "prtimes-cheerio"
+    ]
+  },
+  {
+    "companyId": "preferred-networks",
+    "companyName": "Preferred Networks",
+    "country": "Japan",
+    "industry": "AI",
+    "roles": [
+      "Machine Learning Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [
+      "Craftsmanship"
+    ],
+    "preferredSoftSkills": [
+      "LearningAgility",
+      "ProblemSolving"
+    ],
+    "evaluationSignals": [
+      "LearningAgility demonstrated in prior collaboration",
+      "ProblemSolving demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "PoorQualityDiscipline"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "[Preferred Networks hiring fallback summary] Preferred Networks hiring materials usually emphasize advanced engineering, machine learning, research-minded problem solving, and strong software implementation ability Candidate evidence should include technically challenging projects, algorithmic depth, and high-quality execution",
+    "confidenceScore": 0.6000000000000001,
+    "sourceIds": [
+      "preferred-networks-manual_fallback"
+    ]
+  },
+  {
+    "companyId": "rakuten",
+    "companyName": "Rakuten",
+    "country": "Japan",
+    "industry": "Internet Platform",
+    "roles": [
+      "SRE / DevOps Engineer"
+    ],
+    "requiredTechnicalSkills": [
+      "JavaScript",
+      "Go",
+      "Python",
+      "Java",
+      "Kotlin",
+      "Ruby",
+      "PHP"
+    ],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "GlobalTeam"
+    ],
+    "companyValues": [],
+    "preferredSoftSkills": [
+      "Collaboration",
+      "LearningAgility",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "JavaScript proficiency in real product work",
+      "Go proficiency in real product work",
+      "Python proficiency in real product work",
+      "Java proficiency in real product work",
+      "Kotlin proficiency in real product work",
+      "Ruby proficiency in real product work",
+      "PHP proficiency in real product work",
+      "Collaboration demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [],
+    "recommendedCandidateEvidence": [
+      "ProductDelivery",
+      "SystemDesign"
+    ],
+    "extractedSummary": "[職種紹介 エンジニア (プロダクト開発含む)|楽天グループ株式会社] 高度な専門性を生かし、開発という枠にとらわれず、楽天サービスを進化させる プロジェクトマネージャー、プロダクトマネージャー、プログラムマネージャーなど",
+    "confidenceScore": 0.7,
+    "sourceIds": [
+      "rakuten-cheerio"
+    ]
+  },
+  {
+    "companyId": "sansan",
+    "companyName": "Sansan",
+    "country": "Japan",
+    "industry": "B2B SaaS",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [],
+    "preferredSoftSkills": [],
+    "evaluationSignals": [],
+    "riskConcerns": [],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "誰もが利用するさまざまな道が、生活のインフラとして人々を支えています そんな道をつくるため、私たちはいつも、新しい出会いを楽しみにしています",
+    "confidenceScore": 0.45,
+    "sourceIds": [
+      "sansan-cheerio"
+    ]
+  },
+  {
+    "companyId": "smartbank",
+    "companyName": "SmartBank",
+    "country": "Japan",
+    "industry": "Fintech",
+    "roles": [
+      "SRE / DevOps Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [
+      "JapaneseBusiness"
+    ],
+    "workStyle": [],
+    "companyValues": [
+      "Transparency",
+      "Ownership"
+    ],
+    "preferredSoftSkills": [
+      "Communication",
+      "Collaboration",
+      "Ownership",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "JapaneseBusiness communication readiness",
+      "Communication demonstrated in prior collaboration",
+      "Collaboration demonstrated in prior collaboration",
+      "Ownership demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "LowOwnership",
+      "WeakCommunication"
+    ],
+    "recommendedCandidateEvidence": [
+      "SystemDesign"
+    ],
+    "extractedSummary": "たくさんの人が毎日、熱狂的に使ってくれるようなサービスを生み出したい そういって週末に集まった3人が自然とWebサービスを作り出すようになり、会社をつくり、初めて生み出したヒット作が日本初のフリマアプリ「フリル」でした 今でも一切変わらず、イシューを解き、人々が本当に欲しかったモノを作り出すことで、世の中をより良くしていきたいと思っています",
+    "confidenceScore": 0.7,
+    "sourceIds": [
+      "smartbank-cheerio"
+    ]
+  },
+  {
+    "companyId": "smarthr",
+    "companyName": "SmartHR",
+    "country": "Japan",
+    "industry": "HR SaaS",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [
+      "MissionAlignment",
+      "Transparency"
+    ],
+    "preferredSoftSkills": [
+      "Collaboration",
+      "LearningAgility",
+      "ProblemSolving",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "Collaboration demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration",
+      "ProblemSolving demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "AmbiguityHandling"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "人は経験がないことにためらい、先の見えない道を進むことに臆する 私たちが向き合う“労働にまつわる社会課題”も、その一つひとつが未知への挑戦だ ミッションと目指す未来well-working労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる",
+    "confidenceScore": 0.55,
+    "sourceIds": [
+      "smarthr-readability"
+    ]
+  },
+  {
+    "companyId": "smartnews",
+    "companyName": "SmartNews",
+    "country": "Japan",
+    "industry": "News / Consumer Internet",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "Remote",
+      "GlobalTeam"
+    ],
+    "companyValues": [
+      "MissionAlignment"
+    ],
+    "preferredSoftSkills": [
+      "Collaboration",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "Collaboration demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "LimitedCollaboration"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "A global team united by a single mission 誰もが発信者となった現代社会において、私たちが日々読むことのできる情報の量は爆発的に増加しています 一つだけ確かなことは、それらすべての情報を読むことは決してできない、私たちは読むべき情報を日々選び取らなければならない、ということです",
+    "confidenceScore": 0.6000000000000001,
+    "sourceIds": [
+      "smartnews-cheerio"
+    ]
+  },
+  {
+    "companyId": "spacemarket",
+    "companyName": "Spacemarket",
+    "country": "Japan",
+    "industry": "Marketplace",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "CrossFunctional"
+    ],
+    "companyValues": [
+      "Speed",
+      "Ownership"
+    ],
+    "preferredSoftSkills": [
+      "Collaboration",
+      "Ownership"
+    ],
+    "evaluationSignals": [
+      "Collaboration demonstrated in prior collaboration",
+      "Ownership demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "LowOwnership",
+      "LimitedCollaboration"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "[Spacemarket hiring fallback summary] Spacemarket hiring content generally highlights marketplace product development, user empathy, ownership, and collaborative execution Good candidate evidence includes shipping user-facing features, balancing speed with reliability, and communicating across teams",
+    "confidenceScore": 0.6000000000000001,
+    "sourceIds": [
+      "spacemarket-manual_fallback"
+    ]
+  },
+  {
+    "companyId": "stores",
+    "companyName": "STORES",
+    "country": "Japan",
+    "industry": "Commerce SaaS",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [
+      "Go",
+      "Ruby"
+    ],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "Remote",
+      "Onsite",
+      "FlexibleHours",
+      "CrossFunctional"
+    ],
+    "companyValues": [
+      "UserFocus"
+    ],
+    "preferredSoftSkills": [
+      "Communication",
+      "Collaboration",
+      "LearningAgility",
+      "ProblemSolving",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "Go proficiency in real product work",
+      "Ruby proficiency in real product work",
+      "Communication demonstrated in prior collaboration",
+      "Collaboration demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration",
+      "ProblemSolving demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [],
+    "recommendedCandidateEvidence": [
+      "SystemDesign"
+    ],
+    "extractedSummary": "採用サイトSTORES についてメンバーを知るカジュアル面談募集職種募集職種・エントリーこだわりや情熱、たのしみに駆動される経済をつくるこだわりや情熱、たのしみに駆動される経済をつくるscrollABOUT USお店のデジタル、まるっと STORES は、中小事業者の挑戦を支えるコンパウンド型スタートアップです 私たちが目指すのは、「こだわり」や「好き」が、きちんと価値になる社会",
+    "confidenceScore": 0.7,
+    "sourceIds": [
+      "stores-cheerio"
+    ]
+  },
+  {
+    "companyId": "timee",
+    "companyName": "Timee",
+    "country": "Japan",
+    "industry": "HR Tech",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [
+      "Speed",
+      "MissionAlignment"
+    ],
+    "preferredSoftSkills": [
+      "Collaboration",
+      "LearningAgility"
+    ],
+    "evaluationSignals": [
+      "Collaboration demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "AmbiguityHandling"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "タイミーは従来の仕組みや慣習にとらわれない新しい働き方を日本中にインストールし、 そんな社会の実現が潜在労働⼒を喚起するとともに、人材確保に悩む企業や地⽅⾃治体など、 圧倒的な事業成長の中で、我々は理想を掲げ実現することを諦めずに挑み続けます",
+    "confidenceScore": 0.55,
+    "sourceIds": [
+      "timee-cheerio"
+    ]
+  },
+  {
+    "companyId": "ubie",
+    "companyName": "Ubie",
+    "country": "Japan",
+    "industry": "HealthTech",
+    "roles": [
+      "Machine Learning Engineer",
+      "SRE / DevOps Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [
+      "Remote",
+      "Onsite",
+      "FlexibleHours",
+      "CrossFunctional"
+    ],
+    "companyValues": [
+      "UserFocus",
+      "Craftsmanship",
+      "MissionAlignment",
+      "Transparency"
+    ],
+    "preferredSoftSkills": [
+      "Collaboration",
+      "LearningAgility",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "Collaboration demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [
+      "PoorQualityDiscipline"
+    ],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "The Next Giant Leapfor the Human Race人類の次なる大きな飛躍を、あなたとともにSCROLL生成AI活用NEWカジュアル面談特設サイトはこちらkeyboard_arrow_rightPIVOTにて動画公開中代表 阿部から「健康寿命を延ばす医療とのマッチング改革」をテーマにお話してます launchAbout usMessage“ Ubieというスペースシャトルは、今まさに発射の時を迎えている ”私たちの使命は、世界80億人の健康寿命の延伸 さまざまな理由から最適な治療にたどりつけない患者さんが世界中にあふれている中で、医療×テクノロジーの可能性に全てを賭け、創業から6年で唯一無二の自動問診アルゴリズムとプラットフォームを作り上げてきました",
+    "confidenceScore": 0.65,
+    "sourceIds": [
+      "ubie-cheerio"
+    ]
+  },
+  {
+    "companyId": "wantedly",
+    "companyName": "Wantedly",
+    "country": "Japan",
+    "industry": "HR Platform",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [
+      "UserFocus"
+    ],
+    "preferredSoftSkills": [
+      "Collaboration",
+      "LearningAgility",
+      "ProductThinking"
+    ],
+    "evaluationSignals": [
+      "Collaboration demonstrated in prior collaboration",
+      "LearningAgility demonstrated in prior collaboration",
+      "ProductThinking demonstrated in prior collaboration"
+    ],
+    "riskConcerns": [],
+    "recommendedCandidateEvidence": [
+      "GitHubPortfolio",
+      "ProductDelivery"
+    ],
+    "extractedSummary": "究極の適材適所により、シゴトでココロオドルひとをふやす仕事 = 辛いという考え方がはびこっています 産業革命直後、人間が機械の延長として扱われていた時代はそうだったかもしれません しかしロボティックスやAIが発達した今、シゴトは生きる目的として、没頭できる対象になりつつあります",
+    "confidenceScore": 0.6000000000000001,
+    "sourceIds": [
+      "wantedly-readability"
+    ]
+  },
+  {
+    "companyId": "zozo",
+    "companyName": "ZOZO",
+    "country": "Japan",
+    "industry": "E-commerce",
+    "roles": [
+      "Software Engineer"
+    ],
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "languageExpectation": [],
+    "workStyle": [],
+    "companyValues": [],
+    "preferredSoftSkills": [],
+    "evaluationSignals": [],
+    "riskConcerns": [],
+    "recommendedCandidateEvidence": [],
+    "extractedSummary": "私たちZOZOが大切にしている企業理念や経営戦略、サステナビリティステートメントなどをご紹介します ※株式会社Bloomが運営する「Bloomキャリア登録」サービスを利用しています NEW 「通販新聞」で販売促進企画担当者へのインタビュー記事が掲載されました",
+    "confidenceScore": 0.45,
+    "sourceIds": [
+      "zozo-readability"
+    ]
+  }
+]

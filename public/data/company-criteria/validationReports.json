@@ -1,0 +1,632 @@
+[
+  {
+    "companies": [
+      {
+        "companyId": "anymind",
+        "companyName": "AnyMind Group",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.95,
+        "signalConfidenceScore": 0.75,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": true,
+        "warnings": []
+      },
+      {
+        "companyId": "ateam",
+        "companyName": "Ateam",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.41716,
+        "signalConfidenceScore": 0.5,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "Signal confidence is below the target threshold of 0.55.",
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "bizreach",
+        "companyName": "BizReach",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.95,
+        "signalConfidenceScore": 0.75,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": true,
+        "warnings": []
+      },
+      {
+        "companyId": "caddi",
+        "companyName": "CADDi",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.95,
+        "signalConfidenceScore": 0.6000000000000001,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "cookpad",
+        "companyName": "Cookpad",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.16552000000000003,
+        "signalConfidenceScore": 0.6000000000000001,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "cyberagent",
+        "companyName": "CyberAgent",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.42668,
+        "signalConfidenceScore": 0.45,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "Signal confidence is below the target threshold of 0.55.",
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "cybozu",
+        "companyName": "Cybozu",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.7834,
+        "signalConfidenceScore": 0.6000000000000001,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": true,
+        "warnings": [
+          "No concrete technical skills were extracted."
+        ]
+      },
+      {
+        "companyId": "dena",
+        "companyName": "DeNA",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.95,
+        "signalConfidenceScore": 0.6000000000000001,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "finatext",
+        "companyName": "Finatext",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.17392,
+        "signalConfidenceScore": 0.7,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": true,
+        "warnings": [
+          "No concrete technical skills were extracted."
+        ]
+      },
+      {
+        "companyId": "freee",
+        "companyName": "freee",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.8603999999999999,
+        "signalConfidenceScore": 0.6000000000000001,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "ga-technologies",
+        "companyName": "GA technologies",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.67448,
+        "signalConfidenceScore": 0.6000000000000001,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "gmo-pepabo",
+        "companyName": "GMO Pepabo",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.17279999999999998,
+        "signalConfidenceScore": 0.65,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": true,
+        "warnings": [
+          "No concrete technical skills were extracted."
+        ]
+      },
+      {
+        "companyId": "gree",
+        "companyName": "GREE",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.6559999999999999,
+        "signalConfidenceScore": 0.6000000000000001,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "hacobu",
+        "companyName": "Hacobu",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.95,
+        "signalConfidenceScore": 0.6000000000000001,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "hennge",
+        "companyName": "HENNGE",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.48519999999999996,
+        "signalConfidenceScore": 0.55,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "kaonavi",
+        "companyName": "Kaonavi",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.9102399999999999,
+        "signalConfidenceScore": 0.55,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "kayac",
+        "companyName": "KAYAC",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.95,
+        "signalConfidenceScore": 0.65,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": true,
+        "warnings": [
+          "No concrete technical skills were extracted."
+        ]
+      },
+      {
+        "companyId": "kubell",
+        "companyName": "kubell",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.45355999999999996,
+        "signalConfidenceScore": 0.6000000000000001,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "layerx",
+        "companyName": "LayerX",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.43592,
+        "signalConfidenceScore": 0.5,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "Signal confidence is below the target threshold of 0.55.",
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "lycorp",
+        "companyName": "LINE Yahoo",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.16916,
+        "signalConfidenceScore": 0.6000000000000001,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": true,
+        "warnings": [
+          "No concrete technical skills were extracted."
+        ]
+      },
+      {
+        "companyId": "luup",
+        "companyName": "Luup",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.95,
+        "signalConfidenceScore": 0.7,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "m3",
+        "companyName": "M3",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.17672000000000002,
+        "signalConfidenceScore": 0.65,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": true,
+        "warnings": [
+          "No concrete technical skills were extracted."
+        ]
+      },
+      {
+        "companyId": "mercari",
+        "companyName": "Mercari",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.73272,
+        "signalConfidenceScore": 0.65,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "mixi",
+        "companyName": "MIXI",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.52188,
+        "signalConfidenceScore": 0.55,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "moneyforward",
+        "companyName": "Money Forward",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0,
+        "signalConfidenceScore": 0.7,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": true,
+        "warnings": [
+          "No concrete technical skills were extracted."
+        ]
+      },
+      {
+        "companyId": "paypay",
+        "companyName": "PayPay",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.53672,
+        "signalConfidenceScore": 0.6000000000000001,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "plaid",
+        "companyName": "Plaid",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.7397199999999999,
+        "signalConfidenceScore": 0.65,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "prtimes",
+        "companyName": "PR TIMES",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.95,
+        "signalConfidenceScore": 0.65,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": true,
+        "warnings": [
+          "No concrete technical skills were extracted."
+        ]
+      },
+      {
+        "companyId": "preferred-networks",
+        "companyName": "Preferred Networks",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.1798,
+        "signalConfidenceScore": 0.6000000000000001,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "rakuten",
+        "companyName": "Rakuten",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.78676,
+        "signalConfidenceScore": 0.7,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": true,
+        "warnings": []
+      },
+      {
+        "companyId": "sansan",
+        "companyName": "Sansan",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.39224,
+        "signalConfidenceScore": 0.45,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "Signal confidence is below the target threshold of 0.55.",
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "smartbank",
+        "companyName": "SmartBank",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.77528,
+        "signalConfidenceScore": 0.7,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": true,
+        "warnings": [
+          "No concrete technical skills were extracted."
+        ]
+      },
+      {
+        "companyId": "smarthr",
+        "companyName": "SmartHR",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.8662799999999999,
+        "signalConfidenceScore": 0.55,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "smartnews",
+        "companyName": "SmartNews",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.6783999999999999,
+        "signalConfidenceScore": 0.6000000000000001,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "spacemarket",
+        "companyName": "Spacemarket",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0,
+        "signalConfidenceScore": 0.6000000000000001,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "stores",
+        "companyName": "STORES",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.95,
+        "signalConfidenceScore": 0.7,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": true,
+        "warnings": []
+      },
+      {
+        "companyId": "timee",
+        "companyName": "Timee",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.9052,
+        "signalConfidenceScore": 0.55,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "ubie",
+        "companyName": "Ubie",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.95,
+        "signalConfidenceScore": 0.65,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      },
+      {
+        "companyId": "wantedly",
+        "companyName": "Wantedly",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.3654,
+        "signalConfidenceScore": 0.6000000000000001,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": true,
+        "warnings": [
+          "No concrete technical skills were extracted."
+        ]
+      },
+      {
+        "companyId": "zozo",
+        "companyName": "ZOZO",
+        "sourceCount": 1,
+        "successfulSourceCount": 1,
+        "sourceQualityScore": 0.5034,
+        "signalConfidenceScore": 0.45,
+        "rubricWeightValid": true,
+        "hasTechnicalCriteria": true,
+        "hasEvidenceSignals": false,
+        "warnings": [
+          "Signal confidence is below the target threshold of 0.55.",
+          "No concrete technical skills were extracted.",
+          "No candidate evidence examples were extracted."
+        ]
+      }
+    ],
+    "summary": {
+      "totalCompanies": 40,
+      "validatedCompanies": 4,
+      "averageSourceQualityScore": 0.6111239999999999,
+      "averageSignalConfidenceScore": 0.60875,
+      "lowQualityCompanies": [
+        "Ateam",
+        "CADDi",
+        "Cookpad",
+        "CyberAgent",
+        "Cybozu",
+        "DeNA",
+        "Finatext",
+        "freee",
+        "GA technologies",
+        "GMO Pepabo",
+        "GREE",
+        "Hacobu",
+        "HENNGE",
+        "Kaonavi",
+        "KAYAC",
+        "kubell",
+        "LayerX",
+        "LINE Yahoo",
+        "Luup",
+        "M3",
+        "Mercari",
+        "MIXI",
+        "Money Forward",
+        "PayPay",
+        "Plaid",
+        "PR TIMES",
+        "Preferred Networks",
+        "Sansan",
+        "SmartBank",
+        "SmartHR",
+        "SmartNews",
+        "Spacemarket",
+        "Timee",
+        "Ubie",
+        "Wantedly",
+        "ZOZO"
+      ]
+    },
+    "generatedAt": "2026-05-16T10:08:02.852Z"
+  }
+]

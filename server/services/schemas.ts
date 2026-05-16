@@ -109,3 +109,45 @@ export const recruiterLensSchema = {
     "safetyNote"
   ]
 };
+
+const resumeDetectedLocaleSchema = {
+  type: "string",
+  enum: ["ko", "ja", "mixed", "unknown"]
+};
+
+const resumeContextNoteSchema = {
+  type: "object",
+  properties: {
+    note: { type: "string" },
+    confidence: {
+      type: "string",
+      enum: ["high", "medium", "low"]
+    },
+    basis: { type: "string" }
+  },
+  required: ["note", "confidence"]
+};
+
+export const resumeContextMappingSchema = {
+  type: "object",
+  properties: {
+    detectedSourceLocale: resumeDetectedLocaleSchema,
+    items: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          mappedName: { type: "string" },
+          mappedContent: { type: "string" },
+          detectedSourceLocale: resumeDetectedLocaleSchema,
+          contextNotes: {
+            type: "array",
+            items: resumeContextNoteSchema
+          }
+        },
+        required: ["mappedName", "mappedContent", "detectedSourceLocale", "contextNotes"]
+      }
+    }
+  },
+  required: ["detectedSourceLocale", "items"]
+};

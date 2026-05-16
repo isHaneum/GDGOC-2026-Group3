@@ -3,6 +3,7 @@ import { analyzeDeveloperProfile } from "./analyzer";
 import { buildRoleBaselines } from "./baselineBuilder";
 import { extractAllHiringSignals } from "./extractor";
 import { refactorForRecruiterLens } from "./recruiterRefactorer";
+import { mapResumeContext, validateResumeContextMappingRequest } from "./resumeContextMapper";
 import { loadSampleSources } from "./sampleData";
 import { readJsonFile, writeJsonFile } from "./storage";
 
@@ -104,4 +105,19 @@ export async function refactorIntroductionPayload(profile: DeveloperProfile) {
 
   const result = await refactorForRecruiterLens(profile, baseline);
   return { result, baseline };
+}
+
+export async function mapResumeContextPayload(payload: unknown) {
+  const validation = validateResumeContextMappingRequest(payload);
+
+  if (!validation.ok) {
+    throw new ApiError(400, validation.message);
+  }
+
+  try {
+    return await mapResumeContext(validation.value);
+  } catch (error) {
+    console.warn("Resume context mapping failed.", error);
+    throw new ApiError(503, "Resume context mapping AI service is unavailable.");
+  }
 }
