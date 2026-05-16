@@ -24,9 +24,9 @@ The system provides guidance, not final hiring decisions.
 
 ## Tech Stack
 
-- Frontend: React + Vite + TypeScript
+- Framework: Next.js App Router + React + TypeScript
 - Styling: Tailwind CSS
-- Backend: Node.js + Express
+- Backend: Next.js Route Handlers
 - AI: Gemini API structured JSON output
 - Data: local JSON files
 - Database/login: not required
@@ -43,7 +43,6 @@ Add a Gemini key to `.env`:
 ```bash
 GEMINI_API_KEY=your_google_ai_studio_api_key
 GEMINI_MODEL=gemini-2.5-flash
-PORT=8787
 ```
 
 Run the app:
@@ -55,19 +54,33 @@ npm run dev
 Open:
 
 - Web UI: `http://localhost:5173`
-- API health: `http://localhost:8787/api/health`
+- API health: `http://localhost:5173/api/health`
 
 The prototype still works without `GEMINI_API_KEY`; it uses local fallback extraction and analysis so the hackathon demo is reliable.
 
 ## Project Structure
 
 ```text
+app/
+  api/
+    analyze-profile/route.ts
+    baselines/route.ts
+    build-baseline/route.ts
+    extract-signals/route.ts
+    health/route.ts
+    load-sample-data/route.ts
+    refactor-introduction/route.ts
+    signals/route.ts
+    sources/route.ts
+  layout.tsx
+  page.tsx
 server/
   data/
     rawCareerSources.json
     extractedSignals.json
     roleBaselines.json
   services/
+    apiHandlers.ts
     analyzer.ts
     baselineBuilder.ts
     bridgeLabs.ts
@@ -81,11 +94,26 @@ server/
 src/
   api/client.ts
   App.tsx
+  i18n.ts
   index.css
-  main.tsx
 shared/
   types.ts
 ```
+
+## API Call Strategy
+
+BridgePass now uses **one Next.js server** instead of separate Vite and Express servers.
+
+- Client components call same-origin endpoints with `fetch("/api/...")`.
+- `src/api/client.ts` remains the single browser-side API wrapper.
+- `app/api/*/route.ts` files are thin HTTP adapters.
+- `server/services/apiHandlers.ts` owns the application-level API operations.
+- Gemini calls run only inside Route Handlers and server services, so `GEMINI_API_KEY` is never exposed to the browser.
+- CORS and Vite proxy configuration are no longer needed because UI and API share the same origin.
+
+For the hackathon MVP, extracted signals and baselines are still written to local JSON files. This is perfect for local demos and workshops. If this is deployed to a serverless host such as Vercel, file writes should be replaced with a small hosted store, object storage, or in-memory demo state because serverless files are not reliable persistent storage.
+
+Route Handlers were chosen over Server Actions because this app benefits from explicit JSON endpoints that can be tested, demoed, and reused by a future mobile app, Chrome extension, or partner-facing company view.
 
 ## How Sample Data Is Processed
 
