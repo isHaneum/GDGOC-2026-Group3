@@ -107,7 +107,7 @@ export default function PortfolioForm({
           <button
             type="button"
             onClick={handleSave}
-            className="rounded-full bg-bridge-primary px-5 py-2.5 text-sm font-black text-ink transition-opacity hover:opacity-90"
+            className="rounded-full bg-bridge-primary px-5 py-2.5 text-sm font-black text-white transition-opacity hover:opacity-90"
           >
             Save portfolio
           </button>

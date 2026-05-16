@@ -149,7 +149,7 @@ export default function AccountPage() {
           <div className="md:col-span-2 flex flex-col gap-2 sm:flex-row sm:items-center">
             <button
               type="submit"
-              className="rounded-xl bg-bridge-primary px-5 py-3 text-sm font-bold text-ink transition-opacity hover:opacity-90"
+              className="rounded-xl bg-bridge-primary px-5 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90"
             >
               프로필 저장
             </button>

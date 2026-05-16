@@ -93,41 +93,28 @@ export default function SignInPage() {
       <section className="absolute inset-0 z-10">
         <div className="pointer-events-none absolute inset-0 z-0 flex flex-col justify-between px-6 py-8 sm:px-10 lg:px-14">
           <div>
-            <p className="text-[10px] font-light uppercase tracking-[0.42em] text-bridge-teal/70">
+            <p className="text-[18px] font-bold uppercase tracking-[0.42em] text-bridge-teal">
               새 계정
             </p>
-            <h1 className="mt-3 max-w-3xl text-6xl font-thin leading-none tracking-normal text-ink/10 sm:text-7xl lg:text-8xl">
+            <h1 className="mt-3 max-w-2xl text-5xl font-light leading-tight tracking-tight text-ink sm:text-5xl">
               방향 선택으로 시작하는 회원가입
             </h1>
           </div>
-          <p className="max-w-sm text-sm font-light leading-6 text-gray-400">
+          <p className="max-w-sm text-sm font-medium leading-6 text-gray-500">
             지도를 눌러 지원 방향을 먼저 고르면, 다음 단계에서 지원자 또는 채용자 역할을 선택합니다.
           </p>
         </div>
 
-        <div className="absolute inset-x-0 top-8 z-10 flex flex-col items-center px-2 sm:top-10 lg:inset-y-0 lg:left-0 lg:right-auto lg:w-[72%] lg:justify-center lg:px-8">
+        <div className="absolute inset-x-0 top-8 z-10 flex flex-col items-center px-2 sm:top-10 lg:inset-y-0 lg:left-0 lg:right-auto lg:w-[85%] lg:justify-center lg:px-4">
           <BridgeDirectionMap
             hovered={hoveredDirection}
             onHover={setHoveredDirection}
             onSelect={handleDirectionSelect}
           />
-          <div className="relative z-20 -mt-3 text-center sm:-mt-6">
-            <p className="text-xs font-light text-gray-400">
-              {hoveredDirection
-                ? `${bridgeDirections[hoveredDirection].shortLabel} · 클릭하여 계속 진행`
-                : "한국에서 일본으로, 혹은 일본에서 한국으로 선택해주세요"}
-            </p>
-            <Link
-              href="/signup/onboarding"
-              className="mt-3 inline-flex rounded-xl border border-gray-200 bg-white/80 px-4 py-2 text-xs font-bold text-ink backdrop-blur transition-colors hover:border-bridge-primary"
-            >
-              지도 없이 회원가입
-            </Link>
-          </div>
         </div>
       </section>
 
-      <section className="pointer-events-none relative z-30 mx-auto flex min-h-[calc(100vh-128px)] max-w-7xl items-end justify-center pt-[430px] sm:pt-[520px] lg:items-center lg:justify-end lg:pt-0">
+      <section className="pointer-events-none relative z-30 mx-auto flex min-h-[calc(100vh-128px)] max-w-7xl items-end justify-center pt-[430px] sm:pt-[520px] lg:items-center lg:justify-end lg:pt-0 pr-10">
         <form
           onSubmit={handleSubmit}
           className="pointer-events-auto w-full max-w-[420px] rounded-xl border border-gray-100 bg-white/95 p-5 shadow-panel backdrop-blur"
@@ -170,7 +157,7 @@ export default function SignInPage() {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="mt-6 w-full rounded-xl bg-bridge-primary px-5 py-3 text-sm font-bold text-ink transition-opacity hover:opacity-90 disabled:opacity-50"
+            className="mt-6 w-full rounded-xl bg-bridge-primary px-5 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
           >
             {status === "submitting" ? "로그인 중..." : "로그인"}
           </button>

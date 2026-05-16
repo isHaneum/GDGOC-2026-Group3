@@ -155,7 +155,7 @@ export default function SignupProfilePage() {
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="rounded-xl bg-bridge-primary px-5 py-3 text-sm font-bold text-ink transition-opacity hover:opacity-90 disabled:opacity-50"
+              className="rounded-xl bg-bridge-primary px-5 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
             >
               {status === "submitting" ? "계정 생성 중..." : "계속하기"}
             </button>

@@ -11,7 +11,7 @@ export default function NotFoundRoutePage() {
         </p>
         <Link
           href="/signin"
-          className="mt-6 inline-flex rounded-full bg-bridge-primary px-4 py-2 text-sm font-black text-ink"
+          className="mt-6 inline-flex rounded-full bg-bridge-primary px-4 py-2 text-sm font-black text-white"
         >
           Go to main
         </Link>

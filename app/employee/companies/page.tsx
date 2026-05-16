@@ -71,7 +71,7 @@ export default function HiringCompaniesPage() {
               </p>
               <Link
                 href={`/employee/companies/${company.companyId}`}
-                className="mt-5 inline-flex rounded-full bg-bridge-primary px-4 py-2 text-sm font-bold text-ink transition-opacity hover:opacity-90"
+                className="mt-5 inline-flex rounded-full bg-bridge-primary px-4 py-2 text-sm font-bold text-white transition-opacity hover:opacity-90"
               >
                 상세 보기
               </Link>

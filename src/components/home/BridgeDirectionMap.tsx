@@ -12,20 +12,20 @@ export function BridgeDirectionMap({
   return (
     <div className="relative w-full max-w-5xl aspect-[16/9] flex items-center justify-center">
       <svg
-        viewBox="0 0 1000 500"
+        viewBox="250 30 800 400"
         className="w-full h-full drop-shadow-sm"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         {/* Detailed East Asia Outlines (Simplified for SVG paths) */}
-        <g className="stroke-gray-200" strokeWidth="1" opacity="0.5">
+        <g className="stroke-gray-300" strokeWidth="1.5" opacity="1">
           {/* Mainland China / East Asia Coastline */}
-          <path d="M50 100 Q 150 80, 200 150 T 250 300 T 300 450" />
-          <path d="M100 50 Q 300 30, 450 60" />
+          {/* <path d="M50 100 Q 150 80, 200 150 T 250 300 T 300 450" />
+          <path d="M100 50 Q 300 30, 450 60" /> */}
           {/* Sakhalin / North */}
-          <path d="M650 20 Q 700 40, 720 100" />
+          {/* <path d="M650 20 Q 700 40, 720 100" /> */}
           {/* Taiwan Area */}
-          <path d="M280 460 Q 300 480, 320 470" />
+          {/* <path d="M280 460 Q 300 480, 320 470" /> */}
         </g>
 
         {/* South Korea (Detailed Path) */}
@@ -46,7 +46,7 @@ export function BridgeDirectionMap({
             x="360"
             y="265"
             className={`text-[9px] font-black uppercase tracking-[0.2em] transition-all duration-500 ${
-              hovered === "jp-kr" ? "fill-bridge-teal opacity-100" : "fill-gray-300 opacity-60"
+              hovered === "jp-kr" ? "fill-bridge-teal opacity-100" : "fill-gray-400 opacity-100"
             }`}
           >
             South Korea
@@ -88,7 +88,7 @@ export function BridgeDirectionMap({
             x="620"
             y="250"
             className={`text-[9px] font-black uppercase tracking-[0.2em] transition-all duration-500 ${
-              hovered === "kr-jp" ? "fill-bridge-teal opacity-100" : "fill-gray-300 opacity-60"
+              hovered === "kr-jp" ? "fill-bridge-teal opacity-100" : "fill-gray-400 opacity-100"
             }`}
           >
             Japan
@@ -115,21 +115,21 @@ export function BridgeDirectionMap({
 
       {/* Contextual Information - Fade In */}
       <div
-        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[180%] w-full max-w-sm text-center transition-all duration-700 ease-in-out ${
-          hovered ? "opacity-100 translate-y-[-200%]" : "opacity-0 pointer-events-none"
+        className={`absolute bottom-[8%] left-1/3 -translate-x-1/2 w-full max-w-sm text-center transition-all duration-500 ease-in-out ${
+          hovered ? "opacity-100 translate-y-0" : "opacity-0 pointer-events-none translate-y-4"
         }`}
       >
-        <div className="bg-white/80 backdrop-blur-md px-6 py-4 rounded-2xl shadow-panel border border-bridge-primary/10">
+        <div className="bg-white/90 backdrop-blur-md px-6 py-4 rounded-2xl shadow-panel border border-bridge-primary/20">
           <h3 className="text-bridge-teal font-black text-xs uppercase tracking-widest mb-2">
             {hovered === "kr-jp" ? "South Korea 🇰🇷 → Japan 🇯🇵" : "Japan 🇯🇵 → South Korea 🇰🇷"}
           </h3>
-          <p className="text-gray-500 text-[11px] leading-relaxed">
+          <p className="text-gray-600 text-[14px] font-medium leading-relaxed">
             {hovered === "kr-jp"
-              ? "Join the Japanese IT ecosystem with a focus on high-context technical communication and UI refinement."
-              : "Enter the fast-paced Korean startup scene, leveraging agility and cross-cultural technical leadership."}
+              ? "하이컨텍스트 기술 커뮤니케이션과 UI 정교함에 중점을 둔 일본 IT 생태계에 합류하세요."
+              : "민첩성과 다문화 기술 리더십을 활용하여 빠른 속도의 한국 스타트업 환경에 진출하세요."}
           </p>
-          <div className="mt-4 text-[10px] font-bold text-bridge-primary">
-            Click to choose your role &rarr;
+          <div className="mt-4 text-[14px] font-bold text-bridge-primary">
+            클릭하여 역할 선택 &rarr;
           </div>
         </div>
       </div>

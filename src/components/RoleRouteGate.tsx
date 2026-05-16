@@ -65,7 +65,7 @@ export default function RoleRouteGate({ children }: { children: ReactNode }) {
           <button
             type="button"
             onClick={switchRole}
-            className="rounded-full bg-bridge-primary px-5 py-3 text-sm font-black text-ink transition-opacity hover:opacity-90"
+            className="rounded-full bg-bridge-primary px-5 py-3 text-sm font-black text-white transition-opacity hover:opacity-90"
           >
             Continue as {requiredRoleLabel}
           </button>

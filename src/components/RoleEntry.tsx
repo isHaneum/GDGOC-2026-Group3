@@ -67,7 +67,7 @@ export default function RoleEntry() {
             <p className="mt-3 text-sm leading-6 text-gray-500">
               기업 정보를 보고 포트폴리오를 정리한 뒤 지원 흐름으로 이동합니다.
             </p>
-            <span className="mt-6 inline-flex rounded-full bg-bridge-primary px-4 py-2 text-sm font-bold text-ink">
+            <span className="mt-6 inline-flex rounded-full bg-bridge-primary px-4 py-2 text-sm font-bold text-white">
               지원자로 가입
             </span>
           </button>

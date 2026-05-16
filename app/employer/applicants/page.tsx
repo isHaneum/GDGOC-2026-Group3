@@ -222,7 +222,7 @@ function CandidateCard({
         <div className="flex flex-col justify-between items-end md:w-36">
           <Link
             href={profileHref}
-            className="w-full bg-bridge-primary text-ink py-2 rounded-xl font-bold text-xs hover:opacity-90 transition-opacity shadow-sm"
+            className="w-full bg-bridge-primary text-white py-2 rounded-xl font-bold text-xs hover:opacity-90 transition-opacity shadow-sm"
           >
             프로필 보기
           </Link>

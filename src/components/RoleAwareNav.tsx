@@ -91,7 +91,7 @@ export default function RoleAwareNav() {
                   className={[
                     "whitespace-nowrap rounded-full px-4 py-2 text-sm font-bold transition-colors",
                     isActive(item.href)
-                      ? "bg-bridge-primary text-ink"
+                      ? "bg-bridge-primary text-white"
                       : "text-gray-500 hover:bg-gray-50 hover:text-ink"
                   ].join(" ")}
                 >
