@@ -12,12 +12,37 @@ type RawRubricCriterion = Omit<CompanyRubricCriterion, "recommendedVerificationA
   recommendedVerificationActivity: string | string[];
 };
 
+type RawRubric = Omit<CompanyEvaluationRubric, "criteria"> & {
+  criteria: RawRubricCriterion[];
+};
+
+async function loadJson<T>(path: string, fallbackPath?: string): Promise<T> {
+  const response = await fetch(path, { cache: "no-store" });
+
+  if (!response.ok && fallbackPath) {
+    return loadJson<T>(fallbackPath);
+  }
+
+  if (!response.ok) {
+    throw new Error(`Failed to load ${path}`);
+  }
+
+  return response.json() as Promise<T>;
+}
+
 function normalizeCriterion(criterion: RawRubricCriterion): CompanyRubricCriterion {
   return {
     ...criterion,
     recommendedVerificationActivity: Array.isArray(criterion.recommendedVerificationActivity)
       ? criterion.recommendedVerificationActivity
       : [criterion.recommendedVerificationActivity]
+  };
+}
+
+function normalizeRubric(rubric: RawRubric): CompanyEvaluationRubric {
+  return {
+    ...rubric,
+    criteria: rubric.criteria.map(normalizeCriterion)
   };
 }
 
@@ -86,39 +111,55 @@ function toJobProfile(row: Record<string, unknown>): CompanyJobProfile {
 }
 
 export async function loadCompanyRubrics(): Promise<CompanyEvaluationRubric[]> {
-  const { data, error } = await supabase.from("company_evaluation_rubrics").select("*");
-  if (error) throw new Error(`Failed to load company rubrics: ${error.message}`);
-  return (data ?? []).map(toRubric);
+  return loadSupabaseWithFallback(
+    async () => {
+      const { data, error } = await supabase.from("company_evaluation_rubrics").select("*");
+      if (error) throw new Error(error.message);
+      return (data ?? []).map(toRubric);
+    },
+    async () => {
+      const rubrics = await loadJson<RawRubric[]>(
+        "/api/company-criteria/rubrics",
+        "/data/company-criteria/companyRubrics.json"
+      );
+      return rubrics.map(normalizeRubric);
+    }
+  );
 }
 
 export async function loadCompanySignals(): Promise<CompanyHiringSignal[]> {
-  const { data, error } = await supabase.from("company_hiring_signals").select("*");
-  if (error) throw new Error(`Failed to load company signals: ${error.message}`);
-  return (data ?? []).map(toSignal);
+  return loadSupabaseWithFallback(
+    async () => {
+      const { data, error } = await supabase.from("company_hiring_signals").select("*");
+      if (error) throw new Error(error.message);
+      return (data ?? []).map(toSignal);
+    },
+    () =>
+      loadJson<CompanyHiringSignal[]>(
+        "/api/company-criteria/signals",
+        "/data/company-criteria/companySignals.json"
+      )
+  );
 }
 
 export async function loadCompanyJobProfiles(): Promise<CompanyJobProfile[]> {
-  const { data, error } = await supabase.from("company_job_profiles").select("*");
-  if (error) throw new Error(`Failed to load company job profiles: ${error.message}`);
-  return (data ?? []).map(toJobProfile);
+  return loadSupabaseWithFallback(
+    async () => {
+      const { data, error } = await supabase.from("company_job_profiles").select("*");
+      if (error) throw new Error(error.message);
+      return (data ?? []).map(toJobProfile);
+    },
+    () =>
+      loadJson<CompanyJobProfile[]>(
+        "/api/company-criteria/job-profiles",
+        "/data/company-criteria/companyJobProfiles.json"
+      )
+  );
 }
 
 export async function findCompanyRubric(companyId: string): Promise<CompanyEvaluationRubric | null> {
-  const { data, error } = await supabase
-    .from("company_evaluation_rubrics")
-    .select("*")
-    .eq("company_id", companyId)
-    .limit(1)
-    .single();
-  if (error) return null;
-  return toRubric(data);
-}
-
-// sampleDeveloperProfiles and fitEngineMetadata are demo/static data — loaded from JSON
-async function loadJson<T>(path: string): Promise<T> {
-  const response = await fetch(path);
-  if (!response.ok) throw new Error(`Failed to load ${path}`);
-  return response.json() as Promise<T>;
+  const rubrics = await loadCompanyRubrics();
+  return rubrics.find((rubric) => rubric.companyId === companyId) ?? null;
 }
 
 export function loadSampleDeveloperProfiles(): Promise<DeveloperPreference[]> {
@@ -127,4 +168,15 @@ export function loadSampleDeveloperProfiles(): Promise<DeveloperPreference[]> {
 
 export function loadFitEngineMetadata(): Promise<FitEngineMetadata> {
   return loadJson<FitEngineMetadata>("/data/company-criteria/fitEngineMetadata.json");
+}
+
+async function loadSupabaseWithFallback<T>(loadPrimary: () => Promise<T[]>, loadFallback: () => Promise<T[]>): Promise<T[]> {
+  try {
+    const primary = await loadPrimary();
+    if (primary.length > 0) return primary;
+  } catch {
+    // Static fixtures keep demo screens usable when Supabase is unavailable.
+  }
+
+  return loadFallback();
 }

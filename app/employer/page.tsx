@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { MARKETS, getCurrentMarket } from "@shared/market";
@@ -150,6 +151,9 @@ export default function EmployerDashboard() {
           <p className="text-gray-500">
             Finding {market.sourceCountry} developers with deep {market.targetCountry} resonance.
           </p>
+          <Link href="/signal-lab" className="mt-3 inline-flex text-sm font-semibold text-bridge-primary hover:underline">
+            후보 추천 보기
+          </Link>
         </div>
 
         <div className="flex items-center space-x-4">
