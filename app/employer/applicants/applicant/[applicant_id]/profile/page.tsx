@@ -33,22 +33,22 @@ export default async function ApplicantProfilePage({
 
   return (
     <div className="min-h-screen bg-bridge-paper">
-      <div className="container mx-auto max-w-6xl px-4 py-8">
+      <div className="container mx-auto max-w-6xl px-4 py-5">
         <Link
           href="/employer"
-          className="inline-flex items-center rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-bold text-ink shadow-sm transition-colors hover:border-bridge-primary"
+          className="inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-bold text-ink shadow-sm transition-colors hover:border-bridge-primary"
         >
           Back to applicants
         </Link>
 
-        <header className="mt-8 rounded-2xl border border-gray-100 bg-white p-8 shadow-panel">
+        <header className="mt-4 rounded-xl border border-gray-100 bg-white p-5 shadow-panel">
           <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal">
             Applicant Profile
           </p>
-          <div className="mt-3 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <div className="mt-2 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <h1 className="text-3xl font-black text-ink">{applicant.name}</h1>
-              <p className="mt-2 text-sm font-medium text-gray-500">
+              <h1 className="text-2xl font-black text-ink">{applicant.name}</h1>
+              <p className="mt-1 text-sm font-medium text-gray-500">
                 {formatApplicantList(applicant.targetRoles)} · {applicant.nationality} ·{" "}
                 {applicant.yearsOfExperience} years of experience
               </p>
@@ -66,22 +66,22 @@ export default async function ApplicantProfilePage({
           </div>
         </header>
 
-        <section className="mt-6 rounded-2xl border border-bridge-primary/20 bg-bridge-primary/5 p-5">
+        <section className="mt-4 rounded-xl border border-bridge-primary/20 bg-bridge-primary/5 p-4">
           <p className="text-sm font-bold text-bridge-teal">Company-specific evaluation pending</p>
-          <p className="mt-1 text-sm leading-relaxed text-gray-600">
+          <p className="mt-1 text-xs leading-5 text-gray-600">
             Candidate evaluation and resume context mapping require a later company matching context.
           </p>
         </section>
 
-        <section className="mt-6 grid grid-cols-1 gap-5 lg:grid-cols-3">
+        <section className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
           <ProfileSection title="Core Tech Stack">
             <TagList values={applicant.availableTechStacks} />
           </ProfileSection>
 
           <ProfileSection title="Language Certifications">
-            <ul className="space-y-2">
+            <ul className="space-y-1.5">
               {formatApplicantLanguages(applicant).map((language) => (
-                <li key={language} className="text-sm font-medium text-gray-600">
+                <li key={language} className="text-xs font-medium text-gray-600">
                   {language}
                 </li>
               ))}
@@ -101,14 +101,14 @@ export default async function ApplicantProfilePage({
           </ProfileSection>
         </section>
 
-        <section className="mt-6 grid grid-cols-1 gap-5 lg:grid-cols-2">
+        <section className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
           <TextSection title="Resume Text" value={applicant.resumeText} />
           <TextSection title="Portfolio Text" value={applicant.portfolioText} />
           <TextSection title="Motivation" value={applicant.motivation} />
           <ProfileSection title="Concerns">
-            <ul className="space-y-2">
+            <ul className="space-y-1.5">
               {(applicant.concerns?.length ? applicant.concerns : ["Not specified"]).map((concern) => (
-                <li key={concern} className="rounded-xl bg-gray-50 px-4 py-3 text-sm text-gray-600">
+                <li key={concern} className="rounded-lg bg-gray-50 px-3 py-2 text-xs text-gray-600">
                   {concern}
                 </li>
               ))}
@@ -122,8 +122,8 @@ export default async function ApplicantProfilePage({
 
 function ProfileSection({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className="rounded-2xl border border-gray-100 bg-white p-6 shadow-panel">
-      <h2 className="mb-4 text-sm font-black uppercase tracking-widest text-gray-400">{title}</h2>
+    <section className="rounded-xl border border-gray-100 bg-white p-4 shadow-panel">
+      <h2 className="mb-3 text-[11px] font-black uppercase tracking-widest text-gray-400">{title}</h2>
       {children}
     </section>
   );
@@ -132,7 +132,7 @@ function ProfileSection({ title, children }: { title: string; children: ReactNod
 function TextSection({ title, value }: { title: string; value?: string }) {
   return (
     <ProfileSection title={title}>
-      <p className="whitespace-pre-line text-sm leading-relaxed text-gray-600">
+      <p className="whitespace-pre-line text-sm leading-6 text-gray-600">
         {value?.trim() || "Not specified"}
       </p>
     </ProfileSection>
@@ -145,7 +145,7 @@ function TagList({ values }: { values: string[] }) {
       {(values.length ? values : ["Not specified"]).map((value) => (
         <span
           key={value}
-          className="rounded-full border border-gray-100 bg-gray-50 px-3 py-1 text-xs font-bold text-gray-600"
+          className="rounded-full border border-gray-100 bg-gray-50 px-2.5 py-1 text-[11px] font-bold text-gray-600"
         >
           {value}
         </span>
@@ -156,11 +156,11 @@ function TagList({ values }: { values: string[] }) {
 
 function DefinitionList({ rows }: { rows: [string, string][] }) {
   return (
-    <dl className="space-y-3">
+    <dl className="space-y-2.5">
       {rows.map(([label, value]) => (
         <div key={label}>
           <dt className="text-[10px] font-black uppercase tracking-widest text-gray-400">{label}</dt>
-          <dd className="mt-1 text-sm font-medium text-gray-600">{value}</dd>
+          <dd className="mt-0.5 text-xs font-medium text-gray-600">{value}</dd>
         </div>
       ))}
     </dl>
