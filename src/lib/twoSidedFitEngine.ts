@@ -601,9 +601,15 @@ export function validateCompanyJobProfiles(
   const rubricIds = new Set(companyRubrics.map((rubric) => rubric.companyId));
   const warningsByCompany = profiles.flatMap((profile) => {
     const warnings: string[] = [];
+    const hasSalaryCoverage =
+      (typeof profile.salaryMin === "number" && typeof profile.salaryMax === "number") ||
+      (typeof profile.startingSalaryMin === "number" && typeof profile.startingSalaryMax === "number") ||
+      typeof profile.averageAnnualSalary === "number" ||
+      Boolean(profile.startingSalaryNote || profile.averageAnnualSalaryNote || profile.salaryNote);
+
     if (!profile.roleTitle.trim()) warnings.push("missing role title");
     if (!profile.requiredTechStacks.length && !profile.preferredTechStacks.length) warnings.push("missing tech stack");
-    if (typeof profile.salaryMin !== "number" || typeof profile.salaryMax !== "number") warnings.push("missing salary");
+    if (!hasSalaryCoverage) warnings.push("missing salary");
     if (!profile.locations.length || profile.locations.includes("unknown")) warnings.push("missing location");
     if (!profile.requiredLanguages.length) warnings.push("missing language requirement");
     if (typeof profile.experienceRange.minYears !== "number" && typeof profile.experienceRange.maxYears !== "number") {

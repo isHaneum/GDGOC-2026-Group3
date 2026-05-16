@@ -70,6 +70,13 @@ export interface CompanyJobLanguageRequirement {
   level: string;
 }
 
+export interface CompanySalarySourceLink {
+  label: string;
+  url: string;
+  supports?: string;
+  reliability?: string;
+}
+
 export interface CompanyExperienceRange {
   minYears?: number;
   maxYears?: number;
@@ -95,6 +102,17 @@ export interface CompanyJobProfile {
   roleCategory: "Frontend" | "Backend" | "Mobile" | "AI/ML" | "Cyber Security" | "Fullstack" | "Data" | "Other";
   rubricId: string;
   sourceConfidence: "high" | "medium" | "low" | "fallback";
+  salaryNote?: string;
+  startingSalaryMin?: number | null;
+  startingSalaryMax?: number | null;
+  startingSalaryCurrency?: "JPY" | "KRW" | "USD" | "unknown";
+  startingSalaryNote?: string;
+  averageAnnualSalary?: number | null;
+  averageAnnualSalaryNote?: string;
+  averageTenureYears?: number | null;
+  salaryLastCheckedAt?: string;
+  salaryDataQualityNotes?: string[];
+  salarySourceLinks?: CompanySalarySourceLink[];
   logoUrl?: string;
   logoAlt?: string;
   sourceUrls?: string[];

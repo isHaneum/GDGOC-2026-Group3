@@ -1,11 +1,15 @@
 import { type NextRequest } from 'next/server'
-import { createClient } from '../../_lib/supabase'
-import { supabaseServer, GUEST_USER_ID } from '../../../server/services/supabase'
+import { createClient, hasSupabaseEnv } from '../../_lib/supabase'
+import { GUEST_USER_ID, requireSupabaseServer } from '../../../server/services/supabase'
 import { listPosts, createPost } from '../../../server/services/forumService'
 import { jsonResponse, jsonError } from '../_lib/respond'
 
 export async function GET(request: NextRequest) {
   try {
+    if (!hasSupabaseEnv()) {
+      return jsonResponse({ posts: [] })
+    }
+
     const { searchParams } = new URL(request.url)
     const db = await createClient()
     const data = await listPosts(db, {
@@ -26,7 +30,7 @@ export async function POST(request: NextRequest) {
     if (!body.title || !body.content || !body.category_id) {
       return jsonError(new Error('title, content, and category_id are required'))
     }
-    const data = await createPost(supabaseServer, GUEST_USER_ID, body)
+    const data = await createPost(requireSupabaseServer(), GUEST_USER_ID, body)
     return jsonResponse(data)
   } catch (error) {
     return jsonError(error)

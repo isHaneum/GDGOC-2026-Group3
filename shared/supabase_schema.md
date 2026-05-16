@@ -82,6 +82,17 @@
 | `salary_min`            | `int8`        | Nullable         |
 | `salary_max`            | `int8`        | Nullable         |
 | `salary_currency`       | `text`        |                  |
+| `salary_note`           | `text`        | Nullable         |
+| `starting_salary_min`   | `int8`        | Nullable         |
+| `starting_salary_max`   | `int8`        | Nullable         |
+| `starting_salary_currency` | `text`     | Nullable         |
+| `starting_salary_note`  | `text`        | Nullable         |
+| `average_annual_salary` | `int8`        | Nullable         |
+| `average_annual_salary_note` | `text`   | Nullable         |
+| `average_tenure_years`  | `numeric`     | Nullable         |
+| `salary_last_checked_at` | `date`       | Nullable         |
+| `salary_data_quality_notes` | `_text`   | Nullable         |
+| `salary_source_links`   | `jsonb`       | Nullable         |
 | `locations`             | `_text`       | Nullable         |
 | `required_tech_stacks`  | `_text`       | Nullable         |
 | `preferred_tech_stacks` | `_text`       | Nullable         |
