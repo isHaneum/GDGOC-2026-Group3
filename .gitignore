@@ -5,6 +5,7 @@ dist/
 .env.local
 .env.*.local
 gemini.key
+.codex/
 .DS_Store
 npm-debug.log*
 *.tsbuildinfo
