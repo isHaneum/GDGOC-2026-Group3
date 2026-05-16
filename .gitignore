@@ -7,6 +7,7 @@ dist/
 .env*.local
 gemini.key
 .codex/
+.playwright-mcp/
 .DS_Store
 npm-debug.log*
 *.tsbuildinfo

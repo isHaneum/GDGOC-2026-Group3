@@ -20,7 +20,7 @@ export function BridgeLanding() {
 
   function handleDirectionSelect(direction: BridgeDirectionId) {
     setMarket(direction);
-    router.push("/get-started");
+    router.push("/signup/onboarding");
   }
 
   const selectedDirection = hoveredDirection ? bridgeDirections[hoveredDirection] : null;

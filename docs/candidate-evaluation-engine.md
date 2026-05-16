@@ -26,14 +26,14 @@ companyRubrics.json provides the employer-specific evaluation criteria.
 Candidate Evaluation Engine uses those criteria to evaluate candidate evidence.
 
 ## Implementation shape
-This implementation is isolated from the main UI.
+This implementation is isolated from the main user-facing route tree.
 
 - Static dataset: `public/data/company-criteria/*`
 - Frontend-safe loaders: `src/lib/companyCriteria.ts`, `src/lib/candidateEvaluation.ts`
 - Backend service: `server/services/candidateEvaluator.ts`
 - API route: `POST /api/candidate-evaluation/evaluate`
 - Status route: `GET /api/candidate-evaluation/status`
-- Manual debug page: `/debug/candidate-evaluation`
+- No user-facing debug page is currently mounted. The old `/debug/candidate-evaluation` route was removed during the route tree cleanup.
 
 ## Local Gemini key setup
 Use one of the following:
@@ -62,13 +62,7 @@ curl http://localhost:5173/data/company-criteria/metadata.json
 curl http://localhost:5173/api/candidate-evaluation/status
 ```
 
-4. Open the manual debug page.
-
-```text
-http://localhost:5173/debug/candidate-evaluation
-```
-
-5. Evaluate a sample candidate by API.
+4. Evaluate a sample candidate by API.
 
 ```bash
 curl -X POST http://localhost:5173/api/candidate-evaluation/evaluate \
@@ -88,7 +82,7 @@ curl -X POST http://localhost:5173/api/candidate-evaluation/evaluate \
   }'
 ```
 
-6. Confirm the response contains:
+5. Confirm the response contains:
 - `overallFitScore`
 - `criterionScores`
 - `strengths`

@@ -22,6 +22,15 @@ function assertNotContains(relativePath, forbidden, context) {
   }
 }
 
+function assertContains(relativePath, required, context) {
+  const content = read(relativePath);
+  for (const needle of required) {
+    if (!content.includes(needle)) {
+      fail(`${relativePath}: missing "${needle}" (${context})`);
+    }
+  }
+}
+
 assertNotContains(
   "app/layout.tsx",
   ["Developer", "Applicants", "Hiring Companies", "Signal Lab", "Apply"],
@@ -29,25 +38,34 @@ assertNotContains(
 );
 
 assertNotContains(
-  "app/developer/page.tsx",
-  ["지원자 관리", "Recommended Applicants", "Applicants Management"],
-  "developer page must not expose employer applicant management"
+  "src/components/RoleAwareNav.tsx",
+  ['href: "/developer"', 'href: "/apply"', 'href: "/companies"', 'href: "/get-started"', 'href: "/forums"', 'href: "/signal-lab"'],
+  "primary navigation must use the normalized route tree"
 );
 
 assertNotContains(
-  "app/employer/page.tsx",
-  ["자기소개서 작성", "Resume edit", "Best-fit companies as the main feature"],
-  "employer page must not expose developer resume/company recommendation as its primary feature"
+  "src/lib/roleStorage.ts",
+  ["/developer", "/apply", "/companies", "/get-started", "/forums"],
+  "route gate must use employee/employer/community/signup paths"
 );
 
-const signalLab = read("app/signal-lab/page.tsx");
-if (
-  !signalLab.includes("role=developer") &&
-  !signalLab.includes("searchParams") &&
-  !signalLab.includes("URLSearchParams")
-) {
-  fail("app/signal-lab/page.tsx: Signal Lab must support role param or role detection");
-}
+assertContains(
+  "app/page.tsx",
+  ['redirect("/signin")'],
+  "root must redirect to signin"
+);
+
+assertContains(
+  "src/lib/roleStorage.ts",
+  ['pathname.startsWith("/employee")', 'pathname.startsWith("/employer")', 'pathname === "/signup/portfolio"'],
+  "route gate must protect employee, employer, and applicant portfolio signup paths"
+);
+
+assertContains(
+  "src/components/RoleAwareNav.tsx",
+  ["/employee/companies", "/employee/portfolio", "/employer/postings", "/employer/applicants", "/community/posts"],
+  "role navigation must expose normalized route tree"
+);
 
 const proxy = read("proxy.ts");
 if (

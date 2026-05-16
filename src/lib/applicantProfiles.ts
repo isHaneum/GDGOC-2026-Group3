@@ -1,9 +1,9 @@
 import type { DeveloperPreference } from "@shared/companyCriteriaTypes";
 
-const applicantProfileBasePath = "/employer/applicants/applicant";
+const applicantProfileBasePath = "/employer/applicants";
 
 export function buildApplicantProfilePath(applicantId: string) {
-  return `${applicantProfileBasePath}/${encodeURIComponent(applicantId)}/profile`;
+  return `${applicantProfileBasePath}/${encodeURIComponent(applicantId)}/portfolio`;
 }
 
 export function findApplicantById(applicants: DeveloperPreference[], applicantId: string) {

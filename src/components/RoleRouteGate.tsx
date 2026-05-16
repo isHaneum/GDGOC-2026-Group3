@@ -70,7 +70,7 @@ export default function RoleRouteGate({ children }: { children: ReactNode }) {
             Continue as {requiredRoleLabel}
           </button>
           <Link
-            href="/get-started"
+            href="/signup/onboarding"
             className="rounded-full border border-gray-200 px-5 py-3 text-center text-sm font-black text-gray-500 transition-colors hover:border-bridge-primary hover:text-ink"
           >
             Choose role
