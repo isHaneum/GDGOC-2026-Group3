@@ -34,6 +34,7 @@ import {
   rankDevelopersForCompany,
   validateCompanyJobProfiles
 } from '../../src/lib/twoSidedFitEngine';
+import { clearBridgeUserRole, readBridgeUserRole, writeBridgeUserRole } from '../../src/lib/roleStorage';
 import type {
   CompanyJobProfile,
   CompanyJobProfilesValidationSummary,
@@ -606,7 +607,7 @@ function CompanyLogo({ profile }: { profile: CompanyJobProfile }) {
   const logo = broken ? null : formatCompanyLogo(profile);
   if (!logo) {
     return (
-      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-gray-200 bg-bridge-paper text-sm font-bold text-gray-400">
+      <div className="flex h-11 w-20 shrink-0 items-center justify-center rounded-xl border border-gray-200 bg-bridge-paper text-sm font-bold text-gray-400">
         {profile.companyName.slice(0, 2).toUpperCase()}
       </div>
     );
@@ -617,7 +618,7 @@ function CompanyLogo({ profile }: { profile: CompanyJobProfile }) {
       src={logo.src}
       alt={logo.alt}
       onError={() => setBroken(true)}
-      className="h-11 w-11 shrink-0 rounded-2xl border border-gray-200 bg-white object-contain p-1"
+      className="h-11 w-20 shrink-0 rounded-xl border border-gray-200 bg-white object-contain p-2"
     />
   );
 }
@@ -641,7 +642,8 @@ export default function SignalLabPage() {
 
   useEffect(() => {
     const role = new URLSearchParams(window.location.search).get('role');
-    const nextRole = role === 'employer' || role === 'developer' ? role : null;
+    const storedRole = readBridgeUserRole();
+    const nextRole = role === 'employer' || role === 'developer' ? role : storedRole;
     setRequestedRole(nextRole);
     if (nextRole) setMode(nextRole);
     setRoleResolved(true);
@@ -795,7 +797,7 @@ export default function SignalLabPage() {
               <span className="rounded-full bg-bridge-primary/15 px-3 py-1.5 text-sm font-semibold text-bridge-teal">
                 {activeMode === 'developer' ? t('developerMode') : t('employerMode')}
               </span>
-              <a href="/signal-lab" className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm font-semibold text-gray-500 hover:text-ink">
+              <a href="/signal-lab" onClick={() => clearBridgeUserRole()} className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm font-semibold text-gray-500 hover:text-ink">
                 {t('chooseRole')}
               </a>
             </div>
@@ -807,13 +809,13 @@ export default function SignalLabPage() {
             <p className="text-sm font-semibold text-bridge-teal">{t('roleSelectionTitle')}</p>
             <p className="mt-2 text-sm leading-6 text-gray-500">{t('roleSelectionSubtitle')}</p>
             <div className="mt-5 grid gap-4 md:grid-cols-2">
-              <a href="/signal-lab?role=developer" className="rounded-3xl border border-gray-200 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-bridge-primary hover:shadow-panel">
+              <a href="/signal-lab?role=developer" onClick={() => writeBridgeUserRole('developer')} className="rounded-3xl border border-gray-200 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-bridge-primary hover:shadow-panel">
                 <p className="text-sm font-semibold text-bridge-teal">{t('developerMode')}</p>
                 <h2 className="mt-2 text-2xl font-black text-ink">{t('developerRoleTitle')}</h2>
                 <p className="mt-3 text-sm leading-6 text-gray-500">{t('developerRoleBody')}</p>
                 <span className="mt-5 inline-flex rounded-full bg-bridge-primary px-4 py-2 text-sm font-bold text-ink">{t('chooseRole')}</span>
               </a>
-              <a href="/signal-lab?role=employer" className="rounded-3xl border border-gray-200 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-bridge-coral hover:shadow-panel">
+              <a href="/signal-lab?role=employer" onClick={() => writeBridgeUserRole('employer')} className="rounded-3xl border border-gray-200 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-bridge-coral hover:shadow-panel">
                 <p className="text-sm font-semibold text-bridge-coral">{t('employerMode')}</p>
                 <h2 className="mt-2 text-2xl font-black text-ink">{t('employerRoleTitle')}</h2>
                 <p className="mt-3 text-sm leading-6 text-gray-500">{t('employerRoleBody')}</p>

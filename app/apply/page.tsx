@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 import {
@@ -13,6 +14,8 @@ import {
   formatLanguageSummary,
   formatLocationSummary,
 } from "../../src/lib/fitDisplayHelpers";
+import { type BridgeUserRole, readBridgeUserRole } from "../../src/lib/roleStorage";
+import { translateText } from "../../src/lib/translationService";
 import type { CompanyJobProfile, DeveloperPreference } from "../../shared/companyCriteriaTypes";
 
 type LoadState = "loading" | "ready" | "error";
@@ -20,30 +23,16 @@ type Locale = "ko" | "ja" | "en";
 type CompanyJobProfileDisplay = CompanyJobProfile & { missingFields?: string[] };
 
 async function translateDraft(text: string, targetLocale: Locale) {
-  try {
-    const response = await fetch("/api/translate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text, sourceLocale: "auto", targetLocale, context: "resume" })
-    });
-
-    if (response.ok) {
-      const result = await response.json() as { translatedText?: string; provider?: string };
-      if (result.translatedText) return { translatedText: result.translatedText, provider: result.provider ?? "same-origin" };
-    }
-  } catch {
-    // Same-origin route is optional for this MVP; fall back to deterministic local text below.
-  }
-
-  const labels: Record<Locale, string> = {
-    ja: "[Japanese recruiter-facing draft]",
-    ko: "[Korean recruiter-facing draft]",
-    en: "[English recruiter-facing draft]"
-  };
+  const result = await translateText({
+    text,
+    sourceLocale: "auto",
+    targetLocale,
+    context: "resume"
+  });
 
   return {
-    translatedText: `${labels[targetLocale]}\n${text}`,
-    provider: "local deterministic fallback"
+    translatedText: result.translatedText,
+    provider: result.provider
   };
 }
 
@@ -57,7 +46,7 @@ function CompanyLogo({ company }: { company: CompanyJobProfile }) {
 
   if (!logo) {
     return (
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-gray-100 bg-gray-50 text-xs font-black text-gray-400">
+      <div className="flex h-12 w-20 shrink-0 items-center justify-center rounded-xl border border-gray-100 bg-gray-50 text-xs font-black text-gray-400">
         {company.companyName.slice(0, 2).toUpperCase()}
       </div>
     );
@@ -68,7 +57,7 @@ function CompanyLogo({ company }: { company: CompanyJobProfile }) {
       src={logo.src}
       alt={logo.alt}
       onError={() => setBroken(true)}
-      className="h-12 w-12 shrink-0 rounded-2xl border border-gray-100 bg-white object-contain p-1"
+      className="h-12 w-20 shrink-0 rounded-xl border border-gray-100 bg-white object-contain p-2"
     />
   );
 }
@@ -113,6 +102,8 @@ function rewriteForCompany(developer: DeveloperPreference | null, company: Compa
 }
 
 export default function ApplyPage() {
+  const [roleResolved, setRoleResolved] = useState(false);
+  const [currentRole, setCurrentRole] = useState<BridgeUserRole | null>(null);
   const [loadState, setLoadState] = useState<LoadState>("loading");
   const [errorMessage, setErrorMessage] = useState("");
   const [developers, setDevelopers] = useState<DeveloperPreference[]>([]);
@@ -123,6 +114,11 @@ export default function ApplyPage() {
   const [rewritten, setRewritten] = useState("");
   const [copyState, setCopyState] = useState("");
   const [translationProvider, setTranslationProvider] = useState("");
+
+  useEffect(() => {
+    setCurrentRole(readBridgeUserRole());
+    setRoleResolved(true);
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -186,8 +182,25 @@ export default function ApplyPage() {
     setCopyState("복사 완료");
   }
 
-  if (loadState === "loading") {
+  if (!roleResolved || loadState === "loading") {
     return <div className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-12 text-center text-gray-500">지원서 데이터를 불러오는 중입니다.</div>;
+  }
+
+  if (currentRole === "employer") {
+    return (
+      <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-12">
+        <section className="mx-auto max-w-2xl rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-panel">
+          <p className="text-sm font-black uppercase tracking-widest text-bridge-coral">Developer only</p>
+          <h1 className="mt-3 text-2xl font-black text-ink">지원서 작성은 개발자용 기능입니다.</h1>
+          <p className="mt-3 text-sm leading-6 text-gray-500">
+            기업 담당자는 추천 개발자와 지원자 관리 화면에서 후보 흐름을 확인할 수 있습니다.
+          </p>
+          <Link href="/employer" className="mt-6 inline-flex rounded-full bg-ink px-4 py-2 text-sm font-bold text-white hover:bg-black">
+            기업 홈으로 돌아가기
+          </Link>
+        </section>
+      </main>
+    );
   }
 
   if (loadState === "error") {

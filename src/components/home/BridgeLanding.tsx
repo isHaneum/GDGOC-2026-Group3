@@ -20,7 +20,7 @@ export function BridgeLanding() {
 
   function handleDirectionSelect(direction: BridgeDirectionId) {
     setMarket(direction);
-    router.push("/onboarding");
+    router.push("/get-started");
   }
 
   const selectedDirection = hoveredDirection ? bridgeDirections[hoveredDirection] : null;
@@ -51,7 +51,7 @@ export function BridgeLanding() {
             Current action
           </p>
           <p className="mt-1 text-sm font-bold text-ink">
-            {selectedDirection ? `${selectedDirection.shortLabel} · Continue to onboarding` : "Choose a direction"}
+            {selectedDirection ? `${selectedDirection.shortLabel} · Continue to role selection` : "Choose a direction"}
           </p>
         </div>
 

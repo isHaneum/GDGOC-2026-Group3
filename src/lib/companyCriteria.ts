@@ -12,37 +12,12 @@ type RawRubricCriterion = Omit<CompanyRubricCriterion, "recommendedVerificationA
   recommendedVerificationActivity: string | string[];
 };
 
-type RawRubric = Omit<CompanyEvaluationRubric, "criteria"> & {
-  criteria: RawRubricCriterion[];
-};
-
-async function loadJson<T>(path: string, fallbackPath?: string): Promise<T> {
-  const response = await fetch(path, { cache: "no-store" });
-
-  if (!response.ok && fallbackPath) {
-    return loadJson<T>(fallbackPath);
-  }
-
-  if (!response.ok) {
-    throw new Error(`Failed to load ${path}`);
-  }
-
-  return response.json() as Promise<T>;
-}
-
 function normalizeCriterion(criterion: RawRubricCriterion): CompanyRubricCriterion {
   return {
     ...criterion,
     recommendedVerificationActivity: Array.isArray(criterion.recommendedVerificationActivity)
       ? criterion.recommendedVerificationActivity
       : [criterion.recommendedVerificationActivity]
-  };
-}
-
-function normalizeRubric(rubric: RawRubric): CompanyEvaluationRubric {
-  return {
-    ...rubric,
-    criteria: rubric.criteria.map(normalizeCriterion)
   };
 }
 
@@ -105,56 +80,35 @@ function toJobProfile(row: Record<string, unknown>): CompanyJobProfile {
     roleCategory: row.role_category as CompanyJobProfile["roleCategory"],
     rubricId: row.rubric_id as string,
     sourceConfidence: row.source_confidence as CompanyJobProfile["sourceConfidence"],
+    logoUrl: row.logo_url as string | undefined,
+    logoAlt: row.logo_alt as string | undefined,
     sourceUrls: row.source_urls as string[] | undefined,
     notes: row.notes as string | undefined
   };
 }
 
+async function loadStaticJson<T>(path: string): Promise<T> {
+  const response = await fetch(path, { cache: "no-store" });
+  if (!response.ok) throw new Error(`Failed to load ${path}`);
+  return response.json() as Promise<T>;
+}
+
 export async function loadCompanyRubrics(): Promise<CompanyEvaluationRubric[]> {
-  return loadSupabaseWithFallback(
-    async () => {
-      const { data, error } = await supabase.from("company_evaluation_rubrics").select("*");
-      if (error) throw new Error(error.message);
-      return (data ?? []).map(toRubric);
-    },
-    async () => {
-      const rubrics = await loadJson<RawRubric[]>(
-        "/api/company-criteria/rubrics",
-        "/data/company-criteria/companyRubrics.json"
-      );
-      return rubrics.map(normalizeRubric);
-    }
-  );
+  const { data, error } = await supabase.from("company_evaluation_rubrics").select("*");
+  if (error) throw new Error(`Failed to load company rubrics: ${error.message}`);
+  return (data ?? []).map(toRubric);
 }
 
 export async function loadCompanySignals(): Promise<CompanyHiringSignal[]> {
-  return loadSupabaseWithFallback(
-    async () => {
-      const { data, error } = await supabase.from("company_hiring_signals").select("*");
-      if (error) throw new Error(error.message);
-      return (data ?? []).map(toSignal);
-    },
-    () =>
-      loadJson<CompanyHiringSignal[]>(
-        "/api/company-criteria/signals",
-        "/data/company-criteria/companySignals.json"
-      )
-  );
+  const { data, error } = await supabase.from("company_hiring_signals").select("*");
+  if (error) throw new Error(`Failed to load company signals: ${error.message}`);
+  return (data ?? []).map(toSignal);
 }
 
 export async function loadCompanyJobProfiles(): Promise<CompanyJobProfile[]> {
-  return loadSupabaseWithFallback(
-    async () => {
-      const { data, error } = await supabase.from("company_job_profiles").select("*");
-      if (error) throw new Error(error.message);
-      return (data ?? []).map(toJobProfile);
-    },
-    () =>
-      loadJson<CompanyJobProfile[]>(
-        "/api/company-criteria/job-profiles",
-        "/data/company-criteria/companyJobProfiles.json"
-      )
-  );
+  const { data, error } = await supabase.from("company_job_profiles").select("*");
+  if (error) throw new Error(`Failed to load company job profiles: ${error.message}`);
+  return (data ?? []).map(toJobProfile);
 }
 
 export async function findCompanyRubric(companyId: string): Promise<CompanyEvaluationRubric | null> {
@@ -163,20 +117,9 @@ export async function findCompanyRubric(companyId: string): Promise<CompanyEvalu
 }
 
 export function loadSampleDeveloperProfiles(): Promise<DeveloperPreference[]> {
-  return loadJson<DeveloperPreference[]>("/data/company-criteria/sampleDeveloperProfiles.json");
+  return loadStaticJson<DeveloperPreference[]>("/data/company-criteria/sampleDeveloperProfiles.json");
 }
 
 export function loadFitEngineMetadata(): Promise<FitEngineMetadata> {
-  return loadJson<FitEngineMetadata>("/data/company-criteria/fitEngineMetadata.json");
-}
-
-async function loadSupabaseWithFallback<T>(loadPrimary: () => Promise<T[]>, loadFallback: () => Promise<T[]>): Promise<T[]> {
-  try {
-    const primary = await loadPrimary();
-    if (primary.length > 0) return primary;
-  } catch {
-    // Static fixtures keep demo screens usable when Supabase is unavailable.
-  }
-
-  return loadFallback();
+  return loadStaticJson<FitEngineMetadata>("/data/company-criteria/fitEngineMetadata.json");
 }
