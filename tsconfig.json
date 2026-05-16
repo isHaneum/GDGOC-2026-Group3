@@ -24,7 +24,14 @@
       }
     ],
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./app/*"],
+      "@shared/*": ["./shared/*"],
+      "@server/*": ["./server/*"],
+      "@src/*": ["./src/*"]
+    }
   },
   "include": [
     "next-env.d.ts",

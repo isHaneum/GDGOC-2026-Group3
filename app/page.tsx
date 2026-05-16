@@ -1,5 +1,5 @@
-import App from "../src/App";
+import { BridgeLanding } from "../src/components/home/BridgeLanding";
 
 export default function Home() {
-  return <App />;
+  return <BridgeLanding />;
 }
