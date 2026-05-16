@@ -1,0 +1,1342 @@
+[
+  {
+    "companyId": "anymind",
+    "companyName": "AnyMind Group",
+    "roleId": "anymind-mobile",
+    "roleTitle": "Mobile Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [
+      "Go"
+    ],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [
+      {
+        "language": "English",
+        "level": "intermediate"
+      }
+    ],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "hybrid",
+    "companyType": "Marketing Tech",
+    "roleCategory": "Mobile",
+    "rubricId": "anymind",
+    "sourceConfidence": "medium",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "ateam",
+    "companyName": "Ateam",
+    "roleId": "ateam-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "Internet Services",
+    "roleCategory": "Other",
+    "rubricId": "ateam",
+    "sourceConfidence": "fallback",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "bizreach",
+    "companyName": "BizReach",
+    "roleId": "bizreach-other",
+    "roleTitle": "SRE / DevOps Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [
+      "AWS"
+    ],
+    "preferredTechStacks": [
+      "AWS"
+    ],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "HR Platform",
+    "roleCategory": "Other",
+    "rubricId": "bizreach",
+    "sourceConfidence": "medium",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "caddi",
+    "companyName": "CADDi",
+    "roleId": "caddi-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "Manufacturing SaaS",
+    "roleCategory": "Other",
+    "rubricId": "caddi",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "cookpad",
+    "companyName": "Cookpad",
+    "roleId": "cookpad-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [
+      {
+        "language": "English",
+        "level": "intermediate"
+      }
+    ],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "Consumer Internet",
+    "roleCategory": "Other",
+    "rubricId": "cookpad",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "cyberagent",
+    "companyName": "CyberAgent",
+    "roleId": "cyberagent-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "Internet Services",
+    "roleCategory": "Other",
+    "rubricId": "cyberagent",
+    "sourceConfidence": "fallback",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "cybozu",
+    "companyName": "Cybozu",
+    "roleId": "cybozu-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "remote",
+    "companyType": "Groupware SaaS",
+    "roleCategory": "Other",
+    "rubricId": "cybozu",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "dena",
+    "companyName": "DeNA",
+    "roleId": "dena-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "remote",
+    "companyType": "Internet Services",
+    "roleCategory": "Other",
+    "rubricId": "dena",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "finatext",
+    "companyName": "Finatext",
+    "roleId": "finatext-backend",
+    "roleTitle": "Backend Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "Fintech",
+    "roleCategory": "Backend",
+    "rubricId": "finatext",
+    "sourceConfidence": "medium",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "freee",
+    "companyName": "freee",
+    "roleId": "freee-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "SaaS",
+    "roleCategory": "Other",
+    "rubricId": "freee",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "ga-technologies",
+    "companyName": "GA technologies",
+    "roleId": "ga-technologies-other",
+    "roleTitle": "SRE / DevOps Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [
+      {
+        "language": "English",
+        "level": "intermediate"
+      }
+    ],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "PropTech",
+    "roleCategory": "Other",
+    "rubricId": "ga-technologies",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "gmo-pepabo",
+    "companyName": "GMO Pepabo",
+    "roleId": "gmo-pepabo-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "Internet Services",
+    "roleCategory": "Other",
+    "rubricId": "gmo-pepabo",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "gree",
+    "companyName": "GREE",
+    "roleId": "gree-mobile",
+    "roleTitle": "Mobile Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "Internet Services",
+    "roleCategory": "Mobile",
+    "rubricId": "gree",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "hacobu",
+    "companyName": "Hacobu",
+    "roleId": "hacobu-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [
+      "Go"
+    ],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "Logistics SaaS",
+    "roleCategory": "Other",
+    "rubricId": "hacobu",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "hennge",
+    "companyName": "HENNGE",
+    "roleId": "hennge-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "Security / SaaS",
+    "roleCategory": "Other",
+    "rubricId": "hennge",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "kaonavi",
+    "companyName": "Kaonavi",
+    "roleId": "kaonavi-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "HR SaaS",
+    "roleCategory": "Other",
+    "rubricId": "kaonavi",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "kayac",
+    "companyName": "KAYAC",
+    "roleId": "kayac-mobile",
+    "roleTitle": "Mobile Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "Internet Services",
+    "roleCategory": "Mobile",
+    "rubricId": "kayac",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "kubell",
+    "companyName": "kubell",
+    "roleId": "kubell-ai-ml",
+    "roleTitle": "Machine Learning Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "Business Communication SaaS",
+    "roleCategory": "AI/ML",
+    "rubricId": "kubell",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "layerx",
+    "companyName": "LayerX",
+    "roleId": "layerx-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "Fintech / AI SaaS",
+    "roleCategory": "Other",
+    "rubricId": "layerx",
+    "sourceConfidence": "fallback",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "lycorp",
+    "companyName": "LINE Yahoo",
+    "roleId": "lycorp-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "Internet Platform",
+    "roleCategory": "Other",
+    "rubricId": "lycorp",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "luup",
+    "companyName": "Luup",
+    "roleId": "luup-other",
+    "roleTitle": "SRE / DevOps Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [
+      {
+        "language": "Japanese",
+        "level": "business"
+      }
+    ],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "remote",
+    "companyType": "Mobility Tech",
+    "roleCategory": "Other",
+    "rubricId": "luup",
+    "sourceConfidence": "medium",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "m3",
+    "companyName": "M3",
+    "roleId": "m3-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "HealthTech",
+    "roleCategory": "Other",
+    "rubricId": "m3",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "mercari",
+    "companyName": "Mercari",
+    "roleId": "mercari-other",
+    "roleTitle": "SRE / DevOps Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [
+      "Go"
+    ],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "Marketplace",
+    "roleCategory": "Other",
+    "rubricId": "mercari",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "mixi",
+    "companyName": "MIXI",
+    "roleId": "mixi-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "Internet Services",
+    "roleCategory": "Other",
+    "rubricId": "mixi",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "moneyforward",
+    "companyName": "Money Forward",
+    "roleId": "moneyforward-backend",
+    "roleTitle": "Backend Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "Fintech",
+    "roleCategory": "Backend",
+    "rubricId": "moneyforward",
+    "sourceConfidence": "medium",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "paypay",
+    "companyName": "PayPay",
+    "roleId": "paypay-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "Fintech",
+    "roleCategory": "Other",
+    "rubricId": "paypay",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "plaid",
+    "companyName": "Plaid",
+    "roleId": "plaid-mobile",
+    "roleTitle": "Mobile Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "Customer Experience SaaS",
+    "roleCategory": "Mobile",
+    "rubricId": "plaid",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "prtimes",
+    "companyName": "PR TIMES",
+    "roleId": "prtimes-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "remote",
+    "companyType": "Media SaaS",
+    "roleCategory": "Other",
+    "rubricId": "prtimes",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "preferred-networks",
+    "companyName": "Preferred Networks",
+    "roleId": "preferred-networks-ai-ml",
+    "roleTitle": "Machine Learning Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "AI",
+    "roleCategory": "AI/ML",
+    "rubricId": "preferred-networks",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "rakuten",
+    "companyName": "Rakuten",
+    "roleId": "rakuten-other",
+    "roleTitle": "SRE / DevOps Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [
+      "JavaScript",
+      "Go",
+      "Python",
+      "Java",
+      "Kotlin",
+      "Ruby",
+      "PHP"
+    ],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [
+      {
+        "language": "English",
+        "level": "intermediate"
+      }
+    ],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "Internet Platform",
+    "roleCategory": "Other",
+    "rubricId": "rakuten",
+    "sourceConfidence": "medium",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "sansan",
+    "companyName": "Sansan",
+    "roleId": "sansan-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "B2B SaaS",
+    "roleCategory": "Other",
+    "rubricId": "sansan",
+    "sourceConfidence": "fallback",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "smartbank",
+    "companyName": "SmartBank",
+    "roleId": "smartbank-other",
+    "roleTitle": "SRE / DevOps Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [
+      {
+        "language": "Japanese",
+        "level": "business"
+      }
+    ],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "Fintech",
+    "roleCategory": "Other",
+    "rubricId": "smartbank",
+    "sourceConfidence": "medium",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "smarthr",
+    "companyName": "SmartHR",
+    "roleId": "smarthr-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "HR SaaS",
+    "roleCategory": "Other",
+    "rubricId": "smarthr",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "smartnews",
+    "companyName": "SmartNews",
+    "roleId": "smartnews-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [
+      {
+        "language": "English",
+        "level": "intermediate"
+      }
+    ],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "remote",
+    "companyType": "News / Consumer Internet",
+    "roleCategory": "Other",
+    "rubricId": "smartnews",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "spacemarket",
+    "companyName": "Spacemarket",
+    "roleId": "spacemarket-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "Marketplace",
+    "roleCategory": "Other",
+    "rubricId": "spacemarket",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "stores",
+    "companyName": "STORES",
+    "roleId": "stores-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [
+      "Go",
+      "Ruby"
+    ],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "remote",
+    "companyType": "Commerce SaaS",
+    "roleCategory": "Other",
+    "rubricId": "stores",
+    "sourceConfidence": "medium",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "timee",
+    "companyName": "Timee",
+    "roleId": "timee-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "HR Tech",
+    "roleCategory": "Other",
+    "rubricId": "timee",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "ubie",
+    "companyName": "Ubie",
+    "roleId": "ubie-ai-ml",
+    "roleTitle": "Machine Learning Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "remote",
+    "companyType": "HealthTech",
+    "roleCategory": "AI/ML",
+    "rubricId": "ubie",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "wantedly",
+    "companyName": "Wantedly",
+    "roleId": "wantedly-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "HR Platform",
+    "roleCategory": "Other",
+    "rubricId": "wantedly",
+    "sourceConfidence": "low",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "zozo",
+    "companyName": "ZOZO",
+    "roleId": "zozo-other",
+    "roleTitle": "Software Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "experienceRange": {
+      "minYears": 1,
+      "maxYears": 5
+    },
+    "workStyle": "unknown",
+    "companyType": "E-commerce",
+    "roleCategory": "Other",
+    "rubricId": "zozo",
+    "sourceConfidence": "fallback",
+    "notes": "대표 역할은 기존 rubric targetRole 과 hiring signal roles 를 기준으로 정리한 MVP 프로필입니다. 연봉 정보는 공개 role-specific 채용 공고에서 직접 확인되지 않아 비워두었습니다. 위치 정보는 국가 단위까지만 확인되어 상세 도시는 추가 검증이 필요합니다. 언어 요구사항이 공고에서 명확하지 않아 unknown 경고 대상으로 유지합니다. 경력 범위는 역할 카테고리 기반 fallback 추정치이므로 실제 role-specific 공고로 재검증해야 합니다."
+  },
+  {
+    "companyId": "mercari",
+    "companyName": "Mercari",
+    "roleId": "mercari-backend",
+    "roleTitle": "Backend Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [
+      "Go"
+    ],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "Marketplace",
+    "roleCategory": "Backend",
+    "rubricId": "mercari",
+    "sourceConfidence": "low",
+    "sourceUrls": [],
+    "notes": "기존 Mercari signal 의 Go 기반 역할 힌트와 SRE/DevOps role family 를 바탕으로 추가한 Backend Engineer 프로필입니다. 연봉, 상세 근무지, 언어 요구사항은 role-specific 공식 공고 검증 전까지 비워두었습니다. 실제 백엔드 전용 채용 페이지 확인이 필요합니다."
+  },
+  {
+    "companyId": "paypay",
+    "companyName": "PayPay",
+    "roleId": "paypay-backend",
+    "roleTitle": "Backend Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "Fintech",
+    "roleCategory": "Backend",
+    "rubricId": "paypay",
+    "sourceConfidence": "fallback",
+    "sourceUrls": [],
+    "notes": "PayPay 의 generic software engineer hiring signal 을 backend role 로 분리한 프로필입니다. 공식 role-specific backend job page 를 아직 검증하지 못해 기술 스택, 연봉, 언어 조건은 비워두었습니다. 다국적 협업 환경 가능성은 있으나 정식 요건으로 간주하지 않았습니다."
+  },
+  {
+    "companyId": "paypay",
+    "companyName": "PayPay",
+    "roleId": "paypay-mobile",
+    "roleTitle": "Mobile Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "Fintech",
+    "roleCategory": "Mobile",
+    "rubricId": "paypay",
+    "sourceConfidence": "fallback",
+    "sourceUrls": [],
+    "notes": "PayPay 의 engineering hiring surface 를 mobile role 로 세분화한 프로필입니다. 모바일 전용 공고 페이지를 아직 확인하지 못했으므로 기술 스택, 언어, 연봉, 상세 위치는 unknown 상태로 유지합니다. 역할 분화 자체는 recruiter view 의 현실성을 높이기 위한 안전한 placeholder 입니다."
+  },
+  {
+    "companyId": "smarthr",
+    "companyName": "SmartHR",
+    "roleId": "smarthr-frontend",
+    "roleTitle": "Frontend Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "HR SaaS",
+    "roleCategory": "Frontend",
+    "rubricId": "smarthr",
+    "sourceConfidence": "fallback",
+    "sourceUrls": [],
+    "notes": "SmartHR 의 generic software engineer role 을 frontend 로 세분화한 프로필입니다. 공식 frontend role page 검증 전까지는 salary, stack, language requirement 를 채우지 않았습니다. HR SaaS product engineering 맥락에서 role-specific 확인이 필요합니다."
+  },
+  {
+    "companyId": "smarthr",
+    "companyName": "SmartHR",
+    "roleId": "smarthr-backend",
+    "roleTitle": "Backend Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "HR SaaS",
+    "roleCategory": "Backend",
+    "rubricId": "smarthr",
+    "sourceConfidence": "fallback",
+    "sourceUrls": [],
+    "notes": "SmartHR recruiter view 에서 backend role 을 별도로 비교할 수 있도록 추가한 프로필입니다. 정확한 role-specific stack, salary, language condition 은 아직 공식 채용 페이지 검증이 없어 intentionally unknown 으로 유지합니다."
+  },
+  {
+    "companyId": "smartnews",
+    "companyName": "SmartNews",
+    "roleId": "smartnews-backend",
+    "roleTitle": "Backend Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [
+      {
+        "language": "English",
+        "level": "intermediate"
+      }
+    ],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "remote",
+    "companyType": "News / Consumer Internet",
+    "roleCategory": "Backend",
+    "rubricId": "smartnews",
+    "sourceConfidence": "low",
+    "sourceUrls": [],
+    "notes": "SmartNews existing profile 의 remote / English-preferred signal 을 유지한 backend 분화 프로필입니다. 공식 backend posting 확인 전까지 세부 stack, salary, Japanese requirement 는 비워두었습니다."
+  },
+  {
+    "companyId": "layerx",
+    "companyName": "LayerX",
+    "roleId": "layerx-product",
+    "roleTitle": "Product Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "Fintech / AI SaaS",
+    "roleCategory": "Fullstack",
+    "rubricId": "layerx",
+    "sourceConfidence": "fallback",
+    "sourceUrls": [],
+    "notes": "LayerX 의 open position surface 를 바탕으로 product-oriented engineering role 을 분리한 프로필입니다. Product Engineer 는 실제 public role naming 과 차이가 있을 수 있으므로 official job page 확인 전까지 role-family placeholder 로 사용해야 합니다."
+  },
+  {
+    "companyId": "hennge",
+    "companyName": "HENNGE",
+    "roleId": "hennge-security",
+    "roleTitle": "Security Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "Security / SaaS",
+    "roleCategory": "Cyber Security",
+    "rubricId": "hennge",
+    "sourceConfidence": "fallback",
+    "sourceUrls": [],
+    "notes": "HENNGE 의 보안/SaaS 회사 맥락과 기존 signal 을 기반으로 Security Engineer comparison slot 을 추가했습니다. 이는 정식 security posting 을 대체하지 않으며, 연봉/언어/세부 스택은 공식 role page 검증 전까지 unknown 으로 남겨둡니다."
+  },
+  {
+    "companyId": "plaid",
+    "companyName": "Plaid",
+    "roleId": "plaid-platform",
+    "roleTitle": "Platform Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "Customer Experience SaaS",
+    "roleCategory": "Backend",
+    "rubricId": "plaid",
+    "sourceConfidence": "low",
+    "sourceUrls": [],
+    "notes": "Plaid hiring signal 에 명시된 Platform Engineer role 을 별도 프로필로 분리했습니다. 다만 공식 플랫폼 채용 공고의 기술 스택과 연봉, 위치 상세는 아직 검증되지 않아 비워두었습니다."
+  },
+  {
+    "companyId": "plaid",
+    "companyName": "Plaid",
+    "roleId": "plaid-data",
+    "roleTitle": "Data Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "Customer Experience SaaS",
+    "roleCategory": "Data",
+    "rubricId": "plaid",
+    "sourceConfidence": "low",
+    "sourceUrls": [],
+    "notes": "Plaid signal 에 포함된 Data Engineer role 을 정규 프로필로 추가했습니다. 데이터 역할의 세부 언어, salary, stack 은 official role page 확인 전까지 안전하게 unknown 으로 유지합니다."
+  },
+  {
+    "companyId": "ubie",
+    "companyName": "Ubie",
+    "roleId": "ubie-sre",
+    "roleTitle": "SRE / DevOps Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "remote",
+    "companyType": "HealthTech",
+    "roleCategory": "Other",
+    "rubricId": "ubie",
+    "sourceConfidence": "low",
+    "sourceUrls": [],
+    "notes": "Ubie signal 에 포함된 SRE / DevOps Engineer role 을 추가했습니다. remote work signal 은 유지했지만 salary, stack, language requirement 는 role-specific 공고 검증 전까지 기입하지 않았습니다."
+  },
+  {
+    "companyId": "zozo",
+    "companyName": "ZOZO",
+    "roleId": "zozo-frontend",
+    "roleTitle": "Frontend Engineer",
+    "country": "Japan",
+    "salaryCurrency": "unknown",
+    "locations": [
+      "Japan"
+    ],
+    "requiredTechStacks": [],
+    "preferredTechStacks": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [],
+    "experienceRange": {
+      "minYears": 2,
+      "maxYears": 6
+    },
+    "workStyle": "unknown",
+    "companyType": "E-commerce",
+    "roleCategory": "Frontend",
+    "rubricId": "zozo",
+    "sourceConfidence": "fallback",
+    "sourceUrls": [],
+    "notes": "ZOZO software engineer profile 을 frontend role 로 분화한 안전한 placeholder 입니다. 실제 frontend-specific hiring page 검증 전까지 stack, salary, language requirement, detailed location 은 intentionally unknown 상태로 둡니다."
+  }
+]

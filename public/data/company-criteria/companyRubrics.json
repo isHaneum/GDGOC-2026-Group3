@@ -1,0 +1,2444 @@
+[
+  {
+    "companyId": "anymind",
+    "companyName": "AnyMind Group",
+    "targetRole": "Mobile Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 36,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [
+          "Go"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 11,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [
+          "Communication"
+        ],
+        "riskSignals": [
+          "WeakCommunication"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 21,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Remote",
+          "Hybrid",
+          "CrossFunctional",
+          "GlobalTeam"
+        ],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 16,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "Speed",
+          "Transparency"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 16,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [
+          "ProductDelivery"
+        ],
+        "riskSignals": [
+          "WeakCommunication",
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "AnyMind Group appears to prioritize Go, Speed, Transparency when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.850Z"
+  },
+  {
+    "companyId": "ateam",
+    "companyName": "Ateam",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Collaboration"
+        ],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Ateam appears to prioritize practical engineering evidence when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.850Z"
+  },
+  {
+    "companyId": "bizreach",
+    "companyName": "BizReach",
+    "targetRole": "SRE / DevOps Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 36,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [
+          "AWS"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 11,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [
+          "Communication"
+        ],
+        "riskSignals": [
+          "WeakCommunication"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 21,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "CrossFunctional"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 16,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "Transparency"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 16,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [
+          "ProductDelivery"
+        ],
+        "riskSignals": [
+          "WeakCommunication"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "BizReach appears to prioritize AWS, Transparency when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.850Z"
+  },
+  {
+    "companyId": "caddi",
+    "companyName": "CADDi",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "PoorQualityDiscipline"
+        ],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "CrossFunctional"
+        ],
+        "riskSignals": [
+          "LimitedCollaboration",
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "Craftsmanship",
+          "Speed",
+          "MissionAlignment",
+          "Transparency"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "PoorQualityDiscipline",
+          "LimitedCollaboration",
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "CADDi appears to prioritize Craftsmanship, Speed, MissionAlignment when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.850Z"
+  },
+  {
+    "companyId": "cookpad",
+    "companyName": "Cookpad",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [
+          "Communication"
+        ],
+        "riskSignals": [
+          "WeakCommunication"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "CrossFunctional",
+          "GlobalTeam",
+          "Collaboration"
+        ],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "Craftsmanship"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "WeakCommunication",
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Cookpad appears to prioritize Craftsmanship when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.850Z"
+  },
+  {
+    "companyId": "cyberagent",
+    "companyName": "CyberAgent",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "CyberAgent appears to prioritize practical engineering evidence when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.850Z"
+  },
+  {
+    "companyId": "cybozu",
+    "companyName": "Cybozu",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [
+          "Communication"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Remote",
+          "CrossFunctional",
+          "Collaboration"
+        ],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [
+          "ProductDelivery"
+        ],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Cybozu appears to prioritize practical engineering evidence when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.850Z"
+  },
+  {
+    "companyId": "dena",
+    "companyName": "DeNA",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [
+          "Communication"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Remote",
+          "CrossFunctional",
+          "Collaboration"
+        ],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "MissionAlignment"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "DeNA appears to prioritize MissionAlignment when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.850Z"
+  },
+  {
+    "companyId": "finatext",
+    "companyName": "Finatext",
+    "targetRole": "Backend Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "PoorQualityDiscipline"
+        ],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "CrossFunctional",
+          "Collaboration"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "Craftsmanship"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [
+          "Documentation"
+        ],
+        "riskSignals": [
+          "PoorQualityDiscipline"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Finatext appears to prioritize Craftsmanship when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.850Z"
+  },
+  {
+    "companyId": "freee",
+    "companyName": "freee",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "CrossFunctional",
+          "Collaboration"
+        ],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "Speed",
+          "MissionAlignment"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "freee appears to prioritize Speed, MissionAlignment when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "ga-technologies",
+    "companyName": "GA technologies",
+    "targetRole": "SRE / DevOps Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [
+          "Communication"
+        ],
+        "riskSignals": [
+          "WeakCommunication"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "GlobalTeam"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "WeakCommunication"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "GA technologies appears to prioritize practical engineering evidence when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "gmo-pepabo",
+    "companyName": "GMO Pepabo",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "LowOwnership"
+        ],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [
+          "Communication"
+        ],
+        "riskSignals": [
+          "WeakCommunication"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "CrossFunctional",
+          "Collaboration",
+          "Ownership"
+        ],
+        "riskSignals": [
+          "LowOwnership",
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "UserFocus",
+          "Transparency",
+          "Ownership"
+        ],
+        "riskSignals": [
+          "LowOwnership"
+        ],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [
+          "ProductDelivery"
+        ],
+        "riskSignals": [
+          "LowOwnership",
+          "WeakCommunication",
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "GMO Pepabo appears to prioritize UserFocus, Transparency, Ownership when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "gree",
+    "companyName": "GREE",
+    "targetRole": "Mobile Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "UserFocus",
+          "MissionAlignment"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "GREE appears to prioritize UserFocus, MissionAlignment when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "hacobu",
+    "companyName": "Hacobu",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 36,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [
+          "Go"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 11,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 21,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Collaboration"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 16,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "MissionAlignment"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 16,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Hacobu appears to prioritize Go, MissionAlignment when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "hennge",
+    "companyName": "HENNGE",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "Transparency"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "HENNGE appears to prioritize Transparency when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "kaonavi",
+    "companyName": "Kaonavi",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [
+          "Communication"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "UserFocus",
+          "MissionAlignment"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Kaonavi appears to prioritize UserFocus, MissionAlignment when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "kayac",
+    "companyName": "KAYAC",
+    "targetRole": "Mobile Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [
+          "Communication"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Collaboration"
+        ],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "UserFocus",
+          "Speed"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [
+          "GitHubPortfolio",
+          "ProductDelivery"
+        ],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "KAYAC appears to prioritize UserFocus, Speed when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "kubell",
+    "companyName": "kubell",
+    "targetRole": "Machine Learning Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Collaboration"
+        ],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "MissionAlignment"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "kubell appears to prioritize MissionAlignment when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "layerx",
+    "companyName": "LayerX",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "MissionAlignment",
+          "Transparency"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "LayerX appears to prioritize MissionAlignment, Transparency when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "lycorp",
+    "companyName": "LINE Yahoo",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "CrossFunctional",
+          "Collaboration"
+        ],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [
+          "ProductDelivery"
+        ],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "LINE Yahoo appears to prioritize practical engineering evidence when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "luup",
+    "companyName": "Luup",
+    "targetRole": "SRE / DevOps Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 26,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 21,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [
+          "JapaneseBusiness",
+          "Communication"
+        ],
+        "riskSignals": [
+          "WeakCommunication"
+        ],
+        "recommendedVerificationActivity": "Japanese bug report simulation"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 21,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Remote",
+          "FlexibleHours",
+          "Collaboration"
+        ],
+        "riskSignals": [
+          "LimitedCollaboration",
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 16,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "Speed",
+          "MissionAlignment",
+          "Transparency"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 16,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "WeakCommunication",
+          "LimitedCollaboration",
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Luup appears to prioritize Speed, MissionAlignment, Transparency when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "m3",
+    "companyName": "M3",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "LowOwnership"
+        ],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [
+          "Communication"
+        ],
+        "riskSignals": [
+          "WeakCommunication"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "CrossFunctional",
+          "Ownership"
+        ],
+        "riskSignals": [
+          "LowOwnership"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "Ownership"
+        ],
+        "riskSignals": [
+          "LowOwnership"
+        ],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [
+          "ProductDelivery"
+        ],
+        "riskSignals": [
+          "LowOwnership",
+          "WeakCommunication"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "M3 appears to prioritize Ownership when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "mercari",
+    "companyName": "Mercari",
+    "targetRole": "SRE / DevOps Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 36,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [
+          "Go"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 11,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 21,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "CrossFunctional"
+        ],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 16,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "MissionAlignment"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 16,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Mercari appears to prioritize Go, MissionAlignment when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "mixi",
+    "companyName": "MIXI",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Collaboration"
+        ],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "UserFocus"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "MIXI appears to prioritize UserFocus when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "moneyforward",
+    "companyName": "Money Forward",
+    "targetRole": "Backend Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "PoorQualityDiscipline"
+        ],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "CrossFunctional",
+          "Collaboration"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "Craftsmanship"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [
+          "Documentation"
+        ],
+        "riskSignals": [
+          "PoorQualityDiscipline"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Money Forward appears to prioritize Craftsmanship when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "paypay",
+    "companyName": "PayPay",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [
+          "Communication"
+        ],
+        "riskSignals": [
+          "WeakCommunication"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "CrossFunctional",
+          "Collaboration"
+        ],
+        "riskSignals": [
+          "LimitedCollaboration",
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "UserFocus",
+          "Speed",
+          "MissionAlignment"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "WeakCommunication",
+          "LimitedCollaboration",
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "PayPay appears to prioritize UserFocus, Speed, MissionAlignment when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "plaid",
+    "companyName": "Plaid",
+    "targetRole": "Mobile Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "CrossFunctional",
+          "Collaboration"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "UserFocus",
+          "MissionAlignment",
+          "Transparency"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Plaid appears to prioritize UserFocus, MissionAlignment, Transparency when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "prtimes",
+    "companyName": "PR TIMES",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [
+          "Communication"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Remote",
+          "CrossFunctional",
+          "Collaboration"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "UserFocus",
+          "MissionAlignment",
+          "Transparency"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [
+          "ProductDelivery"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "PR TIMES appears to prioritize UserFocus, MissionAlignment, Transparency when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "preferred-networks",
+    "companyName": "Preferred Networks",
+    "targetRole": "Machine Learning Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "PoorQualityDiscipline"
+        ],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "Craftsmanship"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "PoorQualityDiscipline"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Preferred Networks appears to prioritize Craftsmanship when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "rakuten",
+    "companyName": "Rakuten",
+    "targetRole": "SRE / DevOps Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 36,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [
+          "JavaScript",
+          "Go",
+          "Python",
+          "Java",
+          "Kotlin",
+          "Ruby",
+          "PHP"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 11,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 21,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "GlobalTeam",
+          "Collaboration"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 16,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 16,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [
+          "ProductDelivery",
+          "SystemDesign"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Rakuten appears to prioritize JavaScript, Go, Python when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "sansan",
+    "companyName": "Sansan",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Sansan appears to prioritize practical engineering evidence when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "smartbank",
+    "companyName": "SmartBank",
+    "targetRole": "SRE / DevOps Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 26,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "LowOwnership"
+        ],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 21,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [
+          "JapaneseBusiness",
+          "Communication"
+        ],
+        "riskSignals": [
+          "WeakCommunication"
+        ],
+        "recommendedVerificationActivity": "Japanese bug report simulation"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 21,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Collaboration",
+          "Ownership"
+        ],
+        "riskSignals": [
+          "LowOwnership"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 16,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "Transparency",
+          "Ownership"
+        ],
+        "riskSignals": [
+          "LowOwnership"
+        ],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 16,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [
+          "SystemDesign"
+        ],
+        "riskSignals": [
+          "LowOwnership",
+          "WeakCommunication"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "SmartBank appears to prioritize Transparency, Ownership, JapaneseBusiness when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "smarthr",
+    "companyName": "SmartHR",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Collaboration"
+        ],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "MissionAlignment",
+          "Transparency"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "SmartHR appears to prioritize MissionAlignment, Transparency when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "smartnews",
+    "companyName": "SmartNews",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Remote",
+          "GlobalTeam",
+          "Collaboration"
+        ],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "MissionAlignment"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "SmartNews appears to prioritize MissionAlignment when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "spacemarket",
+    "companyName": "Spacemarket",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "LowOwnership"
+        ],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "CrossFunctional",
+          "Collaboration",
+          "Ownership"
+        ],
+        "riskSignals": [
+          "LowOwnership",
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "Speed",
+          "Ownership"
+        ],
+        "riskSignals": [
+          "LowOwnership"
+        ],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "LowOwnership",
+          "LimitedCollaboration"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Spacemarket appears to prioritize Speed, Ownership when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "stores",
+    "companyName": "STORES",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 36,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [
+          "Go",
+          "Ruby"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 11,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [
+          "Communication"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 21,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Remote",
+          "Onsite",
+          "FlexibleHours",
+          "CrossFunctional",
+          "Collaboration"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 16,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "UserFocus"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 16,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [
+          "SystemDesign"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "STORES appears to prioritize Go, Ruby, UserFocus when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "timee",
+    "companyName": "Timee",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Collaboration"
+        ],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "Speed",
+          "MissionAlignment"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "AmbiguityHandling"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Timee appears to prioritize Speed, MissionAlignment when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "ubie",
+    "companyName": "Ubie",
+    "targetRole": "Machine Learning Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "PoorQualityDiscipline"
+        ],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Remote",
+          "Onsite",
+          "FlexibleHours",
+          "CrossFunctional",
+          "Collaboration"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "UserFocus",
+          "Craftsmanship",
+          "MissionAlignment",
+          "Transparency"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [
+          "PoorQualityDiscipline"
+        ],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Ubie appears to prioritize UserFocus, Craftsmanship, MissionAlignment when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "wantedly",
+    "companyName": "Wantedly",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [
+          "Collaboration"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [
+          "UserFocus"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [
+          "GitHubPortfolio",
+          "ProductDelivery"
+        ],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "Wantedly appears to prioritize UserFocus when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  },
+  {
+    "companyId": "zozo",
+    "companyName": "ZOZO",
+    "targetRole": "Software Engineer",
+    "totalWeight": 100,
+    "criteria": [
+      {
+        "criterionName": "Technical Readiness",
+        "weight": 28,
+        "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "trial project"
+      },
+      {
+        "criterionName": "Communication and Language Fit",
+        "weight": 12,
+        "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      },
+      {
+        "criterionName": "Collaboration and Work Style",
+        "weight": 24,
+        "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "GitHub collaboration review"
+      },
+      {
+        "criterionName": "Values and Motivation Alignment",
+        "weight": 18,
+        "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "casual interview"
+      },
+      {
+        "criterionName": "Proof of Delivery",
+        "weight": 18,
+        "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+        "positiveEvidence": [],
+        "riskSignals": [],
+        "recommendedVerificationActivity": "technical self-introduction practice"
+      }
+    ],
+    "rubricSummary": "ZOZO appears to prioritize practical engineering evidence when reviewing developer candidates.",
+    "generatedAt": "2026-05-16T10:08:02.851Z"
+  }
+]

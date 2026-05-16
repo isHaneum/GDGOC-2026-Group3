@@ -4,6 +4,8 @@ import type {
   GapAnalysisResult,
   RawCareerSource,
   RecruiterLensResult,
+  ResumeContextMappingRequest,
+  ResumeContextMappingResult,
   RoleBaseline
 } from "../../shared/types";
 
@@ -70,4 +72,11 @@ export function refactorIntroduction(profile: DeveloperProfile) {
       body: JSON.stringify(profile)
     }
   );
+}
+
+export function mapResumeContext(request: ResumeContextMappingRequest) {
+  return fetchJson<ResumeContextMappingResult>("/api/map-resume-context", {
+    method: "POST",
+    body: JSON.stringify(request)
+  });
 }

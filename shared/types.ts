@@ -92,6 +92,50 @@ export interface RecruiterLensResult {
   safetyNote: string;
 }
 
+export type ResumeContextLocale = "ko" | "ja";
+export type ResumeDetectedLocale = ResumeContextLocale | "mixed" | "unknown";
+export type ResumeContextConfidence = "high" | "medium" | "low";
+
+export interface ResumeContextMappingContent {
+  name: string;
+  content: string;
+}
+
+export interface ResumeContextMappingRequest {
+  targetLocale: ResumeContextLocale;
+  contents: ResumeContextMappingContent[];
+}
+
+export interface ResumeContextNote {
+  note: string;
+  confidence: ResumeContextConfidence;
+  basis?: string;
+}
+
+export interface ResumeContextMappedItem {
+  name: string;
+  mappedName: string;
+  originalContent: string;
+  mappedContent: string;
+  detectedSourceLocale: ResumeDetectedLocale;
+  contextNotes: ResumeContextNote[];
+}
+
+export interface ResumeContextMappingResult {
+  id: string;
+  createdAt: string;
+  targetLocale: ResumeContextLocale;
+  detectedSourceLocale: ResumeDetectedLocale;
+  items: ResumeContextMappedItem[];
+}
+
+export interface ResumeContextMappingRecord {
+  id: string;
+  createdAt: string;
+  request: ResumeContextMappingRequest;
+  response: ResumeContextMappingResult;
+}
+
 export interface CareerSignalState {
   sources: RawCareerSource[];
   signals: ExtractedHiringSignal[];

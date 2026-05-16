@@ -1,0 +1,260 @@
+[
+  {
+    "developerId": "dev-kim-frontend-01",
+    "name": "김민서",
+    "nationality": "Korean",
+    "preferredSalaryMin": 5500000,
+    "preferredSalaryMax": 8500000,
+    "preferredCurrency": "JPY",
+    "preferredLocations": [
+      "Japan",
+      "Tokyo"
+    ],
+    "availableTechStacks": [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "Firebase",
+      "SwiftUI"
+    ],
+    "languageCertifications": [
+      {
+        "language": "Korean",
+        "level": "native"
+      },
+      {
+        "language": "Japanese",
+        "level": "intermediate",
+        "certification": "JLPT N3"
+      },
+      {
+        "language": "English",
+        "level": "intermediate"
+      }
+    ],
+    "yearsOfExperience": 2,
+    "targetRoles": [
+      "Frontend Engineer",
+      "Mobile Engineer"
+    ],
+    "preferredCompanyTypes": [
+      "B2B SaaS",
+      "HR SaaS",
+      "Marketplace"
+    ],
+    "workStylePreference": "hybrid",
+    "relocationAvailable": true,
+    "visaSupportNeeded": true,
+    "resumeText": "React, TypeScript, Next.js, SwiftUI 기반으로 사용자용 웹/모바일 제품을 개발했고, 로그인 플로우, 대시보드, 결제 연동, QA 수정 경험이 있습니다.",
+    "portfolioText": "복약 관리 앱과 한일 개발자 협업 프로토타입을 만들었고 GitHub pull request 기반 협업 경험이 있습니다.",
+    "motivation": "한국과 일본 사용자를 동시에 고려한 제품을 만들고 싶고, 사용자 경험이 중요한 팀에서 성장하고 싶습니다.",
+    "concerns": [
+      "일본어 비즈니스 보고 경험 부족"
+    ]
+  },
+  {
+    "developerId": "dev-lee-backend-01",
+    "name": "이도윤",
+    "nationality": "Korean",
+    "preferredSalaryMin": 6500000,
+    "preferredSalaryMax": 9500000,
+    "preferredCurrency": "JPY",
+    "preferredLocations": [
+      "Japan",
+      "Remote"
+    ],
+    "availableTechStacks": [
+      "Go",
+      "Node",
+      "TypeScript",
+      "AWS",
+      "PostgreSQL"
+    ],
+    "languageCertifications": [
+      {
+        "language": "Korean",
+        "level": "native"
+      },
+      {
+        "language": "Japanese",
+        "level": "business",
+        "certification": "JLPT N2"
+      },
+      {
+        "language": "English",
+        "level": "intermediate"
+      }
+    ],
+    "yearsOfExperience": 4,
+    "targetRoles": [
+      "Backend Engineer",
+      "Platform Engineer",
+      "SRE"
+    ],
+    "preferredCompanyTypes": [
+      "Fintech",
+      "Marketplace",
+      "B2B SaaS"
+    ],
+    "workStylePreference": "remote",
+    "relocationAvailable": true,
+    "visaSupportNeeded": true,
+    "resumeText": "Go 와 Node 기반 API, AWS 인프라, 배치 처리, 운영 모니터링, 문서화, 장애 대응 경험이 있습니다.",
+    "portfolioText": "정산 시스템 리팩터링, 관측성 개선, GitHub action 기반 배포 파이프라인을 운영했습니다.",
+    "motivation": "안정성과 속도가 모두 중요한 제품 조직에서 서비스 품질을 높이는 역할을 하고 싶습니다.",
+    "concerns": [
+      "도메인 지식 온보딩 필요"
+    ]
+  },
+  {
+    "developerId": "dev-sato-mobile-01",
+    "name": "佐藤葵",
+    "nationality": "Japanese",
+    "preferredSalaryMin": 5000000,
+    "preferredSalaryMax": 7500000,
+    "preferredCurrency": "JPY",
+    "preferredLocations": [
+      "Japan"
+    ],
+    "availableTechStacks": [
+      "SwiftUI",
+      "iOS",
+      "React Native",
+      "Firebase",
+      "Figma"
+    ],
+    "languageCertifications": [
+      {
+        "language": "Japanese",
+        "level": "native"
+      },
+      {
+        "language": "English",
+        "level": "intermediate"
+      },
+      {
+        "language": "Korean",
+        "level": "beginner"
+      }
+    ],
+    "yearsOfExperience": 3,
+    "targetRoles": [
+      "Mobile Engineer",
+      "Frontend Engineer"
+    ],
+    "preferredCompanyTypes": [
+      "Consumer App",
+      "Marketplace",
+      "Internet Services"
+    ],
+    "workStylePreference": "hybrid",
+    "relocationAvailable": false,
+    "resumeText": "SwiftUI と React Native でモバイルアプリを開発し、ユーザーフィードバックをもとに継続改善した経験があります。",
+    "portfolioText": "健康習慣アプリ、コミュニティイベントアプリ、アプリ改善実験の実績があります。",
+    "motivation": "ユーザー行動に近いプロダクトで仮説検証を素早く回すチームに参加したいです。",
+    "concerns": [
+      "韓国語での業務コミュニケーションはまだ弱い"
+    ]
+  },
+  {
+    "developerId": "dev-chen-ml-01",
+    "name": "Chen Yu",
+    "nationality": "Other",
+    "preferredSalaryMin": 7000000,
+    "preferredSalaryMax": 11000000,
+    "preferredCurrency": "JPY",
+    "preferredLocations": [
+      "Japan",
+      "Remote"
+    ],
+    "availableTechStacks": [
+      "Python",
+      "PyTorch",
+      "MLOps",
+      "AWS",
+      "Data Analysis"
+    ],
+    "languageCertifications": [
+      {
+        "language": "English",
+        "level": "fluent"
+      },
+      {
+        "language": "Japanese",
+        "level": "intermediate"
+      }
+    ],
+    "yearsOfExperience": 5,
+    "targetRoles": [
+      "Machine Learning Engineer",
+      "Data Engineer"
+    ],
+    "preferredCompanyTypes": [
+      "AI",
+      "Healthcare",
+      "B2B SaaS"
+    ],
+    "workStylePreference": "remote",
+    "relocationAvailable": true,
+    "visaSupportNeeded": true,
+    "resumeText": "Built ML pipelines, model evaluation workflows, and production inference services with Python, PyTorch, and AWS.",
+    "portfolioText": "Delivered recommendation and classification prototypes with experiment tracking and monitoring.",
+    "motivation": "I want to work on applied ML products with strong product feedback loops and measurable user impact.",
+    "concerns": [
+      "Japanese business presentation skill is still developing"
+    ]
+  },
+  {
+    "developerId": "dev-park-security-01",
+    "name": "박준호",
+    "nationality": "Korean",
+    "preferredSalaryMin": 6000000,
+    "preferredSalaryMax": 9000000,
+    "preferredCurrency": "JPY",
+    "preferredLocations": [
+      "Japan",
+      "Korea",
+      "Hybrid"
+    ],
+    "availableTechStacks": [
+      "Python",
+      "Node",
+      "AWS",
+      "Security",
+      "SIEM"
+    ],
+    "languageCertifications": [
+      {
+        "language": "Korean",
+        "level": "native"
+      },
+      {
+        "language": "Japanese",
+        "level": "intermediate",
+        "certification": "JLPT N3"
+      },
+      {
+        "language": "English",
+        "level": "intermediate"
+      }
+    ],
+    "yearsOfExperience": 4,
+    "targetRoles": [
+      "Cyber Security Engineer",
+      "Backend Engineer"
+    ],
+    "preferredCompanyTypes": [
+      "Fintech",
+      "Internet Services"
+    ],
+    "workStylePreference": "hybrid",
+    "relocationAvailable": true,
+    "visaSupportNeeded": true,
+    "resumeText": "보안 점검 자동화, 로깅 파이프라인 개선, Node 기반 내부 도구, AWS 운영 보안 강화 경험이 있습니다.",
+    "portfolioText": "이상 징후 모니터링 대시보드와 보안 리포트 자동화 프로젝트를 진행했습니다.",
+    "motivation": "서비스 속도와 신뢰성을 모두 요구하는 환경에서 보안과 개발을 함께 다루고 싶습니다.",
+    "concerns": [
+      "일본어 incident report 작성 경험 부족"
+    ]
+  }
+]

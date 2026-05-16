@@ -1,0 +1,22 @@
+{
+  "name": "BridgePass Two-sided Fit Engine Dataset",
+  "version": "0.1.0",
+  "generatedAt": "2026-05-16",
+  "companyJobProfileCount": 52,
+  "sampleDeveloperProfileCount": 5,
+  "source": "Derived from companyRubrics.json and companySignals.json with fallback-safe normalization plus role-specific expansion placeholders for company-side matching UX",
+  "intendedUse": "Two-sided matching, gap analysis, and evidence mission recommendation for BridgePass MVP",
+  "safetyNote": "이 데이터는 추천 및 준비 가이드용입니다. 자동 채용 의사결정에 사용하면 안 됩니다.",
+  "limitations": [
+    "연봉은 공식 role-specific 공고에서 직접 확인되지 않으면 비워두었습니다.",
+    "위치 정보는 국가 단위까지만 확인된 경우가 많아 상세 도시 재확인이 필요합니다.",
+    "경력 범위는 일부 회사에서 role category 기반 fallback 추정치를 사용합니다.",
+    "공식 career landing page 만으로는 언어 요구사항과 세부 스택을 완전히 복원할 수 없습니다."
+  ],
+  "profileQualityPlan": [
+    "공식 role-specific 채용 페이지를 우선 수집합니다.",
+    "엔지니어링 채용 전용 페이지가 있으면 일반 careers 보다 우선합니다.",
+    "브랜딩 성격의 careers / about 페이지는 보조 자료로만 사용합니다.",
+    "한 회사 안에서도 Frontend / Backend / Mobile / SRE 등 역할별 프로필을 분리해 검증합니다."
+  ]
+}
