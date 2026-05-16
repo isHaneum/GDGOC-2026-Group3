@@ -1,0 +1,331 @@
+[
+  {
+    "role": "Junior Frontend Developer",
+    "country": "Japan",
+    "technicalBaseline": [
+      "JavaScript",
+      "React",
+      "TypeScript",
+      "Accessibility",
+      "CSS",
+      "HTML",
+      "REST API"
+    ],
+    "communicationBaseline": [
+      "Asking questions early",
+      "Team collaboration",
+      "Trade-off explanation",
+      "How did you collaborate with designers",
+      "How do you handle unclear requirements",
+      "How do you report a UI bug",
+      "Clear progress reporting",
+      "Documentation habit"
+    ],
+    "softSkillBaseline": [
+      "Asking questions early",
+      "Team collaboration",
+      "Trade-off explanation",
+      "Clear progress reporting",
+      "Documentation habit",
+      "Product impact",
+      "Respectful communication"
+    ],
+    "motivationBaseline": [
+      "Product impact",
+      "Vague project ownership or motivation",
+      "Motivation needs to be specific to role, product, or company",
+      "Respectful communication"
+    ],
+    "evidenceBaseline": [
+      "Japanese issue or bug report",
+      "Team collaboration log",
+      "Bilingual README",
+      "GitHub portfolio",
+      "Pull request or code review history"
+    ],
+    "commonRisks": [
+      "Japanese workplace communication may need proof",
+      "Teamwork evidence may be checked",
+      "Vague project ownership or motivation",
+      "Missing concrete evidence",
+      "Motivation needs to be specific to role, product, or company"
+    ],
+    "recommendedActivities": [
+      "Japanese Bug Report Practice",
+      "Korea-Japan Frontend Mini Project",
+      "Japanese Technical Self-introduction Practice",
+      "GitHub Collaboration Practice"
+    ],
+    "sourceCount": 3,
+    "updatedAt": "2026-05-16T07:06:12.725Z"
+  },
+  {
+    "role": "Backend Developer",
+    "country": "Japan",
+    "technicalBaseline": [
+      "REST API",
+      "SQL",
+      "Testing",
+      "Cloud deployment",
+      "Authentication",
+      "Java",
+      "Log analysis",
+      "Node.js"
+    ],
+    "communicationBaseline": [
+      "Careful incident communication",
+      "Clear progress reporting",
+      "Documentation habit",
+      "How do you debug production-like issues",
+      "How do you design API error handling",
+      "What part of the system did you personally implement",
+      "Deployed project",
+      "Trade-off explanation"
+    ],
+    "softSkillBaseline": [
+      "Careful incident communication",
+      "Clear progress reporting",
+      "Documentation habit",
+      "Learning and improvement",
+      "Product impact",
+      "Quality and reliability",
+      "Trade-off explanation"
+    ],
+    "motivationBaseline": [
+      "Product impact",
+      "Learning and improvement",
+      "Motivation needs to be specific to role, product, or company",
+      "Quality and reliability",
+      "Vague project ownership or motivation"
+    ],
+    "evidenceBaseline": [
+      "Deployed project",
+      "Bilingual README",
+      "Japanese issue or bug report",
+      "Pull request or code review history",
+      "Team collaboration log"
+    ],
+    "commonRisks": [
+      "Japanese workplace communication may need proof",
+      "Missing concrete evidence",
+      "Motivation needs to be specific to role, product, or company",
+      "Teamwork evidence may be checked",
+      "Vague project ownership or motivation"
+    ],
+    "recommendedActivities": [
+      "Japanese Bug Report Practice",
+      "Korea-Japan Frontend Mini Project",
+      "Japanese Technical Self-introduction Practice",
+      "GitHub Collaboration Practice"
+    ],
+    "sourceCount": 3,
+    "updatedAt": "2026-05-16T07:06:12.725Z"
+  },
+  {
+    "role": "AI / Machine Learning Engineer",
+    "country": "Japan",
+    "technicalBaseline": [
+      "Data preprocessing",
+      "Model evaluation",
+      "Python",
+      "Cloud deployment",
+      "Computer vision",
+      "Log analysis",
+      "MLOps",
+      "PyTorch",
+      "TensorFlow"
+    ],
+    "communicationBaseline": [
+      "Team collaboration",
+      "Documentation habit",
+      "How did the ML work connect to business impact",
+      "How do you evaluate model quality",
+      "How do you explain model limitations",
+      "Product impact",
+      "Team collaboration log",
+      "Customer-facing clarity"
+    ],
+    "softSkillBaseline": [
+      "Product impact",
+      "Team collaboration",
+      "Customer-facing clarity",
+      "Documentation habit",
+      "Quality and reliability",
+      "Trade-off explanation"
+    ],
+    "motivationBaseline": [
+      "Product impact",
+      "Customer-facing clarity",
+      "Motivation needs to be specific to role, product, or company",
+      "Quality and reliability"
+    ],
+    "evidenceBaseline": [
+      "Team collaboration log",
+      "Deployed project",
+      "Reproducible experiment report",
+      "Japanese issue or bug report"
+    ],
+    "commonRisks": [
+      "Teamwork evidence may be checked",
+      "Japanese workplace communication may need proof",
+      "Missing concrete evidence",
+      "Motivation needs to be specific to role, product, or company",
+      "Tutorial-only project explanation"
+    ],
+    "recommendedActivities": [
+      "Japanese Bug Report Practice",
+      "Korea-Japan Frontend Mini Project",
+      "Japanese Technical Self-introduction Practice",
+      "GitHub Collaboration Practice"
+    ],
+    "sourceCount": 3,
+    "updatedAt": "2026-05-16T07:06:12.725Z"
+  },
+  {
+    "role": "Cyber Security",
+    "country": "Japan",
+    "technicalBaseline": [
+      "Linux",
+      "Log analysis",
+      "Network fundamentals",
+      "Vulnerability triage",
+      "Cloud deployment",
+      "Cloud IAM",
+      "Threat modeling"
+    ],
+    "communicationBaseline": [
+      "Careful incident communication",
+      "Documentation habit",
+      "Team collaboration",
+      "How do you communicate incident risk",
+      "How do you document reproduction steps",
+      "How do you prioritize vulnerabilities",
+      "Quality and reliability",
+      "Security writeup or remediation ticket"
+    ],
+    "softSkillBaseline": [
+      "Careful incident communication",
+      "Documentation habit",
+      "Quality and reliability",
+      "Team collaboration",
+      "Clear progress reporting",
+      "Customer-facing clarity",
+      "Honest skill boundaries"
+    ],
+    "motivationBaseline": [
+      "Quality and reliability",
+      "Customer-facing clarity"
+    ],
+    "evidenceBaseline": [
+      "Security writeup or remediation ticket",
+      "Team collaboration log"
+    ],
+    "commonRisks": [
+      "Teamwork evidence may be checked",
+      "Japanese workplace communication may need proof",
+      "Risk of overclaiming without evidence"
+    ],
+    "recommendedActivities": [
+      "Japanese Bug Report Practice",
+      "GitHub Collaboration Practice",
+      "Japanese SaaS Company Research",
+      "Portfolio Review with Japanese Developer"
+    ],
+    "sourceCount": 3,
+    "updatedAt": "2026-05-16T07:06:12.726Z"
+  },
+  {
+    "role": "General Japanese IT interview review",
+    "country": "Japan",
+    "technicalBaseline": [],
+    "communicationBaseline": [
+      "Team collaboration",
+      "Clear progress reporting",
+      "Documentation habit",
+      "Honest skill boundaries",
+      "Learning and improvement",
+      "Please introduce yourself briefly",
+      "Team collaboration log",
+      "What was your role in the project"
+    ],
+    "softSkillBaseline": [
+      "Learning and improvement",
+      "Team collaboration",
+      "Clear progress reporting",
+      "Documentation habit",
+      "Honest skill boundaries",
+      "Respectful communication"
+    ],
+    "motivationBaseline": [
+      "Learning and improvement",
+      "Motivation needs to be specific to role, product, or company",
+      "Respectful communication",
+      "Vague project ownership or motivation"
+    ],
+    "evidenceBaseline": [
+      "Team collaboration log",
+      "Security writeup or remediation ticket"
+    ],
+    "commonRisks": [
+      "Motivation needs to be specific to role, product, or company",
+      "Teamwork evidence may be checked",
+      "Generic or memorized motivation",
+      "Japanese workplace communication may need proof",
+      "Missing concrete evidence",
+      "Vague project ownership or motivation"
+    ],
+    "recommendedActivities": [
+      "Japanese Bug Report Practice",
+      "Korea-Japan Frontend Mini Project",
+      "Japanese Technical Self-introduction Practice",
+      "GitHub Collaboration Practice"
+    ],
+    "sourceCount": 2,
+    "updatedAt": "2026-05-16T07:06:12.726Z"
+  },
+  {
+    "role": "Korean applicant concern about Japanese IT hiring",
+    "country": "Korea",
+    "technicalBaseline": [],
+    "communicationBaseline": [
+      "Team collaboration",
+      "Clear progress reporting",
+      "Japanese issue or bug report",
+      "Japanese workplace communication expected",
+      "Please introduce yourself briefly",
+      "Team collaboration log",
+      "What was your role in the project",
+      "Why are you targeting Japan"
+    ],
+    "softSkillBaseline": [
+      "Team collaboration",
+      "Clear progress reporting",
+      "Product impact",
+      "Quality and reliability"
+    ],
+    "motivationBaseline": [
+      "Product impact",
+      "Motivation needs to be specific to role, product, or company",
+      "Quality and reliability"
+    ],
+    "evidenceBaseline": [
+      "Japanese issue or bug report",
+      "Team collaboration log",
+      "GitHub portfolio"
+    ],
+    "commonRisks": [
+      "Japanese workplace communication may need proof",
+      "Teamwork evidence may be checked",
+      "Generic or memorized motivation",
+      "Motivation needs to be specific to role, product, or company"
+    ],
+    "recommendedActivities": [
+      "Japanese Bug Report Practice",
+      "Korea-Japan Frontend Mini Project",
+      "Japanese Technical Self-introduction Practice",
+      "GitHub Collaboration Practice"
+    ],
+    "sourceCount": 2,
+    "updatedAt": "2026-05-16T07:06:12.726Z"
+  }
+]

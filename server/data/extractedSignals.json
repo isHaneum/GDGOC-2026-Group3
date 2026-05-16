@@ -1,0 +1,688 @@
+[
+  {
+    "sourceId": "jp-fe-001",
+    "role": "Junior Frontend Developer",
+    "requiredTechnicalSkills": [
+      "React",
+      "TypeScript",
+      "REST API",
+      "JavaScript"
+    ],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "JLPT N3",
+    "preferredSoftSkills": [
+      "Clear progress reporting",
+      "Asking questions early"
+    ],
+    "companyValues": [],
+    "commonConcerns": [
+      "Japanese workplace communication may need proof",
+      "Teamwork evidence may be checked"
+    ],
+    "commonInterviewQuestions": [
+      "How do you report a UI bug?",
+      "How do you handle unclear requirements?",
+      "How did you collaborate with designers?"
+    ],
+    "successSignals": [
+      "GitHub portfolio",
+      "Japanese issue or bug report",
+      "Team collaboration log",
+      "Clear progress reporting",
+      "Asking questions early"
+    ],
+    "commonWeaknesses": [],
+    "recommendedEvidence": [
+      "GitHub portfolio",
+      "Japanese issue or bug report",
+      "Team collaboration log"
+    ],
+    "extractedSummary": "The team wants a junior frontend developer who can build React and TypeScript UI components, work with REST APIs, and communicate progress clearly in daily standups. Japanese reading and reporting ability around JLPT N3 or higher is expected. Preferred sign..."
+  },
+  {
+    "sourceId": "jp-fe-002",
+    "role": "Junior Frontend Developer",
+    "requiredTechnicalSkills": [
+      "React",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Accessibility",
+      "TypeScript"
+    ],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "unknown",
+    "preferredSoftSkills": [
+      "Asking questions early",
+      "Team collaboration",
+      "Trade-off explanation"
+    ],
+    "companyValues": [
+      "Product impact",
+      "Respectful communication"
+    ],
+    "commonConcerns": [
+      "Vague project ownership or motivation"
+    ],
+    "commonInterviewQuestions": [
+      "How do you report a UI bug?",
+      "How do you handle unclear requirements?",
+      "How did you collaborate with designers?"
+    ],
+    "successSignals": [
+      "Pull request or code review history",
+      "Asking questions early",
+      "Team collaboration",
+      "Trade-off explanation",
+      "Product impact",
+      "Respectful communication"
+    ],
+    "commonWeaknesses": [],
+    "recommendedEvidence": [
+      "Pull request or code review history"
+    ],
+    "extractedSummary": "The interview focused on HTML, CSS, JavaScript fundamentals, React state management, accessibility basics, and explaining past project decisions. The applicant was asked how they report a UI bug, how they handle unclear requirements, and how they collaborat..."
+  },
+  {
+    "sourceId": "jp-fe-003",
+    "role": "Junior Frontend Developer",
+    "requiredTechnicalSkills": [
+      "React",
+      "TypeScript",
+      "JavaScript"
+    ],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "unknown",
+    "preferredSoftSkills": [
+      "Team collaboration",
+      "Trade-off explanation",
+      "Documentation habit"
+    ],
+    "companyValues": [],
+    "commonConcerns": [
+      "Vague project ownership or motivation",
+      "Motivation needs to be specific to role, product, or company",
+      "Japanese workplace communication may need proof",
+      "Teamwork evidence may be checked"
+    ],
+    "commonInterviewQuestions": [
+      "How do you report a UI bug?",
+      "How do you handle unclear requirements?",
+      "How did you collaborate with designers?"
+    ],
+    "successSignals": [
+      "Bilingual README",
+      "Japanese issue or bug report",
+      "Team collaboration log",
+      "Team collaboration",
+      "Trade-off explanation",
+      "Documentation habit"
+    ],
+    "commonWeaknesses": [
+      "Missing concrete evidence"
+    ],
+    "recommendedEvidence": [
+      "Bilingual README",
+      "Japanese issue or bug report",
+      "Team collaboration log"
+    ],
+    "extractedSummary": "Several applicants said Japanese companies expect junior frontend candidates to explain why they chose a framework, not just list React. Common concerns were weak Japanese self-introductions, unclear motivation for Japan, and portfolios without README files..."
+  },
+  {
+    "sourceId": "jp-be-001",
+    "role": "Backend Developer",
+    "requiredTechnicalSkills": [
+      "REST API",
+      "Node.js",
+      "Java",
+      "SQL",
+      "Cloud deployment",
+      "Testing",
+      "Log analysis"
+    ],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "JLPT N2",
+    "preferredSoftSkills": [
+      "Clear progress reporting",
+      "Careful incident communication",
+      "Documentation habit"
+    ],
+    "companyValues": [
+      "Product impact",
+      "Quality and reliability"
+    ],
+    "commonConcerns": [
+      "Japanese workplace communication may need proof"
+    ],
+    "commonInterviewQuestions": [
+      "How do you design API error handling?",
+      "What part of the system did you personally implement?",
+      "How do you debug production-like issues?"
+    ],
+    "successSignals": [
+      "Japanese issue or bug report",
+      "Pull request or code review history",
+      "Deployed project",
+      "Clear progress reporting",
+      "Careful incident communication",
+      "Documentation habit",
+      "Product impact",
+      "Quality and reliability"
+    ],
+    "commonWeaknesses": [],
+    "recommendedEvidence": [
+      "Japanese issue or bug report",
+      "Pull request or code review history",
+      "Deployed project"
+    ],
+    "extractedSummary": "The role requires Java or Node.js backend development, REST API design, SQL, basic cloud deployment knowledge, and careful handling of logs and incidents. Japanese business communication around JLPT N2 is preferred because engineers write status reports and..."
+  },
+  {
+    "sourceId": "jp-be-002",
+    "role": "Backend Developer",
+    "requiredTechnicalSkills": [
+      "SQL",
+      "Testing",
+      "Authentication",
+      "REST API"
+    ],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "unknown",
+    "preferredSoftSkills": [
+      "Trade-off explanation"
+    ],
+    "companyValues": [
+      "Learning and improvement"
+    ],
+    "commonConcerns": [
+      "Vague project ownership or motivation",
+      "Motivation needs to be specific to role, product, or company"
+    ],
+    "commonInterviewQuestions": [
+      "How do you design API error handling?",
+      "What part of the system did you personally implement?",
+      "How do you debug production-like issues?"
+    ],
+    "successSignals": [
+      "Trade-off explanation",
+      "Learning and improvement"
+    ],
+    "commonWeaknesses": [
+      "Missing concrete evidence"
+    ],
+    "recommendedEvidence": [],
+    "extractedSummary": "The interview included database schema discussion, API error handling, authentication basics, and a simple system design question. The interviewer valued clear trade-off explanations, testing habits, and the ability to say what was personally implemented. C..."
+  },
+  {
+    "sourceId": "jp-be-003",
+    "role": "Backend Developer",
+    "requiredTechnicalSkills": [
+      "SQL",
+      "Cloud deployment",
+      "REST API",
+      "Testing"
+    ],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "Japanese workplace communication expected",
+    "preferredSoftSkills": [
+      "Clear progress reporting",
+      "Careful incident communication",
+      "Documentation habit"
+    ],
+    "companyValues": [],
+    "commonConcerns": [
+      "Japanese workplace communication may need proof",
+      "Teamwork evidence may be checked"
+    ],
+    "commonInterviewQuestions": [
+      "How do you design API error handling?",
+      "What part of the system did you personally implement?",
+      "How do you debug production-like issues?"
+    ],
+    "successSignals": [
+      "Bilingual README",
+      "Deployed project",
+      "Team collaboration log",
+      "Clear progress reporting",
+      "Careful incident communication",
+      "Documentation habit"
+    ],
+    "commonWeaknesses": [],
+    "recommendedEvidence": [
+      "Bilingual README",
+      "Deployed project",
+      "Team collaboration log"
+    ],
+    "extractedSummary": "Community mentors recommended that backend applicants prepare one deployed API, a short design document, database migration examples, and README instructions. Hiring teams often ask about team communication, incident reporting, and how the applicant checks ..."
+  },
+  {
+    "sourceId": "jp-ai-001",
+    "role": "AI / Machine Learning Engineer",
+    "requiredTechnicalSkills": [
+      "Cloud deployment",
+      "Python",
+      "Data preprocessing",
+      "Model evaluation",
+      "MLOps",
+      "PyTorch",
+      "TensorFlow",
+      "Computer vision"
+    ],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "Japanese workplace communication expected",
+    "preferredSoftSkills": [
+      "Team collaboration",
+      "Documentation habit"
+    ],
+    "companyValues": [
+      "Product impact",
+      "Customer-facing clarity"
+    ],
+    "commonConcerns": [
+      "Japanese workplace communication may need proof",
+      "Teamwork evidence may be checked"
+    ],
+    "commonInterviewQuestions": [
+      "How do you evaluate model quality?",
+      "How do you explain model limitations?",
+      "How did the ML work connect to business impact?"
+    ],
+    "successSignals": [
+      "Japanese issue or bug report",
+      "Deployed project",
+      "Reproducible experiment report",
+      "Team collaboration log",
+      "Team collaboration",
+      "Documentation habit",
+      "Product impact",
+      "Customer-facing clarity"
+    ],
+    "commonWeaknesses": [],
+    "recommendedEvidence": [
+      "Japanese issue or bug report",
+      "Deployed project",
+      "Reproducible experiment report",
+      "Team collaboration log"
+    ],
+    "extractedSummary": "The team needs Python, data preprocessing, model evaluation, experiment tracking, and basic MLOps understanding. Preferred experience includes PyTorch or TensorFlow, computer vision projects, explaining model limitations, and collaborating with product engi..."
+  },
+  {
+    "sourceId": "jp-ai-002",
+    "role": "AI / Machine Learning Engineer",
+    "requiredTechnicalSkills": [
+      "Data preprocessing",
+      "Model evaluation",
+      "Python"
+    ],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "unknown",
+    "preferredSoftSkills": [
+      "Team collaboration"
+    ],
+    "companyValues": [
+      "Product impact",
+      "Quality and reliability",
+      "Customer-facing clarity"
+    ],
+    "commonConcerns": [
+      "Teamwork evidence may be checked"
+    ],
+    "commonInterviewQuestions": [
+      "How do you evaluate model quality?",
+      "How do you explain model limitations?",
+      "How did the ML work connect to business impact?"
+    ],
+    "successSignals": [
+      "Reproducible experiment report",
+      "Team collaboration log",
+      "Team collaboration",
+      "Product impact",
+      "Quality and reliability",
+      "Customer-facing clarity"
+    ],
+    "commonWeaknesses": [
+      "Tutorial-only project explanation",
+      "Missing concrete evidence"
+    ],
+    "recommendedEvidence": [
+      "Reproducible experiment report",
+      "Team collaboration log"
+    ],
+    "extractedSummary": "Questions covered dataset quality, overfitting, model evaluation metrics, prompt evaluation, and how to communicate uncertainty to non-ML stakeholders. The interviewer preferred candidates who could connect ML work to business impact. Weak signals included ..."
+  },
+  {
+    "sourceId": "jp-ai-003",
+    "role": "AI / Machine Learning Engineer",
+    "requiredTechnicalSkills": [
+      "Cloud deployment",
+      "Log analysis",
+      "Python",
+      "Model evaluation",
+      "Data preprocessing"
+    ],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "Japanese workplace communication expected",
+    "preferredSoftSkills": [
+      "Team collaboration",
+      "Trade-off explanation",
+      "Documentation habit"
+    ],
+    "companyValues": [
+      "Product impact"
+    ],
+    "commonConcerns": [
+      "Motivation needs to be specific to role, product, or company",
+      "Japanese workplace communication may need proof",
+      "Teamwork evidence may be checked"
+    ],
+    "commonInterviewQuestions": [
+      "How do you evaluate model quality?",
+      "How do you explain model limitations?",
+      "How did the ML work connect to business impact?"
+    ],
+    "successSignals": [
+      "Deployed project",
+      "Team collaboration log",
+      "Team collaboration",
+      "Trade-off explanation",
+      "Documentation habit",
+      "Product impact"
+    ],
+    "commonWeaknesses": [],
+    "recommendedEvidence": [
+      "Deployed project",
+      "Team collaboration log"
+    ],
+    "extractedSummary": "Applicants worried that Japanese companies may not trust self-taught AI projects. Mentors suggested showing reproducible repositories, simple deployment demos, evaluation reports, and teamwork logs. Motivation should explain why the target Japanese product ..."
+  },
+  {
+    "sourceId": "jp-sec-001",
+    "role": "Cyber Security",
+    "requiredTechnicalSkills": [
+      "Network fundamentals",
+      "Linux",
+      "Log analysis",
+      "Vulnerability triage"
+    ],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "Japanese workplace communication expected",
+    "preferredSoftSkills": [
+      "Careful incident communication",
+      "Documentation habit"
+    ],
+    "companyValues": [
+      "Quality and reliability",
+      "Customer-facing clarity"
+    ],
+    "commonConcerns": [
+      "Japanese workplace communication may need proof",
+      "Teamwork evidence may be checked"
+    ],
+    "commonInterviewQuestions": [
+      "How do you prioritize vulnerabilities?",
+      "How do you communicate incident risk?",
+      "How do you document reproduction steps?"
+    ],
+    "successSignals": [
+      "Security writeup or remediation ticket",
+      "Team collaboration log",
+      "Careful incident communication",
+      "Documentation habit",
+      "Quality and reliability",
+      "Customer-facing clarity"
+    ],
+    "commonWeaknesses": [],
+    "recommendedEvidence": [
+      "Security writeup or remediation ticket",
+      "Team collaboration log"
+    ],
+    "extractedSummary": "The role expects network fundamentals, Linux basics, log analysis, vulnerability triage, and incident report writing. Japanese reading and writing are important because analysts summarize alerts for customer teams. Preferred signals include CTF writeups, ho..."
+  },
+  {
+    "sourceId": "jp-sec-002",
+    "role": "Cyber Security",
+    "requiredTechnicalSkills": [
+      "Cloud deployment",
+      "Vulnerability triage",
+      "Cloud IAM",
+      "Threat modeling",
+      "Network fundamentals",
+      "Linux",
+      "Log analysis"
+    ],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "unknown",
+    "preferredSoftSkills": [
+      "Clear progress reporting",
+      "Team collaboration",
+      "Careful incident communication",
+      "Documentation habit"
+    ],
+    "companyValues": [
+      "Quality and reliability"
+    ],
+    "commonConcerns": [
+      "Risk of overclaiming without evidence",
+      "Teamwork evidence may be checked"
+    ],
+    "commonInterviewQuestions": [
+      "How do you prioritize vulnerabilities?",
+      "How do you communicate incident risk?",
+      "How do you document reproduction steps?"
+    ],
+    "successSignals": [
+      "Security writeup or remediation ticket",
+      "Team collaboration log",
+      "Clear progress reporting",
+      "Team collaboration",
+      "Careful incident communication",
+      "Documentation habit",
+      "Quality and reliability"
+    ],
+    "commonWeaknesses": [],
+    "recommendedEvidence": [
+      "Security writeup or remediation ticket",
+      "Team collaboration log"
+    ],
+    "extractedSummary": "The interviewer asked about OWASP Top 10, threat modeling, cloud IAM, and how to prioritize vulnerabilities. They valued calm reporting, evidence-based risk explanation, and teamwork with developers. Weak answers exaggerated hacking skills or ignored docume..."
+  },
+  {
+    "sourceId": "jp-sec-003",
+    "role": "Cyber Security",
+    "requiredTechnicalSkills": [
+      "Vulnerability triage",
+      "Network fundamentals",
+      "Linux",
+      "Log analysis"
+    ],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "Japanese workplace communication expected",
+    "preferredSoftSkills": [
+      "Team collaboration",
+      "Careful incident communication",
+      "Documentation habit",
+      "Honest skill boundaries"
+    ],
+    "companyValues": [
+      "Quality and reliability"
+    ],
+    "commonConcerns": [
+      "Japanese workplace communication may need proof",
+      "Risk of overclaiming without evidence",
+      "Teamwork evidence may be checked"
+    ],
+    "commonInterviewQuestions": [
+      "How do you prioritize vulnerabilities?",
+      "How do you communicate incident risk?",
+      "How do you document reproduction steps?"
+    ],
+    "successSignals": [
+      "Security writeup or remediation ticket",
+      "Team collaboration log",
+      "Team collaboration",
+      "Careful incident communication",
+      "Documentation habit",
+      "Honest skill boundaries",
+      "Quality and reliability"
+    ],
+    "commonWeaknesses": [],
+    "recommendedEvidence": [
+      "Security writeup or remediation ticket",
+      "Team collaboration log"
+    ],
+    "extractedSummary": "Junior security applicants are advised to show defensive thinking, not only attack demos. Japanese companies often check whether the candidate can write clear reports, escalate incidents, and avoid overclaiming. Helpful proof includes CTF notes, vulnerabili..."
+  },
+  {
+    "sourceId": "jp-general-001",
+    "role": "General Japanese IT interview review",
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "unknown",
+    "preferredSoftSkills": [
+      "Clear progress reporting",
+      "Team collaboration",
+      "Honest skill boundaries"
+    ],
+    "companyValues": [
+      "Learning and improvement",
+      "Respectful communication"
+    ],
+    "commonConcerns": [
+      "Vague project ownership or motivation",
+      "Motivation needs to be specific to role, product, or company",
+      "Teamwork evidence may be checked"
+    ],
+    "commonInterviewQuestions": [
+      "Please introduce yourself briefly.",
+      "Why are you targeting Japan?",
+      "What was your role in the project?"
+    ],
+    "successSignals": [
+      "Security writeup or remediation ticket",
+      "Team collaboration log",
+      "Clear progress reporting",
+      "Team collaboration",
+      "Honest skill boundaries",
+      "Learning and improvement",
+      "Respectful communication"
+    ],
+    "commonWeaknesses": [
+      "Missing concrete evidence",
+      "Generic or memorized motivation"
+    ],
+    "recommendedEvidence": [
+      "Security writeup or remediation ticket",
+      "Team collaboration log"
+    ],
+    "extractedSummary": "Candidates are often asked for a short self-introduction, reason for changing jobs, reason for Japan, project role, team communication style, and how they handle mistakes. Interviewers appreciate concrete examples, respectful tone, honest skill boundaries, ..."
+  },
+  {
+    "sourceId": "jp-general-002",
+    "role": "General Japanese IT interview review",
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "Japanese workplace communication expected",
+    "preferredSoftSkills": [
+      "Team collaboration",
+      "Documentation habit"
+    ],
+    "companyValues": [
+      "Learning and improvement"
+    ],
+    "commonConcerns": [
+      "Motivation needs to be specific to role, product, or company",
+      "Japanese workplace communication may need proof",
+      "Teamwork evidence may be checked"
+    ],
+    "commonInterviewQuestions": [
+      "Please introduce yourself briefly.",
+      "Why are you targeting Japan?",
+      "What was your role in the project?"
+    ],
+    "successSignals": [
+      "Team collaboration log",
+      "Team collaboration",
+      "Documentation habit",
+      "Learning and improvement"
+    ],
+    "commonWeaknesses": [],
+    "recommendedEvidence": [
+      "Team collaboration log"
+    ],
+    "extractedSummary": "A recruiter said a strong IT self-introduction should state the target role, relevant project, specific contribution, collaboration behavior, and motivation for the company. It should not be only personality words. For foreign applicants, evidence of Japane..."
+  },
+  {
+    "sourceId": "kr-concern-001",
+    "role": "Korean applicant concern about Japanese IT hiring",
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "Japanese workplace communication expected",
+    "preferredSoftSkills": [
+      "Team collaboration"
+    ],
+    "companyValues": [
+      "Product impact",
+      "Quality and reliability"
+    ],
+    "commonConcerns": [
+      "Motivation needs to be specific to role, product, or company",
+      "Japanese workplace communication may need proof",
+      "Teamwork evidence may be checked"
+    ],
+    "commonInterviewQuestions": [
+      "Please introduce yourself briefly.",
+      "Why are you targeting Japan?",
+      "What was your role in the project?"
+    ],
+    "successSignals": [
+      "GitHub portfolio",
+      "Japanese issue or bug report",
+      "Team collaboration log",
+      "Team collaboration",
+      "Product impact",
+      "Quality and reliability"
+    ],
+    "commonWeaknesses": [
+      "Generic or memorized motivation"
+    ],
+    "recommendedEvidence": [
+      "GitHub portfolio",
+      "Japanese issue or bug report",
+      "Team collaboration log"
+    ],
+    "extractedSummary": "A Korean junior developer wondered whether Japanese companies care more about language or technical skills. Replies suggested both matter, but evidence reduces risk: small projects, issue reports in Japanese, GitHub collaboration, and clear motivation for t..."
+  },
+  {
+    "sourceId": "kr-concern-002",
+    "role": "Korean applicant concern about Japanese IT hiring",
+    "requiredTechnicalSkills": [],
+    "preferredTechnicalSkills": [],
+    "requiredLanguageLevel": "Japanese workplace communication expected",
+    "preferredSoftSkills": [
+      "Clear progress reporting",
+      "Team collaboration"
+    ],
+    "companyValues": [],
+    "commonConcerns": [
+      "Japanese workplace communication may need proof",
+      "Teamwork evidence may be checked"
+    ],
+    "commonInterviewQuestions": [
+      "Please introduce yourself briefly.",
+      "Why are you targeting Japan?",
+      "What was your role in the project?"
+    ],
+    "successSignals": [
+      "Japanese issue or bug report",
+      "Team collaboration log",
+      "Clear progress reporting",
+      "Team collaboration"
+    ],
+    "commonWeaknesses": [],
+    "recommendedEvidence": [
+      "Japanese issue or bug report",
+      "Team collaboration log"
+    ],
+    "extractedSummary": "Applicants said they were anxious about meetings, reporting delays, and understanding Japanese workplace expectations. Mentors recommended practicing technical self-introductions, writing bug reports in Japanese, joining a small Korea-Japan mini project, an..."
+  }
+]

@@ -1,0 +1,178 @@
+[
+  {
+    "id": "jp-fe-001",
+    "sourceType": "job_posting",
+    "country": "Japan",
+    "role": "Junior Frontend Developer",
+    "industry": "B2B SaaS",
+    "title": "Junior frontend role for a Tokyo SaaS dashboard team",
+    "summaryText": "The team wants a junior frontend developer who can build React and TypeScript UI components, work with REST APIs, and communicate progress clearly in daily standups. Japanese reading and reporting ability around JLPT N3 or higher is expected. Preferred signals include GitHub portfolio projects, bug report writing, attention to UX details, and willingness to ask questions early when blocked.",
+    "language": "English",
+    "createdAt": "2026-01-12T09:00:00.000Z"
+  },
+  {
+    "id": "jp-fe-002",
+    "sourceType": "career_review",
+    "country": "Japan",
+    "role": "Junior Frontend Developer",
+    "industry": "E-commerce",
+    "title": "Interview review for junior frontend engineer in Osaka",
+    "summaryText": "The interview focused on HTML, CSS, JavaScript fundamentals, React state management, accessibility basics, and explaining past project decisions. The applicant was asked how they report a UI bug, how they handle unclear requirements, and how they collaborate with designers. The reviewer said candidates look stronger when they can show small production-like projects, pull request history, and polite written communication.",
+    "language": "English",
+    "createdAt": "2026-01-13T09:00:00.000Z"
+  },
+  {
+    "id": "jp-fe-003",
+    "sourceType": "community_post",
+    "country": "Japan",
+    "role": "Junior Frontend Developer",
+    "industry": "Web agency",
+    "title": "Community advice for Korean frontend applicants targeting Japan",
+    "summaryText": "Several applicants said Japanese companies expect junior frontend candidates to explain why they chose a framework, not just list React. Common concerns were weak Japanese self-introductions, unclear motivation for Japan, and portfolios without README files. Recommended evidence included a bilingual portfolio, issue tickets written in Japanese, and a mini project that shows teamwork.",
+    "language": "English",
+    "createdAt": "2026-01-14T09:00:00.000Z"
+  },
+  {
+    "id": "jp-be-001",
+    "sourceType": "job_posting",
+    "country": "Japan",
+    "role": "Backend Developer",
+    "industry": "Fintech",
+    "title": "Backend developer for payment API team",
+    "summaryText": "The role requires Java or Node.js backend development, REST API design, SQL, basic cloud deployment knowledge, and careful handling of logs and incidents. Japanese business communication around JLPT N2 is preferred because engineers write status reports and incident summaries. Strong candidates show API documentation, test coverage, code review experience, and examples of debugging production-like issues.",
+    "language": "English",
+    "createdAt": "2026-01-15T09:00:00.000Z"
+  },
+  {
+    "id": "jp-be-002",
+    "sourceType": "career_review",
+    "country": "Japan",
+    "role": "Backend Developer",
+    "industry": "Logistics SaaS",
+    "title": "Backend interview review with system design exercise",
+    "summaryText": "The interview included database schema discussion, API error handling, authentication basics, and a simple system design question. The interviewer valued clear trade-off explanations, testing habits, and the ability to say what was personally implemented. Common weaknesses were vague project ownership, no monitoring experience, and motivation focused only on moving to Japan.",
+    "language": "English",
+    "createdAt": "2026-01-16T09:00:00.000Z"
+  },
+  {
+    "id": "jp-be-003",
+    "sourceType": "community_post",
+    "country": "Japan",
+    "role": "Backend Developer",
+    "industry": "HR Tech",
+    "title": "Advice for backend portfolios for Japanese hiring",
+    "summaryText": "Community mentors recommended that backend applicants prepare one deployed API, a short design document, database migration examples, and README instructions. Hiring teams often ask about team communication, incident reporting, and how the applicant checks requirements before implementation. Japanese writing for technical summaries is considered useful evidence.",
+    "language": "English",
+    "createdAt": "2026-01-17T09:00:00.000Z"
+  },
+  {
+    "id": "jp-ai-001",
+    "sourceType": "job_posting",
+    "country": "Japan",
+    "role": "AI / Machine Learning Engineer",
+    "industry": "Manufacturing AI",
+    "title": "Machine learning engineer for visual inspection product",
+    "summaryText": "The team needs Python, data preprocessing, model evaluation, experiment tracking, and basic MLOps understanding. Preferred experience includes PyTorch or TensorFlow, computer vision projects, explaining model limitations, and collaborating with product engineers. Japanese communication is needed for experiment reports and customer issue summaries. Evidence should include notebooks, reproducible experiments, metrics, and deployment notes.",
+    "language": "English",
+    "createdAt": "2026-01-18T09:00:00.000Z"
+  },
+  {
+    "id": "jp-ai-002",
+    "sourceType": "career_review",
+    "country": "Japan",
+    "role": "AI / Machine Learning Engineer",
+    "industry": "AI SaaS",
+    "title": "AI engineer interview with practical ML questions",
+    "summaryText": "Questions covered dataset quality, overfitting, model evaluation metrics, prompt evaluation, and how to communicate uncertainty to non-ML stakeholders. The interviewer preferred candidates who could connect ML work to business impact. Weak signals included only mentioning tutorials, no explanation of failed experiments, and no evidence of collaboration with backend or frontend engineers.",
+    "language": "English",
+    "createdAt": "2026-01-19T09:00:00.000Z"
+  },
+  {
+    "id": "jp-ai-003",
+    "sourceType": "community_post",
+    "country": "Japan",
+    "role": "AI / Machine Learning Engineer",
+    "industry": "Startup",
+    "title": "Korean applicant concern about AI roles in Japan",
+    "summaryText": "Applicants worried that Japanese companies may not trust self-taught AI projects. Mentors suggested showing reproducible repositories, simple deployment demos, evaluation reports, and teamwork logs. Motivation should explain why the target Japanese product or domain matters. Language expectations vary, but written summaries and meeting follow-up notes are important.",
+    "language": "English",
+    "createdAt": "2026-01-20T09:00:00.000Z"
+  },
+  {
+    "id": "jp-sec-001",
+    "sourceType": "job_posting",
+    "country": "Japan",
+    "role": "Cyber Security",
+    "industry": "Managed security service",
+    "title": "Security analyst for SOC support",
+    "summaryText": "The role expects network fundamentals, Linux basics, log analysis, vulnerability triage, and incident report writing. Japanese reading and writing are important because analysts summarize alerts for customer teams. Preferred signals include CTF writeups, home lab notes, responsible disclosure awareness, and careful communication during incidents.",
+    "language": "English",
+    "createdAt": "2026-01-21T09:00:00.000Z"
+  },
+  {
+    "id": "jp-sec-002",
+    "sourceType": "career_review",
+    "country": "Japan",
+    "role": "Cyber Security",
+    "industry": "Cloud security",
+    "title": "Security engineer interview review",
+    "summaryText": "The interviewer asked about OWASP Top 10, threat modeling, cloud IAM, and how to prioritize vulnerabilities. They valued calm reporting, evidence-based risk explanation, and teamwork with developers. Weak answers exaggerated hacking skills or ignored documentation. Recommended evidence included security reports, remediation tickets, and a lab environment diagram.",
+    "language": "English",
+    "createdAt": "2026-01-22T09:00:00.000Z"
+  },
+  {
+    "id": "jp-sec-003",
+    "sourceType": "community_post",
+    "country": "Japan",
+    "role": "Cyber Security",
+    "industry": "Enterprise IT",
+    "title": "Community notes for junior security applicants",
+    "summaryText": "Junior security applicants are advised to show defensive thinking, not only attack demos. Japanese companies often check whether the candidate can write clear reports, escalate incidents, and avoid overclaiming. Helpful proof includes CTF notes, vulnerability reproduction steps, risk ratings, and collaboration examples with application developers.",
+    "language": "English",
+    "createdAt": "2026-01-23T09:00:00.000Z"
+  },
+  {
+    "id": "jp-general-001",
+    "sourceType": "career_review",
+    "country": "Japan",
+    "role": "General Japanese IT interview review",
+    "industry": "IT services",
+    "title": "Common Japanese IT interview expectations",
+    "summaryText": "Candidates are often asked for a short self-introduction, reason for changing jobs, reason for Japan, project role, team communication style, and how they handle mistakes. Interviewers appreciate concrete examples, respectful tone, honest skill boundaries, and improvement habits. Common risks are vague motivation, memorized answers, and no evidence of reporting or teamwork.",
+    "language": "English",
+    "createdAt": "2026-01-24T09:00:00.000Z"
+  },
+  {
+    "id": "jp-general-002",
+    "sourceType": "community_post",
+    "country": "Japan",
+    "role": "General Japanese IT interview review",
+    "industry": "Software",
+    "title": "Japanese recruiter notes on self-introductions",
+    "summaryText": "A recruiter said a strong IT self-introduction should state the target role, relevant project, specific contribution, collaboration behavior, and motivation for the company. It should not be only personality words. For foreign applicants, evidence of Japanese workplace communication, documentation, and learning effort helps reduce uncertainty.",
+    "language": "English",
+    "createdAt": "2026-01-25T09:00:00.000Z"
+  },
+  {
+    "id": "kr-concern-001",
+    "sourceType": "community_post",
+    "country": "Korea",
+    "role": "Korean applicant concern about Japanese IT hiring",
+    "industry": "Career community",
+    "title": "Korean developer concern about Japanese IT hiring",
+    "summaryText": "A Korean junior developer wondered whether Japanese companies care more about language or technical skills. Replies suggested both matter, but evidence reduces risk: small projects, issue reports in Japanese, GitHub collaboration, and clear motivation for the target product. Applicants were warned not to rely only on certificates or broad statements about liking Japan.",
+    "language": "English",
+    "createdAt": "2026-01-26T09:00:00.000Z"
+  },
+  {
+    "id": "kr-concern-002",
+    "sourceType": "community_post",
+    "country": "Korea",
+    "role": "Korean applicant concern about Japanese IT hiring",
+    "industry": "Career community",
+    "title": "Cross-border collaboration anxiety",
+    "summaryText": "Applicants said they were anxious about meetings, reporting delays, and understanding Japanese workplace expectations. Mentors recommended practicing technical self-introductions, writing bug reports in Japanese, joining a small Korea-Japan mini project, and preparing examples of teamwork. Companies want to see work-readiness, not cultural stereotypes.",
+    "language": "English",
+    "createdAt": "2026-01-27T09:00:00.000Z"
+  }
+]
