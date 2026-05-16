@@ -2,55 +2,89 @@
 
 ## Purpose
 
-`TwoSidedFitDashboard` is still isolated from the main product flow, but the UX now behaves more like a product search result page than an internal debug report.
+`TwoSidedFitDashboard` is a product-ready BridgePass Career Fit page for two core flows:
 
-The dashboard explains fit in both directions without exposing API keys, without changing unrelated pages, and without turning the output into an automated hiring decision.
+- Developers find companies and roles that fit them.
+- Companies find candidates that fit a selected role.
 
-## UX Changes
+The page stays isolated from the rest of the app, uses local JSON data, and does not modify backend scoring logic.
 
-### Developer To Company
+## Simplified Product Flow
 
-The developer side now starts with a vertical Top 10 company ranking list.
+The default view removes internal report-style sections. Users see only the information needed to compare fit:
 
-- Each row shows company identity first, not just rank.
-- Company name, role title, fit label, location fit, salary fit, language fit, key reason, missing item, and next step are visible in the list.
-- Clicking a row opens one selected company detail panel.
-- The selected detail emphasizes `What matches`, `What you still need`, and `Recommended evidence missions`.
-- Detailed score breakdowns remain available, but they are collapsed by default.
+- what matches
+- what is missing
+- next step
+- compact details after selection
 
-### Company To Developer
+The default view hides raw JSON, validation details, source confidence, rubric IDs, long notes, and internal metadata.
 
-The recruiter side now starts with a Top 10 candidate summary list instead of opening every candidate in full detail.
+## Developer View
 
-- Each row shows rank, name, nationality, top 3 key signals, fit label, and recommended recruiter action.
-- Detailed resume and evaluation content opens only after a recruiter clicks a candidate.
-- Candidate detail groups strengths by qualifications, tech stack, language ability, experience, and evidence.
-- Missing evidence and risks are visible without over-emphasizing raw scores.
+The developer view shows:
 
-## Translation And Labels
+- compact profile summary
+- vertical Top 10 company list with company names and roles
+- fit label plus small score
+- location, salary, and language confirmation status
+- what matches
+- what needs work
+- next step
 
-The dashboard includes a local dictionary-based UI layer for:
+The full profile is available in a collapsed profile details section. Selecting a company opens the focused company detail panel.
+
+## Company View
+
+The company view shows:
+
+- compact selected role summary
+- vertical Top 10 candidate list
+- candidate name, nationality, top 3 key signals, fit label, and recruiter action
+- candidate detail only after selection
+
+Candidate detail groups strong points by qualifications, tech stack, language, experience, and evidence.
+
+## Score Display
+
+Detailed score bars are not shown by default. They remain available inside a collapsed "Detailed score breakdown" accordion in selected company and candidate detail panels.
+
+Candidate cards emphasize fit labels instead of large numeric scores:
+
+- Very strong
+- Strong
+- Potential
+- Needs preparation
+- Low fit
+
+## Debug Mode
+
+Debug mode defaults to `false`.
+
+When debug mode is off, the dashboard hides:
+
+- raw JSON
+- validation details
+- source confidence
+- rubric ID
+- long internal notes
+- metadata-style counts
+
+When debug mode is on, the dashboard shows validation status, common warnings, selected input/output JSON, and internal role fields. Unknown fields are intentionally left blank instead of invented.
+
+## Multilingual Support
+
+The component uses a local dictionary for static UI labels:
 
 - Korean (`ko`)
 - Japanese (`ja`)
 - English (`en`)
 
-All static UI labels switch with the selected locale.
+Company names, candidate names, role names, generated fit text, and dataset values are not translated. Translation provider details are not shown in the default product UI.
 
-Generated explanations, company names, candidate names, role titles, and dataset values may still remain in their original language until a translation provider is connected.
+## Data Files Used
 
-## Translation Service Abstraction
-
-`src/lib/translationService.ts` provides a safe abstraction for future Korean, Japanese, and English translation.
-
-- The browser does not contain API keys.
-- No translation API is called directly from client-side business logic.
-- The current implementation safely falls back to a mock provider and returns original text when no server route is available.
-- The UI can translate developer profile text to the selected language and clearly notes when the provider is only a mock fallback.
-
-## Data Notes
-
-The dashboard uses local data from:
+The component loads local JSON through `src/lib/companyCriteria.ts`:
 
 - `public/data/company-criteria/companyJobProfiles.json`
 - `public/data/company-criteria/companyRubrics.json`
@@ -58,30 +92,41 @@ The dashboard uses local data from:
 - `public/data/company-criteria/sampleDeveloperProfiles.json`
 - `public/data/company-criteria/fitEngineMetadata.json`
 
-The company job profile dataset has been expanded with additional role-specific profiles.
+## Engine Functions Called
 
-Unknown salary, language, and location details are intentional. BridgePass now prefers explicit gaps over hallucinated precision.
+The dashboard calls existing rule-based fit engine functions:
 
-The next role-specific verification work is tracked in `public/data/company-criteria/companyDataEnrichmentPlan.json`.
+- `rankCompaniesForDeveloper(...)`
+- `rankDevelopersForCompany(...)`
+- `validateCompanyJobProfiles(...)`
 
-## Validation
+No scoring engine changes are required for the product UI.
 
-`validateCompanyJobProfiles(...)` now reports:
+## Import
 
-- total profile count
-- valid, warning, and invalid profile counts
-- common warning summaries
-- per-company warning detail
+```tsx
+import { TwoSidedFitDashboard } from "../components/TwoSidedFitDashboard";
+```
 
-Warnings remain visible in the UI as review prompts, not as fatal product errors.
+For the current debug route:
+
+```tsx
+import { TwoSidedFitDashboard } from "../../../src/components/TwoSidedFitDashboard";
+```
+
+## Demo Route
+
+```txt
+/debug/two-sided-fit
+```
 
 ## Safety Note
 
-This dashboard is not an automated hiring decision system. Scores are guidance signals for discovery, preparation, and human review.
+This dashboard is not an automated hiring decision system. Scores are used for discovery, preparation, and human review.
 
 ## API Key And Secret Handling
 
-- No API key was added to the browser.
-- No `.env` secrets were committed.
-- No Stitch MCP config was added.
-- No Gemini or paid translation API is called directly from the client.
+- No API key is required.
+- No `.env` secret is added.
+- No Stitch MCP config is added.
+- Gemini is not called from this page.
