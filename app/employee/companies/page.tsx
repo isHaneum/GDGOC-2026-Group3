@@ -27,51 +27,47 @@ export default function HiringCompaniesPage() {
           </div>
         </header>
 
-        <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <section className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {visibleCompanies.map((company) => (
-            <article key={`${company.companyId}-${company.roleId}`} className="rounded-xl border border-gray-100 bg-white p-5 shadow-panel">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h2 className="text-lg font-bold text-ink">{company.companyName}</h2>
-                  <p className="mt-1 text-sm font-bold text-bridge-teal">{company.roleTitle}</p>
+            <article key={`${company.companyId}-${company.roleId}`} className="flex flex-col justify-between rounded-xl border border-gray-100 bg-white p-5 shadow-panel transition-all hover:border-bridge-primary/30">
+              <div>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h2 className="text-lg font-bold text-ink line-clamp-1">{company.companyName}</h2>
+                    <p className="mt-1 text-sm font-bold text-bridge-teal line-clamp-1">{company.roleTitle}</p>
+                  </div>
+                  <span className="shrink-0 rounded-full bg-bridge-primary/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-bridge-teal">
+                    {company.country}
+                  </span>
                 </div>
-                <span className="rounded-full bg-bridge-primary/10 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-bridge-teal">
-                  {company.country}
-                </span>
+
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {[...company.requiredTechStacks, ...company.preferredTechStacks].slice(0, 4).map((stack) => (
+                    <span key={stack} className="rounded-md border border-gray-100 bg-gray-50 px-2 py-1 text-[10px] font-bold text-gray-500">
+                      {stack}
+                    </span>
+                  ))}
+                  {!company.requiredTechStacks.length && !company.preferredTechStacks.length ? (
+                    <span className="rounded-md border border-gray-100 bg-gray-50 px-2 py-1 text-[10px] font-bold text-gray-400">
+                      기술 스택 미지정
+                    </span>
+                  ) : null}
+                </div>
+
+                <div className="mt-5 border-t border-gray-100 pt-4 flex items-center text-sm">
+                  <div className="text-gray-500 flex items-center gap-2">
+                    <span className="font-bold text-ink">
+                      {company.experienceRange.minYears}-{company.experienceRange.maxYears ?? "무관"}년
+                    </span>
+                    <span className="text-gray-300">|</span>
+                    <span>{company.workStyle}</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="mt-5 flex flex-wrap gap-2">
-                {[...company.requiredTechStacks, ...company.preferredTechStacks].slice(0, 5).map((stack) => (
-                  <span key={stack} className="rounded-lg border border-gray-100 bg-gray-50 px-2 py-1 text-[10px] font-bold text-gray-500">
-                    {stack}
-                  </span>
-                ))}
-                {!company.requiredTechStacks.length && !company.preferredTechStacks.length ? (
-                  <span className="rounded-lg border border-gray-100 bg-gray-50 px-2 py-1 text-[10px] font-bold text-gray-400">
-                    기술 스택 미지정
-                  </span>
-                ) : null}
-              </div>
-
-              <dl className="mt-6 grid grid-cols-2 gap-3 text-sm">
-                <div className="rounded-xl bg-gray-50 p-3">
-                  <dt className="text-[10px] font-black uppercase tracking-widest text-gray-400">근무 방식</dt>
-                  <dd className="mt-1 font-bold text-ink">{company.workStyle}</dd>
-                </div>
-                <div className="rounded-xl bg-gray-50 p-3">
-                  <dt className="text-[10px] font-black uppercase tracking-widest text-gray-400">경력 요건</dt>
-                  <dd className="mt-1 font-bold text-ink">
-                    {company.experienceRange.minYears}-{company.experienceRange.maxYears ?? "제한 없음"} 년
-                  </dd>
-                </div>
-              </dl>
-
-              <p className="mt-5 text-sm leading-relaxed text-gray-500">
-                {company.notes ?? "이 포지션은 매칭 및 채용 담당자 평가가 가능합니다."}
-              </p>
               <Link
                 href={`/employee/companies/${company.companyId}`}
-                className="mt-5 inline-flex rounded-full bg-bridge-primary px-4 py-2 text-sm font-bold text-white transition-opacity hover:opacity-90"
+                className="mt-5 flex w-full justify-center rounded-xl bg-bridge-primary px-4 py-2.5 text-sm font-bold text-white shadow-sm transition-opacity hover:opacity-90"
               >
                 상세 보기
               </Link>
