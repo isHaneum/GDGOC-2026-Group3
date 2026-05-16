@@ -80,9 +80,17 @@ function toJobProfile(row: Record<string, unknown>): CompanyJobProfile {
     roleCategory: row.role_category as CompanyJobProfile["roleCategory"],
     rubricId: row.rubric_id as string,
     sourceConfidence: row.source_confidence as CompanyJobProfile["sourceConfidence"],
+    logoUrl: row.logo_url as string | undefined,
+    logoAlt: row.logo_alt as string | undefined,
     sourceUrls: row.source_urls as string[] | undefined,
     notes: row.notes as string | undefined
   };
+}
+
+async function loadStaticJson<T>(path: string): Promise<T> {
+  const response = await fetch(path, { cache: "no-store" });
+  if (!response.ok) throw new Error(`Failed to load ${path}`);
+  return response.json() as Promise<T>;
 }
 
 export async function loadCompanyRubrics(): Promise<CompanyEvaluationRubric[]> {
@@ -104,27 +112,14 @@ export async function loadCompanyJobProfiles(): Promise<CompanyJobProfile[]> {
 }
 
 export async function findCompanyRubric(companyId: string): Promise<CompanyEvaluationRubric | null> {
-  const { data, error } = await supabase
-    .from("company_evaluation_rubrics")
-    .select("*")
-    .eq("company_id", companyId)
-    .limit(1)
-    .single();
-  if (error) return null;
-  return toRubric(data);
-}
-
-// sampleDeveloperProfiles and fitEngineMetadata are demo/static data — loaded from JSON
-async function loadJson<T>(path: string): Promise<T> {
-  const response = await fetch(path);
-  if (!response.ok) throw new Error(`Failed to load ${path}`);
-  return response.json() as Promise<T>;
+  const rubrics = await loadCompanyRubrics();
+  return rubrics.find((rubric) => rubric.companyId === companyId) ?? null;
 }
 
 export function loadSampleDeveloperProfiles(): Promise<DeveloperPreference[]> {
-  return loadJson<DeveloperPreference[]>("/data/company-criteria/sampleDeveloperProfiles.json");
+  return loadStaticJson<DeveloperPreference[]>("/data/company-criteria/sampleDeveloperProfiles.json");
 }
 
 export function loadFitEngineMetadata(): Promise<FitEngineMetadata> {
-  return loadJson<FitEngineMetadata>("/data/company-criteria/fitEngineMetadata.json");
+  return loadStaticJson<FitEngineMetadata>("/data/company-criteria/fitEngineMetadata.json");
 }

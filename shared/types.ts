@@ -212,6 +212,7 @@ export interface DbPost {
   category_id: number
   title: string
   content: string
+  image_url: string | null
   like_count: number
   created_at: string
   updated_at: string
@@ -232,10 +233,15 @@ export interface PostWithMeta extends DbPost {
   comment_count: number
 }
 
-export interface PostWithComments extends PostWithMeta {
-  comments: (DbComment & {
-    author: Pick<DbProfile, 'id' | 'role' | 'market'>
-  })[]
+type AuthorWithName = Pick<DbProfile, 'id' | 'role' | 'market'> & {
+  developer_profiles: Array<{ full_name: string | null }>
+}
+
+export interface PostWithComments extends DbPost {
+  author: AuthorWithName
+  category: DbCategory
+  comment_count: number
+  comments: (DbComment & { author: AuthorWithName })[]
 }
 
 export interface DeveloperProfileFull {

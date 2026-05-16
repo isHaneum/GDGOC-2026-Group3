@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Suspense } from "react";
 import "../src/index.css";
 
-import MarketSelector from "../src/components/MarketSelector";
+import RoleAwareNav from "../src/components/RoleAwareNav";
+import RoleRouteGate from "../src/components/RoleRouteGate";
 
 export const metadata: Metadata = {
-  title: "The Bridge | KR-JP Cultural IT Employment Platform",
-  description: "A culture-first job board for junior developers moving between Korea and Japan.",
+  title: "Bridge IT | KR-JP IT Talent Signal Platform",
+  description: "A role-aware matching platform for hiring companies and developers moving between Korea and Japan.",
   icons: {
     icon: "/favicon.svg"
   }
@@ -16,31 +18,14 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="en">
       <body className="bg-bridge-paper text-ink antialiased">
-        <nav className="bg-white border-b border-gray-200 px-6 py-3 flex justify-between items-center sticky top-0 z-50">
-          <div className="flex items-center space-x-8">
-            <a href="/" className="text-xl font-bold text-bridge-primary tracking-tighter">
-              The Bridge
-            </a>
-            <div className="hidden md:flex space-x-6">
-              <a href="/community" className="hover:text-bridge-primary px-1 py-2 text-sm font-medium transition-colors">
-                Community
-              </a>
-              <a href="/employer" className="hover:text-bridge-primary px-1 py-2 text-sm font-medium transition-colors">
-                Applicants
-              </a>
-              <a href="/companies" className="hover:text-bridge-primary px-1 py-2 text-sm font-medium transition-colors">
-                Hiring Companies
-              </a>
-            </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <a href="/onboarding" className="text-sm font-bold text-gray-500 hover:text-bridge-primary transition-colors">
-              Get Started
-            </a>
-            <MarketSelector />
-          </div>
-        </nav>
-        <main>{children}</main>
+        <Suspense fallback={null}>
+          <RoleAwareNav />
+        </Suspense>
+        <main>
+          <Suspense fallback={<div className="min-h-[45vh] bg-bridge-paper" />}>
+            <RoleRouteGate>{children}</RoleRouteGate>
+          </Suspense>
+        </main>
       </body>
     </html>
   );

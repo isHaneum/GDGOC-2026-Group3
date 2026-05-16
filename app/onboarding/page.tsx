@@ -30,7 +30,7 @@ export default function OnboardingRoleSelection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <button 
-            onClick={() => router.push('/developer')}
+            onClick={() => router.push('/developer/register')}
             className="group bg-white p-10 rounded-3xl shadow-panel border-2 border-transparent hover:border-bridge-primary transition-all text-left relative overflow-hidden"
           >
             <div className="relative z-10">
@@ -51,7 +51,7 @@ export default function OnboardingRoleSelection() {
           </button>
 
           <button 
-            onClick={() => router.push('/employer')}
+            onClick={() => router.push('/employer/register')}
             className="group bg-white p-10 rounded-3xl shadow-panel border-2 border-transparent hover:border-bridge-coral transition-all text-left relative overflow-hidden"
           >
             <div className="relative z-10">

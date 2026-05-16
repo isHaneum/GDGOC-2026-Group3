@@ -95,6 +95,8 @@ export interface CompanyJobProfile {
   roleCategory: "Frontend" | "Backend" | "Mobile" | "AI/ML" | "Cyber Security" | "Fullstack" | "Data" | "Other";
   rubricId: string;
   sourceConfidence: "high" | "medium" | "low" | "fallback";
+  logoUrl?: string;
+  logoAlt?: string;
   sourceUrls?: string[];
   notes?: string;
 }

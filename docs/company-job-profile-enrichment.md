@@ -20,10 +20,23 @@ Each job profile should try to capture the following:
 - companyName
 - roleId
 - roleTitle
+- logoUrl
+- logoAlt
 - country
+- headquarters
 - salaryMin
 - salaryMax
 - salaryCurrency
+- salaryNote
+- jobPostingUrl
+- jobPostingStatus
+- hiringPeriod
+- applicationDeadline
+- employmentType
+- qualificationSummary
+- jobDescriptionSummary
+- benefitsSummary
+- selectionProcess
 - locations
 - requiredTechStacks
 - preferredTechStacks
@@ -36,6 +49,10 @@ Each job profile should try to capture the following:
 - rubricId
 - sourceConfidence
 - sourceUrls
+- isNewGradFriendly
+- isJuniorFriendly
+- lastVerifiedAt
+- missingFields
 - notes
 
 ## Good URL Patterns
@@ -62,11 +79,41 @@ Each job profile should try to capture the following:
 - `low`: company-level engineering page implies the role but does not provide enough role-specific detail.
 - `fallback`: data is derived from rubric, hiring signal, or role-family inference and must be re-verified.
 
+If a field is inferred from existing rubrics, signals, or role-family data instead of an official role-specific posting, keep `sourceConfidence` as `low` or `fallback`.
+
+## Job Posting Field Rules
+
+- `jobPostingUrl` should be an official role-specific job page when available. Leave it as an empty string when only generic company pages are known.
+- `jobPostingStatus` must be `unknown` unless the source clearly states that the posting is open or closed.
+- `hiringPeriod.startDate` and `hiringPeriod.endDate` must stay `null` unless an official source states dates.
+- `hiringPeriod.note` should be `Confirmation needed` when dates are unknown.
+- `applicationDeadline` must stay `null` unless a deadline is explicitly shown.
+- `employmentType` should be one of `full-time`, `internship`, `contract`, `new-grad`, or `unknown`.
+- `qualificationSummary` should summarize only stated or existing structured requirements. Do not turn brand copy into requirements.
+- `jobDescriptionSummary` should stay empty unless there is a source-backed role summary.
+- `benefitsSummary` and `selectionProcess` should stay empty unless the source explicitly provides those details.
+
 ## Salary Handling Rules
 
-- If salary is not explicitly shown on an official role-specific page, leave `salaryMin` and `salaryMax` empty.
+- If salary is not explicitly shown on an official role-specific page, set `salaryMin` and `salaryMax` to `null`.
+- Use the local market currency only when the country is clear, for example `JPY` for Japan roles. Currency is not a salary estimate.
+- Add `salaryNote` and include `salary` in `missingFields` whenever exact compensation is not verified.
 - Do not invent precise salary numbers from blog posts, social posts, or forum anecdotes.
 - If only a broad compensation statement exists, keep salary blank and explain the gap in `notes`.
+
+## Logo Rules
+
+- Store local placeholder SVGs under `public/company-logos/` unless an official asset license and usage path are confirmed.
+- Placeholder SVGs must be simple marks, not copied official logos.
+- Set `logoUrl` and `logoAlt` so Signal Lab can show a stable visual anchor.
+
+## Missing Data Rules
+
+- Use `missingFields` to distinguish intentionally unknown values from accidental omissions.
+- Valid values include `salary`, `location`, `languageRequirement`, `experienceRange`, `requiredTechStacks`, `preferredTechStacks`, `workStyle`, and `roleSpecificSource`.
+- Job posting gaps can additionally use `officialJobPostingUrl`, `hiringPeriod`, `applicationDeadline`, `qualificationSummary`, and `jobDescriptionSummary`.
+- `sourceUrls` should point to official company, engineering, or role pages used as source anchors.
+- `sourceConfidence` should stay `low` or `fallback` when the source is not role-specific, even if it is official.
 
 ## Language Requirement Rules
 
@@ -84,3 +131,4 @@ Each job profile should try to capture the following:
 - Confirm `sourceConfidence` reflects the real source quality.
 - Keep unknown fields intentionally blank instead of filling them with guesses.
 - Record the next verification action in `companyDataEnrichmentPlan.json` when the role is still incomplete.
+- Confirm no secrets, API keys, Stitch config, or local `.env` values are committed with data updates.

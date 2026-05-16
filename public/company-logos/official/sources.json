@@ -1,0 +1,242 @@
+{
+  "anymind": {
+    "file": "/company-logos/official/anymind.svg",
+    "sourcePage": "https://anymindgroup.com/",
+    "sourceUrl": "https://anymindgroup.com/wp-content/themes/corporate/images/logo_black.svg",
+    "extraction": "url"
+  },
+  "ateam": {
+    "file": "/company-logos/official/ateam.png",
+    "sourcePage": "https://www.a-tm.co.jp/",
+    "sourceUrl": "https://res.www.a-tm.co.jp/wp-content/uploads/2017/04/28135428/logo_ogp.png",
+    "extraction": "url"
+  },
+  "bizreach": {
+    "file": "/company-logos/official/bizreach.png",
+    "sourcePage": "https://www.bizreach.co.jp/",
+    "sourceUrl": "https://www.bizreach.co.jp/img/top/logo_bizreach.png",
+    "extraction": "url"
+  },
+  "caddi": {
+    "file": "/company-logos/official/caddi.svg",
+    "sourcePage": "https://caddi.com/",
+    "sourceUrl": "https://caddi.com/img/common/logo_primary.svg",
+    "extraction": "url"
+  },
+  "cookpad": {
+    "file": "/company-logos/official/cookpad.png",
+    "sourcePage": "https://cookpad.com/uk",
+    "sourceUrl": "https://global-web-assets.cpcdn.com/assets/logo_text-da02013e64b510c60b109001fc44bcb7195f9e3105287817103b6cff4f8e0563.png",
+    "extraction": "url"
+  },
+  "cyberagent": {
+    "file": "/company-logos/official/cyberagent.svg",
+    "sourcePage": "https://www.cyberagent.co.jp/",
+    "sourceUrl": "https://www.cyberagent.co.jp/files/user/img/common/logo_black.svg",
+    "extraction": "url"
+  },
+  "cybozu": {
+    "file": "/company-logos/official/cybozu.svg",
+    "sourcePage": "https://cybozu.co.jp/",
+    "sourceUrl": "https://cybozu.co.jp/assets/img/logo.svg",
+    "extraction": "url"
+  },
+  "dena": {
+    "file": "/company-logos/official/dena.svg",
+    "sourcePage": "https://dena.com/intl/",
+    "sourceUrl": "https://asset.dena.com/images/common/logo.svg",
+    "extraction": "url"
+  },
+  "finatext": {
+    "file": "/company-logos/official/finatext.svg",
+    "sourcePage": "https://finatext.com/",
+    "sourceUrl": "https://storage.googleapis.com/studio-design-asset-files/projects/p6aow00naR/s-199x32_0e21fe7c-8810-4bca-b321-3bdffabed71b.svg",
+    "extraction": "url"
+  },
+  "freee": {
+    "file": "/company-logos/official/freee.svg",
+    "sourcePage": "https://www.freee.co.jp/",
+    "sourceUrl": "https://www.freee.co.jp/static/1f4f72049d0c1690b533cb60cbe6468f/logo.svg",
+    "extraction": "url"
+  },
+  "ga-technologies": {
+    "file": "/company-logos/official/ga-technologies.svg",
+    "sourcePage": "https://www.ga-tech.co.jp/",
+    "sourceUrl": "https://www.ga-tech.co.jp/config/wp-content/themes/ga/assets/images/pc/common/logoHeader.svg?251022",
+    "extraction": "url"
+  },
+  "gmo-pepabo": {
+    "file": "/company-logos/official/gmo-pepabo.svg",
+    "sourcePage": "https://pepabo.com/",
+    "sourceUrl": "https://pepabo.com/",
+    "extraction": "inline"
+  },
+  "gree": {
+    "file": "/company-logos/official/gree.svg",
+    "sourcePage": "https://hd.gree.net/jp/ja/",
+    "sourceUrl": "https://hd.gree.net/share/v4/img/hd_logo.svg",
+    "extraction": "url"
+  },
+  "hacobu": {
+    "file": "/company-logos/official/hacobu.png",
+    "sourcePage": "https://hacobu.jp/",
+    "sourceUrl": "https://hacobu.jp/wp-content/uploads/2023/04/hacobuLogo.png",
+    "extraction": "url"
+  },
+  "hennge": {
+    "file": "/company-logos/official/hennge.svg",
+    "sourcePage": "https://hennge.com/global/",
+    "sourceUrl": "https://hennge.com/global/wp-content/plugins/my-snow-monkey/assets/images/common/logo.svg",
+    "extraction": "url"
+  },
+  "kaonavi": {
+    "file": "/company-logos/official/kaonavi.svg",
+    "sourcePage": "https://corp.kaonavi.jp/",
+    "sourceUrl": "https://corp.kaonavi.jp/wp/wp-content/themes/kaonavi2022/assets/images/common/logo.svg",
+    "extraction": "url"
+  },
+  "kayac": {
+    "file": "/company-logos/official/kayac.svg",
+    "sourcePage": "https://www.kayac.com/",
+    "sourceUrl": "https://www.kayac.com/assets/pc/common/logo_typo_en-1f82a8b1c2ffab337920a0dbceda45876e5c2f92af178a891d0a0a70ff0a1db7.svg",
+    "extraction": "url"
+  },
+  "kubell": {
+    "file": "/company-logos/official/kubell.svg",
+    "sourcePage": "https://www.kubell.com/about/logo/",
+    "sourceUrl": "https://www.kubell.com/about/logo/assets/logo_kubell.zip",
+    "extraction": "zip"
+  },
+  "layerx": {
+    "file": "/company-logos/official/layerx.svg",
+    "sourcePage": "https://layerx.co.jp/",
+    "sourceUrl": "https://layerx.co.jp/wp-content/themes/layerx/assets/images/logo.svg",
+    "extraction": "url"
+  },
+  "lycorp": {
+    "file": "/company-logos/official/lycorp.png",
+    "sourcePage": "https://www.lycorp.co.jp/en/",
+    "sourceUrl": "https://www.lycorp.co.jp/assets/images/header_logo_en2.png",
+    "extraction": "url"
+  },
+  "luup": {
+    "file": "/company-logos/official/luup.svg",
+    "sourcePage": "https://luup.sc/",
+    "sourceUrl": "https://luup.sc/",
+    "extraction": "inline"
+  },
+  "m3": {
+    "file": "/company-logos/official/m3.png",
+    "sourcePage": "https://corporate.m3.com/",
+    "sourceUrl": "https://corporate.m3.com/images/common/logo.png",
+    "extraction": "url"
+  },
+  "mercari": {
+    "file": "/company-logos/official/mercari.svg",
+    "sourcePage": "https://about.mercari.com/",
+    "sourceUrl": "https://about.mercari.com/images/common/mercari_logo.svg",
+    "extraction": "url"
+  },
+  "mixi": {
+    "file": "/company-logos/official/mixi.svg",
+    "sourcePage": "https://mixi.co.jp/",
+    "sourceUrl": "https://mixi.co.jp/app/themes/mixi/assets/img/logo-main_black.svg",
+    "extraction": "url"
+  },
+  "moneyforward": {
+    "file": "/company-logos/official/moneyforward.png",
+    "sourcePage": "https://corp.moneyforward.com/",
+    "sourceUrl": "https://corp.moneyforward.com/assets/common/img/logo.png",
+    "extraction": "url"
+  },
+  "paypay": {
+    "file": "/company-logos/official/paypay.svg",
+    "sourcePage": "https://paypay.ne.jp/",
+    "sourceUrl": "https://image.paypay.ne.jp/page/common/images/ico_logo_paypay.svg",
+    "extraction": "url"
+  },
+  "plaid": {
+    "file": "/company-logos/official/plaid.svg",
+    "sourcePage": "https://plaid.co.jp/",
+    "sourceUrl": "https://plaid.co.jp/assets/images/site-wide/plaid-logo_red.svg",
+    "extraction": "url"
+  },
+  "prtimes": {
+    "file": "/company-logos/official/prtimes.svg",
+    "sourcePage": "https://prtimes.co.jp/",
+    "sourceUrl": "https://prtimes.co.jp/",
+    "extraction": "inline"
+  },
+  "preferred-networks": {
+    "file": "/company-logos/official/preferred-networks.svg",
+    "sourcePage": "https://www.preferred.jp/ja",
+    "sourceUrl": "https://www.preferred.jp/images/common/logo.svg",
+    "extraction": "url"
+  },
+  "rakuten": {
+    "file": "/company-logos/official/rakuten.svg",
+    "sourcePage": "https://corp.rakuten.co.jp/",
+    "sourceUrl": "https://corp.rakuten.co.jp/assets/img/common/logo.svg",
+    "extraction": "url"
+  },
+  "sansan": {
+    "file": "/company-logos/official/sansan.svg",
+    "sourcePage": "https://jp.corp-sansan.com/",
+    "sourceUrl": "https://jp.corp-sansan.com/",
+    "extraction": "inline"
+  },
+  "smartbank": {
+    "file": "/company-logos/official/smartbank.svg",
+    "sourcePage": "https://smartbank.co.jp/",
+    "sourceUrl": "https://smartbank.co.jp/common/header-logo.svg",
+    "extraction": "url"
+  },
+  "smarthr": {
+    "file": "/company-logos/official/smarthr.svg",
+    "sourcePage": "https://smarthr.co.jp/",
+    "sourceUrl": "https://smarthr.co.jp/",
+    "extraction": "inline-before-marker"
+  },
+  "smartnews": {
+    "file": "/company-logos/official/smartnews.svg",
+    "sourcePage": "https://about.smartnews.com/en/",
+    "sourceUrl": "https://about.smartnews.com/assets/images/common/logo.svg",
+    "extraction": "url"
+  },
+  "spacemarket": {
+    "file": "/company-logos/official/spacemarket.png",
+    "sourcePage": "https://spacemarket.co.jp/press-kit",
+    "sourceUrl": "https://storage.googleapis.com/production-os-assets/assets/09391c4f-12d9-453e-b452-7cb2f9593a9c",
+    "extraction": "url"
+  },
+  "stores": {
+    "file": "/company-logos/official/stores.png",
+    "sourcePage": "https://www.st.inc/",
+    "sourceUrl": "https://cdn.prod.website-files.com/60c0c71197c940b6f5edd76b/60d05cfe1f37e10ca3f9de45_STORES.png",
+    "extraction": "url"
+  },
+  "timee": {
+    "file": "/company-logos/official/timee.svg",
+    "sourcePage": "https://corp.timee.co.jp/",
+    "sourceUrl": "https://corp.timee.co.jp/img/common/h1_logo.svg",
+    "extraction": "url"
+  },
+  "ubie": {
+    "file": "/company-logos/official/ubie.png",
+    "sourcePage": "https://ubie.life/presskit",
+    "sourceUrl": "https://storage.googleapis.com/production-os-assets/assets/f2dec777-3dfd-4df5-b5b1-b66d1980ec62",
+    "extraction": "url"
+  },
+  "wantedly": {
+    "file": "/company-logos/official/wantedly.svg",
+    "sourcePage": "https://www.wantedly.com/",
+    "sourceUrl": "https://wantedly-assets.wantedly.com/static/logo/logo-color-LightBG.svg",
+    "extraction": "url"
+  },
+  "zozo": {
+    "file": "/company-logos/official/zozo.svg",
+    "sourcePage": "https://corp.zozo.com/",
+    "sourceUrl": "https://corp.zozo.com/assets/svg/logo-zozo.svg",
+    "extraction": "url"
+  }
+}
