@@ -10,13 +10,6 @@ CREATE TABLE public.categories (
   description text
 );
 
--- tags: user-created during post authoring
-CREATE TABLE public.tags (
-  id   bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  name text NOT NULL UNIQUE,
-  slug text NOT NULL UNIQUE
-);
-
 -- posts
 CREATE TABLE public.posts (
   id          bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -35,13 +28,6 @@ CREATE INDEX posts_content_search_idx ON public.posts USING GIN (content gin_trg
 CREATE INDEX posts_category_idx       ON public.posts (category_id);
 CREATE INDEX posts_author_idx         ON public.posts (author_id);
 CREATE INDEX posts_created_idx        ON public.posts (created_at DESC);
-
--- post_tags: many-to-many join
-CREATE TABLE public.post_tags (
-  post_id bigint REFERENCES public.posts(id) ON DELETE CASCADE NOT NULL,
-  tag_id  bigint REFERENCES public.tags(id)  ON DELETE CASCADE NOT NULL,
-  PRIMARY KEY (post_id, tag_id)
-);
 
 -- comments
 CREATE TABLE public.comments (

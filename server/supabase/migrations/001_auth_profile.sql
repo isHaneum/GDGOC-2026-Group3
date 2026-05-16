@@ -82,3 +82,30 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();
+
+-- backfill profiles for auth users that existed before this migration was rerun
+INSERT INTO public.profiles (user_id, role, market)
+SELECT
+  id,
+  CASE
+    WHEN raw_user_meta_data->>'role' IN ('developer', 'employer')
+      THEN raw_user_meta_data->>'role'
+    ELSE 'developer'
+  END,
+  CASE
+    WHEN raw_user_meta_data->>'market' IN ('KR', 'JP')
+      THEN raw_user_meta_data->>'market'
+    ELSE 'KR'
+  END
+FROM auth.users
+ON CONFLICT (user_id) DO NOTHING;
+
+INSERT INTO public.developer_profiles (profile_id)
+SELECT p.id
+FROM public.profiles p
+WHERE p.role = 'developer'
+  AND NOT EXISTS (
+    SELECT 1
+    FROM public.developer_profiles dp
+    WHERE dp.profile_id = p.id
+  );

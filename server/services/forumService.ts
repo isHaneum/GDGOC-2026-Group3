@@ -4,7 +4,6 @@ export type CreatePostInput = {
   title: string
   content: string
   category_id: string
-  tag_ids?: string[]
 }
 
 export type UpdatePostInput = Partial<Pick<CreatePostInput, 'title' | 'content' | 'category_id'>>
@@ -22,7 +21,6 @@ export async function listPosts(
       *,
       author:profiles!author_id(id, role, market),
       category:categories!category_id(*),
-      tags:post_tags(tag:tags(*)),
       comment_count:comments(count)
     `)
     .order('created_at', { ascending: false })
@@ -54,7 +52,6 @@ export async function getPost(db: SupabaseClient, postId: string) {
       *,
       author:profiles!author_id(id, role, market),
       category:categories!category_id(*),
-      tags:post_tags(tag:tags(*)),
       comments(*, author:profiles!author_id(id, role, market))
     `)
     .eq('id', postId)
@@ -81,12 +78,6 @@ export async function createPost(
     .select()
     .single()
   if (error) throw new Error(error.message)
-
-  if (input.tag_ids?.length) {
-    await db.from('post_tags').insert(
-      input.tag_ids.map(tag_id => ({ post_id: post.id, tag_id }))
-    )
-  }
 
   return post
 }
@@ -119,14 +110,6 @@ export async function deletePost(db: SupabaseClient, userId: string, postId: str
 
 export async function listCategories(db: SupabaseClient) {
   const { data, error } = await db.from('categories').select('*').order('name')
-  if (error) throw new Error(error.message)
-  return data
-}
-
-export async function listTags(db: SupabaseClient, q?: string) {
-  let query = db.from('tags').select('*').order('name').limit(50)
-  if (q) query = query.ilike('name', `%${q}%`)
-  const { data, error } = await query
   if (error) throw new Error(error.message)
   return data
 }

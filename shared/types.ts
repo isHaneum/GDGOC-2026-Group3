@@ -147,12 +147,6 @@ export interface DbCategory {
   description: string | null
 }
 
-export interface DbTag {
-  id: number
-  name: string
-  slug: string
-}
-
 export interface DbPost {
   id: number
   author_id: number
@@ -176,7 +170,6 @@ export interface DbComment {
 export interface PostWithMeta extends DbPost {
   author: Pick<DbProfile, 'id' | 'role' | 'market'>
   category: DbCategory
-  tags: DbTag[]
   comment_count: number
 }
 
