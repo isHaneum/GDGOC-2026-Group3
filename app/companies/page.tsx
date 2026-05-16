@@ -1,7 +1,9 @@
 import companyJobProfiles from "../../public/data/company-criteria/companyJobProfiles.json";
+import { formatCompanySalarySummary } from "../../src/lib/fitDisplayHelpers";
+import { mergeCompanySalaryDataList } from "../../src/lib/companySalaryEnrichment";
 import type { CompanyJobProfile } from "../../shared/companyCriteriaTypes";
 
-const companies = companyJobProfiles as CompanyJobProfile[];
+const companies = mergeCompanySalaryDataList(companyJobProfiles as CompanyJobProfile[]);
 
 export default function HiringCompaniesPage() {
   const visibleCompanies = companies.slice(0, 24);
@@ -62,6 +64,10 @@ export default function HiringCompaniesPage() {
                   <dd className="mt-1 font-bold text-ink">
                     {company.experienceRange.minYears}-{company.experienceRange.maxYears ?? "any"} yrs
                   </dd>
+                </div>
+                <div className="col-span-2 rounded-xl bg-gray-50 p-3">
+                  <dt className="text-[10px] font-black uppercase tracking-widest text-gray-400">Salary</dt>
+                  <dd className="mt-1 font-bold text-ink">{formatCompanySalarySummary(company, "Confirmation needed")}</dd>
                 </div>
               </dl>
 
