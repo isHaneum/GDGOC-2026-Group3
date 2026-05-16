@@ -11,13 +11,22 @@ import {
 } from '../../src/lib/companyCriteria';
 import {
   deriveKeySignals,
+  formatCompanySalarySummary,
+  formatCompanyLogo,
   formatExperienceRange,
+  formatHiringPeriodSummary,
+  formatJobPostingStatus,
   formatLanguageSummary,
   formatLocationSummary,
+  formatQualificationSummary,
+  formatRoleTitle,
   formatSalaryRange,
+  formatSourceConfidence,
   getDeveloperNextStepKey,
   getFitLabel,
   getFitTone,
+  getJobPostingUrl,
+  getMissingDataLabel,
   getRecruiterActionKey
 } from '../../src/lib/fitDisplayHelpers';
 import {
@@ -57,11 +66,26 @@ type DraftProfile = {
   concernsText: string;
 };
 
+type CompanyJobProfileDisplay = CompanyJobProfile & {
+  missingFields?: string[];
+};
+
+function asDisplayProfile(profile: CompanyJobProfile): CompanyJobProfileDisplay {
+  return profile as CompanyJobProfileDisplay;
+}
+
 const copy = {
   ko: {
-    pageTitle: 'BridgePass Signal Lab',
+    pageTitle: 'Bridge IT Signal Lab',
     subtitle: '이력서와 기업 기준을 비교해 맞는 회사와 후보자를 찾습니다.',
     recommendationEngine: '추천 엔진',
+    roleSelectionTitle: '추천 엔진 역할 선택',
+    roleSelectionSubtitle: '개발자 추천과 기업 추천을 분리해서 확인합니다.',
+    developerRoleTitle: '개발자',
+    developerRoleBody: '이력서와 선호 조건에 맞는 기업과 직무를 찾습니다.',
+    employerRoleTitle: 'Hiring Company',
+    employerRoleBody: '기업 직무 기준에 맞는 후보자를 찾습니다.',
+    chooseRole: '선택하기',
     developerMode: '개발자 추천',
     employerMode: '기업 추천',
     profileTitle: '내 이력서 / 프로필',
@@ -84,7 +108,10 @@ const copy = {
     concerns: '우려 사항',
     location: '지역',
     salary: '연봉',
+    hiringPeriod: '구인 기간',
+    jobPostingStatus: '공고 상태',
     language: '언어',
+    qualificationSummary: '자격 요건',
     requiredTechStacks: '필수 기술',
     preferredTechStacks: '우대 기술',
     requiredLanguages: '필수 언어',
@@ -99,6 +126,29 @@ const copy = {
     missingEvidence: '부족한 증거',
     recommendedAction: '추천 액션',
     confirmationNeeded: '확인 필요',
+    salaryConfirmationNeeded: '연봉 확인 필요',
+    hiringPeriodConfirmationNeeded: '구인 기간 확인 필요',
+    locationConfirmationNeeded: '위치 확인 필요',
+    languageRequirementConfirmationNeeded: '언어 조건 확인 필요',
+    qualificationConfirmationNeeded: '자격 요건 확인 필요',
+    jobPostingStatusConfirmationNeeded: '공고 상태 확인 필요',
+    sourceConfidence: '소스 신뢰도',
+    missingData: '검증 필요 데이터',
+    missingLogo: '로고',
+    missingSalary: '연봉',
+    missingLocation: '지역',
+    missingLanguageRequirement: '언어 조건',
+    missingExperienceRange: '경력 범위',
+    missingRequiredTechStacks: '필수 기술',
+    missingPreferredTechStacks: '우대 기술',
+    missingWorkStyle: '근무 방식',
+    missingRoleSpecificSource: '직무별 소스',
+    missingOfficialSourceUrl: '공식 소스 URL',
+    missingOfficialJobPostingUrl: '공식 채용 공고 URL',
+    missingHiringPeriod: '구인 기간',
+    missingQualificationSummary: '자격 요건',
+    missingJobDescriptionSummary: '직무 정보',
+    missingApplicationDeadline: '지원 마감일',
     debug: 'Debug',
     debugOff: '기본 화면',
     dataUnavailable: '데이터를 불러오지 못했습니다.',
@@ -152,9 +202,16 @@ const copy = {
     safetyNote: '이 결과는 자동 채용 결정이 아니라 추천과 준비를 돕기 위한 참고 정보입니다.'
   },
   ja: {
-    pageTitle: 'BridgePass Signal Lab',
+    pageTitle: 'Bridge IT Signal Lab',
     subtitle: '履歴書と企業基準を比較して、合う企業と候補者を見つけます。',
     recommendationEngine: '推薦エンジン',
+    roleSelectionTitle: '推薦エンジンの役割選択',
+    roleSelectionSubtitle: '開発者向け推薦と企業向け推薦を分けて確認します。',
+    developerRoleTitle: '開発者',
+    developerRoleBody: '履歴書と希望条件に合う企業と職種を探します。',
+    employerRoleTitle: 'Hiring Company',
+    employerRoleBody: '企業の職種基準に合う候補者を探します。',
+    chooseRole: '選択する',
     developerMode: '開発者向け',
     employerMode: '企業向け',
     profileTitle: '自分の履歴書 / プロフィール',
@@ -177,7 +234,10 @@ const copy = {
     concerns: '懸念点',
     location: '勤務地',
     salary: '年収',
+    hiringPeriod: '募集期間',
+    jobPostingStatus: '募集状況',
     language: '言語',
+    qualificationSummary: '応募条件',
     requiredTechStacks: '必須技術',
     preferredTechStacks: '歓迎技術',
     requiredLanguages: '必須言語',
@@ -192,6 +252,29 @@ const copy = {
     missingEvidence: '不足している証拠',
     recommendedAction: '推奨アクション',
     confirmationNeeded: '確認が必要',
+    salaryConfirmationNeeded: '年収確認が必要',
+    hiringPeriodConfirmationNeeded: '募集期間確認が必要',
+    locationConfirmationNeeded: '勤務地確認が必要',
+    languageRequirementConfirmationNeeded: '言語条件確認が必要',
+    qualificationConfirmationNeeded: '応募条件確認が必要',
+    jobPostingStatusConfirmationNeeded: '募集状況確認が必要',
+    sourceConfidence: 'ソース信頼度',
+    missingData: '検証が必要なデータ',
+    missingLogo: 'ロゴ',
+    missingSalary: '年収',
+    missingLocation: '勤務地',
+    missingLanguageRequirement: '言語条件',
+    missingExperienceRange: '経験範囲',
+    missingRequiredTechStacks: '必須技術',
+    missingPreferredTechStacks: '歓迎技術',
+    missingWorkStyle: '勤務スタイル',
+    missingRoleSpecificSource: '職種別ソース',
+    missingOfficialSourceUrl: '公式ソースURL',
+    missingOfficialJobPostingUrl: '公式求人URL',
+    missingHiringPeriod: '募集期間',
+    missingQualificationSummary: '応募条件',
+    missingJobDescriptionSummary: '職務情報',
+    missingApplicationDeadline: '応募締切',
     debug: 'Debug',
     debugOff: '通常表示',
     dataUnavailable: 'データを読み込めませんでした。',
@@ -245,9 +328,16 @@ const copy = {
     safetyNote: 'この結果は自動的な採用判断ではなく、発見・準備・人による確認のための参考情報です。'
   },
   en: {
-    pageTitle: 'BridgePass Signal Lab',
+    pageTitle: 'Bridge IT Signal Lab',
     subtitle: 'Compare resumes and company criteria to find better matches.',
     recommendationEngine: 'Recommendation Engine',
+    roleSelectionTitle: 'Choose a Signal Lab role',
+    roleSelectionSubtitle: 'Developer recommendations and employer recommendations now run as separate views.',
+    developerRoleTitle: 'Developer',
+    developerRoleBody: 'Find best-fit companies and roles for a resume and preferences.',
+    employerRoleTitle: 'Hiring Company',
+    employerRoleBody: 'Find best-fit candidates for company role requirements.',
+    chooseRole: 'Choose role',
     developerMode: 'For Developers',
     employerMode: 'For Employers',
     profileTitle: 'Resume / Profile',
@@ -270,7 +360,10 @@ const copy = {
     concerns: 'Concerns',
     location: 'Location',
     salary: 'Salary',
+    hiringPeriod: 'Hiring period',
+    jobPostingStatus: 'Posting status',
     language: 'Language',
+    qualificationSummary: 'Qualifications',
     requiredTechStacks: 'Required tech',
     preferredTechStacks: 'Preferred tech',
     requiredLanguages: 'Required languages',
@@ -285,6 +378,29 @@ const copy = {
     missingEvidence: 'Missing evidence',
     recommendedAction: 'Recommended action',
     confirmationNeeded: 'Confirmation needed',
+    salaryConfirmationNeeded: 'Salary confirmation needed',
+    hiringPeriodConfirmationNeeded: 'Hiring period confirmation needed',
+    locationConfirmationNeeded: 'Location confirmation needed',
+    languageRequirementConfirmationNeeded: 'Language requirement confirmation needed',
+    qualificationConfirmationNeeded: 'Qualification confirmation needed',
+    jobPostingStatusConfirmationNeeded: 'Posting status confirmation needed',
+    sourceConfidence: 'Source confidence',
+    missingData: 'Data to verify',
+    missingLogo: 'Logo',
+    missingSalary: 'Salary',
+    missingLocation: 'Location',
+    missingLanguageRequirement: 'Language requirement',
+    missingExperienceRange: 'Experience range',
+    missingRequiredTechStacks: 'Required tech',
+    missingPreferredTechStacks: 'Preferred tech',
+    missingWorkStyle: 'Work style',
+    missingRoleSpecificSource: 'Role-specific source',
+    missingOfficialSourceUrl: 'Official source URL',
+    missingOfficialJobPostingUrl: 'Official job posting URL',
+    missingHiringPeriod: 'Hiring period',
+    missingQualificationSummary: 'Qualifications',
+    missingJobDescriptionSummary: 'Job information',
+    missingApplicationDeadline: 'Application deadline',
     debug: 'Debug',
     debugOff: 'Default view',
     dataUnavailable: 'Failed to load recommendation data.',
@@ -485,12 +601,35 @@ function JsonBlock({ title, value }: { title: string; value: unknown }) {
   );
 }
 
+function CompanyLogo({ profile }: { profile: CompanyJobProfile }) {
+  const [broken, setBroken] = useState(false);
+  const logo = broken ? null : formatCompanyLogo(profile);
+  if (!logo) {
+    return (
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-gray-200 bg-bridge-paper text-sm font-bold text-gray-400">
+        {profile.companyName.slice(0, 2).toUpperCase()}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={logo.src}
+      alt={logo.alt}
+      onError={() => setBroken(true)}
+      className="h-11 w-11 shrink-0 rounded-2xl border border-gray-200 bg-white object-contain p-1"
+    />
+  );
+}
+
 export default function SignalLabPage() {
   const [loadState, setLoadState] = useState<LoadState>('loading');
   const [errorMessage, setErrorMessage] = useState('');
   const [data, setData] = useState<PageData | null>(null);
   const [locale, setLocale] = useState<Locale>('ko');
   const [mode, setMode] = useState<Mode>('developer');
+  const [requestedRole, setRequestedRole] = useState<Mode | null>(null);
+  const [roleResolved, setRoleResolved] = useState(false);
   const [debug, setDebug] = useState(false);
   const [selectedDeveloperId, setSelectedDeveloperId] = useState('');
   const [selectedRoleId, setSelectedRoleId] = useState('');
@@ -499,6 +638,14 @@ export default function SignalLabPage() {
   const [draft, setDraft] = useState<DraftProfile>({ resumeText: '', motivation: '', concernsText: '' });
 
   const t = (key: CopyKey) => copy[locale][key] ?? copy.ko[key] ?? key;
+
+  useEffect(() => {
+    const role = new URLSearchParams(window.location.search).get('role');
+    const nextRole = role === 'employer' || role === 'developer' ? role : null;
+    setRequestedRole(nextRole);
+    if (nextRole) setMode(nextRole);
+    setRoleResolved(true);
+  }, []);
 
   useEffect(() => {
     let mounted = true;
@@ -586,8 +733,9 @@ export default function SignalLabPage() {
   const selectedCompanyResult = developerRanking.find((item) => item.roleId === selectedCompanyResultRoleId) ?? developerRanking[0] ?? null;
   const selectedCandidateResult = employerRanking.find((item) => item.developerId === selectedCandidateId) ?? employerRanking[0] ?? null;
   const selectedCandidateProfile = data?.developerProfiles.find((item) => item.developerId === selectedCandidateResult?.developerId);
+  const activeMode = requestedRole ?? mode;
 
-  if (loadState === 'loading') {
+  if (!roleResolved || loadState === 'loading') {
     return <div className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-12 text-center text-gray-500">{t('loading')}</div>;
   }
 
@@ -642,33 +790,40 @@ export default function SignalLabPage() {
             </div>
           </div>
 
-          <div className="mt-5 inline-flex rounded-2xl border border-gray-200 bg-bridge-paper p-1">
-            <button
-              type="button"
-              onClick={() => setMode('developer')}
-              className={classNames(
-                'rounded-2xl px-4 py-2 text-sm font-semibold transition-colors',
-                mode === 'developer' ? 'bg-white text-bridge-teal shadow-sm' : 'text-gray-500 hover:text-ink'
-              )}
-            >
-              {t('developerMode')}
-            </button>
-            <button
-              type="button"
-              onClick={() => setMode('employer')}
-              className={classNames(
-                'rounded-2xl px-4 py-2 text-sm font-semibold transition-colors',
-                mode === 'employer' ? 'bg-white text-bridge-teal shadow-sm' : 'text-gray-500 hover:text-ink'
-              )}
-            >
-              {t('employerMode')}
-            </button>
-          </div>
+          {requestedRole ? (
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <span className="rounded-full bg-bridge-primary/15 px-3 py-1.5 text-sm font-semibold text-bridge-teal">
+                {activeMode === 'developer' ? t('developerMode') : t('employerMode')}
+              </span>
+              <a href="/signal-lab" className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm font-semibold text-gray-500 hover:text-ink">
+                {t('chooseRole')}
+              </a>
+            </div>
+          ) : null}
         </header>
 
-        {mode === 'developer' ? (
-          <section className="grid gap-6 lg:grid-cols-[380px_minmax(0,1fr)]">
-            <aside className="rounded-3xl border border-gray-200 bg-white p-6 shadow-panel">
+        {!requestedRole ? (
+          <section className="rounded-3xl border border-gray-200 bg-white p-6 shadow-panel">
+            <p className="text-sm font-semibold text-bridge-teal">{t('roleSelectionTitle')}</p>
+            <p className="mt-2 text-sm leading-6 text-gray-500">{t('roleSelectionSubtitle')}</p>
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+              <a href="/signal-lab?role=developer" className="rounded-3xl border border-gray-200 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-bridge-primary hover:shadow-panel">
+                <p className="text-sm font-semibold text-bridge-teal">{t('developerMode')}</p>
+                <h2 className="mt-2 text-2xl font-black text-ink">{t('developerRoleTitle')}</h2>
+                <p className="mt-3 text-sm leading-6 text-gray-500">{t('developerRoleBody')}</p>
+                <span className="mt-5 inline-flex rounded-full bg-bridge-primary px-4 py-2 text-sm font-bold text-ink">{t('chooseRole')}</span>
+              </a>
+              <a href="/signal-lab?role=employer" className="rounded-3xl border border-gray-200 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-bridge-coral hover:shadow-panel">
+                <p className="text-sm font-semibold text-bridge-coral">{t('employerMode')}</p>
+                <h2 className="mt-2 text-2xl font-black text-ink">{t('employerRoleTitle')}</h2>
+                <p className="mt-3 text-sm leading-6 text-gray-500">{t('employerRoleBody')}</p>
+                <span className="mt-5 inline-flex rounded-full bg-ink px-4 py-2 text-sm font-bold text-white">{t('chooseRole')}</span>
+              </a>
+            </div>
+          </section>
+        ) : activeMode === 'developer' ? (
+          <section className="grid gap-6 lg:grid-cols-[360px_minmax(0,1fr)]">
+            <aside className="self-start rounded-3xl border border-gray-200 bg-white p-5 shadow-panel lg:sticky lg:top-24">
               <div className="space-y-5">
                 <div>
                   <p className="text-sm font-semibold text-bridge-teal">{t('profileTitle')}</p>
@@ -704,7 +859,7 @@ export default function SignalLabPage() {
                       <textarea
                         value={draft.resumeText}
                         onChange={(event) => setDraft((current) => ({ ...current, resumeText: event.target.value }))}
-                        rows={6}
+                        rows={3}
                         className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-ink outline-none focus:border-bridge-teal"
                       />
                     </label>
@@ -713,7 +868,7 @@ export default function SignalLabPage() {
                       <textarea
                         value={draft.motivation}
                         onChange={(event) => setDraft((current) => ({ ...current, motivation: event.target.value }))}
-                        rows={4}
+                        rows={2}
                         className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-ink outline-none focus:border-bridge-teal"
                       />
                     </label>
@@ -722,7 +877,7 @@ export default function SignalLabPage() {
                       <textarea
                         value={draft.concernsText}
                         onChange={(event) => setDraft((current) => ({ ...current, concernsText: event.target.value }))}
-                        rows={3}
+                        rows={2}
                         className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-ink outline-none focus:border-bridge-teal"
                       />
                     </label>
@@ -740,9 +895,12 @@ export default function SignalLabPage() {
                   </div>
                 </div>
 
-                <div className="mt-5 space-y-3">
+                <div className="mt-5 max-h-[720px] space-y-3 overflow-y-auto pr-2 thin-scrollbar">
                   {developerRanking.length ? developerRanking.map((result, index) => {
                     const tone = getFitTone(result.overallFitScore);
+                    const companyProfile = data.companyJobProfiles.find((item) => item.roleId === result.roleId) ?? data.companyJobProfiles[0];
+                    const displayCompanyProfile = asDisplayProfile(companyProfile);
+                    const jobPostingUrl = getJobPostingUrl(companyProfile);
                     return (
                       <article key={`${result.companyId}-${result.roleId}`} className="rounded-2xl border border-gray-200 p-4">
                         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
@@ -754,23 +912,36 @@ export default function SignalLabPage() {
                               </span>
                               <span className="text-xs font-semibold text-gray-400">{Math.round(result.overallFitScore)}</span>
                             </div>
-                            <div>
-                              <h3 className="text-lg font-bold text-ink">{result.companyName}</h3>
-                              <p className="text-sm font-medium text-gray-500">{result.roleTitle}</p>
+                            <div className="flex items-start gap-3">
+                              <CompanyLogo profile={companyProfile} />
+                              <div className="min-w-0">
+                                <h3 className="text-lg font-bold text-ink">{result.companyName}</h3>
+                                <p className="text-sm font-medium text-gray-500">{result.roleTitle}</p>
+                                {debug ? <p className="mt-1 text-xs font-semibold text-gray-400">{t('sourceConfidence')}: {formatSourceConfidence(companyProfile)}</p> : null}
+                              </div>
                             </div>
-                            <div className="grid gap-2 text-sm text-gray-600 md:grid-cols-3">
-                              <p><span className="font-semibold text-ink">{t('location')}: </span>{formatLocationSummary(data.companyJobProfiles.find((item) => item.roleId === result.roleId) ?? data.companyJobProfiles[0], t('confirmationNeeded'))}</p>
-                              <p><span className="font-semibold text-ink">{t('salary')}: </span>{formatSalaryRange(
-                                data.companyJobProfiles.find((item) => item.roleId === result.roleId)?.salaryMin,
-                                data.companyJobProfiles.find((item) => item.roleId === result.roleId)?.salaryMax,
-                                data.companyJobProfiles.find((item) => item.roleId === result.roleId)?.salaryCurrency ?? 'unknown',
-                                t('confirmationNeeded')
-                              )}</p>
-                              <p><span className="font-semibold text-ink">{t('language')}: </span>{formatLanguageSummary(data.companyJobProfiles.find((item) => item.roleId === result.roleId) ?? data.companyJobProfiles[0], t('confirmationNeeded'))}</p>
+                            <div className="grid gap-2 text-sm text-gray-600 md:grid-cols-2 xl:grid-cols-3">
+                              <p><span className="font-semibold text-ink">{t('location')}: </span>{formatLocationSummary(companyProfile, t('locationConfirmationNeeded'))}</p>
+                              <p><span className="font-semibold text-ink">{t('salary')}: </span>{formatCompanySalarySummary(companyProfile, t('salaryConfirmationNeeded'))}</p>
+                              <p><span className="font-semibold text-ink">{t('hiringPeriod')}: </span>{formatHiringPeriodSummary(companyProfile, t('hiringPeriodConfirmationNeeded'))}</p>
+                              <p><span className="font-semibold text-ink">{t('jobPostingStatus')}: </span>{formatJobPostingStatus(companyProfile, t('jobPostingStatusConfirmationNeeded'))}</p>
+                              <p><span className="font-semibold text-ink">{t('qualificationSummary')}: </span>{formatQualificationSummary(companyProfile, t('qualificationConfirmationNeeded'))}</p>
+                              <p><span className="font-semibold text-ink">{t('language')}: </span>{formatLanguageSummary(companyProfile, t('languageRequirementConfirmationNeeded'))}</p>
                             </div>
+                            {debug && displayCompanyProfile.missingFields?.length ? (
+                              <div className="flex flex-wrap gap-2">
+                                <span className="text-xs font-semibold text-gray-400">{t('missingData')}</span>
+                                {displayCompanyProfile.missingFields.slice(0, 4).map((field) => (
+                                  <span key={`${result.roleId}-${field}`} className="rounded-full border border-bridge-amber/20 bg-bridge-amber/10 px-2 py-0.5 text-xs font-medium text-bridge-amber">
+                                    {t(getMissingDataLabel(field))}
+                                  </span>
+                                ))}
+                              </div>
+                            ) : null}
                             <p className="text-sm text-gray-600"><span className="font-semibold text-ink">{t('whatMatches')}: </span>{result.matchedReasons[0] ?? t('confirmationNeeded')}</p>
                             <p className="text-sm text-gray-600"><span className="font-semibold text-ink">{t('whatMissing')}: </span>{result.missingSignals[0] ?? t('confirmationNeeded')}</p>
                             <p className="text-sm text-gray-600"><span className="font-semibold text-ink">{t('nextStep')}: </span>{t(getDeveloperNextStepKey(result.recommendedNextStep))}</p>
+                            {debug && jobPostingUrl ? <p className="text-xs text-gray-400">jobPostingUrl: {jobPostingUrl}</p> : null}
                           </div>
 
                           <button
@@ -795,10 +966,15 @@ export default function SignalLabPage() {
               {selectedCompanyResult ? (
                 <section className="rounded-3xl border border-gray-200 bg-white p-6 shadow-panel">
                   <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
-                    <div>
+                    <div className="flex items-start gap-3">
+                      {data.companyJobProfiles.find((item) => item.roleId === selectedCompanyResult.roleId) ? (
+                        <CompanyLogo profile={data.companyJobProfiles.find((item) => item.roleId === selectedCompanyResult.roleId)!} />
+                      ) : null}
+                      <div>
                       <p className="text-sm font-semibold text-bridge-teal">{t('detailsTitle')}</p>
                       <h3 className="mt-1 text-2xl font-bold text-ink">{selectedCompanyResult.companyName}</h3>
                       <p className="text-sm text-gray-500">{selectedCompanyResult.roleTitle}</p>
+                      </div>
                     </div>
                     <span className={classNames('rounded-full border px-3 py-1.5 text-sm font-semibold', toneClasses(getFitTone(selectedCompanyResult.overallFitScore)))}>
                       {t(getFitLabel(selectedCompanyResult.overallFitScore))} · {Math.round(selectedCompanyResult.overallFitScore)}
@@ -844,8 +1020,8 @@ export default function SignalLabPage() {
             </div>
           </section>
         ) : (
-          <section className="grid gap-6 lg:grid-cols-[380px_minmax(0,1fr)]">
-            <aside className="rounded-3xl border border-gray-200 bg-white p-6 shadow-panel">
+          <section className="grid gap-6 lg:grid-cols-[360px_minmax(0,1fr)]">
+            <aside className="self-start rounded-3xl border border-gray-200 bg-white p-5 shadow-panel lg:sticky lg:top-24">
               <div className="space-y-5">
                 <div>
                   <p className="text-sm font-semibold text-bridge-teal">{t('companyCriteriaTitle')}</p>
@@ -865,15 +1041,33 @@ export default function SignalLabPage() {
 
                 {selectedCompanyProfile ? (
                   <div className="grid gap-3 rounded-2xl border border-gray-100 bg-bridge-paper p-4 text-sm text-gray-600">
-                    <p><span className="font-semibold text-ink">{t('name')}: </span>{selectedCompanyProfile.companyName}</p>
-                    <p><span className="font-semibold text-ink">{t('targetRoles')}: </span>{selectedCompanyProfile.roleTitle}</p>
-                    <p><span className="font-semibold text-ink">{t('location')}: </span>{formatLocationSummary(selectedCompanyProfile, t('confirmationNeeded'))}</p>
+                    <div className="mb-1 flex items-start gap-3">
+                      <CompanyLogo profile={selectedCompanyProfile} />
+                      <div>
+                        <p className="font-semibold text-ink">{formatRoleTitle(selectedCompanyProfile)}</p>
+                        {debug ? <p className="mt-1 text-xs font-semibold text-gray-400">{t('sourceConfidence')}: {formatSourceConfidence(selectedCompanyProfile)}</p> : null}
+                      </div>
+                    </div>
+                    <p><span className="font-semibold text-ink">{t('location')}: </span>{formatLocationSummary(selectedCompanyProfile, t('locationConfirmationNeeded'))}</p>
                     <p><span className="font-semibold text-ink">{t('workStyle')}: </span>{selectedCompanyProfile.workStyle === 'unknown' ? t('confirmationNeeded') : normalizeWorkStyle(selectedCompanyProfile.workStyle)}</p>
-                    <p><span className="font-semibold text-ink">{t('salary')}: </span>{formatSalaryRange(selectedCompanyProfile.salaryMin, selectedCompanyProfile.salaryMax, selectedCompanyProfile.salaryCurrency, t('confirmationNeeded'))}</p>
+                    <p><span className="font-semibold text-ink">{t('salary')}: </span>{formatCompanySalarySummary(selectedCompanyProfile, t('salaryConfirmationNeeded'))}</p>
+                    <p><span className="font-semibold text-ink">{t('hiringPeriod')}: </span>{formatHiringPeriodSummary(selectedCompanyProfile, t('hiringPeriodConfirmationNeeded'))}</p>
+                    <p><span className="font-semibold text-ink">{t('jobPostingStatus')}: </span>{formatJobPostingStatus(selectedCompanyProfile, t('jobPostingStatusConfirmationNeeded'))}</p>
+                    <p><span className="font-semibold text-ink">{t('qualificationSummary')}: </span>{formatQualificationSummary(selectedCompanyProfile, t('qualificationConfirmationNeeded'))}</p>
                     <p><span className="font-semibold text-ink">{t('requiredTechStacks')}: </span>{formatList(selectedCompanyProfile.requiredTechStacks, t('confirmationNeeded'))}</p>
                     <p><span className="font-semibold text-ink">{t('preferredTechStacks')}: </span>{formatList(selectedCompanyProfile.preferredTechStacks, t('confirmationNeeded'))}</p>
-                    <p><span className="font-semibold text-ink">{t('requiredLanguages')}: </span>{formatLanguageSummary(selectedCompanyProfile, t('confirmationNeeded'))}</p>
+                    <p><span className="font-semibold text-ink">{t('requiredLanguages')}: </span>{formatLanguageSummary(selectedCompanyProfile, t('languageRequirementConfirmationNeeded'))}</p>
                     <p><span className="font-semibold text-ink">{t('experienceRange')}: </span>{formatExperienceRange(selectedCompanyProfile, t('confirmationNeeded'))}</p>
+                    {debug && asDisplayProfile(selectedCompanyProfile).missingFields?.length ? (
+                      <div className="flex flex-wrap gap-2 pt-1">
+                        <span className="text-xs font-semibold text-gray-400">{t('missingData')}</span>
+                        {asDisplayProfile(selectedCompanyProfile).missingFields?.map((field) => (
+                          <span key={`${selectedCompanyProfile.roleId}-${field}`} className="rounded-full border border-bridge-amber/20 bg-bridge-amber/10 px-2 py-0.5 text-xs font-medium text-bridge-amber">
+                            {t(getMissingDataLabel(field))}
+                          </span>
+                        ))}
+                      </div>
+                    ) : null}
                   </div>
                 ) : null}
               </div>
@@ -886,7 +1080,7 @@ export default function SignalLabPage() {
                   <p className="mt-1 text-sm text-gray-500">Top 10</p>
                 </div>
 
-                <div className="mt-5 space-y-3">
+                <div className="mt-5 max-h-[720px] space-y-3 overflow-y-auto pr-2 thin-scrollbar">
                   {employerRanking.length ? employerRanking.map((result, index) => (
                     <article key={`${result.companyId}-${result.roleId}-${result.developerId}`} className="rounded-2xl border border-gray-200 p-4">
                       <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
@@ -1028,7 +1222,7 @@ export default function SignalLabPage() {
             <div className="grid gap-4 xl:grid-cols-3">
               <JsonBlock title={t('selectedDeveloperJson')} value={editableDeveloper} />
               <JsonBlock title={t('selectedCompanyJson')} value={selectedCompanyProfile} />
-              <JsonBlock title={t('selectedResultJson')} value={mode === 'developer' ? selectedCompanyResult : selectedCandidateResult} />
+              <JsonBlock title={t('selectedResultJson')} value={activeMode === 'developer' ? selectedCompanyResult : selectedCandidateResult} />
             </div>
           </section>
         ) : null}
