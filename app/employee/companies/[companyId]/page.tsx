@@ -31,16 +31,13 @@ export default async function EmployeeCompanyDetailPage({
   return (
     <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-8">
       <div className="mx-auto max-w-5xl space-y-4">
-        <Link
-          href="/employee/companies"
-          className="inline-flex rounded border border-gray-200 bg-white px-3 py-2 text-xs font-bold text-ink shadow-sm hover:border-bridge-primary"
-        >
-          ← Back to companies
+        <Link href="/employee/companies" className="text-sm font-bold text-gray-400 hover:text-bridge-primary transition-colors">
+          ← 전체 기업 보기
         </Link>
 
         <header className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
           <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal">
-            Company Detail
+            기업 상세 정보
           </p>
           <div className="mt-2 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
@@ -50,7 +47,7 @@ export default async function EmployeeCompanyDetailPage({
               </p>
             </div>
             <span className="rounded-full bg-bridge-primary/10 px-3 py-1 text-xs font-black text-bridge-teal">
-              {roles.length} open role{roles.length > 1 ? "s" : ""}
+              {roles.length}개의 채용 중인 직무
             </span>
           </div>
         </header>
@@ -61,9 +58,9 @@ export default async function EmployeeCompanyDetailPage({
               <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                 <div>
                   <p className="text-xs font-black uppercase tracking-widest text-gray-400">{role.roleCategory}</p>
-                  <h2 className="mt-1 text-lg font-bold text-ink">{role.roleTitle}</h2>
+                  <h2 className="text-lg font-bold mb-3">직무 소개</h2>
                   <p className="mt-2 text-sm leading-6 text-gray-500">
-                    {role.notes ?? "This role is available for applicant-side review."}
+                    {role.notes ?? "해당 직무는 지원자 검토가 가능한 상태입니다."}
                   </p>
                 </div>
                 <span className="rounded-full bg-bridge-paper px-3 py-1 text-xs font-bold text-gray-500">

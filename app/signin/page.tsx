@@ -94,10 +94,10 @@ export default function SignInPage() {
         <div className="pointer-events-none absolute inset-0 z-0 flex flex-col justify-between px-6 py-8 sm:px-10 lg:px-14">
           <div>
             <p className="text-[10px] font-light uppercase tracking-[0.42em] text-bridge-teal/70">
-              New account
+              새 계정
             </p>
             <h1 className="mt-3 max-w-3xl text-6xl font-thin leading-none tracking-normal text-ink/10 sm:text-7xl lg:text-8xl">
-              Sign Up starts with direction
+              방향 선택으로 시작하는 회원가입
             </h1>
           </div>
           <p className="max-w-sm text-sm font-light leading-6 text-gray-400">
@@ -114,14 +114,14 @@ export default function SignInPage() {
           <div className="relative z-20 -mt-3 text-center sm:-mt-6">
             <p className="text-xs font-light text-gray-400">
               {hoveredDirection
-                ? `${bridgeDirections[hoveredDirection].shortLabel} · Click to continue signup`
-                : "Choose Korea to Japan or Japan to Korea"}
+                ? `${bridgeDirections[hoveredDirection].shortLabel} · 클릭하여 계속 진행`
+                : "한국에서 일본으로, 혹은 일본에서 한국으로 선택해주세요"}
             </p>
             <Link
               href="/signup/onboarding"
               className="mt-3 inline-flex rounded-xl border border-gray-200 bg-white/80 px-4 py-2 text-xs font-bold text-ink backdrop-blur transition-colors hover:border-bridge-primary"
             >
-              Sign up without map
+              지도 없이 회원가입
             </Link>
           </div>
         </div>
@@ -132,13 +132,13 @@ export default function SignInPage() {
           onSubmit={handleSubmit}
           className="pointer-events-auto w-full max-w-[420px] rounded-xl border border-gray-100 bg-white/95 p-5 shadow-panel backdrop-blur"
         >
-          <h2 className="text-2xl font-bold text-ink">Sign in</h2>
+          <h2 className="text-2xl font-bold text-ink">로그인</h2>
           <p className="mt-2 text-sm leading-6 text-gray-500">
             계정 역할에 따라 지원자 또는 채용자 페이지로 이동합니다.
           </p>
 
           <label className="mt-6 block">
-            <span className="text-xs font-black uppercase tracking-widest text-gray-400">Email</span>
+            <span className="text-xs font-black uppercase tracking-widest text-gray-400">이메일</span>
             <input
               type="email"
               autoComplete="email"
@@ -150,7 +150,7 @@ export default function SignInPage() {
           </label>
 
           <label className="mt-4 block">
-            <span className="text-xs font-black uppercase tracking-widest text-gray-400">Password</span>
+            <span className="text-xs font-black uppercase tracking-widest text-gray-400">비밀번호</span>
             <input
               type="password"
               autoComplete="current-password"
@@ -172,7 +172,7 @@ export default function SignInPage() {
             disabled={status === "submitting"}
             className="mt-6 w-full rounded-xl bg-bridge-primary px-5 py-3 text-sm font-bold text-ink transition-opacity hover:opacity-90 disabled:opacity-50"
           >
-            {status === "submitting" ? "Signing in..." : "Sign in"}
+            {status === "submitting" ? "로그인 중..." : "로그인"}
           </button>
 
           <p className="mt-5 text-center text-sm text-gray-500">

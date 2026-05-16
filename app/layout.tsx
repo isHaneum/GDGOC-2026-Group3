@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className="bg-bridge-paper text-ink antialiased">
         <Suspense fallback={null}>
           <RoleAwareNav />

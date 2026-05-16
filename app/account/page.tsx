@@ -95,20 +95,20 @@ export default function AccountPage() {
   return (
     <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-8">
       <section className="mx-auto max-w-3xl rounded-xl border border-gray-100 bg-white p-5 shadow-panel">
-        <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal">Account</p>
+        <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal">계정</p>
         <h1 className="mt-3 text-2xl font-bold text-ink">계정 정보</h1>
 
         <dl className="mt-5 grid gap-3 rounded-xl bg-bridge-paper p-4 text-sm sm:grid-cols-3">
           <div>
-            <dt className="text-[10px] font-black uppercase tracking-widest text-gray-400">Email</dt>
+            <dt className="text-[10px] font-black uppercase tracking-widest text-gray-400">이메일</dt>
             <dd className="mt-1 font-bold text-ink break-words">{email}</dd>
           </div>
           <div>
-            <dt className="text-[10px] font-black uppercase tracking-widest text-gray-400">Role</dt>
+            <dt className="text-[10px] font-black uppercase tracking-widest text-gray-400">역할</dt>
             <dd className="mt-1 font-bold text-ink">{roleLabel}</dd>
           </div>
           <div>
-            <dt className="text-[10px] font-black uppercase tracking-widest text-gray-400">Market</dt>
+            <dt className="text-[10px] font-black uppercase tracking-widest text-gray-400">시장</dt>
             <dd className="mt-1 font-bold text-ink">{market}</dd>
           </div>
         </dl>
@@ -122,7 +122,7 @@ export default function AccountPage() {
           }}
         >
           <Field
-            label="Nickname"
+            label="닉네임"
             value={draft.nickname}
             onChange={(value) => {
               setDraft((current) => ({ ...current, nickname: value }));
@@ -130,7 +130,7 @@ export default function AccountPage() {
             }}
           />
           <Field
-            label="Profile image URL"
+            label="프로필 이미지 URL"
             value={draft.profileImageUrl}
             onChange={(value) => {
               setDraft((current) => ({ ...current, profileImageUrl: value }));
@@ -138,7 +138,7 @@ export default function AccountPage() {
             }}
           />
           <Field
-            label="Phone"
+            label="연락처"
             value={draft.phone}
             onChange={(value) => {
               setDraft((current) => ({ ...current, phone: value }));
@@ -151,16 +151,16 @@ export default function AccountPage() {
               type="submit"
               className="rounded-xl bg-bridge-primary px-5 py-3 text-sm font-bold text-ink transition-opacity hover:opacity-90"
             >
-              Save profile
+              프로필 저장
             </button>
             <button
               type="button"
               onClick={handleSignOut}
               className="rounded-xl border border-gray-200 px-5 py-3 text-sm font-bold text-gray-500 transition-colors hover:border-bridge-coral hover:text-bridge-coral"
             >
-              Sign out
+              로그아웃
             </button>
-            {saved ? <span className="text-sm font-bold text-bridge-teal">Saved locally</span> : null}
+            {saved ? <span className="text-sm font-bold text-bridge-teal">로컬에 저장됨</span> : null}
           </div>
         </form>
       </section>

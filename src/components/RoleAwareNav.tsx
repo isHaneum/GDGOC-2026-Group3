@@ -73,13 +73,13 @@ export default function RoleAwareNav() {
                 href="/signin"
                 className="rounded-full px-4 py-2 text-sm font-bold text-gray-500 transition-colors hover:bg-gray-50 hover:text-ink"
               >
-                Sign in
+                로그인
               </Link>
               <Link
                 href="/signup/onboarding"
                 className="rounded-full bg-ink px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-black"
               >
-                Sign up
+                회원가입
               </Link>
             </div>
           ) : (
@@ -102,7 +102,7 @@ export default function RoleAwareNav() {
                 href="/signup/onboarding"
                 className="whitespace-nowrap rounded-full px-3 py-2 text-xs font-bold text-gray-400 transition-colors hover:bg-gray-50 hover:text-ink"
               >
-                Switch Role
+                역할 전환
               </Link>
             </div>
           )}

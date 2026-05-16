@@ -105,7 +105,7 @@ export default function SignupProfilePage() {
     <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-8">
       <section className="mx-auto max-w-3xl rounded-xl border border-gray-100 bg-white p-5 shadow-panel">
         <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal">
-          Signup Profile
+          회원가입 프로필
         </p>
         <h1 className="mt-3 text-2xl font-bold text-ink">프로필 작성</h1>
         <p className="mt-2 text-sm leading-6 text-gray-500">
@@ -122,28 +122,28 @@ export default function SignupProfilePage() {
         ) : null}
 
         <form onSubmit={handleSubmit} className="mt-6 grid gap-4 md:grid-cols-2">
-          <Field label="ID" value={draft.loginId} onChange={(value) => updateDraft("loginId", value)} />
+          <Field label="아이디" value={draft.loginId} onChange={(value) => updateDraft("loginId", value)} />
           <Field
-            label="Password"
+            label="비밀번호"
             type="password"
             value={password}
             onChange={setPassword}
             required
           />
-          <Field label="Nickname" value={draft.nickname} onChange={(value) => updateDraft("nickname", value)} />
+          <Field label="닉네임" value={draft.nickname} onChange={(value) => updateDraft("nickname", value)} />
           <Field
-            label="Profile image URL"
+            label="프로필 이미지 URL"
             value={draft.profileImageUrl}
             onChange={(value) => updateDraft("profileImageUrl", value)}
           />
           <Field
-            label="Email"
+            label="이메일"
             type="email"
             value={draft.email}
             onChange={(value) => updateDraft("email", value)}
             required
           />
-          <Field label="Phone" value={draft.phone} onChange={(value) => updateDraft("phone", value)} />
+          <Field label="연락처" value={draft.phone} onChange={(value) => updateDraft("phone", value)} />
 
           {errorMessage ? (
             <p className="md:col-span-2 rounded-xl border border-bridge-coral/30 bg-bridge-coral/10 p-3 text-sm font-bold text-bridge-coral">
@@ -157,10 +157,10 @@ export default function SignupProfilePage() {
               disabled={status === "submitting"}
               className="rounded-xl bg-bridge-primary px-5 py-3 text-sm font-bold text-ink transition-opacity hover:opacity-90 disabled:opacity-50"
             >
-              {status === "submitting" ? "Creating account..." : "Continue"}
+              {status === "submitting" ? "계정 생성 중..." : "계속하기"}
             </button>
             <span className="text-sm text-gray-400">
-              Current role: {role === "developer" ? "Applicant" : role === "employer" ? "Employer" : "Not selected"}
+              현재 역할: {role === "developer" ? "지원자" : role === "employer" ? "채용자" : "선택 안 됨"}
             </span>
           </div>
         </form>

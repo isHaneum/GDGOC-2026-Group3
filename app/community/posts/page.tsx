@@ -127,8 +127,8 @@ export default function CommunityPage() {
         {/* Header */}
         <div className="flex items-end justify-between mb-6">
           <div>
-            <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal mb-1">Cultural Forums</p>
-            <h1 className="text-2xl font-bold text-ink">Community</h1>
+            <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal mb-1">문화 포럼</p>
+            <h1 className="text-2xl font-bold text-ink">커뮤니티</h1>
           </div>
           <button
             onClick={() => setShowForm(true)}
@@ -200,7 +200,7 @@ export default function CommunityPage() {
                 {/* Like count */}
                 <div className="text-center min-w-[36px]">
                   <div className="font-black text-base text-bridge-teal">{post.like_count}</div>
-                  <div className="text-[9px] text-gray-400 font-bold uppercase">likes</div>
+                  <div className="text-[9px] text-gray-400 font-bold uppercase">좋아요</div>
                 </div>
 
                 {/* Content */}
