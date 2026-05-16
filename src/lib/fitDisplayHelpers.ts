@@ -139,6 +139,15 @@ export function formatCompanySalarySummary(profile: CompanyJobProfile, fallback:
     )}`;
   }
 
+  if (
+    typeof displayProfile.averageAnnualSalary === "number" &&
+    displayProfile.startingSalaryCurrency &&
+    displayProfile.startingSalaryCurrency !== "unknown"
+  ) {
+    const formatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
+    return `Average ${displayProfile.startingSalaryCurrency} ${formatter.format(displayProfile.averageAnnualSalary)}`;
+  }
+
   return displayProfile.salaryNote ? `${fallback} (${displayProfile.salaryNote})` : fallback;
 }
 

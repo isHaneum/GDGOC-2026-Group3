@@ -38,4 +38,19 @@ describe('community schema scope', () => {
     expect(authMigration).toContain('ON CONFLICT (user_id) DO NOTHING')
     expect(authMigration).toContain('INSERT INTO public.developer_profiles (profile_id)')
   })
+
+  it('persists salary enrichment fields for company job profiles in both migration trees', () => {
+    const serverMigration = read('server/supabase/migrations/008_company_salary_enrichment.sql')
+    const supabaseMigration = read('supabase/migrations/20260517000011_company_salary_enrichment.sql')
+
+    for (const migration of [serverMigration, supabaseMigration]) {
+      expect(migration).toContain('ADD COLUMN IF NOT EXISTS salary_note text')
+      expect(migration).toContain('ADD COLUMN IF NOT EXISTS starting_salary_min bigint')
+      expect(migration).toContain('ADD COLUMN IF NOT EXISTS average_annual_salary bigint')
+      expect(migration).toContain('ADD COLUMN IF NOT EXISTS salary_source_links jsonb')
+      expect(migration).toContain('UPDATE public.company_job_profiles AS profiles')
+      expect(migration).toContain("('mercari'")
+      expect(migration).toContain("('zozo'")
+    }
+  })
 })

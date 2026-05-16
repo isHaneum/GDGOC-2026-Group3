@@ -41,6 +41,16 @@ function isAllowedRoute(pathname: string) {
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
+  if (pathname === '/signal-lab') {
+    const role = request.nextUrl.searchParams.get('role')
+    if (role === 'developer') {
+      return redirectTo(request, '/employee/recommends')
+    }
+    if (role === 'employer') {
+      return redirectTo(request, '/employer/applicants')
+    }
+  }
+
   const normalizedRedirect = routeRedirects[pathname]
   if (normalizedRedirect) {
     return redirectTo(request, normalizedRedirect)

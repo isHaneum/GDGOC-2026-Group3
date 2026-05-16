@@ -1,13 +1,60 @@
 import Link from "next/link";
 
 import companyJobProfiles from "../../../public/data/company-criteria/companyJobProfiles.json";
+import {
+  formatCompanyLogo,
+  formatCompanySalarySummary,
+  formatExperienceRange,
+  formatLanguageSummary,
+  formatLocationSummary,
+} from "../../../src/lib/fitDisplayHelpers";
+import { mergeCompanySalaryDataList } from "../../../src/lib/companySalaryEnrichment";
 import type { CompanyJobProfile } from "../../../shared/companyCriteriaTypes";
 
-const companies = companyJobProfiles as CompanyJobProfile[];
+const companies = mergeCompanySalaryDataList(companyJobProfiles as CompanyJobProfile[]);
+
+const workStyleLabels: Record<CompanyJobProfile["workStyle"], string> = {
+  remote: "Remote",
+  hybrid: "Hybrid",
+  onsite: "On-site",
+  unknown: "Not specified",
+};
+
+function getCompanyStacks(company: CompanyJobProfile): string[] {
+  return [...new Set([...company.requiredTechStacks, ...company.preferredTechStacks])].slice(0, 6);
+}
+
+function getCompanyLinks(company: CompanyJobProfile): Array<{ label: string; url: string; supports?: string }> {
+  const links = company.salarySourceLinks ?? [];
+  if (links.length) {
+    return links.slice(0, 4);
+  }
+
+  return (company.sourceUrls ?? []).slice(0, 4).map((url) => ({
+    label: new URL(url).hostname.replace(/^www\./, ""),
+    url,
+  }));
+}
+
+function getLinkLabel(label?: string, supports?: string): string {
+  if (supports === "officialWebsite") return "Official site";
+  if (supports === "careers") return "Careers";
+  if (supports?.includes("newGraduate")) return "Salary details";
+  if (supports?.includes("averageAnnual") || supports?.includes("averageTenure")) return "Salary source";
+  return label ?? "Source";
+}
+
+function getCompanyInitials(companyName: string): string {
+  return companyName
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join("")
+    .toUpperCase();
+}
 
 export default function HiringCompaniesPage() {
-  const visibleCompanies = companies.slice(0, 24);
-
   return (
     <main className="min-h-screen bg-bridge-paper">
       <div className="container mx-auto max-w-6xl px-4 py-8">
@@ -28,49 +75,93 @@ export default function HiringCompaniesPage() {
         </header>
 
         <section className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {visibleCompanies.map((company) => (
+          {companies.map((company) => (
             <article key={`${company.companyId}-${company.roleId}`} className="flex flex-col justify-between rounded-xl border border-gray-100 bg-white p-5 shadow-panel transition-all hover:border-bridge-primary/30">
-              <div>
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h2 className="text-lg font-bold text-ink line-clamp-1">{company.companyName}</h2>
-                    <p className="mt-1 text-sm font-bold text-bridge-teal line-clamp-1">{company.roleTitle}</p>
-                  </div>
-                  <span className="shrink-0 rounded-full bg-bridge-primary/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-bridge-teal">
-                    {company.country}
-                  </span>
-                </div>
+              {(() => {
+                const stacks = getCompanyStacks(company);
+                const logo = formatCompanyLogo(company);
+                const links = getCompanyLinks(company);
+                
+                return (
+                  <>
+                    <div>
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex min-w-0 items-start gap-3">
+                          {logo ? (
+                            <img
+                              src={logo.src}
+                              alt={logo.alt}
+                              className="h-10 w-10 shrink-0 rounded-lg border border-gray-100 bg-white object-contain p-1"
+                            />
+                          ) : (
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-gray-100 bg-gray-50 text-[10px] font-black text-gray-400">
+                              {getCompanyInitials(company.companyName)}
+                            </div>
+                          )}
+                          <div>
+                            <h2 className="text-lg font-bold text-ink line-clamp-1">{company.companyName}</h2>
+                            <p className="mt-0.5 text-sm font-bold text-bridge-teal line-clamp-1">{company.roleTitle}</p>
+                          </div>
+                        </div>
+                        <span className="shrink-0 rounded-full bg-bridge-primary/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-bridge-teal">
+                          {company.country}
+                        </span>
+                      </div>
 
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {[...company.requiredTechStacks, ...company.preferredTechStacks].slice(0, 4).map((stack) => (
-                    <span key={stack} className="rounded-md border border-gray-100 bg-gray-50 px-2 py-1 text-[10px] font-bold text-gray-500">
-                      {stack}
-                    </span>
-                  ))}
-                  {!company.requiredTechStacks.length && !company.preferredTechStacks.length ? (
-                    <span className="rounded-md border border-gray-100 bg-gray-50 px-2 py-1 text-[10px] font-bold text-gray-400">
-                      기술 스택 미지정
-                    </span>
-                  ) : null}
-                </div>
+                      <div className="mt-4 flex flex-wrap gap-1.5">
+                        {stacks.slice(0, 4).map((stack) => (
+                          <span key={stack} className="rounded-md border border-gray-100 bg-gray-50 px-2 py-1 text-[10px] font-bold text-gray-500">
+                            {stack}
+                          </span>
+                        ))}
+                        {!stacks.length ? (
+                          <span className="rounded-md border border-gray-100 bg-gray-50 px-2 py-1 text-[10px] font-bold text-gray-400">
+                            기술 스택 미지정
+                          </span>
+                        ) : null}
+                      </div>
 
-                <div className="mt-5 border-t border-gray-100 pt-4 flex items-center text-sm">
-                  <div className="text-gray-500 flex items-center gap-2">
-                    <span className="font-bold text-ink">
-                      {company.experienceRange.minYears}-{company.experienceRange.maxYears ?? "무관"}년
-                    </span>
-                    <span className="text-gray-300">|</span>
-                    <span>{company.workStyle}</span>
-                  </div>
-                </div>
-              </div>
+                      <div className="mt-4 rounded-lg bg-gray-50 p-3 text-xs text-gray-600 border border-gray-100">
+                        <div className="flex justify-between items-center mb-1.5">
+                          <span className="font-bold text-gray-500">경력/방식</span>
+                          <span className="font-bold text-ink">
+                            {formatExperienceRange(company, "확인 필요")} | {workStyleLabels[company.workStyle]}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="font-bold text-gray-500">급여 정보</span>
+                          <span className="font-bold text-bridge-primary">
+                            {formatCompanySalarySummary(company, "확인 필요")}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      {links.length > 0 && (
+                        <div className="mt-3 flex flex-wrap gap-1.5">
+                          {links.map((link) => (
+                            <a
+                              key={link.url}
+                              href={link.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="rounded-md border border-gray-200 px-2 py-1 text-[10px] font-bold text-gray-400 transition hover:border-bridge-teal hover:text-bridge-teal"
+                            >
+                              {getLinkLabel(link.label, link.supports)}
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
 
-              <Link
-                href={`/employee/companies/${company.companyId}`}
-                className="mt-5 flex w-full justify-center rounded-xl bg-bridge-primary px-4 py-2.5 text-sm font-bold text-white shadow-sm transition-opacity hover:opacity-90"
-              >
-                상세 보기
-              </Link>
+                    <Link
+                      href={`/employee/companies/${company.companyId}`}
+                      className="mt-5 flex w-full justify-center rounded-xl bg-bridge-primary px-4 py-2.5 text-sm font-bold text-white shadow-sm transition-opacity hover:opacity-90"
+                    >
+                      상세 보기
+                    </Link>
+                  </>
+                );
+              })()}
             </article>
           ))}
         </section>

@@ -1,0 +1,373 @@
+'use client';
+
+import Link from "next/link";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
+
+import type { CompanyJobProfile, CompanySalarySourceLink, DeveloperToCompanyFitResult } from "@shared/companyCriteriaTypes";
+import {
+  type EmployeeRecommendationsResponse,
+  fetchEmployeeRecommendations,
+  readCachedEmployeeRecommendations,
+  writeCachedEmployeeRecommendations,
+} from "@src/lib/employeeRecommendations";
+import {
+  formatCompanyLogo,
+  formatCompanySalarySummary,
+  formatExperienceRange,
+  formatLanguageSummary,
+  formatLocationSummary,
+  formatSourceConfidence,
+} from "@src/lib/fitDisplayHelpers";
+
+type LoadState = "loading" | "ready" | "error";
+
+function CompanyLogo({ company }: { company: CompanyJobProfile }) {
+  const [broken, setBroken] = useState(false);
+  const logo = broken ? null : formatCompanyLogo(company);
+
+  if (!logo) {
+    return (
+      <div className="flex h-12 w-20 shrink-0 items-center justify-center rounded-xl border border-gray-100 bg-gray-50 text-xs font-black text-gray-400">
+        {company.companyName.slice(0, 2).toUpperCase()}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={logo.src}
+      alt={logo.alt}
+      onError={() => setBroken(true)}
+      className="h-12 w-20 shrink-0 rounded-xl border border-gray-100 bg-white object-contain p-2"
+    />
+  );
+}
+
+function unique(values: string[]) {
+  return [...new Set(values.map((value) => value.trim()).filter(Boolean))];
+}
+
+function formatStacks(company: CompanyJobProfile) {
+  const stacks = unique([...company.requiredTechStacks, ...company.preferredTechStacks]);
+  return stacks.length ? stacks.slice(0, 10) : ["공개 스택 미기재"];
+}
+
+function getCompanyLinks(company: CompanyJobProfile): CompanySalarySourceLink[] {
+  if (company.salarySourceLinks?.length) return company.salarySourceLinks.slice(0, 5);
+
+  return (company.sourceUrls ?? []).slice(0, 5).map((url) => ({
+    label: new URL(url).hostname.replace(/^www\./, ""),
+    url,
+  }));
+}
+
+function linkLabel(label?: string, supports?: string) {
+  if (supports === "officialWebsite") return "Official site";
+  if (supports === "careers") return "Careers";
+  if (supports?.includes("newGraduate")) return "Salary details";
+  if (supports?.includes("averageAnnual") || supports?.includes("averageTenure")) return "Salary source";
+  return label ?? "Source";
+}
+
+function RecommendationCard({
+  recommendation,
+  company,
+  index,
+  selected,
+  onSelect,
+}: {
+  recommendation: DeveloperToCompanyFitResult;
+  company: CompanyJobProfile;
+  index: number;
+  selected: boolean;
+  onSelect: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      className={[
+        "w-full rounded-2xl border p-4 text-left transition-colors",
+        selected ? "border-bridge-primary bg-bridge-primary/10" : "border-gray-100 bg-bridge-paper hover:border-bridge-primary/40",
+      ].join(" ")}
+    >
+      <div className="flex items-start gap-3">
+        <CompanyLogo company={company} />
+        <div className="min-w-0 flex-1">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <p className="text-xs font-black uppercase tracking-widest text-gray-400">#{index + 1}</p>
+              <h3 className="mt-1 truncate text-lg font-black text-ink">{recommendation.companyName}</h3>
+              <p className="text-sm font-bold text-bridge-teal">{recommendation.roleTitle}</p>
+            </div>
+            <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-bridge-teal shadow-sm">
+              {Math.round(recommendation.overallFitScore)}
+            </span>
+          </div>
+
+          <div className="mt-3 grid gap-2 text-sm text-gray-600 md:grid-cols-2">
+            <p><span className="font-bold text-ink">지역: </span>{formatLocationSummary(company, "확인 필요")}</p>
+            <p><span className="font-bold text-ink">연봉: </span>{formatCompanySalarySummary(company, "확인 필요")}</p>
+          </div>
+
+          <p className="mt-3 text-sm leading-6 text-gray-600">
+            {recommendation.matchedReasons[0] ?? "프로필과 직무 조건이 일부 일치합니다."}
+          </p>
+        </div>
+      </div>
+    </button>
+  );
+}
+
+export default function EmployeeRecommendsPage() {
+  const [loadState, setLoadState] = useState<LoadState>("loading");
+  const [payload, setPayload] = useState<EmployeeRecommendationsResponse | null>(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [selectedRoleId, setSelectedRoleId] = useState("");
+
+  useEffect(() => {
+    const cached = readCachedEmployeeRecommendations();
+    if (cached) {
+      setPayload(cached);
+      setSelectedRoleId(cached.recommendations[0]?.roleId ?? "");
+      setLoadState("ready");
+    }
+
+    let cancelled = false;
+
+    async function loadData() {
+      try {
+        const nextPayload = await fetchEmployeeRecommendations();
+        if (cancelled) return;
+        setPayload(nextPayload);
+        writeCachedEmployeeRecommendations(nextPayload);
+        setSelectedRoleId((current) => current || nextPayload.recommendations[0]?.roleId || "");
+        setLoadState("ready");
+      } catch (error) {
+        if (cancelled) return;
+        setErrorMessage(error instanceof Error ? error.message : "추천 데이터를 불러오지 못했습니다.");
+        if (!cached) setLoadState("error");
+      }
+    }
+
+    void loadData();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const companiesByRoleId = useMemo(
+    () => new Map((payload?.companies ?? []).map((company) => [company.roleId, company])),
+    [payload]
+  );
+  const recommendations = payload?.recommendations ?? [];
+
+  useEffect(() => {
+    if (!recommendations.length) return;
+    if (!recommendations.some((recommendation) => recommendation.roleId === selectedRoleId)) {
+      setSelectedRoleId(recommendations[0]?.roleId ?? "");
+    }
+  }, [recommendations, selectedRoleId]);
+
+  const selectedRecommendation = useMemo(
+    () => recommendations.find((recommendation) => recommendation.roleId === selectedRoleId) ?? recommendations[0] ?? null,
+    [recommendations, selectedRoleId]
+  );
+  const selectedCompany = selectedRecommendation ? companiesByRoleId.get(selectedRecommendation.roleId) ?? null : null;
+
+  if (loadState === "loading") {
+    return <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-12 text-center text-gray-500">추천 직무를 불러오는 중입니다.</main>;
+  }
+
+  if (loadState === "error") {
+    return <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-12 text-center text-bridge-coral">{errorMessage}</main>;
+  }
+
+  return (
+    <main className="min-h-[calc(100vh-64px)] overflow-hidden bg-bridge-paper px-4 py-8">
+      <div className="mx-auto flex max-h-[calc(100vh-112px)] max-w-7xl flex-col gap-5">
+        <header className="shrink-0 rounded-2xl border border-gray-100 bg-white p-6 shadow-panel">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-widest text-bridge-teal">Recommended Roles</p>
+              <h1 className="mt-2 text-3xl font-black tracking-tight text-ink">추천 직무</h1>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-gray-500">
+                로그인한 지원자의 포트폴리오와 프로필을 기준으로 계산한 상위 직무 추천입니다.
+              </p>
+              {payload?.developer ? (
+                <p className="mt-3 text-sm font-bold text-gray-500">
+                  {payload.developer.name} · {payload.developer.yearsOfExperience}년 · {payload.developer.targetRoles.join(", ")}
+                </p>
+              ) : null}
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              <Link href="/employee/companies" className="rounded-full border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 hover:border-bridge-primary hover:text-ink">
+                채용중인 회사 보기
+              </Link>
+              <Link href="/employee/portfolio" className="rounded-full bg-ink px-4 py-2 text-sm font-bold text-white hover:bg-black">
+                내 포트폴리오
+              </Link>
+            </div>
+          </div>
+        </header>
+
+        {!payload?.authenticated || !recommendations.length ? (
+          <section className="rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-panel">
+            <p className="text-sm font-bold text-bridge-teal">추천 직무를 준비하려면 포트폴리오 저장이 필요합니다.</p>
+            <p className="mt-2 text-sm text-gray-500">{payload?.message ?? "로그인 후 포트폴리오를 저장하면 API가 현재 사용자 기준 추천을 계산합니다."}</p>
+            <Link href="/employee/portfolio" className="mt-5 inline-flex rounded-full bg-ink px-5 py-3 text-sm font-black text-white">
+              포트폴리오 저장하기
+            </Link>
+          </section>
+        ) : (
+          <div className="grid min-h-0 flex-1 gap-5 lg:grid-cols-[minmax(360px,0.9fr)_minmax(420px,1.1fr)]">
+            <section className="flex min-h-0 flex-col rounded-2xl border border-gray-100 bg-white p-5 shadow-panel">
+              <div className="mb-4 flex shrink-0 items-end justify-between gap-3">
+                <div>
+                  <p className="text-sm font-bold text-bridge-teal">Top matches</p>
+                  <h2 className="mt-1 text-2xl font-black text-ink">상위 추천 직무</h2>
+                </div>
+                <span className="text-sm font-bold text-gray-400">Top {recommendations.length}</span>
+              </div>
+
+              <div className="min-h-0 flex-1 space-y-4 overflow-y-auto pr-2">
+                {recommendations.map((recommendation, index) => {
+                  const company = companiesByRoleId.get(recommendation.roleId);
+                  if (!company) return null;
+
+                  return (
+                    <RecommendationCard
+                      key={recommendation.roleId}
+                      recommendation={recommendation}
+                      company={company}
+                      index={index}
+                      selected={recommendation.roleId === selectedRecommendation?.roleId}
+                      onSelect={() => setSelectedRoleId(recommendation.roleId)}
+                    />
+                  );
+                })}
+              </div>
+            </section>
+
+            <section className="min-h-0 overflow-y-auto rounded-2xl border border-gray-100 bg-white p-6 shadow-panel">
+              {selectedRecommendation && selectedCompany ? (
+                <RoleDetail recommendation={selectedRecommendation} company={selectedCompany} />
+              ) : (
+                <div className="rounded-xl border border-dashed border-gray-200 px-4 py-12 text-center text-sm text-gray-500">
+                  왼쪽에서 추천 직무를 선택하세요.
+                </div>
+              )}
+            </section>
+          </div>
+        )}
+      </div>
+    </main>
+  );
+}
+
+function RoleDetail({ recommendation, company }: { recommendation: DeveloperToCompanyFitResult; company: CompanyJobProfile }) {
+  const links = getCompanyLinks(company);
+
+  return (
+    <div>
+      <div className="flex items-start gap-4">
+        <CompanyLogo company={company} />
+        <div className="min-w-0 flex-1">
+          <p className="text-xs font-black uppercase tracking-widest text-gray-400">Selected role</p>
+          <h2 className="mt-1 text-2xl font-black text-ink">{recommendation.companyName}</h2>
+          <p className="text-sm font-bold text-bridge-teal">{recommendation.roleTitle}</p>
+          <p className="mt-1 text-xs font-bold text-gray-400">{formatSourceConfidence(company)}</p>
+        </div>
+        <span className="rounded-full bg-bridge-primary/20 px-3 py-1 text-sm font-black text-bridge-teal">
+          {Math.round(recommendation.overallFitScore)}
+        </span>
+      </div>
+
+      <dl className="mt-5 grid gap-3 text-sm md:grid-cols-2">
+        <Metric label="Location" value={formatLocationSummary(company, "확인 필요")} />
+        <Metric label="Salary" value={formatCompanySalarySummary(company, "확인 필요")} />
+        <Metric label="Language" value={formatLanguageSummary(company, "확인 필요")} />
+        <Metric label="Experience" value={formatExperienceRange(company, "확인 필요")} />
+      </dl>
+
+      <div className="mt-5 grid gap-4">
+        <InfoPanel title="Required and preferred stack">
+          <div className="flex flex-wrap gap-2">
+            {formatStacks(company).map((stack) => (
+              <span key={stack} className="rounded-lg border border-gray-100 bg-gray-50 px-2 py-1 text-xs font-bold text-gray-500">
+                {stack}
+              </span>
+            ))}
+          </div>
+        </InfoPanel>
+
+        <InfoPanel title="Why it matches">
+          <BulletList items={recommendation.matchedReasons.slice(0, 6)} fallback="프로필과 직무 조건이 일부 일치합니다." />
+        </InfoPanel>
+
+        <InfoPanel title="What to prepare next">
+          <BulletList items={(recommendation.missingSignals.length ? recommendation.missingSignals : ["추가 보강 신호가 많지 않습니다."]).slice(0, 6)} />
+        </InfoPanel>
+
+        <InfoPanel title="Risks to check">
+          <BulletList items={(recommendation.risks.length ? recommendation.risks : ["특별한 리스크가 크게 감지되지 않았습니다."]).slice(0, 4)} />
+        </InfoPanel>
+
+        <InfoPanel title="Sources">
+          <div className="flex flex-wrap gap-2">
+            {links.map((link) => (
+              <a
+                key={link.url}
+                href={link.url}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-gray-200 px-3 py-1 text-xs font-bold text-bridge-teal hover:border-bridge-teal"
+              >
+                {linkLabel(link.label, link.supports)}
+              </a>
+            ))}
+          </div>
+        </InfoPanel>
+      </div>
+
+      <div className="mt-6 flex flex-wrap gap-2">
+        <Link href={`/employee/companies/${company.companyId}`} className="rounded-full bg-bridge-primary px-4 py-2 text-sm font-bold text-ink hover:opacity-90">
+          회사 상세 보기
+        </Link>
+        <Link href="/employee/portfolio" className="rounded-full border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 hover:border-bridge-primary hover:text-ink">
+          포트폴리오 수정
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function Metric({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-xl bg-bridge-paper p-3">
+      <dt className="text-[10px] font-black uppercase tracking-widest text-gray-400">{label}</dt>
+      <dd className="mt-1 font-bold text-ink">{value}</dd>
+    </div>
+  );
+}
+
+function InfoPanel({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="rounded-xl border border-gray-100 bg-white p-4">
+      <h3 className="text-xs font-black uppercase tracking-widest text-gray-400">{title}</h3>
+      <div className="mt-3 text-sm leading-6 text-gray-600">{children}</div>
+    </section>
+  );
+}
+
+function BulletList({ items, fallback }: { items: string[]; fallback?: string }) {
+  const values = items.length ? items : fallback ? [fallback] : [];
+  return (
+    <ul className="space-y-2">
+      {values.map((item) => (
+        <li key={item}>• {item}</li>
+      ))}
+    </ul>
+  );
+}

@@ -1,0 +1,5067 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "generatedAt": "2026-05-17",
+    "baseFile": "붙여넣은 텍스트 (1)(25).txt",
+    "companyCount": 40,
+    "currency": "JPY",
+    "disclaimer": "This dataset is a best-effort enrichment for job-search comparison. Official recruiting pages and public filings/IR aggregations are preferred; review-site/secondary values are explicitly labeled and should not be treated as official compensation.",
+    "fieldDefinitions": {
+      "salary.newGraduate": "New graduate starting salary or initial compensation. annualJpyMin/Max are direct annual figures when disclosed or monthly*12 when only monthly base is known; bonus handling differs by company.",
+      "salary.averageAnnualSalary": "Average annual salary. For listed companies, this usually refers to the submitting company/non-consolidated employee average from public filing aggregations. For private companies, it is usually not disclosed.",
+      "salary.averageTenureYears": "Average tenure in years where available. For private companies this is often not disclosed.",
+      "sourceLinks.reliability": "official, official_partial, official_older, official_filing, secondary, review."
+    }
+  },
+  "companies": [
+    {
+      "companyId": "anymind",
+      "companyName": "AnyMind Group",
+      "targetRole": "Mobile Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 36,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [
+            "Go"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 11,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [
+            "Communication"
+          ],
+          "riskSignals": [
+            "WeakCommunication"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 21,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Remote",
+            "Hybrid",
+            "CrossFunctional",
+            "GlobalTeam"
+          ],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 16,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "Speed",
+            "Transparency"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 16,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [
+            "ProductDelivery"
+          ],
+          "riskSignals": [
+            "WeakCommunication",
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "AnyMind Group appears to prioritize Go, Speed, Transparency when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.850Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official",
+          "amountText": "月給300,000円〜420,000円",
+          "monthlyJpyMin": 300000,
+          "monthlyJpyMax": 420000,
+          "annualJpyMin": 3600000,
+          "annualJpyMax": 5040000,
+          "notes": [
+            "公式新卒採用ページの2027/2028年度選考情報。賞与・インセンティブ等は別条件。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "not_disclosed",
+          "amountText": "公式の平均年間給与は確認不可",
+          "annualJpy": null,
+          "notes": [
+            "上場会社だが、提出会社単体の平均年間給与データは公開データ上で確認できず。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "secondary_public_filing_aggregation",
+          "years": 4.2,
+          "notes": [
+            "IRBankの従業員数推移ページでは2024年12月時点の平均勤続年数4.2年。"
+          ]
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://anymindgroup.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://jp-recruit.anymindgroup.com/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "AnyMind 2027/2028 新卒採用ページ",
+          "url": "https://jp-recruit.anymindgroup.com/selection/2027",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "IRBank AnyMind Group worker data",
+          "url": "https://irbank.net/E37466/worker",
+          "sourceType": "filing_aggregation",
+          "supports": "averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "ateam",
+      "companyName": "Ateam",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Collaboration"
+          ],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Ateam appears to prioritize practical engineering evidence when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.850Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official_older",
+          "amountText": "月給275,000円（固定残業代含む）、エンジニアはスキル考慮",
+          "monthlyJpyMin": 275000,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 3300000,
+          "annualJpyMax": null,
+          "notes": [
+            "2023年の新卒採用Q&A。最新年度では一括新卒採用終了の案内があり、現行制度としては要再確認。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_aggregation",
+          "amountText": "平均年間給与7,163,000円",
+          "annualJpy": 7163000,
+          "notes": [
+            "2025年7月期、有価証券報告書由来の二次集約情報。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "public_filing_aggregation",
+          "years": 8.3,
+          "notes": [
+            "2025年7月期。"
+          ]
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://www.a-tm.co.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://www.a-tm.co.jp/recruit/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "Ateam 新卒採用Q&A",
+          "url": "https://www.a-tm.co.jp/recruit/news/38940/",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official_older"
+        },
+        {
+          "label": "Ateam public salary/tenure aggregation",
+          "url": "https://corp-research.jp/articles/10914",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "bizreach",
+      "companyName": "BizReach",
+      "targetRole": "SRE / DevOps Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 36,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [
+            "AWS"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 11,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [
+            "Communication"
+          ],
+          "riskSignals": [
+            "WeakCommunication"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 21,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "CrossFunctional"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 16,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "Transparency"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 16,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [
+            "ProductDelivery"
+          ],
+          "riskSignals": [
+            "WeakCommunication"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "BizReach appears to prioritize AWS, Transparency when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.850Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "secondary",
+          "amountText": "月給335,000円、想定年収5,025,000円という二次情報",
+          "monthlyJpyMin": 335000,
+          "monthlyJpyMax": 335000,
+          "annualJpyMin": 5025000,
+          "annualJpyMax": 5025000,
+          "notes": [
+            "BizReach単体ではなくVisional/BizReach関連の二次情報。公式募集要項で再確認推奨。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_aggregation_parent",
+          "amountText": "Visional平均年収 約8,540,000円",
+          "annualJpy": 8540000,
+          "notes": [
+            "BizReach単体ではなく親会社Visional基準。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "public_filing_aggregation_parent",
+          "years": 4.7,
+          "notes": [
+            "BizReach単体ではなく親会社Visional基準。"
+          ]
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://www.visional.inc/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://www.visional.inc/ja/careers/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "BizReach salary secondary reference",
+          "url": "https://recree.jobree.co.jp/col/%E3%83%93%E3%82%BA%E3%83%AA%E3%83%BC%E3%83%81-%E5%B9%B4%E5%8F%8E",
+          "sourceType": "secondary_article",
+          "supports": "newGraduate,averageAnnual",
+          "reliability": "secondary"
+        },
+        {
+          "label": "IRBank Visional",
+          "url": "https://irbank.net/4194",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "caddi",
+      "companyName": "CADDi",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "PoorQualityDiscipline"
+          ],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "CrossFunctional"
+          ],
+          "riskSignals": [
+            "LimitedCollaboration",
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "Craftsmanship",
+            "Speed",
+            "MissionAlignment",
+            "Transparency"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "PoorQualityDiscipline",
+            "LimitedCollaboration",
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "CADDi appears to prioritize Craftsmanship, Speed, MissionAlignment when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.850Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official",
+          "amountText": "年収4,000,000円〜6,000,000円",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 4000000,
+          "annualJpyMax": 6000000,
+          "notes": [
+            "新卒採用JobBoard上のソフトウェアエンジニア情報。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "not_disclosed",
+          "amountText": "非上場のため公式平均年収は未確認",
+          "annualJpy": null,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "not_disclosed",
+          "years": null,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://caddi.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://caddi.com/careers/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "CADDi new graduate job board",
+          "url": "https://caddi-recruit.snar.jp/jobboard/detail.aspx?id=aY2XOpIavqE",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        }
+      ]
+    },
+    {
+      "companyId": "cookpad",
+      "companyName": "Cookpad",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [
+            "Communication"
+          ],
+          "riskSignals": [
+            "WeakCommunication"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "CrossFunctional",
+            "GlobalTeam",
+            "Collaboration"
+          ],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "Craftsmanship"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "WeakCommunication",
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Cookpad appears to prioritize Craftsmanship when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.850Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "secondary",
+          "amountText": "エンジニア年収5,000,000円〜7,000,000円程度という二次情報",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 5000000,
+          "annualJpyMax": 7000000,
+          "notes": [
+            "二次メディア経由。公式採用ページで要確認。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約8,900,000円",
+          "annualJpy": 8900000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 5.4,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://info.cookpad.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://info.cookpad.com/careers/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "Cookpad salary secondary reference",
+          "url": "https://axxis.co.jp/magazine/54898",
+          "sourceType": "secondary_article",
+          "supports": "newGraduate,averageAnnual",
+          "reliability": "secondary"
+        },
+        {
+          "label": "IRBank Cookpad salary",
+          "url": "https://irbank.net/2193/salary",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "cyberagent",
+      "companyName": "CyberAgent",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "CyberAgent appears to prioritize practical engineering evidence when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.850Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official",
+          "amountText": "エンジニアコース最低年俸5,040,000円〜、Expert認定最低年俸7,200,000円〜",
+          "monthlyJpyMin": 420000,
+          "monthlyJpyMax": 600000,
+          "annualJpyMin": 5040000,
+          "annualJpyMax": 7200000,
+          "notes": [
+            "Expertは高度な技術・実績対象。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_aggregation",
+          "amountText": "平均年収9,130,000円",
+          "annualJpy": 9130000,
+          "notes": [
+            "2025年9月期。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "public_filing_aggregation",
+          "years": 6.5,
+          "notes": [
+            "2025年9月期。"
+          ]
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://www.cyberagent.co.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://www.cyberagent.co.jp/careers/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "CyberAgent 新卒採用募集概要",
+          "url": "https://www.cyberagent.co.jp/careers/about/",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "IRBank CyberAgent",
+          "url": "https://irbank.net/4751",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        },
+        {
+          "label": "IRBank CyberAgent salary",
+          "url": "https://irbank.net/E05072/salary",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "cybozu",
+      "companyName": "Cybozu",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [
+            "Communication"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Remote",
+            "CrossFunctional",
+            "Collaboration"
+          ],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [
+            "ProductDelivery"
+          ],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Cybozu appears to prioritize practical engineering evidence when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.850Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official",
+          "amountText": "2027年新卒 エンジニア職 月給430,000円／年収6,020,000円",
+          "monthlyJpyMin": 430000,
+          "monthlyJpyMax": 430000,
+          "annualJpyMin": 6020000,
+          "annualJpyMax": 6020000,
+          "notes": [
+            "2027年4月新卒入社向け引き上げ発表。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約7,190,000円",
+          "annualJpy": 7190000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 6.75,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://cybozu.co.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://cybozu.co.jp/recruit/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "Cybozu 2027初任給引き上げニュース",
+          "url": "https://topics.cybozu.co.jp/news/2025/11/18-19236.html",
+          "sourceType": "official_news",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "Cybozu 2027 productivity improvement engineer",
+          "url": "https://cybozu.co.jp/recruit/entry/newgrad/Productivityimprovement-engineer2027.html",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "IRBank Cybozu salary",
+          "url": "https://irbank.net/4776/salary",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "dena",
+      "companyName": "DeNA",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [
+            "Communication"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Remote",
+            "CrossFunctional",
+            "Collaboration"
+          ],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "MissionAlignment"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "DeNA appears to prioritize MissionAlignment when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.850Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official",
+          "amountText": "エンジニア標準年俸5,000,000円〜10,000,000円",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 5000000,
+          "annualJpyMax": 10000000,
+          "notes": [
+            "年俸は能力・評価により幅あり。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_aggregation",
+          "amountText": "平均年収8,829,000円",
+          "annualJpy": 8829000,
+          "notes": [
+            "2025年3月期。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "public_filing_aggregation",
+          "years": 6.33,
+          "notes": [
+            "2025年3月期、6年4ヶ月。"
+          ]
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://dena.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://dena.com/jp/recruit/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "DeNA new graduate engineer job board",
+          "url": "https://dena.snar.jp/jobboard/detail.aspx?id=DChbIPkorhYGGZrluPXckw",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "IRBank DeNA",
+          "url": "https://irbank.net/E05460",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        },
+        {
+          "label": "DeNA annual securities report PDF via IRBank",
+          "url": "https://f.irbank.net/pdf/E05460/ir/S100VZE0.pdf",
+          "sourceType": "filing_pdf",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "official_filing"
+        }
+      ]
+    },
+    {
+      "companyId": "finatext",
+      "companyName": "Finatext",
+      "targetRole": "Backend Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "PoorQualityDiscipline"
+          ],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "CrossFunctional",
+            "Collaboration"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "Craftsmanship"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [
+            "Documentation"
+          ],
+          "riskSignals": [
+            "PoorQualityDiscipline"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Finatext appears to prioritize Craftsmanship when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.850Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official",
+          "amountText": "月給300,000円以上",
+          "monthlyJpyMin": 300000,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 3600000,
+          "annualJpyMax": null,
+          "notes": [
+            "40時間相当の定額残業手当込み。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約7,030,000円",
+          "annualJpy": 7030000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 4.2,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://finatext.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://finatext.com/recruit/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "Finatext 27卒エンジニア職 HERP",
+          "url": "https://herp.careers/v1/finatexthd/1yvMqHK2Qs1I",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "IRBank Finatext Holdings",
+          "url": "https://irbank.net/4419",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "freee",
+      "companyName": "freee",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "CrossFunctional",
+            "Collaboration"
+          ],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "Speed",
+            "MissionAlignment"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "freee appears to prioritize Speed, MissionAlignment when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official_page_no_amount_in_snippet",
+          "amountText": "公式新卒ページあり。具体的金額は職種詳細ページで要確認。二次情報ではエンジニア新卒580万〜600万円台の事例あり。",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": null,
+          "annualJpyMax": null,
+          "notes": [
+            "金額は公式一覧ページの検索結果では確認できず。JSON上では数値未確定にする。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "secondary_or_public_filing",
+          "amountText": "平均年収 約7,160,000円",
+          "annualJpy": 7160000,
+          "notes": [
+            "二次記事・口コミ集計の値。公式有報値は要確認。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "secondary",
+          "years": 2.2,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://corp.freee.co.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://jobs.freee.co.jp/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "freee 新卒募集要項",
+          "url": "https://jobs.freee.co.jp/entry/newgrads/",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "freee salary secondary reference",
+          "url": "https://migi-nanameue.co.jp/column/freee-salary-average-2026/",
+          "sourceType": "secondary_article",
+          "supports": "averageAnnual",
+          "reliability": "secondary"
+        },
+        {
+          "label": "OpenWork freee salary",
+          "url": "https://www.openwork.jp/company_answer.php?m_id=a0C1000000sgO4l&q_no=2",
+          "sourceType": "review_site",
+          "supports": "averageAnnual",
+          "reliability": "review"
+        }
+      ]
+    },
+    {
+      "companyId": "ga-technologies",
+      "companyName": "GA technologies",
+      "targetRole": "SRE / DevOps Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [
+            "Communication"
+          ],
+          "riskSignals": [
+            "WeakCommunication"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "GlobalTeam"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "WeakCommunication"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "GA technologies appears to prioritize practical engineering evidence when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official",
+          "amountText": "ソフトウェアエンジニア 年俸4,200,000円〜／Researchエンジニア 年俸4,560,000円〜",
+          "monthlyJpyMin": 350000,
+          "monthlyJpyMax": 380000,
+          "annualJpyMin": 4200000,
+          "annualJpyMax": 4560000,
+          "notes": [
+            "Research職は月給380,000円〜。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約7,280,000円",
+          "annualJpy": 7280000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 3.2,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://www.ga-tech.co.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://newgrads-recruit.ga-tech.co.jp/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "GA technologies 新卒募集要項",
+          "url": "https://newgrads-recruit.ga-tech.co.jp/recruit-info/",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "IRBank GA technologies",
+          "url": "https://irbank.net/3491",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "gmo-pepabo",
+      "companyName": "GMO Pepabo",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "LowOwnership"
+          ],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [
+            "Communication"
+          ],
+          "riskSignals": [
+            "WeakCommunication"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "CrossFunctional",
+            "Collaboration",
+            "Ownership"
+          ],
+          "riskSignals": [
+            "LowOwnership",
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "UserFocus",
+            "Transparency",
+            "Ownership"
+          ],
+          "riskSignals": [
+            "LowOwnership"
+          ],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [
+            "ProductDelivery"
+          ],
+          "riskSignals": [
+            "LowOwnership",
+            "WeakCommunication",
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "GMO Pepabo appears to prioritize UserFocus, Transparency, Ownership when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official_group_program",
+          "amountText": "GMOグループ新卒年収710万円プログラム：年収7,100,000円",
+          "monthlyJpyMin": 591666,
+          "monthlyJpyMax": 591666,
+          "annualJpyMin": 7100000,
+          "annualJpyMax": 7100000,
+          "notes": [
+            "GMOグループ横断の高スキル新卒プログラム。通常新卒給与とは区別が必要。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約6,840,000円",
+          "annualJpy": 6840000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 6.5,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://pepabo.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://hr.pepabo.com/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "GMO new graduate 710 program",
+          "url": "https://recruit.group.gmo/710program/",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "GMO Pepabo engineer new grad article",
+          "url": "https://hr.pepabo.com/interview/2024/03/01/9517",
+          "sourceType": "official_article",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "IRBank GMO Pepabo",
+          "url": "https://irbank.net/3633",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "gree",
+      "companyName": "GREE",
+      "targetRole": "Mobile Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "UserFocus",
+            "MissionAlignment"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "GREE appears to prioritize UserFocus, MissionAlignment when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "not_confirmed",
+          "amountText": "最新の公式新卒エンジニア初任給は未確認",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": null,
+          "annualJpyMax": null,
+          "notes": [
+            "過去資料はあるが、最新の公式値としては採用しない。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約8,120,000円",
+          "annualJpy": 8120000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 4.5,
+          "notes": [
+            "年度により変動。"
+          ]
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://corp.gree.net/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://corp.gree.net/jp/ja/recruit/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "GREE Holdings corporate site",
+          "url": "https://hd.gree.net/jp/en/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "IRBank GREE",
+          "url": "https://irbank.net/3632",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "hacobu",
+      "companyName": "Hacobu",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 36,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [
+            "Go"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 11,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 21,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Collaboration"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 16,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "MissionAlignment"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 16,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Hacobu appears to prioritize Go, MissionAlignment when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "not_confirmed",
+          "amountText": "新卒エンジニア初任給は公式確認できず",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": null,
+          "annualJpyMax": null,
+          "notes": []
+        },
+        "averageAnnualSalary": {
+          "status": "secondary_job_data",
+          "amountText": "エンジニア平均年収 約7,470,000〜7,870,000円の口コミ・求人集計",
+          "annualJpy": 7470000,
+          "notes": [
+            "公式平均ではない。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "not_disclosed",
+          "years": null,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://hacobu.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://career.hacobu.jp/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "Indeed Hacobu engineer salary",
+          "url": "https://jp.indeed.com/cmp/%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BEhacobu/salaries/%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2",
+          "sourceType": "salary_aggregation",
+          "supports": "averageAnnual",
+          "reliability": "secondary"
+        },
+        {
+          "label": "OpenMoney Hacobu salaries",
+          "url": "https://openmoney.jp/corporations/11174/salaries",
+          "sourceType": "salary_aggregation",
+          "supports": "averageAnnual",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "hennge",
+      "companyName": "HENNGE",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "Transparency"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "HENNGE appears to prioritize Transparency when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "secondary_or_recruiting_aggregation",
+          "amountText": "推定年収5,360,000円（月額400,500円×12＋賞与）。英語手当でモデル年収6,680,000円の例あり",
+          "monthlyJpyMin": 400500,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 5360000,
+          "annualJpyMax": 6680000,
+          "notes": [
+            "採用情報集約サイト・求人転載で確認。公式応募ページだけでは検索結果上の金額確認不可。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "secondary_review_data",
+          "amountText": "平均年収 約8,410,000円（OpenMoney）",
+          "annualJpy": 8410000,
+          "notes": [
+            "口コミ集計。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 4.6,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://hennge.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://recruit.hennge.com/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "HENNGE new graduates apply",
+          "url": "https://recruit.hennge.com/new-graduates/apply/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "HENNGE recruitment aggregation",
+          "url": "https://kikokugo.com/search/recruitment/123585",
+          "sourceType": "recruiting_aggregation",
+          "supports": "newGraduate",
+          "reliability": "secondary"
+        },
+        {
+          "label": "OpenMoney HENNGE salaries",
+          "url": "https://openmoney.jp/corporations/1566/salaries",
+          "sourceType": "salary_aggregation",
+          "supports": "averageAnnual",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "kaonavi",
+      "companyName": "Kaonavi",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [
+            "Communication"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "UserFocus",
+            "MissionAlignment"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Kaonavi appears to prioritize UserFocus, MissionAlignment when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "secondary",
+          "amountText": "新卒月給375,000円、年収約4,500,000円という二次情報",
+          "monthlyJpyMin": 375000,
+          "monthlyJpyMax": 375000,
+          "annualJpyMin": 4500000,
+          "annualJpyMax": 4500000,
+          "notes": [
+            "公式募集要項で要再確認。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約6,900,000円",
+          "annualJpy": 6900000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 2.6,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://www.kaonavi.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://corp.kaonavi.jp/recruit/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "Kaonavi official note / recruiting links",
+          "url": "https://note.com/kaonavi",
+          "sourceType": "official_media",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "Kaonavi salary secondary reference",
+          "url": "https://samuraisoulinc.jp/archives/13192",
+          "sourceType": "secondary_article",
+          "supports": "newGraduate",
+          "reliability": "secondary"
+        },
+        {
+          "label": "IRBank Kaonavi",
+          "url": "https://irbank.net/4435",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "kayac",
+      "companyName": "KAYAC",
+      "targetRole": "Mobile Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [
+            "Communication"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Collaboration"
+          ],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "UserFocus",
+            "Speed"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [
+            "GitHubPortfolio",
+            "ProductDelivery"
+          ],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "KAYAC appears to prioritize UserFocus, Speed when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "not_confirmed",
+          "amountText": "面白法人カヤック本体の最新公式初任給は未確認",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": null,
+          "annualJpyMax": null,
+          "notes": [
+            "検索結果にはKAYAC Bondの新卒求人も混在するため、本体データとしては未確定。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約6,160,000円",
+          "annualJpy": 6160000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 6.1,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://www.kayac.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://www.kayac.com/recruit/fresh",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "IRBank KAYAC",
+          "url": "https://irbank.net/3904",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "kubell",
+      "companyName": "kubell",
+      "targetRole": "Machine Learning Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Collaboration"
+          ],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "MissionAlignment"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "kubell appears to prioritize MissionAlignment when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "secondary_recruiting_site",
+          "amountText": "月額416,667円（基本給309,914円＋みなし残業45時間106,753円）",
+          "monthlyJpyMin": 416667,
+          "monthlyJpyMax": 416667,
+          "annualJpyMin": 5000004,
+          "annualJpyMax": 5000004,
+          "notes": [
+            "OneCareer掲載値。公式新卒ページ上の検索結果では金額未確認。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "secondary_review_data",
+          "amountText": "エンジニア平均年収 約6,990,000円（OpenWork）",
+          "annualJpy": 6990000,
+          "notes": [
+            "職種別口コミ集計。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 2.6,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://www.kubell.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://career.kubell.com/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "kubell new graduate page",
+          "url": "https://career.kubell.com/newgrad/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "OneCareer kubell new graduate salary",
+          "url": "https://www.onecareer.jp/companies/89432",
+          "sourceType": "recruiting_aggregation",
+          "supports": "newGraduate",
+          "reliability": "secondary"
+        },
+        {
+          "label": "OpenWork kubell salary",
+          "url": "https://www.openwork.jp/company_answer.php?m_id=a0C1000000s2acx&q_no=2",
+          "sourceType": "review_site",
+          "supports": "averageAnnual",
+          "reliability": "review"
+        },
+        {
+          "label": "IRBank kubell",
+          "url": "https://irbank.net/4448",
+          "sourceType": "filing_aggregation",
+          "supports": "averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "layerx",
+      "companyName": "LayerX",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "MissionAlignment",
+            "Transparency"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "LayerX appears to prioritize MissionAlignment, Transparency when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official_policy",
+          "amountText": "新卒にも年収10,000,000円超のオファーを提示可能",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 10000000,
+          "annualJpyMax": null,
+          "notes": [
+            "一律初任給ではなく、職種・スキル・パフォーマンス評価に基づく高額オファー方針。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "not_disclosed",
+          "amountText": "非上場のため公式平均年収は未公開",
+          "annualJpy": null,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "not_disclosed",
+          "years": null,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://layerx.co.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://jobs.layerx.co.jp/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "LayerX new graduate high-offer announcement",
+          "url": "https://layerx.co.jp/news/20260331/",
+          "sourceType": "official_news",
+          "supports": "newGraduate",
+          "reliability": "official"
+        }
+      ]
+    },
+    {
+      "companyId": "lycorp",
+      "companyName": "LINE Yahoo",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "CrossFunctional",
+            "Collaboration"
+          ],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [
+            "ProductDelivery"
+          ],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "LINE Yahoo appears to prioritize practical engineering evidence when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official",
+          "amountText": "2027 Software Engineering Specialist: 月給434,000円〜、標準年収6,510,000円〜。2026通常エンジニア例: 月給336,000円〜、標準年収5,040,000円〜",
+          "monthlyJpyMin": 434000,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 6510000,
+          "annualJpyMax": null,
+          "notes": [
+            "2027年度のSpecialist職を優先。通常職の旧例も併記。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "secondary",
+          "amountText": "平均年収 約8,840,000円という二次情報",
+          "annualJpy": 8840000,
+          "notes": [
+            "LINE Yahoo単体の公式平均年収・平均勤続年数は確認が難しい。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "not_confirmed",
+          "years": null,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://www.lycorp.co.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://www.lycorp.co.jp/ja/recruit/newgrads/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "LINE Yahoo 2027 Software Engineering Specialist",
+          "url": "https://www.lycorp.co.jp/ja/recruit/newgrads/engineer/jd0001/",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "LINE Yahoo 2026 engineer requirements",
+          "url": "https://www.lycorp.co.jp/ja/recruit/newgrads/jobdesc/post/",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "LINE Yahoo recruiting note on 650万円以上",
+          "url": "https://note.com/lycorp_recruit/n/n581a6581df14",
+          "sourceType": "official_media",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "LINE Yahoo salary secondary reference",
+          "url": "https://migi-nanameue.co.jp/column/line-yahoo-salary-guide/",
+          "sourceType": "secondary_article",
+          "supports": "averageAnnual",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "luup",
+      "companyName": "Luup",
+      "targetRole": "SRE / DevOps Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 26,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 21,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [
+            "JapaneseBusiness",
+            "Communication"
+          ],
+          "riskSignals": [
+            "WeakCommunication"
+          ],
+          "recommendedVerificationActivity": "Japanese bug report simulation"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 21,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Remote",
+            "FlexibleHours",
+            "Collaboration"
+          ],
+          "riskSignals": [
+            "LimitedCollaboration",
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 16,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "Speed",
+            "MissionAlignment",
+            "Transparency"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 16,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "WeakCommunication",
+            "LimitedCollaboration",
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Luup appears to prioritize Speed, MissionAlignment, Transparency when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "not_confirmed",
+          "amountText": "新卒エンジニア初任給は公式確認できず",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": null,
+          "annualJpyMax": null,
+          "notes": [
+            "中途エンジニア求人は700万〜1200万等のレンジあり。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "not_disclosed",
+          "amountText": "非上場のため公式平均年収は未公開",
+          "annualJpy": null,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "not_disclosed",
+          "years": null,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://luup.sc/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://luup.sc/career/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "AtCoder Jobs Luup listings",
+          "url": "https://jobs.atcoder.jp/company/show/luup",
+          "sourceType": "job_board",
+          "supports": "midCareerSalary",
+          "reliability": "secondary"
+        },
+        {
+          "label": "OpenWork Luup jobs",
+          "url": "https://www.openwork.jp/a0C2x000008zaRH/job/",
+          "sourceType": "job_board",
+          "supports": "midCareerSalary",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "m3",
+      "companyName": "M3",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "LowOwnership"
+          ],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [
+            "Communication"
+          ],
+          "riskSignals": [
+            "WeakCommunication"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "CrossFunctional",
+            "Ownership"
+          ],
+          "riskSignals": [
+            "LowOwnership"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "Ownership"
+          ],
+          "riskSignals": [
+            "LowOwnership"
+          ],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [
+            "ProductDelivery"
+          ],
+          "riskSignals": [
+            "LowOwnership",
+            "WeakCommunication"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "M3 appears to prioritize Ownership when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "secondary",
+          "amountText": "エンジニア新卒500万円〜、ビジネス職600万円という二次情報",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 5000000,
+          "annualJpyMax": 6000000,
+          "notes": [
+            "2025年卒新卒募集情報の二次解説。公式募集要項で要再確認。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約9,300,000〜9,360,000円",
+          "annualJpy": 9300000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 4.1,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://corporate.m3.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://corporate.m3.com/recruit/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "M3 salary/new graduate secondary reference",
+          "url": "https://pomto.jp/recruitmagazine/m3-nennsyuu/",
+          "sourceType": "secondary_article",
+          "supports": "newGraduate",
+          "reliability": "secondary"
+        },
+        {
+          "label": "IRBank M3",
+          "url": "https://irbank.net/2413",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "mercari",
+      "companyName": "Mercari",
+      "targetRole": "SRE / DevOps Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 36,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [
+            "Go"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 11,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 21,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "CrossFunctional"
+          ],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 16,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "MissionAlignment"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 16,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Mercari appears to prioritize Go, MissionAlignment when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official_policy_no_fixed_amount",
+          "amountText": "一律オファー金額なし。経験・能力に合わせて個別決定",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": null,
+          "annualJpyMax": null,
+          "notes": [
+            "固定初任給ではなく個別オファー。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約11,660,000〜11,760,000円",
+          "annualJpy": 11660000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 3.8,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://about.mercari.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://careers.mercari.com/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "Mercari FAQ",
+          "url": "https://careers.mercari.com/faq/",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "Mercari new graduates",
+          "url": "https://careers.mercari.com/new-graduates/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "IRBank Mercari",
+          "url": "https://irbank.net/4385",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "mixi",
+      "companyName": "MIXI",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Collaboration"
+          ],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "UserFocus"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "MIXI appears to prioritize UserFocus when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official_or_job_posting",
+          "amountText": "エンジニア職 初年度給与4,200,000円〜7,000,000円、個別オファー",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 4200000,
+          "annualJpyMax": 7000000,
+          "notes": [
+            "職種・スキルで個別決定。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約7,910,000円",
+          "annualJpy": 7910000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 4.3,
+          "notes": [
+            "年度・出典で差あり。"
+          ]
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://mixi.co.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://mixigroup-recruit.mixi.co.jp/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "MIXI 2027 engineer job posting",
+          "url": "https://mixigroup-recruit.mixi.co.jp/recruitment-category/new-graduate/13420/",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "Indeed MIXI engineer new grad posting",
+          "url": "https://jp.indeed.com/viewjob?jk=1f59364ad62e15c5",
+          "sourceType": "job_board",
+          "supports": "newGraduate",
+          "reliability": "secondary"
+        },
+        {
+          "label": "IRBank MIXI",
+          "url": "https://irbank.net/2121",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "moneyforward",
+      "companyName": "Money Forward",
+      "targetRole": "Backend Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "PoorQualityDiscipline"
+          ],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "CrossFunctional",
+            "Collaboration"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "Craftsmanship"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [
+            "Documentation"
+          ],
+          "riskSignals": [
+            "PoorQualityDiscipline"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Money Forward appears to prioritize Craftsmanship when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official",
+          "amountText": "Webアプリ開発エンジニア 月給500,000円〜、年額6,000,000円〜。成長可能性採用は月給459,000円〜、年額5,508,000円〜",
+          "monthlyJpyMin": 500000,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 6000000,
+          "annualJpyMax": null,
+          "notes": [
+            "標準給与。ハイパフォーマンス賞与別。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約7,230,000円",
+          "annualJpy": 7230000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "not_confirmed",
+          "years": null,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://corp.moneyforward.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://recruit.moneyforward.com/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "Money Forward 2027 Webアプリ開発エンジニア",
+          "url": "https://moneyforward-recruit.snar.jp/jobboard/detail.aspx?id=0aU2j7pK7mGFkW3ekWyfbQ",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "IRBank Money Forward",
+          "url": "https://irbank.net/3994",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "paypay",
+      "companyName": "PayPay",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [
+            "Communication"
+          ],
+          "riskSignals": [
+            "WeakCommunication"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "CrossFunctional",
+            "Collaboration"
+          ],
+          "riskSignals": [
+            "LimitedCollaboration",
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "UserFocus",
+            "Speed",
+            "MissionAlignment"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "WeakCommunication",
+            "LimitedCollaboration",
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "PayPay appears to prioritize UserFocus, Speed, MissionAlignment when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "not_confirmed",
+          "amountText": "新卒エンジニアの公式初任給は未確認",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": null,
+          "annualJpyMax": null,
+          "notes": [
+            "中途・口コミではエンジニア報酬は高水準。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "review_site",
+          "amountText": "OpenWork エンジニア・SE平均年収 約9,400,000円",
+          "annualJpy": 9400000,
+          "notes": [
+            "公式平均ではない。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "not_disclosed",
+          "years": null,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://about.paypay.ne.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://www.paypay.ne.jp/career/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "OpenWork PayPay salary",
+          "url": "https://www.openwork.jp/company_answer.php?m_id=a0C1000001DZ0B4&q_no=2",
+          "sourceType": "review_site",
+          "supports": "averageAnnual",
+          "reliability": "review"
+        }
+      ]
+    },
+    {
+      "companyId": "plaid",
+      "companyName": "Plaid",
+      "targetRole": "Mobile Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "CrossFunctional",
+            "Collaboration"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "UserFocus",
+            "MissionAlignment",
+            "Transparency"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Plaid appears to prioritize UserFocus, MissionAlignment, Transparency when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "partial_official_business",
+          "amountText": "ビジネス職新卒年収4,200,000円〜。エンジニア新卒の公式金額は未確認",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 4200000,
+          "annualJpyMax": null,
+          "notes": [
+            "ファイル上の対象職務はMobile Engineerだが、確認できた公式値はビジネス新卒。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約9,400,000円",
+          "annualJpy": 9400000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 2.8,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://plaid.co.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://recruit.plaid.co.jp/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "PLAID new graduates business",
+          "url": "https://recruit.plaid.co.jp/newgrads-business",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official_partial"
+        },
+        {
+          "label": "IRBank Plaid",
+          "url": "https://irbank.net/4165",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "prtimes",
+      "companyName": "PR TIMES",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [
+            "Communication"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Remote",
+            "CrossFunctional",
+            "Collaboration"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "UserFocus",
+            "MissionAlignment",
+            "Transparency"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [
+            "ProductDelivery"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "PR TIMES appears to prioritize UserFocus, MissionAlignment, Transparency when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official",
+          "amountText": "2027年新卒 月給340,000円。2026年新卒は月給320,000円",
+          "monthlyJpyMin": 340000,
+          "monthlyJpyMax": 340000,
+          "annualJpyMin": 4080000,
+          "annualJpyMax": 4080000,
+          "notes": [
+            "2027年卒から総合・開発職同一初任給。賞与等は別。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約6,520,000円",
+          "annualJpy": 6520000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 3.3,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://prtimes.co.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://prtimes.co.jp/recruit/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "PR TIMES 2027初任給引き上げ",
+          "url": "https://prtimes.jp/main/html/rd/p/000001590.000000112.html",
+          "sourceType": "official_press_release",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "PR TIMES 2026初任給引き上げ",
+          "url": "https://prtimes.jp/main/html/rd/p/000001506.000000112.html",
+          "sourceType": "official_press_release",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "IRBank PR TIMES",
+          "url": "https://irbank.net/3922",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "preferred-networks",
+      "companyName": "Preferred Networks",
+      "targetRole": "Machine Learning Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "PoorQualityDiscipline"
+          ],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "Craftsmanship"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "PoorQualityDiscipline"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Preferred Networks appears to prioritize Craftsmanship when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "secondary",
+          "amountText": "新卒初年度年収 約9,000,000円という独自調査・口コミ系情報",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 9000000,
+          "annualJpyMax": 9000000,
+          "notes": [
+            "公式初任給としては未確認。選考難易度が高く個別オファーの可能性が高い。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "not_disclosed",
+          "amountText": "非上場のため公式平均年収は未公開",
+          "annualJpy": null,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "not_disclosed",
+          "years": null,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://www.preferred.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://www.preferred.jp/ja/jobs/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "PFN salary secondary reference",
+          "url": "https://remedy-tokyo.co.jp/media/8558/",
+          "sourceType": "secondary_article",
+          "supports": "newGraduate",
+          "reliability": "secondary"
+        },
+        {
+          "label": "InterviewCat PFN new grad salary index",
+          "url": "https://interviewcat.dev/p/insidestory-interviewcat/pfn-engineer-newgrads",
+          "sourceType": "salary_story_index",
+          "supports": "newGraduate",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "rakuten",
+      "companyName": "Rakuten",
+      "targetRole": "SRE / DevOps Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 36,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [
+            "JavaScript",
+            "Go",
+            "Python",
+            "Java",
+            "Kotlin",
+            "Ruby",
+            "PHP"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 11,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 21,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "GlobalTeam",
+            "Collaboration"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 16,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 16,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [
+            "ProductDelivery",
+            "SystemDesign"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Rakuten appears to prioritize JavaScript, Go, Python when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official",
+          "amountText": "エンジニア職 月額370,000円〜。ビジネス職は学部月額350,000円、院卒360,000円",
+          "monthlyJpyMin": 370000,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 4440000,
+          "annualJpyMax": null,
+          "notes": [
+            "エンジニアは専門知識・経験・実力で決定。月40時間分固定残業代含む。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_but_not_role_specific",
+          "amountText": "楽天グループ平均年収はグループ・職種差が大きく、単純比較注意",
+          "annualJpy": null,
+          "notes": [
+            "楽天グループ全体平均は事業・職種混在。JSONでは未確定扱い。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "not_confirmed",
+          "years": null,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://corp.rakuten.co.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://corp.rakuten.co.jp/careers/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "Rakuten engineer new graduate requirements",
+          "url": "https://corp.rakuten.co.jp/careers/graduates/recruit_engineer/",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "Rakuten business new graduate requirements",
+          "url": "https://corp.rakuten.co.jp/careers/graduates/recruit_business/business.html",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "IRBank Rakuten Group",
+          "url": "https://irbank.net/4755",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "sansan",
+      "companyName": "Sansan",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Sansan appears to prioritize practical engineering evidence when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official",
+          "amountText": "エンジニア・研究開発職 月給400,000円以上＋賞与、想定年収5,600,000円以上",
+          "monthlyJpyMin": 400000,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 5600000,
+          "annualJpyMax": null,
+          "notes": [
+            "経験・プログラミング能力に応じて個別対応。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約7,520,000〜7,800,000円",
+          "annualJpy": 7520000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "not_confirmed",
+          "years": null,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://jp.corp-sansan.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://jp.corp-sansan.com/recruit/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "Sansan 新卒初任給引き上げ公式ニュース",
+          "url": "https://jp.corp-sansan.com/news/2023/0606-02.html",
+          "sourceType": "official_news",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "Sansan PR TIMES mirror",
+          "url": "https://prtimes.jp/main/html/rd/p/000000443.000049627.html",
+          "sourceType": "official_press_release",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "IRBank Sansan",
+          "url": "https://irbank.net/4443",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "smartbank",
+      "companyName": "SmartBank",
+      "targetRole": "SRE / DevOps Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 26,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "LowOwnership"
+          ],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 21,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [
+            "JapaneseBusiness",
+            "Communication"
+          ],
+          "riskSignals": [
+            "WeakCommunication"
+          ],
+          "recommendedVerificationActivity": "Japanese bug report simulation"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 21,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Collaboration",
+            "Ownership"
+          ],
+          "riskSignals": [
+            "LowOwnership"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 16,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "Transparency",
+            "Ownership"
+          ],
+          "riskSignals": [
+            "LowOwnership"
+          ],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 16,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [
+            "SystemDesign"
+          ],
+          "riskSignals": [
+            "LowOwnership",
+            "WeakCommunication"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "SmartBank appears to prioritize Transparency, Ownership, JapaneseBusiness when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "not_confirmed",
+          "amountText": "新卒エンジニア初任給は公式確認できず",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": null,
+          "annualJpyMax": null,
+          "notes": []
+        },
+        "averageAnnualSalary": {
+          "status": "not_disclosed",
+          "amountText": "非上場のため公式平均年収は未公開",
+          "annualJpy": null,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "not_disclosed",
+          "years": null,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://smartbank.co.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://smartbank.co.jp/careers/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "OpenWork SmartBank salary page",
+          "url": "https://www.openwork.jp/company_answer.php?m_id=a0C2x000008wjHY&q_no=2",
+          "sourceType": "review_site",
+          "supports": "averageAnnual",
+          "reliability": "review"
+        },
+        {
+          "label": "OneCareer Plus SmartBank salary page",
+          "url": "https://plus.onecareer.jp/companies/92872/salaries",
+          "sourceType": "salary_aggregation",
+          "supports": "averageAnnual",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "smarthr",
+      "companyName": "SmartHR",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Collaboration"
+          ],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "MissionAlignment",
+            "Transparency"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "SmartHR appears to prioritize MissionAlignment, Transparency when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official_or_secondary",
+          "amountText": "新卒月給300,000円〜350,000円。エンジニア中途・求人では年収500万円〜が多い",
+          "monthlyJpyMin": 300000,
+          "monthlyJpyMax": 350000,
+          "annualJpyMin": 4200000,
+          "annualJpyMax": 4900000,
+          "notes": [
+            "確認できた公式値は主にビジネス新卒。ファイル上の対象はSoftware Engineerのため完全一致ではない。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "secondary",
+          "amountText": "平均年収 約6,930,000〜7,450,000円という二次情報",
+          "annualJpy": 7450000,
+          "notes": [
+            "非上場のため公式平均ではない。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "not_disclosed",
+          "years": null,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://smarthr.co.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://recruit.smarthr.co.jp/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "SmartHR new graduates business",
+          "url": "https://recruit.smarthr.co.jp/newgrads/business/",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official_partial"
+        },
+        {
+          "label": "SmartHR salary secondary reference",
+          "url": "https://migi-nanameue.co.jp/column/smarthr-salary-average-2026/",
+          "sourceType": "secondary_article",
+          "supports": "newGraduate,averageAnnual",
+          "reliability": "secondary"
+        },
+        {
+          "label": "OpenWork SmartHR jobs/salary ranges",
+          "url": "https://www.openwork.jp/a0C10000017Qi17/job/",
+          "sourceType": "job_board",
+          "supports": "midCareerSalary",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "smartnews",
+      "companyName": "SmartNews",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Remote",
+            "GlobalTeam",
+            "Collaboration"
+          ],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "MissionAlignment"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "SmartNews appears to prioritize MissionAlignment when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "not_confirmed",
+          "amountText": "新卒エンジニア初任給は公式確認できず",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": null,
+          "annualJpyMax": null,
+          "notes": []
+        },
+        "averageAnnualSalary": {
+          "status": "review_site",
+          "amountText": "OpenWork平均年収13,040,000円、エンジニア平均14,150,000円。OpenMoney ITエンジニア平均16,990,000円",
+          "annualJpy": 13040000,
+          "notes": [
+            "口コミ集計。公式平均ではない。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "not_disclosed",
+          "years": null,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://www.smartnews.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://careers.smartnews.com/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "OpenWork SmartNews salary",
+          "url": "https://www.openwork.jp/company_answer.php?m_id=a0C1000000tgRoj&q_no=2",
+          "sourceType": "review_site",
+          "supports": "averageAnnual",
+          "reliability": "review"
+        },
+        {
+          "label": "OpenMoney SmartNews salaries",
+          "url": "https://openmoney.jp/corporations/1286/salaries",
+          "sourceType": "salary_aggregation",
+          "supports": "averageAnnual",
+          "reliability": "secondary"
+        },
+        {
+          "label": "OpenSalary SmartNews software engineer",
+          "url": "https://opensalary.jp/companies/smartnews/roles/software-engineer",
+          "sourceType": "salary_aggregation",
+          "supports": "averageAnnual",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "spacemarket",
+      "companyName": "Spacemarket",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "LowOwnership"
+          ],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "CrossFunctional",
+            "Collaboration",
+            "Ownership"
+          ],
+          "riskSignals": [
+            "LowOwnership",
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "Speed",
+            "Ownership"
+          ],
+          "riskSignals": [
+            "LowOwnership"
+          ],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "LowOwnership",
+            "LimitedCollaboration"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Spacemarket appears to prioritize Speed, Ownership when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "not_confirmed",
+          "amountText": "新卒エンジニア初任給は公式確認できず",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": null,
+          "annualJpyMax": null,
+          "notes": []
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_or_secondary",
+          "amountText": "平均年収 約6,860,000円",
+          "annualJpy": 6860000,
+          "notes": []
+        },
+        "averageTenureYears": {
+          "status": "public_filing_or_secondary",
+          "years": 3.9,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://spacemarket.co.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://spacemarket.co.jp/recruit/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "Paiza Spacemarket new graduate listing",
+          "url": "https://paiza.jp/student/job_offers/24334",
+          "sourceType": "job_board",
+          "supports": "newGraduate",
+          "reliability": "secondary"
+        },
+        {
+          "label": "IRBank Spacemarket",
+          "url": "https://irbank.net/4487",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "stores",
+      "companyName": "STORES",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 36,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [
+            "Go",
+            "Ruby"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 11,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [
+            "Communication"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 21,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Remote",
+            "Onsite",
+            "FlexibleHours",
+            "CrossFunctional",
+            "Collaboration"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 16,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "UserFocus"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 16,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [
+            "SystemDesign"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "STORES appears to prioritize Go, Ruby, UserFocus when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official",
+          "amountText": "新卒総合職（ビジネス×テクノロジー）年収4,500,000円〜6,000,000円",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 4500000,
+          "annualJpyMax": 6000000,
+          "notes": [
+            "2028年入社予定者向け、職種越境型。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "secondary_review_or_job_data",
+          "amountText": "エンジニア平均 約7,870,000〜7,960,000円という口コミ・求人集計",
+          "annualJpy": 7870000,
+          "notes": [
+            "公式平均ではない。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "not_disclosed",
+          "years": null,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://www.st.inc/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://jobs.st.inc/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "STORES HRMOS jobs",
+          "url": "https://hrmos.co/pages/storesinc/jobs",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "STORES new graduate business x technology",
+          "url": "https://hrmos.co/pages/storesinc/jobs/2092533067202805818",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "OpenMoney STORES salary example",
+          "url": "https://openmoney.jp/salaries/kpTrYd",
+          "sourceType": "salary_aggregation",
+          "supports": "averageAnnual",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "timee",
+      "companyName": "Timee",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Collaboration"
+          ],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "Speed",
+            "MissionAlignment"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "AmbiguityHandling"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Timee appears to prioritize Speed, MissionAlignment when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official",
+          "amountText": "2027年新卒 年収5,000,000円〜（能力・実績を加味）",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 5000000,
+          "annualJpyMax": null,
+          "notes": [
+            "制度賞与年2回。長期インターン実績で増額可能性。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "review_site_or_secondary",
+          "amountText": "OpenWork平均年収5,330,000円／二次記事では約5,940,000円",
+          "annualJpy": 5330000,
+          "notes": [
+            "公式平均ではない。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "secondary",
+          "years": 1.78,
+          "notes": [
+            "二次記事ベース。急成長企業のため変動大。"
+          ]
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://corp.timee.co.jp/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://newgrads.timee.co.jp/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "Timee 初任給引き上げニュース",
+          "url": "https://corp.timee.co.jp/news/detail-6201/",
+          "sourceType": "official_news",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "Timee new graduate entry",
+          "url": "https://newgrads.timee.co.jp/entry",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official"
+        },
+        {
+          "label": "OpenWork Timee salary",
+          "url": "https://www.openwork.jp/company_answer.php?m_id=a0C1000001KmMgc&q_no=2",
+          "sourceType": "review_site",
+          "supports": "averageAnnual",
+          "reliability": "review"
+        }
+      ]
+    },
+    {
+      "companyId": "ubie",
+      "companyName": "Ubie",
+      "targetRole": "Machine Learning Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "PoorQualityDiscipline"
+          ],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Remote",
+            "Onsite",
+            "FlexibleHours",
+            "CrossFunctional",
+            "Collaboration"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "UserFocus",
+            "Craftsmanship",
+            "MissionAlignment",
+            "Transparency"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [
+            "PoorQualityDiscipline"
+          ],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Ubie appears to prioritize UserFocus, Craftsmanship, MissionAlignment when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "not_confirmed",
+          "amountText": "新卒区分の初任給は確認できず。求人レンジは職種により年収6,000,000〜15,000,000円の情報あり",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 6000000,
+          "annualJpyMax": 15000000,
+          "notes": [
+            "新卒・中途を明確に分けない採用傾向。初任給としては扱わない。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "estimated_from_job_ranges",
+          "amountText": "公式平均未公開。求人レンジから平均10,500,000円とする二次推定あり",
+          "annualJpy": null,
+          "notes": [
+            "推定値は平均年収として採用しない。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "not_disclosed",
+          "years": null,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://ubie.life/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://recruit.ubie.life/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "Ubie salary secondary reference",
+          "url": "https://tleon.co.jp/media/ubie-salary/",
+          "sourceType": "secondary_article",
+          "supports": "salaryRange",
+          "reliability": "secondary"
+        },
+        {
+          "label": "OpenWork Ubie jobs",
+          "url": "https://www.openwork.jp/a0C1000001JvLIi/job/",
+          "sourceType": "job_board",
+          "supports": "midCareerSalary",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "wantedly",
+      "companyName": "Wantedly",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [
+            "Collaboration"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [
+            "UserFocus"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [
+            "GitHubPortfolio",
+            "ProductDelivery"
+          ],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "Wantedly appears to prioritize UserFocus when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "not_confirmed",
+          "amountText": "Wantedly本体の新卒エンジニア初任給は公式確認できず",
+          "monthlyJpyMin": null,
+          "monthlyJpyMax": null,
+          "annualJpyMin": null,
+          "annualJpyMax": null,
+          "notes": [
+            "Wantedly掲載の他社記事が検索に混在しやすいため注意。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "review_site",
+          "amountText": "OpenWork平均年収5,560,000円",
+          "annualJpy": 5560000,
+          "notes": [
+            "公式平均ではない。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "secondary",
+          "years": 3.0,
+          "notes": []
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://wantedlyinc.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://wantedlyinc.com/ja/recruit",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "OpenWork Wantedly salary",
+          "url": "https://www.openwork.jp/company_answer.php?m_id=a0C1000000tgYLO&q_no=2",
+          "sourceType": "review_site",
+          "supports": "averageAnnual",
+          "reliability": "review"
+        },
+        {
+          "label": "IRBank Wantedly",
+          "url": "https://irbank.net/3991",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    },
+    {
+      "companyId": "zozo",
+      "companyName": "ZOZO",
+      "targetRole": "Software Engineer",
+      "totalWeight": 100,
+      "criteria": [
+        {
+          "criterionName": "Technical Readiness",
+          "weight": 28,
+          "description": "Evidence that the candidate can work with the stack and engineering problems implied by the hiring content.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "trial project"
+        },
+        {
+          "criterionName": "Communication and Language Fit",
+          "weight": 12,
+          "description": "Evidence that the candidate can explain work clearly in the communication environment expected by the company.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        },
+        {
+          "criterionName": "Collaboration and Work Style",
+          "weight": 24,
+          "description": "Evidence that the candidate works effectively with product, design, and engineering peers in the company operating style.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "GitHub collaboration review"
+        },
+        {
+          "criterionName": "Values and Motivation Alignment",
+          "weight": 18,
+          "description": "Evidence that the candidate understands the company values, user expectations, and mission context behind the role.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "casual interview"
+        },
+        {
+          "criterionName": "Proof of Delivery",
+          "weight": 18,
+          "description": "Evidence that the candidate can point to concrete work samples, shipped outcomes, or repeatable execution habits.",
+          "positiveEvidence": [],
+          "riskSignals": [],
+          "recommendedVerificationActivity": "technical self-introduction practice"
+        }
+      ],
+      "rubricSummary": "ZOZO appears to prioritize practical engineering evidence when reviewing developer candidates.",
+      "generatedAt": "2026-05-16T10:08:02.851Z",
+      "salary": {
+        "currency": "JPY",
+        "lastCheckedAt": "2026-05-17",
+        "newGraduate": {
+          "status": "official_business_department",
+          "amountText": "2027年度ビジネス部門 月給320,000円〜。最低保証年収3,840,000円〜、想定年収5,354,000円",
+          "monthlyJpyMin": 320000,
+          "monthlyJpyMax": null,
+          "annualJpyMin": 3840000,
+          "annualJpyMax": 5354000,
+          "notes": [
+            "ファイル上の対象職務はSoftware Engineerだが、検索で確認できた公式値はビジネス部門。開発部門は別確認が必要。"
+          ]
+        },
+        "averageAnnualSalary": {
+          "status": "public_filing_aggregation",
+          "amountText": "平均年収6,560,000円",
+          "annualJpy": 6560000,
+          "notes": [
+            "2025年3月期。"
+          ]
+        },
+        "averageTenureYears": {
+          "status": "public_filing_aggregation",
+          "years": 6.8,
+          "notes": [
+            "2025年3月期。"
+          ]
+        },
+        "dataQualityNotes": [
+          "newGraduate는 가능한 한 공식 채용/보도자료를 우선했습니다.",
+          "averageAnnualSalary와 averageTenureYears는 상장사만 비교적 공식성이 있고, 비상장사는 대부분 not_disclosed 또는 review_site/secondary입니다.",
+          "월급에는 고정잔업수당이 포함된 경우가 많으므로 실수령·근무강도 비교에는 별도 확인이 필요합니다."
+        ]
+      },
+      "sourceLinks": [
+        {
+          "label": "Official website",
+          "url": "https://corp.zozo.com/",
+          "sourceType": "official_corporate",
+          "supports": "officialWebsite",
+          "reliability": "official"
+        },
+        {
+          "label": "Careers / recruiting",
+          "url": "https://corp.zozo.com/recruit/",
+          "sourceType": "official_recruiting",
+          "supports": "careers",
+          "reliability": "official"
+        },
+        {
+          "label": "ZOZO 2027 business new graduate",
+          "url": "https://corp.zozo.com/recruit/newgraduate/business-newgraduate2027/",
+          "sourceType": "official_recruiting",
+          "supports": "newGraduate",
+          "reliability": "official_partial"
+        },
+        {
+          "label": "IRBank ZOZO salary",
+          "url": "https://irbank.net/3092/salary",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        },
+        {
+          "label": "ZOZO salary/tenure secondary filing summary",
+          "url": "https://corp-research.jp/articles/10101",
+          "sourceType": "filing_aggregation",
+          "supports": "averageAnnual,averageTenure",
+          "reliability": "secondary"
+        }
+      ]
+    }
+  ]
+}
