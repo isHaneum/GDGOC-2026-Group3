@@ -110,6 +110,12 @@ function formatToK(value: number): string {
   return `${formatter.format(inK)}K`;
 }
 
+function formatCurrencySymbol(currency: string): string {
+  if (currency === "JPY") return "¥";
+  if (currency === "KRW") return "₩";
+  return currency;
+}
+
 export function formatSalaryRange(
   min: number | null | undefined,
   max: number | null | undefined,
@@ -121,7 +127,7 @@ export function formatSalaryRange(
     return note ? `${fallback} (${note})` : fallback;
   }
 
-  return `${currency} ${formatToK(min)} - ${formatToK(max)}`;
+  return `${formatCurrencySymbol(currency)}${formatToK(min)} - ${formatCurrencySymbol(currency)}${formatToK(max)}`;
 }
 
 export function formatCompanySalarySummary(profile: CompanyJobProfile, fallback: string): string {
@@ -149,7 +155,7 @@ export function formatCompanySalarySummary(profile: CompanyJobProfile, fallback:
     displayProfile.startingSalaryCurrency &&
     displayProfile.startingSalaryCurrency !== "unknown"
   ) {
-    return `Average ${displayProfile.startingSalaryCurrency} ${formatToK(displayProfile.averageAnnualSalary)}`;
+    return `Average ${formatCurrencySymbol(displayProfile.startingSalaryCurrency)}${formatToK(displayProfile.averageAnnualSalary)}`;
   }
 
   return displayProfile.salaryNote ? `${fallback} (${displayProfile.salaryNote})` : fallback;
