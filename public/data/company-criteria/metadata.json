@@ -1,0 +1,18 @@
+{
+  "name": "BridgePass Company Criteria Dataset",
+  "version": "0.1.0",
+  "generatedAt": "2026-05-16",
+  "companyCount": 40,
+  "signalCount": 40,
+  "rubricCount": 40,
+  "source": "Public company career pages and manual fallback summaries",
+  "generationMethod": "Company Criteria Engine: crawl or seed input -> text cleaning -> hiring signal extraction -> rubric generation -> validation",
+  "geminiStatus": "Gemini-compatible structured extraction is supported, but this dataset was generated with fallback extraction because Gemini API quota was unavailable during local generation.",
+  "intendedUse": "Frontend and matching logic can load companyRubrics.json to display company-specific evaluation criteria.",
+  "safetyNote": "This dataset provides guidance signals and evaluation rubrics for demo purposes. It must not be used as an automated hiring decision system.",
+  "limitations": [
+    "Some companies may be based on fallback summaries rather than live extracted career pages.",
+    "Some public career pages are branding-oriented and do not contain detailed technical requirements.",
+    "The rubrics are for hackathon MVP demonstration and should be reviewed before real-world use."
+  ]
+}
