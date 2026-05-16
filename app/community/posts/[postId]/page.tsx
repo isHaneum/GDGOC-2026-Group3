@@ -87,9 +87,9 @@ export default function PostDetailPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-bridge-paper">
-        <div className="container mx-auto max-w-2xl px-4 py-10 space-y-4">
+        <div className="container mx-auto max-w-2xl px-4 py-8 space-y-4">
           <div className="h-6 w-24 bg-gray-200 rounded animate-pulse" />
-          <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-3 animate-pulse">
+          <div className="bg-white rounded-xl border border-gray-100 shadow-panel p-5 space-y-3 animate-pulse">
             <div className="h-4 w-1/3 bg-gray-200 rounded" />
             <div className="h-6 w-2/3 bg-gray-200 rounded" />
             <div className="h-20 bg-gray-100 rounded" />
@@ -112,14 +112,14 @@ export default function PostDetailPage() {
 
   return (
     <div className="min-h-screen bg-bridge-paper">
-      <div className="container mx-auto max-w-2xl px-4 py-10 space-y-6">
+      <div className="container mx-auto max-w-2xl px-4 py-8 space-y-5">
 
         <Link href="/community/posts" className="text-sm font-bold text-gray-400 hover:text-bridge-primary transition-colors">
           ← 커뮤니티로
         </Link>
 
         {/* Post card */}
-        <article className="bg-white rounded-2xl border border-gray-100 shadow-panel p-6">
+        <article className="bg-white rounded-xl border border-gray-100 shadow-panel p-5">
           <div className="flex items-center gap-2 mb-3">
             <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${categoryBadgeColor(post.category?.slug ?? '')}`}>
               {post.category?.name ?? '—'}
@@ -128,7 +128,7 @@ export default function PostDetailPage() {
             <span className="text-[10px] text-gray-300">·</span>
             <span className="text-[10px] text-gray-400">{timeAgo(post.created_at)}</span>
           </div>
-          <h1 className="text-2xl font-black text-ink mb-4">{post.title}</h1>
+          <h1 className="text-2xl font-bold text-ink mb-4">{post.title}</h1>
           {post.image_url && (
             <div className="relative w-full rounded-xl overflow-hidden mb-4 border border-gray-100">
               <Image src={post.image_url} alt="" width={640} height={360} className="w-full object-cover max-h-80" />
@@ -172,7 +172,7 @@ export default function PostDetailPage() {
           )}
 
           {/* Comment form */}
-          <form onSubmit={handleComment} className="bg-white rounded-2xl border border-gray-100 shadow-panel p-4 space-y-3">
+          <form onSubmit={handleComment} className="bg-white rounded-xl border border-gray-100 shadow-panel p-4 space-y-3">
             <textarea
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}

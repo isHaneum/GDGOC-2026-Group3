@@ -103,11 +103,11 @@ export default function SignupProfilePage() {
 
   return (
     <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-8">
-      <section className="mx-auto max-w-3xl rounded-2xl border border-gray-100 bg-white p-6 shadow-panel">
+      <section className="mx-auto max-w-3xl rounded-xl border border-gray-100 bg-white p-5 shadow-panel">
         <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal">
           Signup Profile
         </p>
-        <h1 className="mt-3 text-2xl font-black text-ink">프로필 작성</h1>
+        <h1 className="mt-3 text-2xl font-bold text-ink">프로필 작성</h1>
         <p className="mt-2 text-sm leading-6 text-gray-500">
           로그인 계정과 기본 연락처 정보를 입력합니다. 역할은 온보딩에서 선택한 값으로 저장됩니다.
         </p>
@@ -155,7 +155,7 @@ export default function SignupProfilePage() {
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="rounded-full bg-bridge-primary px-5 py-3 text-sm font-black text-ink transition-opacity hover:opacity-90 disabled:opacity-50"
+              className="rounded-xl bg-bridge-primary px-5 py-3 text-sm font-bold text-ink transition-opacity hover:opacity-90 disabled:opacity-50"
             >
               {status === "submitting" ? "Creating account..." : "Continue"}
             </button>

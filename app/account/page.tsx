@@ -94,9 +94,9 @@ export default function AccountPage() {
 
   return (
     <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-8">
-      <section className="mx-auto max-w-3xl rounded-2xl border border-gray-100 bg-white p-6 shadow-panel">
+      <section className="mx-auto max-w-3xl rounded-xl border border-gray-100 bg-white p-5 shadow-panel">
         <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal">Account</p>
-        <h1 className="mt-3 text-2xl font-black text-ink">계정 정보</h1>
+        <h1 className="mt-3 text-2xl font-bold text-ink">계정 정보</h1>
 
         <dl className="mt-5 grid gap-3 rounded-xl bg-bridge-paper p-4 text-sm sm:grid-cols-3">
           <div>
@@ -149,14 +149,14 @@ export default function AccountPage() {
           <div className="md:col-span-2 flex flex-col gap-2 sm:flex-row sm:items-center">
             <button
               type="submit"
-              className="rounded-full bg-bridge-primary px-5 py-3 text-sm font-black text-ink transition-opacity hover:opacity-90"
+              className="rounded-xl bg-bridge-primary px-5 py-3 text-sm font-bold text-ink transition-opacity hover:opacity-90"
             >
               Save profile
             </button>
             <button
               type="button"
               onClick={handleSignOut}
-              className="rounded-full border border-gray-200 px-5 py-3 text-sm font-black text-gray-500 transition-colors hover:border-bridge-coral hover:text-bridge-coral"
+              className="rounded-xl border border-gray-200 px-5 py-3 text-sm font-bold text-gray-500 transition-colors hover:border-bridge-coral hover:text-bridge-coral"
             >
               Sign out
             </button>

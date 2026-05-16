@@ -44,7 +44,7 @@ export default async function EmployeeCompanyDetailPage({
           </p>
           <div className="mt-2 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <h1 className="text-3xl font-black text-ink">{company.companyName}</h1>
+              <h1 className="text-2xl font-bold text-ink">{company.companyName}</h1>
               <p className="mt-2 text-sm font-bold text-gray-500">
                 {company.country} · {company.companyType} · {formatSourceConfidence(company)}
               </p>
@@ -61,7 +61,7 @@ export default async function EmployeeCompanyDetailPage({
               <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                 <div>
                   <p className="text-xs font-black uppercase tracking-widest text-gray-400">{role.roleCategory}</p>
-                  <h2 className="mt-1 text-xl font-black text-ink">{role.roleTitle}</h2>
+                  <h2 className="mt-1 text-lg font-bold text-ink">{role.roleTitle}</h2>
                   <p className="mt-2 text-sm leading-6 text-gray-500">
                     {role.notes ?? "This role is available for applicant-side review."}
                   </p>

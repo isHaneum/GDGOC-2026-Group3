@@ -119,8 +119,8 @@ export default function CommunityPage() {
 
   return (
     <div className="min-h-screen bg-bridge-paper">
-      <div className="mx-auto max-w-5xl px-4 py-10">
-      <div className="flex gap-6">
+      <div className="mx-auto max-w-5xl px-4 py-8">
+      <div className="flex gap-5">
       {/* Main content */}
       <div className="flex-1 min-w-0">
 
@@ -128,7 +128,7 @@ export default function CommunityPage() {
         <div className="flex items-end justify-between mb-6">
           <div>
             <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal mb-1">Cultural Forums</p>
-            <h1 className="text-3xl font-black text-ink">Community</h1>
+            <h1 className="text-2xl font-bold text-ink">Community</h1>
           </div>
           <button
             onClick={() => setShowForm(true)}
@@ -188,7 +188,7 @@ export default function CommunityPage() {
             {search ? `"${search}" 검색 결과가 없습니다.` : '아직 게시글이 없습니다.'}
           </div>
         ) : (
-          <div className="overflow-hidden rounded-2xl border border-gray-100">
+          <div className="overflow-hidden rounded-xl border border-gray-100">
             {posts.map((post, i) => (
               <Link
                 key={post.id}
@@ -237,7 +237,7 @@ export default function CommunityPage() {
         {/* Write modal */}
         {showForm && (
           <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-4">
-            <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div className="bg-white rounded-xl shadow-panel border border-gray-100 p-5 w-full max-w-lg max-h-[90vh] overflow-y-auto">
               <div className="flex justify-between items-center mb-5">
                 <h2 className="font-black text-lg text-ink">새 글 작성</h2>
                 <button onClick={() => setShowForm(false)} className="text-gray-400 hover:text-ink text-sm font-bold">✕</button>
@@ -322,7 +322,7 @@ export default function CommunityPage() {
 
       {/* Popular posts sidebar */}
       <aside className="hidden lg:block w-72 flex-shrink-0 ml-4">
-        <div className="sticky top-24 bg-white rounded-2xl border border-gray-100 shadow-panel p-6">
+        <div className="sticky top-24 bg-white rounded-xl border border-gray-100 shadow-panel p-5">
           <p className="text-[10px] font-black uppercase tracking-widest text-bridge-teal mb-5">🔥 인기글</p>
           {popularPosts.length === 0 ? (
             <p className="text-sm text-gray-400">아직 게시글이 없습니다.</p>

@@ -10,30 +10,30 @@ export default function HiringCompaniesPage() {
 
   return (
     <main className="min-h-screen bg-bridge-paper">
-      <div className="container mx-auto max-w-7xl px-4 py-12">
-        <header className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div className="container mx-auto max-w-6xl px-4 py-8">
+        <header className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-[10px] font-black uppercase tracking-[0.3em] text-bridge-teal">
               Hiring Companies
             </p>
-            <h1 className="mt-3 text-4xl font-black text-ink">Companies Recruiting Across The Bridge</h1>
+            <h1 className="mt-3 text-2xl font-bold text-ink">Companies Recruiting Across The Bridge</h1>
             <p className="mt-3 max-w-2xl text-gray-500 leading-relaxed">
               Browse active company profiles used by the matching engine. Each card keeps the recruiting context clear
               before a developer opens the AI-assisted fit flow.
             </p>
           </div>
-          <div className="rounded-2xl bg-white px-5 py-3 text-right shadow-panel">
+          <div className="rounded-xl border border-gray-100 bg-white px-4 py-3 text-right shadow-panel">
             <span className="block text-[10px] font-black uppercase tracking-widest text-gray-400">Open roles</span>
             <span className="text-2xl font-black text-bridge-primary">{companies.length}</span>
           </div>
         </header>
 
-        <section className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
           {visibleCompanies.map((company) => (
-            <article key={`${company.companyId}-${company.roleId}`} className="rounded-2xl border border-gray-100 bg-white p-6 shadow-panel">
+            <article key={`${company.companyId}-${company.roleId}`} className="rounded-xl border border-gray-100 bg-white p-5 shadow-panel">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h2 className="text-xl font-black text-ink">{company.companyName}</h2>
+                  <h2 className="text-lg font-bold text-ink">{company.companyName}</h2>
                   <p className="mt-1 text-sm font-bold text-bridge-teal">{company.roleTitle}</p>
                 </div>
                 <span className="rounded-full bg-bridge-primary/10 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-bridge-teal">

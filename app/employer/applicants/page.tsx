@@ -84,10 +84,10 @@ export default function EmployerDashboard() {
   if (!mounted) return <div className="min-h-screen bg-bridge-paper" />;
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl">
-      <header className="mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+    <div className="container mx-auto px-4 py-6 max-w-6xl">
+      <header className="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold mb-2">지원자 목록</h1>
+          <h1 className="text-2xl font-bold mb-1">지원자 목록</h1>
           <p className="text-gray-500">
             Finding {market.sourceCountry} developers with deep {market.targetCountry} resonance.
           </p>
@@ -105,14 +105,14 @@ export default function EmployerDashboard() {
         </div>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <aside className="lg:col-span-1 space-y-8">
-          <div className="bg-white p-6 rounded-2xl shadow-panel border border-gray-100">
-            <h2 className="text-sm font-black text-gray-400 uppercase tracking-widest mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <aside className="lg:col-span-1 space-y-6">
+          <div className="bg-white p-5 rounded-xl shadow-panel border border-gray-100">
+            <h2 className="text-xs font-black text-gray-400 uppercase tracking-widest mb-4">
               Qualitative Filters
             </h2>
 
-            <div className="space-y-6">
+            <div className="space-y-5">
               <FilterGroup
                 title="Cultural Strong Point"
                 options={["Keigo Proficiency", "UI Localization", "Workplace Etiquette", "Team Harmony"]}
@@ -128,8 +128,8 @@ export default function EmployerDashboard() {
             </div>
           </div>
 
-          <div className="bg-bridge-primary/5 p-6 rounded-2xl border border-bridge-primary/20">
-            <h3 className="text-sm font-bold text-bridge-teal mb-2">Ranking Summary</h3>
+          <div className="bg-bridge-primary/5 p-5 rounded-xl border border-bridge-primary/20">
+            <h3 className="text-sm font-bold text-bridge-teal mb-1.5">Ranking Summary</h3>
             <p className="text-xs text-gray-600 leading-relaxed">
               Applicants are ordered with deterministic company-to-developer matching signals. Company-specific AI
               evaluation will be added after the matching context is finalized.
@@ -137,10 +137,10 @@ export default function EmployerDashboard() {
           </div>
         </aside>
 
-        <main className="lg:col-span-3 space-y-6">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold text-ink">Relevant Matches</h2>
-            <span className="text-sm text-gray-400 font-medium">
+        <main className="lg:col-span-3 space-y-4">
+          <div className="flex justify-between items-center mb-3">
+            <h2 className="text-lg font-bold text-ink">Relevant Matches</h2>
+            <span className="text-xs text-gray-400 font-medium">
               {company ? `Matching against ${company.companyName}` : "Loading company profile"}
             </span>
           </div>
@@ -193,29 +193,29 @@ function CandidateCard({
   profileHref: string;
 }) {
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-panel border border-gray-100 hover:border-bridge-primary transition-all group">
-      <div className="flex flex-col md:flex-row justify-between gap-6">
+    <div className="bg-white p-5 rounded-xl shadow-panel border border-gray-100 hover:border-bridge-primary transition-all group">
+      <div className="flex flex-col md:flex-row justify-between gap-5">
         <div className="flex-1">
-          <div className="flex items-center space-x-3 mb-2">
-            <h3 className="text-xl font-bold group-hover:text-bridge-primary transition-colors">
+          <div className="flex items-center space-x-3 mb-1">
+            <h3 className="text-lg font-bold group-hover:text-bridge-primary transition-colors">
               {match.developerName}
             </h3>
             <span className="bg-bridge-teal/10 text-bridge-teal text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-tighter">
               {match.overallFitScore}/100
             </span>
           </div>
-          <p className="text-bridge-teal font-bold text-sm mb-4">{match.roleTitle}</p>
+          <p className="text-bridge-teal font-bold text-sm mb-3">{match.roleTitle}</p>
 
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-2 mb-4">
             {match.topMatchSignals.slice(0, 4).map((tag) => (
-              <span key={tag} className="bg-gray-50 text-gray-500 text-[10px] font-bold px-2 py-1 rounded-lg border border-gray-100">
+              <span key={tag} className="bg-gray-50 text-gray-500 text-[10px] font-bold px-2 py-1 rounded-md border border-gray-100">
                 {tag}
               </span>
             ))}
           </div>
 
-          <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 italic text-sm text-gray-600 leading-relaxed">
-            <span className="font-bold text-bridge-primary not-italic block mb-1">Deterministic Fit Insight:</span>
+          <div className="bg-gray-50 p-3 rounded-lg border border-gray-100 italic text-sm text-gray-600 leading-relaxed">
+            <span className="font-bold text-bridge-primary not-italic block mb-0.5">Deterministic Fit Insight:</span>
             {match.explanation}
           </div>
         </div>

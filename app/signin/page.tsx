@@ -119,7 +119,7 @@ export default function SignInPage() {
             </p>
             <Link
               href="/signup/onboarding"
-              className="mt-3 inline-flex rounded-full border border-gray-200 bg-white/80 px-4 py-2 text-xs font-bold text-ink backdrop-blur transition-colors hover:border-bridge-primary"
+              className="mt-3 inline-flex rounded-xl border border-gray-200 bg-white/80 px-4 py-2 text-xs font-bold text-ink backdrop-blur transition-colors hover:border-bridge-primary"
             >
               Sign up without map
             </Link>
@@ -130,9 +130,9 @@ export default function SignInPage() {
       <section className="pointer-events-none relative z-30 mx-auto flex min-h-[calc(100vh-128px)] max-w-7xl items-end justify-center pt-[430px] sm:pt-[520px] lg:items-center lg:justify-end lg:pt-0">
         <form
           onSubmit={handleSubmit}
-          className="pointer-events-auto w-full max-w-[420px] rounded-2xl border border-gray-100 bg-white/95 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.12)] backdrop-blur"
+          className="pointer-events-auto w-full max-w-[420px] rounded-xl border border-gray-100 bg-white/95 p-5 shadow-panel backdrop-blur"
         >
-          <h2 className="text-2xl font-black text-ink">Sign in</h2>
+          <h2 className="text-2xl font-bold text-ink">Sign in</h2>
           <p className="mt-2 text-sm leading-6 text-gray-500">
             계정 역할에 따라 지원자 또는 채용자 페이지로 이동합니다.
           </p>
@@ -170,7 +170,7 @@ export default function SignInPage() {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="mt-6 w-full rounded-full bg-bridge-primary px-5 py-3 text-sm font-black text-ink transition-opacity hover:opacity-90 disabled:opacity-50"
+            className="mt-6 w-full rounded-xl bg-bridge-primary px-5 py-3 text-sm font-bold text-ink transition-opacity hover:opacity-90 disabled:opacity-50"
           >
             {status === "submitting" ? "Signing in..." : "Sign in"}
           </button>
