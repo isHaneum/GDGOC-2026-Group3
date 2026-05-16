@@ -123,11 +123,13 @@ export async function toggleLike(db: SupabaseClient, userId: string, postId: str
     .single()
 
   if (existing) {
-    await db.from('post_likes').delete().eq('post_id', postId).eq('user_id', userId)
+    const { error } = await db.from('post_likes').delete().eq('post_id', postId).eq('user_id', userId)
+    if (error) throw new Error(error.message)
     return { liked: false }
   }
 
-  await db.from('post_likes').insert({ post_id: postId, user_id: userId })
+  const { error } = await db.from('post_likes').insert({ post_id: postId, user_id: userId })
+  if (error) throw new Error(error.message)
   return { liked: true }
 }
 
