@@ -38,14 +38,6 @@ export default function InteractiveLanding() {
           fill="none" 
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Detailed East Asia Outlines */}
-          <g className="stroke-gray-200" strokeWidth="1" opacity="0.4">
-            <path d="M50 100 Q 150 80, 200 150 T 250 300 T 300 450" />
-            <path d="M100 50 Q 300 30, 450 60" />
-            <path d="M650 20 Q 700 40, 720 100" />
-            <path d="M280 460 Q 300 480, 320 470" />
-          </g>
-
           {/* South Korea (Balanced Scale Path) */}
           <g 
             className="cursor-pointer group"
