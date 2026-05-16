@@ -2,13 +2,14 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 import type {
+  CandidateEvaluationDebugInfo,
   CandidateCriterionScore,
   CandidateEvaluationResult,
   CandidateProfileInput,
   CompanyEvaluationRubric,
   CompanyRubricCriterion
 } from "../../shared/companyCriteriaTypes";
-import { generateGeminiJson, hasGeminiKey } from "./gemini";
+import { generateGeminiJson, getGeminiConfiguration } from "./gemini";
 
 type RawRubricCriterion = Omit<CompanyRubricCriterion, "recommendedVerificationActivity"> & {
   recommendedVerificationActivity: string | string[];
@@ -22,6 +23,14 @@ const companyRubricsPath = path.resolve(process.cwd(), "public/data/company-crit
 const nextStepValues = ["office_tour", "casual_interview", "trial_project", "bridge_labs_activity", "not_ready_yet"] as const;
 const safetyNote =
   "This result is a recruiter guidance signal for demo purposes. It is not a hiring decision and must be reviewed by humans.";
+
+type CandidateEvaluationCoreResult = Omit<CandidateEvaluationResult, "evaluationMode" | "debug">;
+
+type GeminiAttemptResult = {
+  result: CandidateEvaluationCoreResult | null;
+  attempted: boolean;
+  fallbackReason?: string;
+};
 
 function normalizeCriterion(criterion: RawRubricCriterion): CompanyRubricCriterion {
   return {
@@ -101,6 +110,17 @@ function normalizeNextStep(value: string): CandidateEvaluationResult["recommende
   return (nextStepValues.includes(normalized as CandidateEvaluationResult["recommendedNextStep"])
     ? normalized
     : "not_ready_yet") as CandidateEvaluationResult["recommendedNextStep"];
+}
+
+function withDebug(
+  result: CandidateEvaluationCoreResult,
+  debug: CandidateEvaluationDebugInfo
+): CandidateEvaluationResult {
+  return {
+    ...result,
+    evaluationMode: debug.geminiUsed ? "gemini" : "fallback",
+    debug
+  };
 }
 
 function buildFeedback(
@@ -221,7 +241,7 @@ function normalizeGeminiResult(
   candidate: CandidateProfileInput,
   rubric: CompanyEvaluationRubric,
   result: CandidateEvaluationResult
-): CandidateEvaluationResult {
+): CandidateEvaluationCoreResult {
   const maxRawScore = result.criterionScores.reduce((max, item) => Math.max(max, item.score), 0);
   const scoreScaleMultiplier = maxRawScore > 0 && maxRawScore <= 5 ? 20 : 1;
 
@@ -298,7 +318,7 @@ export async function findCompanyRubric(companyId: string): Promise<CompanyEvalu
 export function evaluateCandidateFallback(
   candidate: CandidateProfileInput,
   rubric: CompanyEvaluationRubric
-): CandidateEvaluationResult {
+): CandidateEvaluationCoreResult {
   const candidateText = buildCandidateText(candidate);
   const candidateTokens = tokenize(candidateText);
   const isShortProfile = candidateText.replace(/\s+/g, " ").trim().length < 240;
@@ -364,9 +384,14 @@ export function evaluateCandidateFallback(
 export async function evaluateCandidateWithGemini(
   candidate: CandidateProfileInput,
   rubric: CompanyEvaluationRubric
-): Promise<CandidateEvaluationResult | null> {
-  if (!hasGeminiKey()) {
-    return null;
+): Promise<GeminiAttemptResult> {
+  const geminiConfiguration = getGeminiConfiguration();
+  if (!geminiConfiguration.configured) {
+    return {
+      result: null,
+      attempted: false,
+      fallbackReason: "Gemini API key is not configured. Add GEMINI_API_KEY or a local gemini.key file."
+    };
   }
 
   try {
@@ -388,15 +413,22 @@ ${JSON.stringify(rubric, null, 2)}
 Candidate JSON:
 ${JSON.stringify(candidate, null, 2)}`;
 
-    const result = await generateGeminiJson<CandidateEvaluationResult>({
+    const result = await generateGeminiJson<CandidateEvaluationCoreResult>({
       prompt,
       schema: candidateEvaluationSchema(),
       temperature: 0.2
     });
 
-    return normalizeGeminiResult(candidate, rubric, result);
-  } catch {
-    return null;
+    return {
+      result: normalizeGeminiResult(candidate, rubric, result as CandidateEvaluationResult),
+      attempted: true
+    };
+  } catch (error) {
+    return {
+      result: null,
+      attempted: true,
+      fallbackReason: error instanceof Error ? error.message : "Gemini evaluation failed."
+    };
   }
 }
 
@@ -405,6 +437,25 @@ export async function evaluateCandidate(
   companyId: string
 ): Promise<CandidateEvaluationResult> {
   const rubric = await findCompanyRubric(companyId);
+  const geminiConfiguration = getGeminiConfiguration();
   const geminiResult = await evaluateCandidateWithGemini(candidate, rubric);
-  return geminiResult ?? evaluateCandidateFallback(candidate, rubric);
+
+  if (geminiResult.result) {
+    return withDebug(geminiResult.result, {
+      geminiConfigured: geminiConfiguration.configured,
+      geminiAttempted: geminiResult.attempted,
+      geminiUsed: true,
+      geminiModel: geminiConfiguration.model,
+      geminiKeySource: geminiConfiguration.keySource
+    });
+  }
+
+  return withDebug(evaluateCandidateFallback(candidate, rubric), {
+    geminiConfigured: geminiConfiguration.configured,
+    geminiAttempted: geminiResult.attempted,
+    geminiUsed: false,
+    geminiModel: geminiConfiguration.configured ? geminiConfiguration.model : null,
+    geminiKeySource: geminiConfiguration.keySource,
+    fallbackReason: geminiResult.fallbackReason
+  });
 }

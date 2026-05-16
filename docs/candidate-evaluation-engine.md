@@ -32,6 +32,16 @@ This implementation is isolated from the main UI.
 - Frontend-safe loaders: `src/lib/companyCriteria.ts`, `src/lib/candidateEvaluation.ts`
 - Backend service: `server/services/candidateEvaluator.ts`
 - API route: `POST /api/candidate-evaluation/evaluate`
+- Status route: `GET /api/candidate-evaluation/status`
+- Manual debug page: `/debug/candidate-evaluation`
+
+## Local Gemini key setup
+Use one of the following:
+
+1. Set `GEMINI_API_KEY` in `.env.local`
+2. Or place a local `gemini.key` file in the repo root
+
+Both are gitignored and never sent to the browser.
 
 ## Verification flow
 1. Start the app.
@@ -46,7 +56,19 @@ npm run dev
 curl http://localhost:5173/data/company-criteria/metadata.json
 ```
 
-3. Evaluate a sample candidate.
+3. Check Gemini status and company list.
+
+```bash
+curl http://localhost:5173/api/candidate-evaluation/status
+```
+
+4. Open the manual debug page.
+
+```text
+http://localhost:5173/debug/candidate-evaluation
+```
+
+5. Evaluate a sample candidate by API.
 
 ```bash
 curl -X POST http://localhost:5173/api/candidate-evaluation/evaluate \
@@ -66,13 +88,16 @@ curl -X POST http://localhost:5173/api/candidate-evaluation/evaluate \
   }'
 ```
 
-4. Confirm the response contains:
+6. Confirm the response contains:
 - `overallFitScore`
 - `criterionScores`
 - `strengths`
 - `gaps`
 - `recommendedNextStep`
 - `safetyNote`
+- `evaluationMode`
+- `debug.geminiUsed`
+- `debug.fallbackReason`
 
 ## Gemini behavior
 If Gemini is configured on the server, the route tries structured recruiter-guidance evaluation first.

@@ -1,8 +1,24 @@
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
+
+import type { GeminiKeySource } from "../../shared/companyCriteriaTypes";
+
 type GeminiJsonOptions = {
   prompt: string;
   schema: Record<string, unknown>;
   temperature?: number;
 };
+
+type GeminiConfiguration = {
+  apiKey: string | null;
+  configured: boolean;
+  keySource: GeminiKeySource;
+  model: string;
+  modelCandidates: string[];
+};
+
+const geminiKeyPath = path.resolve(process.cwd(), "gemini.key");
+const defaultModelCandidates = ["gemini-2.5-flash", "gemini-1.5-flash"];
 
 function extractTextFromGeminiResponse(payload: any): string {
   const parts = payload?.candidates?.[0]?.content?.parts ?? [];
@@ -22,8 +38,35 @@ function parseJsonText<T>(text: string): T {
   }
 }
 
+function unique(values: string[]): string[] {
+  return [...new Set(values.map((value) => value.trim()).filter(Boolean))];
+}
+
+function readGeminiKeyFromFile(): string | null {
+  if (!existsSync(geminiKeyPath)) {
+    return null;
+  }
+
+  const fileValue = readFileSync(geminiKeyPath, "utf8").trim();
+  return fileValue || null;
+}
+
+export function getGeminiConfiguration(): GeminiConfiguration {
+  const envApiKey = process.env.GEMINI_API_KEY?.trim();
+  const fileApiKey = envApiKey ? null : readGeminiKeyFromFile();
+  const modelCandidates = unique([process.env.GEMINI_MODEL ?? "", ...defaultModelCandidates]);
+
+  return {
+    apiKey: envApiKey || fileApiKey,
+    configured: Boolean(envApiKey || fileApiKey),
+    keySource: envApiKey ? "env" : fileApiKey ? "file" : "none",
+    model: modelCandidates[0] ?? defaultModelCandidates[0],
+    modelCandidates
+  };
+}
+
 export function hasGeminiKey(): boolean {
-  return Boolean(process.env.GEMINI_API_KEY);
+  return getGeminiConfiguration().configured;
 }
 
 export async function generateGeminiJson<T>({
@@ -31,45 +74,59 @@ export async function generateGeminiJson<T>({
   schema,
   temperature = 0.2
 }: GeminiJsonOptions): Promise<T> {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
+  const configuration = getGeminiConfiguration();
+  if (!configuration.apiKey) {
     throw new Error("GEMINI_API_KEY is not configured.");
   }
 
-  const model = process.env.GEMINI_MODEL ?? "gemini-2.5-flash";
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-goog-api-key": apiKey
-      },
-      body: JSON.stringify({
-        contents: [
-          {
-            role: "user",
-            parts: [{ text: prompt }]
+  let lastError: Error | null = null;
+
+  for (const model of configuration.modelCandidates) {
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": configuration.apiKey
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              role: "user",
+              parts: [{ text: prompt }]
+            }
+          ],
+          generationConfig: {
+            temperature,
+            responseMimeType: "application/json",
+            responseJsonSchema: schema
           }
-        ],
-        generationConfig: {
-          temperature,
-          responseMimeType: "application/json",
-          responseJsonSchema: schema
-        }
-      })
+        })
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      const error = new Error(`Gemini request failed: ${response.status} ${errorText}`);
+      if (response.status === 404) {
+        lastError = error;
+        continue;
+      }
+      throw error;
     }
-  );
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Gemini request failed: ${response.status} ${errorText}`);
+    const payload = await response.json();
+    const text = extractTextFromGeminiResponse(payload);
+    if (!text) {
+      throw new Error("Gemini returned an empty response.");
+    }
+    return parseJsonText<T>(text);
   }
 
-  const payload = await response.json();
-  const text = extractTextFromGeminiResponse(payload);
-  if (!text) {
-    throw new Error("Gemini returned an empty response.");
+  if (lastError) {
+    throw lastError;
   }
-  return parseJsonText<T>(text);
+
+  throw new Error("No supported Gemini model was available.");
 }

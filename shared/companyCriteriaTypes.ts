@@ -40,6 +40,26 @@ export interface CandidateCriterionScore {
   feedback: string;
 }
 
+export type CandidateEvaluationMode = "gemini" | "fallback";
+export type GeminiKeySource = "env" | "file" | "none";
+
+export interface CandidateEvaluationDebugInfo {
+  geminiConfigured: boolean;
+  geminiAttempted: boolean;
+  geminiUsed: boolean;
+  geminiModel: string | null;
+  geminiKeySource: GeminiKeySource;
+  fallbackReason?: string;
+}
+
+export interface CandidateEvaluationStatus {
+  geminiConfigured: boolean;
+  geminiModel: string;
+  geminiKeySource: GeminiKeySource;
+  rubricCount: number;
+  companies: Array<Pick<CompanyEvaluationRubric, "companyId" | "companyName" | "targetRole">>;
+}
+
 export interface CandidateEvaluationResult {
   companyId: string;
   companyName: string;
@@ -55,4 +75,6 @@ export interface CandidateEvaluationResult {
   recruiterLensSummary: string;
   recommendedNextStep: "office_tour" | "casual_interview" | "trial_project" | "bridge_labs_activity" | "not_ready_yet";
   safetyNote: string;
+  evaluationMode: CandidateEvaluationMode;
+  debug: CandidateEvaluationDebugInfo;
 }

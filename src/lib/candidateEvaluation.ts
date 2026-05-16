@@ -1,21 +1,36 @@
-import type { CandidateEvaluationResult, CandidateProfileInput } from "../../shared/companyCriteriaTypes";
+import type {
+  CandidateEvaluationResult,
+  CandidateEvaluationStatus,
+  CandidateProfileInput
+} from "../../shared/companyCriteriaTypes";
+
+async function fetchJson<T>(path: string, options?: RequestInit): Promise<T> {
+  const response = await fetch(path, {
+    headers: {
+      "Content-Type": "application/json",
+      ...(options?.headers ?? {})
+    },
+    ...options
+  });
+
+  if (!response.ok) {
+    const payload = await response.json().catch(() => ({}));
+    throw new Error(payload.error ?? "Request failed");
+  }
+
+  return response.json() as Promise<T>;
+}
 
 export async function evaluateCandidate(
   companyId: string,
   candidate: CandidateProfileInput
 ): Promise<CandidateEvaluationResult> {
-  const response = await fetch("/api/candidate-evaluation/evaluate", {
+  return fetchJson<CandidateEvaluationResult>("/api/candidate-evaluation/evaluate", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
     body: JSON.stringify({ companyId, candidate })
   });
+}
 
-  if (!response.ok) {
-    const payload = await response.json().catch(() => ({}));
-    throw new Error(payload.error ?? "Failed to evaluate candidate");
-  }
-
-  return response.json() as Promise<CandidateEvaluationResult>;
+export function getCandidateEvaluationStatus(): Promise<CandidateEvaluationStatus> {
+  return fetchJson<CandidateEvaluationStatus>("/api/candidate-evaluation/status");
 }
