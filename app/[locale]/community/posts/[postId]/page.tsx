@@ -1,0 +1,206 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { Link } from '@i18n/navigation'
+import Image from 'next/image'
+import { useParams } from 'next/navigation'
+import { useLocale } from 'next-intl'
+import { getPost, addComment, togglePostLike } from '@src/api/client'
+import type { PostWithComments } from '@shared/types'
+import {
+  communityCopy,
+  formatCommunityTimeAgo,
+  getLocalizedCategoryName,
+  getLocalizedCommentContent,
+  getLocalizedPostContent,
+  getLocalizedPostTitle,
+  type CommunityLocale,
+} from '@src/lib/communityTranslations'
+
+type Comment = PostWithComments['comments'][number]
+
+export default function PostDetailPage() {
+  const { postId } = useParams<{ postId: string }>()
+  const [post, setPost] = useState<PostWithComments | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [liked, setLiked] = useState(false)
+  const [likeCount, setLikeCount] = useState(0)
+  const [liking, setLiking] = useState(false)
+  const [commentText, setCommentText] = useState('')
+  const [submittingComment, setSubmittingComment] = useState(false)
+  const [comments, setComments] = useState<Comment[]>([])
+  const communityLocale = useLocale() as CommunityLocale
+
+  useEffect(() => {
+    setLoading(true)
+    getPost(postId)
+      .then((data) => {
+        setPost(data)
+        setLikeCount(data.like_count)
+        setComments(data.comments ?? [])
+      })
+      .catch((err) => setError(err instanceof Error ? err.message : 'Failed to load post'))
+      .finally(() => setLoading(false))
+  }, [postId])
+
+  async function handleLike() {
+    if (liking) return
+    setLiking(true)
+    try {
+      const res = await togglePostLike(postId)
+      setLiked(res.liked)
+      setLikeCount((prev) => prev + (res.liked ? 1 : -1))
+    } catch {
+      // silent fail
+    } finally {
+      setLiking(false)
+    }
+  }
+
+  async function handleComment(e: React.FormEvent) {
+    e.preventDefault()
+    if (!commentText.trim()) return
+    setSubmittingComment(true)
+    try {
+      await addComment(postId, commentText.trim())
+      setCommentText('')
+      const refreshed = await getPost(postId)
+      setComments(refreshed.comments ?? [])
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to post comment')
+    } finally {
+      setSubmittingComment(false)
+    }
+  }
+
+  function getAuthorName(author: PostWithComments['author'] | PostWithComments['comments'][number]['author']): string {
+    return author.nickname ?? 'Guest'
+  }
+
+  const categoryBadgeColor = (slug: string) => {
+    if (slug === 'nuance') return 'bg-bridge-primary/10 text-bridge-teal'
+    if (slug === 'career') return 'bg-bridge-coral/10 text-bridge-coral'
+    if (slug === 'growth') return 'bg-bridge-blue/10 text-bridge-blue'
+    return 'bg-gray-100 text-gray-500'
+  }
+
+  const copy = communityCopy[communityLocale]
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-bridge-paper">
+        <div className="container mx-auto max-w-2xl px-4 py-8 space-y-4">
+          <div className="h-6 w-24 bg-gray-200 rounded animate-pulse" />
+          <div className="bg-white rounded-xl border border-gray-100 shadow-panel p-5 space-y-3 animate-pulse">
+            <div className="h-4 w-1/3 bg-gray-200 rounded" />
+            <div className="h-6 w-2/3 bg-gray-200 rounded" />
+            <div className="h-20 bg-gray-100 rounded" />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !post) {
+    return (
+      <div className="min-h-screen bg-bridge-paper flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-bridge-coral font-bold mb-4">{error ?? copy.postNotFound}</p>
+          <Link href="/community/posts" className="text-body text-bridge-primary font-bold hover:underline">{copy.backToCommunity}</Link>
+        </div>
+      </div>
+    )
+  }
+
+  const postTitle = getLocalizedPostTitle(post, communityLocale)
+  const postContent = getLocalizedPostContent(post, communityLocale)
+
+  return (
+    <div className="min-h-screen bg-bridge-paper">
+      <div className="container mx-auto max-w-2xl px-4 py-8 space-y-5">
+
+        <div>
+          <Link href="/community/posts" className="text-body font-bold text-gray-400 hover:text-bridge-primary transition-colors">
+            {copy.backToCommunity}
+          </Link>
+        </div>
+
+        {/* Post card */}
+        <article className="bg-white rounded-xl border border-gray-100 shadow-panel p-5">
+          <div className="flex items-center gap-2 mb-3">
+            <span className={`text-caption font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${categoryBadgeColor(post.category?.slug ?? '')}`}>
+              {getLocalizedCategoryName(post.category, communityLocale)}
+            </span>
+            <span className="text-caption text-gray-400">{getAuthorName(post.author)}</span>
+            <span className="text-caption text-gray-300">·</span>
+            <span className="text-caption text-gray-400">{formatCommunityTimeAgo(post.created_at, communityLocale)}</span>
+          </div>
+          <h1 className="text-h1 font-bold text-ink mb-4">{postTitle}</h1>
+          {post.image_url && (
+            <div className="relative w-full rounded-xl overflow-hidden mb-4 border border-gray-100">
+              <Image src={post.image_url} alt="" width={640} height={360} className="w-full object-cover max-h-80" />
+            </div>
+          )}
+          <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">{postContent}</p>
+
+          {/* Like button */}
+          <div className="mt-6 flex items-center gap-3">
+            <button
+              onClick={handleLike}
+              disabled={liking}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-body font-bold border transition-all ${
+                liked
+                  ? 'bg-bridge-primary/10 border-bridge-primary text-bridge-teal'
+                  : 'bg-white border-gray-200 text-gray-500 hover:border-bridge-primary hover:text-bridge-teal'
+              }`}
+            >
+              <span>{liked ? '♥' : '♡'}</span>
+              <span>{likeCount}</span>
+            </button>
+          </div>
+        </article>
+
+        {/* Comments */}
+        <section>
+          <p className="text-caption font-black uppercase tracking-widest text-gray-400 mb-4">
+            {copy.comments} {comments.length}{copy.commentUnit}
+          </p>
+
+          {comments.length > 0 && (
+            <div className="space-y-3 mb-6">
+              {comments.map((comment) => (
+                <div key={comment.id} className="bg-white rounded-xl border border-gray-100 px-4 py-3">
+                  <p className="text-caption font-bold text-bridge-teal mb-1">{getAuthorName(comment.author)}</p>
+                  <p className="text-body text-gray-700 leading-relaxed">{getLocalizedCommentContent(comment, communityLocale)}</p>
+                  <p className="text-caption text-gray-400 mt-1.5">{formatCommunityTimeAgo(comment.created_at, communityLocale)}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Comment form */}
+          <form onSubmit={handleComment} className="bg-white rounded-xl border border-gray-100 shadow-panel p-4 space-y-3">
+            <textarea
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+              rows={3}
+              placeholder={copy.commentPlaceholder}
+              className="w-full rounded-xl border border-gray-200 px-3 py-2 text-body focus:outline-none focus:ring-2 focus:ring-bridge-primary resize-none"
+            />
+            <div className="flex justify-end">
+              <button
+                type="submit"
+                disabled={submittingComment || !commentText.trim()}
+                className="bg-ink text-white px-4 py-2 rounded-xl text-body font-bold hover:bg-black disabled:opacity-50"
+              >
+                {submittingComment ? copy.submittingComment : copy.submitComment}
+              </button>
+            </div>
+          </form>
+        </section>
+
+      </div>
+    </div>
+  )
+}

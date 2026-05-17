@@ -1,6 +1,7 @@
 export type BridgeUserRole = "employee" | "employer";
 
 export const BRIDGE_USER_ROLE_KEY = "bridge_user_role";
+const bridgeLocales = new Set(["ko", "ja"]);
 
 const publicBridgeRoutes = new Set([
   "/",
@@ -54,14 +55,25 @@ export function clearBridgeUserRole() {
   }
 }
 
+export function stripBridgeLocale(pathname: string): string {
+  const parts = pathname.split("/");
+  const maybeLocale = parts[1];
+  if (!bridgeLocales.has(maybeLocale)) return pathname || "/";
+
+  const stripped = `/${parts.slice(2).join("/")}`;
+  return stripped === "/" ? "/" : stripped.replace(/\/$/, "") || "/";
+}
+
 export function getRequiredBridgeRouteRole(pathname: string, roleParam?: string | null): BridgeUserRole | null {
-  if (pathname.startsWith("/employee") || pathname === "/signup/portfolio") return "employee";
-  if (pathname.startsWith("/employer")) return "employer";
+  const normalizedPathname = stripBridgeLocale(pathname);
+  if (normalizedPathname.startsWith("/employee") || normalizedPathname === "/signup/portfolio") return "employee";
+  if (normalizedPathname.startsWith("/employer")) return "employer";
   return null;
 }
 
 export function isPublicBridgeRoute(pathname: string) {
-  return publicBridgeRoutes.has(pathname) || pathname.startsWith("/community/posts/");
+  const normalizedPathname = stripBridgeLocale(pathname);
+  return publicBridgeRoutes.has(normalizedPathname) || normalizedPathname.startsWith("/community/posts/");
 }
 
 export function bridgeRoleLabel(role: BridgeUserRole) {

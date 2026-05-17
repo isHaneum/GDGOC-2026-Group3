@@ -1,7 +1,9 @@
 'use client';
 
 import { FormEvent, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+
+import { useRouter } from "@i18n/navigation";
 
 import {
   clearCachedEmployeeRecommendations,
@@ -157,20 +159,29 @@ function toList(value: string) {
     .filter(Boolean);
 }
 
-function toPositiveNumber(value: string, label: string) {
+function toPositiveNumber(value: string, label: string, invalidNumberMessage: (label: string) => string) {
   const number = Number(value);
   if (!Number.isFinite(number) || number < 0) {
-    throw new Error(`${label} 값을 다시 확인해주세요.`);
+    throw new Error(invalidNumberMessage(label));
   }
   return number;
 }
 
-function buildPayload(draft: EmployeeProfileDraft) {
-  const preferredSalaryMin = toPositiveNumber(draft.preferredSalaryMin, "희망 최소 연봉");
-  const preferredSalaryMax = toPositiveNumber(draft.preferredSalaryMax, "희망 최대 연봉");
+function buildPayload(
+  draft: EmployeeProfileDraft,
+  copy: {
+    invalidNumber: (label: string) => string;
+    invalidSalaryRange: string;
+    salaryMin: string;
+    salaryMax: string;
+    years: string;
+  }
+) {
+  const preferredSalaryMin = toPositiveNumber(draft.preferredSalaryMin, copy.salaryMin, copy.invalidNumber);
+  const preferredSalaryMax = toPositiveNumber(draft.preferredSalaryMax, copy.salaryMax, copy.invalidNumber);
 
   if (preferredSalaryMax < preferredSalaryMin) {
-    throw new Error("희망 최대 연봉은 최소 연봉보다 크거나 같아야 합니다.");
+    throw new Error(copy.invalidSalaryRange);
   }
 
   return {
@@ -178,7 +189,7 @@ function buildPayload(draft: EmployeeProfileDraft) {
     birth_date: draft.birthDate,
     gender: draft.gender,
     nationality: draft.nationality,
-    years_of_experience: toPositiveNumber(draft.yearsOfExperience, "총 경력"),
+    years_of_experience: toPositiveNumber(draft.yearsOfExperience, copy.years, copy.invalidNumber),
     target_roles: toList(draft.targetRoles),
     tech_stack: toList(draft.techStack),
     language_certifications: draft.languageCertifications.trim(),
@@ -198,7 +209,7 @@ function buildPayload(draft: EmployeeProfileDraft) {
   };
 }
 
-async function putJson(path: string, body: unknown): Promise<SaveApiResponse> {
+async function putJson(path: string, body: unknown, errorMessage: string): Promise<SaveApiResponse> {
   const response = await fetch(path, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -207,17 +218,18 @@ async function putJson(path: string, body: unknown): Promise<SaveApiResponse> {
     credentials: "same-origin",
   });
 
-  if (!response.ok) throw new Error("포트폴리오를 저장하지 못했습니다.");
+  if (!response.ok) throw new Error(errorMessage);
   return response.json() as Promise<SaveApiResponse>;
 }
 
 export default function PortfolioForm({
-  title = "포트폴리오 작성",
-  description = "지원자 프로필 스키마에 필요한 모든 정보를 입력합니다."
+  title,
+  description
 }: {
   title?: string;
   description?: string;
 }) {
+  const t = useTranslations("portfolio");
   const router = useRouter();
   const [draft, setDraft] = useState<EmployeeProfileDraft>(emptyDraft);
   const [saveState, setSaveState] = useState<SaveState>("idle");
@@ -242,38 +254,44 @@ export default function PortfolioForm({
 
   async function refreshRecommendations() {
     try {
-      const recommendations = await fetchEmployeeRecommendations();
+      const recommendations = await fetchEmployeeRecommendations(t("saveFailed"));
       writeCachedEmployeeRecommendations(recommendations);
       setSaveState("saved");
-      setStatusMessage("DB 저장과 추천 직무 갱신이 완료되었습니다.");
+      setStatusMessage(t("recommendDone"));
     } catch {
       setSaveState("saved");
-      setStatusMessage("DB 저장이 완료되었습니다. 추천 직무는 추천 탭에서 다시 갱신됩니다.");
+      setStatusMessage(t("recommendLater"));
     }
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSaveState("saving");
-    setStatusMessage("포트폴리오를 DB에 저장하고 있습니다.");
+    setStatusMessage(t("saveStart"));
     writeDraft(draft);
     clearCachedEmployeeRecommendations();
 
     try {
-      const payload = buildPayload(draft);
-      const profileResult = await putJson("/api/employee/profile", payload);
+      const payload = buildPayload(draft, {
+        invalidNumber: (label) => t("invalidNumber", { label }),
+        invalidSalaryRange: t("invalidSalaryRange"),
+        salaryMin: t("salaryMin"),
+        salaryMax: t("salaryMax"),
+        years: t("years")
+      });
+      const profileResult = await putJson("/api/employee/profile", payload, t("saveFailed"));
 
       if (!profileResult.authenticated || !profileResult.saved) {
-        throw new Error("로그인 세션이 없어 DB 저장을 완료하지 못했습니다.");
+        throw new Error(t("saveNoSession"));
       }
 
       setSaveState("saved");
-      setStatusMessage("DB 저장 완료. 회사 목록으로 이동합니다.");
+      setStatusMessage(t("saveDone"));
       void refreshRecommendations();
       router.replace("/employee/companies");
     } catch (error) {
       setSaveState("error");
-      setStatusMessage(error instanceof Error ? error.message : "포트폴리오를 저장하지 못했습니다.");
+      setStatusMessage(error instanceof Error ? error.message : t("saveFailed"));
     }
   }
 
@@ -282,83 +300,83 @@ export default function PortfolioForm({
       <form className="mx-auto max-w-5xl space-y-5" onSubmit={handleSubmit}>
         <header className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
           <p className="text-caption font-black uppercase tracking-widest text-bridge-teal">
-            Applicant Portfolio
+            {t("eyebrow")}
           </p>
-          <h1 className="mt-2 text-h1 font-black text-ink">{title}</h1>
-          <p className="mt-2 text-body leading-6 text-gray-500">{description}</p>
+          <h1 className="mt-2 text-h1 font-black text-ink">{title ?? t("savePortfolio")}</h1>
+          <p className="mt-2 text-body leading-6 text-gray-500">{description ?? t("draftHint")}</p>
         </header>
 
         <section className="grid gap-4 rounded-xl border border-gray-100 bg-white p-5 shadow-sm md:grid-cols-2">
-          <Field label="이름" value={draft.fullName} onChange={(value) => updateDraft("fullName", value)} required />
+          <Field label={t("name")} value={draft.fullName} onChange={(value) => updateDraft("fullName", value)} required />
           <Field
-            label="생년월일"
+            label={t("birthDate")}
             type="date"
             value={draft.birthDate}
             onChange={(value) => updateDraft("birthDate", value)}
             required
           />
           <SelectField
-            label="성별"
+            label={t("gender")}
             value={draft.gender}
             onChange={(value) => updateDraft("gender", value as EmployeeProfileDraft["gender"])}
             options={[
-              { value: "male", label: "남성" },
-              { value: "female", label: "여성" },
+              { value: "male", label: t("male") },
+              { value: "female", label: t("female") },
             ]}
           />
           <SelectField
-            label="국적"
+            label={t("nationality")}
             value={draft.nationality}
             onChange={(value) => updateDraft("nationality", value as EmployeeProfileDraft["nationality"])}
             options={[
-              { value: "korean", label: "한국" },
-              { value: "japanese", label: "일본" },
+              { value: "korean", label: t("korean") },
+              { value: "japanese", label: t("japanese") },
             ]}
           />
           <Field
-            label="총 경력(년)"
+            label={t("years")}
             type="number"
             value={draft.yearsOfExperience}
             onChange={(value) => updateDraft("yearsOfExperience", value)}
             required
           />
           <Field
-            label="희망 직무"
+            label={t("targetRoles")}
             value={draft.targetRoles}
             onChange={(value) => updateDraft("targetRoles", value)}
-            placeholder="예: Frontend Engineer, Fullstack Engineer"
+            placeholder={t("targetRolesPlaceholder")}
             required
           />
           <Field
-            label="기술 스택"
+            label={t("techStack")}
             value={draft.techStack}
             onChange={(value) => updateDraft("techStack", value)}
-            placeholder="예: React, Next.js, TypeScript"
+            placeholder={t("techStackPlaceholder")}
             required
           />
           <Field
-            label="어학/자격"
+            label={t("languageCertifications")}
             value={draft.languageCertifications}
             onChange={(value) => updateDraft("languageCertifications", value)}
-            placeholder="예: Japanese JLPT N2"
+            placeholder={t("languageCertificationsPlaceholder")}
             required
           />
           <Field
-            label="희망 최소 연봉"
+            label={t("salaryMin")}
             type="number"
             value={draft.preferredSalaryMin}
             onChange={(value) => updateDraft("preferredSalaryMin", value)}
             required
           />
           <Field
-            label="희망 최대 연봉"
+            label={t("salaryMax")}
             type="number"
             value={draft.preferredSalaryMax}
             onChange={(value) => updateDraft("preferredSalaryMax", value)}
             required
           />
           <SelectField
-            label="희망 통화"
+            label={t("currency")}
             value={draft.preferredCurrency}
             onChange={(value) => updateDraft("preferredCurrency", value as EmployeeProfileDraft["preferredCurrency"])}
             options={[
@@ -367,39 +385,39 @@ export default function PortfolioForm({
             ]}
           />
           <Field
-            label="희망 근무 지역"
+            label={t("locations")}
             value={draft.preferredLocations}
             onChange={(value) => updateDraft("preferredLocations", value)}
-            placeholder="예: Tokyo, Osaka"
+            placeholder={t("locationsPlaceholder")}
             required
           />
           <Field
-            label="선호 기업 유형"
+            label={t("companyTypes")}
             value={draft.preferredCompanyTypes}
             onChange={(value) => updateDraft("preferredCompanyTypes", value)}
-            placeholder="예: SaaS, Marketplace, Enterprise"
+            placeholder={t("companyTypesPlaceholder")}
             required
           />
           <SelectField
-            label="근무 형태 선호"
+            label={t("workStyle")}
             value={draft.workStylePreference}
             onChange={(value) => updateDraft("workStylePreference", value as EmployeeProfileDraft["workStylePreference"])}
             options={[
-              { value: "remote", label: "원격" },
-              { value: "hybrid", label: "하이브리드" },
-              { value: "onsite", label: "출근" },
-              { value: "any", label: "상관없음" },
+              { value: "remote", label: t("remote") },
+              { value: "hybrid", label: t("hybrid") },
+              { value: "onsite", label: t("onsite") },
+              { value: "any", label: t("any") },
             ]}
           />
 
           <div className="md:col-span-2 grid gap-3 rounded-xl bg-bridge-paper p-4 sm:grid-cols-2">
             <CheckboxField
-              label="이주 가능 여부"
+              label={t("relocation")}
               checked={draft.relocationAvailable}
               onChange={(checked) => updateDraft("relocationAvailable", checked)}
             />
             <CheckboxField
-              label="비자 지원 필요 여부"
+              label={t("visa")}
               checked={draft.visaSupportNeeded}
               onChange={(checked) => updateDraft("visaSupportNeeded", checked)}
             />
@@ -407,7 +425,7 @@ export default function PortfolioForm({
 
           <div className="md:col-span-2">
             <Textarea
-              label="자기소개"
+              label={t("selfIntroduction")}
               value={draft.selfIntroduction}
               onChange={(value) => updateDraft("selfIntroduction", value)}
               rows={6}
@@ -416,7 +434,7 @@ export default function PortfolioForm({
           </div>
           <div className="md:col-span-2">
             <Textarea
-              label="핵심 프로젝트 경험"
+              label={t("projectExperience")}
               value={draft.keyProjectExperience}
               onChange={(value) => updateDraft("keyProjectExperience", value)}
               rows={6}
@@ -425,7 +443,7 @@ export default function PortfolioForm({
           </div>
           <div className="md:col-span-2">
             <Textarea
-              label="지원 동기"
+              label={t("motivation")}
               value={draft.motivation}
               onChange={(value) => updateDraft("motivation", value)}
               rows={5}
@@ -434,7 +452,7 @@ export default function PortfolioForm({
           </div>
           <div className="md:col-span-2">
             <Textarea
-              label="우려 사항 / 보완점"
+              label={t("concerns")}
               value={draft.concerns}
               onChange={(value) => updateDraft("concerns", value)}
               rows={5}
@@ -459,14 +477,14 @@ export default function PortfolioForm({
             disabled={saveState === "saving"}
             className="rounded-full bg-bridge-primary px-5 py-2.5 text-body font-black text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {saveState === "saving" ? "저장 중" : "포트폴리오 저장"}
+            {saveState === "saving" ? t("saving") : t("savePortfolio")}
           </button>
           {statusMessage ? (
             <span className={["text-body font-bold", saveState === "error" ? "text-bridge-coral" : "text-bridge-teal"].join(" ")}>
               {statusMessage}
             </span>
           ) : (
-            <span className="text-body text-gray-400">입력 중인 내용은 브라우저 임시 저장과 함께 DB 저장 시도에 사용됩니다.</span>
+            <span className="text-body text-gray-400">{t("draftHint")}</span>
           )}
         </div>
       </form>

@@ -104,7 +104,7 @@ export function mapDeveloperProfileFullToPreference(record: EmployeeProfileFull)
   return {
     developerId: String(profile.user_id ?? profile.id),
     employeeProfileId: employeeProfile.id,
-    name: sanitizeString(employeeProfile.full_name) ?? "지원자",
+    name: sanitizeString(employeeProfile.full_name) ?? "Applicant",
     nationality: normalizeNationality(employeeProfile.nationality),
     preferredSalaryMin: typeof employeeProfile.preferred_salary_min === "number" ? employeeProfile.preferred_salary_min : undefined,
     preferredSalaryMax: typeof employeeProfile.preferred_salary_max === "number" ? employeeProfile.preferred_salary_max : undefined,
@@ -187,23 +187,23 @@ function buildAiEvaluationMessage(
 ) {
   if (!evaluatedCompanyCount) {
     return geminiConfigured
-      ? "추천 후보가 없어 Gemini 평가를 진행하지 않았습니다."
-      : "현재 서버에 GEMINI_API_KEY가 없어 포트폴리오 AI 평가를 진행하지 못했습니다.";
+      ? "No recommendation candidates were available for Gemini evaluation."
+      : "GEMINI_API_KEY is not configured, so portfolio AI evaluation could not run.";
   }
 
   if (!geminiConfigured) {
-    return "현재 서버에 GEMINI_API_KEY가 없어 추천은 로컬 fallback 기준으로 계산되었습니다.";
+    return "GEMINI_API_KEY is not configured, so recommendations were calculated with the local fallback.";
   }
 
   if (geminiUsedCount === evaluatedCompanyCount) {
-    return "포트폴리오를 기준으로 Google Gemini 평가를 반영한 추천 결과입니다.";
+    return "Recommendations include Google Gemini evaluation based on the portfolio.";
   }
 
   if (geminiUsedCount > 0) {
-    return `총 ${evaluatedCompanyCount}개 후보 중 ${geminiUsedCount}개는 Gemini 평가를 사용했고 ${fallbackCount}개는 fallback으로 계산되었습니다.`;
+    return `${geminiUsedCount} of ${evaluatedCompanyCount} candidates used Gemini evaluation; ${fallbackCount} used fallback scoring.`;
   }
 
-  return "Gemini 평가를 시도했지만 모두 fallback으로 계산되었습니다. API 키와 쿼터 상태를 확인하세요.";
+  return "Gemini evaluation was attempted, but all results used fallback scoring. Check the API key and quota.";
 }
 
 function hasEnoughRecommendationInput(developer: DeveloperPreference): boolean {
@@ -241,7 +241,7 @@ export async function buildEmployeeRecommendationsPayload(record: EmployeeProfil
         fallbackCount: 0,
         message: buildAiEvaluationMessage(geminiConfiguration.configured, 0, 0, 0),
       },
-      message: "포트폴리오를 저장하면 로그인한 지원자 기준 추천 직무가 생성됩니다.",
+      message: "Save a portfolio to generate role recommendations for the signed-in applicant.",
     };
   }
 
@@ -295,6 +295,6 @@ export async function buildEmployeeRecommendationsPayload(record: EmployeeProfil
       fallbackCount,
       message: buildAiEvaluationMessage(geminiConfiguration.configured, evaluatedCompanyCount, geminiUsedCount, fallbackCount),
     },
-    message: recommendations.length ? undefined : "저장된 포트폴리오 기준으로 아직 추천 직무를 계산하지 못했습니다.",
+    message: recommendations.length ? undefined : "No role recommendations could be calculated from the saved portfolio yet.",
   };
 }

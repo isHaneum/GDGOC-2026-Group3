@@ -1,13 +1,13 @@
 'use client';
 
-import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
 
+import { Link, usePathname } from "@i18n/navigation";
 import {
   type BridgeUserRole,
-  bridgeRoleLabel,
   getRequiredBridgeRouteRole,
   readBridgeUserRole,
   writeBridgeUserRole
@@ -16,6 +16,8 @@ import {
 export default function RoleRouteGate({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const t = useTranslations("errors");
+  const common = useTranslations("common");
   const roleParam = searchParams.get("role");
   const [mounted, setMounted] = useState(false);
   const [storedRole, setStoredRole] = useState<BridgeUserRole | null>(null);
@@ -45,21 +47,20 @@ export default function RoleRouteGate({ children }: { children: ReactNode }) {
     setStoredRole(gatedRole);
   }
 
-  const requiredRoleLabel = bridgeRoleLabel(gatedRole);
-  const currentRoleLabel = storedRole ? bridgeRoleLabel(storedRole) : "No role";
+  const requiredRoleLabel = gatedRole === "employee" ? common("applicant") : common("employer");
+  const currentRoleLabel = storedRole ? (storedRole === "employee" ? common("applicant") : common("employer")) : t("noRole");
 
   return (
     <section className="min-h-[70vh] bg-bridge-paper px-4 py-16">
       <div className="mx-auto max-w-xl rounded-2xl border border-gray-100 bg-white p-6 shadow-panel">
         <p className="text-caption font-black uppercase tracking-widest text-bridge-teal">
-          Route Access
+          {t("routeAccess")}
         </p>
         <h1 className="mt-3 text-h1 font-black text-ink">
-          {requiredRoleLabel} area
+          {t("areaTitle", { role: requiredRoleLabel })}
         </h1>
         <p className="mt-3 text-body leading-6 text-gray-600">
-          This page is scoped to the {requiredRoleLabel.toLowerCase()} flow. Current role:{" "}
-          <span className="font-bold text-ink">{currentRoleLabel}</span>.
+          {t("areaDescription", { role: requiredRoleLabel.toLowerCase(), currentRole: currentRoleLabel })}
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <button
@@ -67,13 +68,13 @@ export default function RoleRouteGate({ children }: { children: ReactNode }) {
             onClick={switchRole}
             className="rounded-full bg-bridge-primary px-5 py-3 text-body font-black text-white transition-opacity hover:opacity-90"
           >
-            Continue as {requiredRoleLabel}
+            {t("continueAs", { role: requiredRoleLabel })}
           </button>
           <Link
             href="/signup/onboarding"
             className="rounded-full border border-gray-200 px-5 py-3 text-center text-body font-black text-gray-500 transition-colors hover:border-bridge-primary hover:text-ink"
           >
-            Choose role
+            {t("chooseRole")}
           </Link>
         </div>
       </div>

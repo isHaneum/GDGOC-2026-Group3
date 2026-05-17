@@ -2,8 +2,6 @@ import type { DbCategory, DbComment, DbPost } from '@shared/types'
 
 export type CommunityLocale = 'ko' | 'ja'
 
-export const COMMUNITY_LOCALE_STORAGE_KEY = 'bridgepass_community_locale'
-
 export const communityCopy = {
   ko: {
     eyebrow: '문화 포럼',
@@ -69,34 +67,9 @@ export const communityCopy = {
   },
 } satisfies Record<CommunityLocale, Record<string, unknown>>
 
-function isCommunityLocale(value: string | null): value is CommunityLocale {
-  return value === 'ko' || value === 'ja'
-}
-
 function clean(value: string | null | undefined) {
   const trimmed = value?.trim()
   return trimmed || null
-}
-
-export function readStoredCommunityLocale(): CommunityLocale {
-  if (typeof window === 'undefined') return 'ko'
-
-  try {
-    const stored = window.localStorage.getItem(COMMUNITY_LOCALE_STORAGE_KEY)
-    return isCommunityLocale(stored) ? stored : 'ko'
-  } catch {
-    return 'ko'
-  }
-}
-
-export function writeStoredCommunityLocale(locale: CommunityLocale) {
-  if (typeof window === 'undefined') return
-
-  try {
-    window.localStorage.setItem(COMMUNITY_LOCALE_STORAGE_KEY, locale)
-  } catch {
-    // Ignore unavailable storage. The in-memory React state still updates.
-  }
 }
 
 export function getLocalizedPostTitle(post: Pick<DbPost, 'title' | 'title_ko' | 'title_ja'>, locale: CommunityLocale) {

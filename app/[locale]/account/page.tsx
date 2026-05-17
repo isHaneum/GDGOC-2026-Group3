@@ -1,0 +1,208 @@
+'use client';
+
+import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+
+import { useRouter } from "@i18n/navigation";
+
+import {
+  fetchCurrentAccount,
+  resolveAccountRole
+} from "@src/lib/authClient";
+import { clearBridgeUserRole, writeBridgeUserRole } from "@src/lib/roleStorage";
+
+const ACCOUNT_DRAFT_KEY = "bridge_account_profile_draft";
+
+type AccountDraft = {
+  nickname: string;
+  profileImageUrl: string;
+  phone: string;
+};
+
+const emptyDraft: AccountDraft = {
+  nickname: "",
+  profileImageUrl: "",
+  phone: ""
+};
+
+function readDraft(): AccountDraft {
+  if (typeof window === "undefined") return emptyDraft;
+
+  try {
+    const raw = window.localStorage.getItem(ACCOUNT_DRAFT_KEY);
+    if (!raw) return emptyDraft;
+    return { ...emptyDraft, ...(JSON.parse(raw) as Partial<AccountDraft>) };
+  } catch {
+    return emptyDraft;
+  }
+}
+
+function writeDraft(draft: AccountDraft) {
+  if (typeof window === "undefined") return;
+
+  try {
+    window.localStorage.setItem(ACCOUNT_DRAFT_KEY, JSON.stringify(draft));
+  } catch {
+    // Local storage may be unavailable in private or embedded contexts.
+  }
+}
+
+export default function AccountPage() {
+  const t = useTranslations("account");
+  const common = useTranslations("common");
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
+  const [email, setEmail] = useState("");
+  const [roleLabel, setRoleLabel] = useState("");
+  const [market, setMarket] = useState("");
+  const [draft, setDraft] = useState<AccountDraft>(emptyDraft);
+  const [saved, setSaved] = useState(false);
+  const [saveError, setSaveError] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadAccount() {
+      const account = await fetchCurrentAccount();
+      if (cancelled) return;
+
+      if (!account) {
+        router.replace("/signin");
+        return;
+      }
+
+      const role = resolveAccountRole(account);
+      if (role) writeBridgeUserRole(role);
+
+      setEmail(account.user.email ?? "");
+      setRoleLabel(role === "employee" ? common("applicant") : role === "employer" ? common("employer") : common("unknown"));
+      setMarket(account.profile?.market ?? String(account.user.user_metadata?.market ?? common("unknown")));
+      setDraft({ ...readDraft(), nickname: (account.profile as { nickname?: string })?.nickname ?? "" });
+      setLoading(false);
+    }
+
+    void loadAccount();
+    return () => {
+      cancelled = true;
+    };
+  }, [router]);
+
+  async function handleSignOut() {
+    await fetch("/api/auth/signout", { method: "POST" });
+    clearBridgeUserRole();
+    router.replace("/signin");
+  }
+
+  if (loading) {
+    return <main className="min-h-[calc(100vh-64px)] bg-bridge-paper" />;
+  }
+
+  return (
+    <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-8">
+      <section className="mx-auto max-w-3xl rounded-xl border border-gray-100 bg-white p-5 shadow-panel">
+        <p className="text-caption font-black uppercase tracking-widest text-bridge-teal">{t("eyebrow")}</p>
+        <h1 className="mt-3 text-h1 font-bold text-ink">{t("title")}</h1>
+
+        <dl className="mt-5 grid gap-3 rounded-xl bg-bridge-paper p-4 text-body sm:grid-cols-3">
+          <div>
+            <dt className="text-caption font-black uppercase tracking-widest text-gray-400">{common("email")}</dt>
+            <dd className="mt-1 font-bold text-ink break-words">{email}</dd>
+          </div>
+          <div>
+            <dt className="text-caption font-black uppercase tracking-widest text-gray-400">{t("role")}</dt>
+            <dd className="mt-1 font-bold text-ink">{roleLabel}</dd>
+          </div>
+          <div>
+            <dt className="text-caption font-black uppercase tracking-widest text-gray-400">{t("market")}</dt>
+            <dd className="mt-1 font-bold text-ink">{market}</dd>
+          </div>
+        </dl>
+
+        <form
+          className="mt-6 grid gap-4 md:grid-cols-2"
+          onSubmit={async (event) => {
+            event.preventDefault();
+            setSaved(false);
+            setSaveError("");
+            writeDraft(draft);
+            const res = await fetch("/api/auth/me", {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ nickname: draft.nickname }),
+            });
+            if (res.ok) {
+              setSaved(true);
+            } else {
+              const data = await res.json() as { error?: string };
+              setSaveError(data.error ?? t("saveFailed"));
+            }
+          }}
+        >
+          <Field
+            label={t("nickname")}
+            value={draft.nickname}
+            onChange={(value) => {
+              setDraft((current) => ({ ...current, nickname: value }));
+              setSaved(false);
+            }}
+          />
+          <Field
+            label={t("profileImageUrl")}
+            value={draft.profileImageUrl}
+            onChange={(value) => {
+              setDraft((current) => ({ ...current, profileImageUrl: value }));
+              setSaved(false);
+            }}
+          />
+          <Field
+            label={t("phone")}
+            value={draft.phone}
+            onChange={(value) => {
+              setDraft((current) => ({ ...current, phone: value }));
+              setSaved(false);
+            }}
+          />
+
+          <div className="md:col-span-2 flex flex-col gap-2 sm:flex-row sm:items-center">
+            <button
+              type="submit"
+              className="rounded-xl bg-bridge-primary px-5 py-3 text-body font-bold text-white transition-opacity hover:opacity-90"
+            >
+              {t("saveProfile")}
+            </button>
+            <button
+              type="button"
+              onClick={handleSignOut}
+              className="rounded-xl border border-gray-200 px-5 py-3 text-body font-bold text-gray-500 transition-colors hover:border-bridge-coral hover:text-bridge-coral"
+            >
+              {t("signout")}
+            </button>
+            {saved ? <span className="text-body font-bold text-bridge-teal">{t("saved")}</span> : null}
+            {saveError ? <span className="text-body font-bold text-bridge-coral">{saveError}</span> : null}
+          </div>
+        </form>
+      </section>
+    </main>
+  );
+}
+
+function Field({
+  label,
+  value,
+  onChange
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <label className="block">
+      <span className="text-caption font-black uppercase tracking-widest text-gray-400">{label}</span>
+      <input
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        className="mt-2 w-full rounded-xl border border-gray-200 bg-bridge-paper px-4 py-3 text-body text-ink outline-none focus:border-bridge-teal"
+      />
+    </label>
+  );
+}

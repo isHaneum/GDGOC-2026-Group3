@@ -19,13 +19,13 @@ function unauthenticatedResponse(message?: string): EmployeeRecommendationsRespo
 export async function GET() {
   try {
     if (!hasSupabaseEnv()) {
-      return jsonResponse(unauthenticatedResponse('로그인 환경이 준비되지 않아 추천 직무를 불러올 수 없습니다.'))
+      return jsonResponse(unauthenticatedResponse('Recommendation login environment is not configured.'))
     }
 
     const db = await createClient()
     const { data: { user }, error } = await db.auth.getUser()
     if (error || !user) {
-      return jsonResponse(unauthenticatedResponse('로그인 후 추천 직무를 확인할 수 있습니다.'))
+      return jsonResponse(unauthenticatedResponse('Sign in to view recommended roles.'))
     }
 
     const data = await getEmployeeProfile(db, user.id)
