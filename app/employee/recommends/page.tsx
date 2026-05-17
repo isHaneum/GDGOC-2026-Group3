@@ -69,6 +69,24 @@ function linkLabel(label?: string, supports?: string) {
   return label ?? "Source";
 }
 
+function nextStepLabel(step: DeveloperToCompanyFitResult["recommendedNextStep"]) {
+  switch (step) {
+    case "apply_now":
+      return "바로 지원 가능";
+    case "casual_interview":
+      return "캐주얼 인터뷰 추천";
+    case "trial_project":
+      return "과제/실습 준비";
+    case "bridge_labs_activity":
+      return "브릿지 랩 추천";
+    case "research_company":
+      return "회사 리서치 우선";
+    case "rewrite_motivation":
+    default:
+      return "지원 동기 보강";
+  }
+}
+
 function RecommendationCard({
   recommendation,
   company,
@@ -102,6 +120,12 @@ function RecommendationCard({
             </div>
             <span className="rounded-full bg-white px-3 py-1 text-caption font-black text-bridge-teal shadow-sm">
               {Math.round(recommendation.overallFitScore)}
+            </span>
+          </div>
+
+          <div className="mt-2 flex flex-wrap gap-2">
+            <span className="rounded-full bg-white px-2.5 py-1 text-caption font-bold text-gray-500 ring-1 ring-gray-100">
+              {nextStepLabel(recommendation.recommendedNextStep)}
             </span>
           </div>
 
@@ -194,6 +218,11 @@ export default function EmployeeRecommendsPage() {
               <p className="mt-2 max-w-3xl text-body leading-6 text-gray-500">
                 로그인한 지원자의 포트폴리오와 프로필을 기준으로 계산한 상위 직무 추천입니다.
               </p>
+              {payload?.aiEvaluation ? (
+                <p className="mt-3 max-w-3xl rounded-xl bg-bridge-paper px-3 py-2 text-caption font-bold text-gray-600">
+                  {payload.aiEvaluation.message}
+                </p>
+              ) : null}
               {payload?.developer ? (
                 <p className="mt-3 text-body font-bold text-gray-500">
                   {payload.developer.name} · {payload.developer.yearsOfExperience}년 · {payload.developer.targetRoles.join(", ")}
@@ -210,6 +239,28 @@ export default function EmployeeRecommendsPage() {
               </Link>
             </div>
           </div>
+
+          {payload?.aiEvaluation ? (
+            <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              <SummaryStat
+                label="AI 상태"
+                value={payload.aiEvaluation.geminiConfigured ? "Gemini 연결됨" : "Fallback 모드"}
+                tone={payload.aiEvaluation.geminiConfigured ? "teal" : "amber"}
+              />
+              <SummaryStat
+                label="평가 대상"
+                value={`${payload.aiEvaluation.evaluatedCompanyCount}개 회사`}
+              />
+              <SummaryStat
+                label="Gemini 반영"
+                value={`${payload.aiEvaluation.geminiUsedCount}개`}
+              />
+              <SummaryStat
+                label="Fallback"
+                value={`${payload.aiEvaluation.fallbackCount}개`}
+              />
+            </div>
+          ) : null}
         </header>
 
         {!payload?.authenticated || !recommendations.length ? (
@@ -284,6 +335,12 @@ function RoleDetail({ recommendation, company }: { recommendation: DeveloperToCo
         </span>
       </div>
 
+      <div className="mt-4 flex flex-wrap gap-2">
+        <span className="rounded-full bg-bridge-primary/15 px-3 py-1 text-caption font-black text-bridge-teal">
+          다음 액션: {nextStepLabel(recommendation.recommendedNextStep)}
+        </span>
+      </div>
+
       <dl className="mt-5 grid gap-3 text-body md:grid-cols-2">
         <Metric label="근무지" value={formatLocationSummary(company, "확인 필요")} />
         <Metric label="급여 정보" value={formatCompanySalarySummary(company, "확인 필요")} />
@@ -304,6 +361,10 @@ function RoleDetail({ recommendation, company }: { recommendation: DeveloperToCo
 
         <InfoPanel title="매칭 사유">
           <BulletList items={recommendation.matchedReasons.slice(0, 6)} fallback="프로필과 직무 조건이 일부 일치합니다." />
+        </InfoPanel>
+
+        <InfoPanel title="AI 평가 설명">
+          <p>{recommendation.explanation || "현재 포트폴리오 기준 요약 설명이 아직 충분하지 않습니다."}</p>
         </InfoPanel>
 
         <InfoPanel title="추가 준비 사항">
@@ -348,6 +409,30 @@ function Metric({ label, value }: { label: string; value: string }) {
     <div className="rounded-xl bg-bridge-paper p-3">
       <dt className="text-caption font-black uppercase tracking-widest text-gray-400">{label}</dt>
       <dd className="mt-1 font-bold text-ink">{value}</dd>
+    </div>
+  );
+}
+
+function SummaryStat({
+  label,
+  value,
+  tone = "neutral",
+}: {
+  label: string;
+  value: string;
+  tone?: "neutral" | "teal" | "amber";
+}) {
+  const toneClass =
+    tone === "teal"
+      ? "bg-bridge-primary/15 text-bridge-teal"
+      : tone === "amber"
+        ? "bg-amber-50 text-amber-700"
+        : "bg-bridge-paper text-ink";
+
+  return (
+    <div className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
+      <p className="text-caption font-black uppercase tracking-widest text-gray-400">{label}</p>
+      <p className={["mt-2 inline-flex rounded-full px-3 py-1 text-body font-black", toneClass].join(" ")}>{value}</p>
     </div>
   );
 }

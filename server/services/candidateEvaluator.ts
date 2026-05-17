@@ -437,6 +437,13 @@ export async function evaluateCandidate(
   companyId: string
 ): Promise<CandidateEvaluationResult> {
   const rubric = await findCompanyRubric(companyId);
+  return evaluateCandidateForRubric(candidate, rubric);
+}
+
+export async function evaluateCandidateForRubric(
+  candidate: CandidateProfileInput,
+  rubric: CompanyEvaluationRubric
+): Promise<CandidateEvaluationResult> {
   const geminiConfiguration = getGeminiConfiguration();
   const geminiResult = await evaluateCandidateWithGemini(candidate, rubric);
 
