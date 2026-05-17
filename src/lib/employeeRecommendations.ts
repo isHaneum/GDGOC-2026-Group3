@@ -37,10 +37,12 @@ export function clearCachedEmployeeRecommendations() {
   }
 }
 
-export async function fetchEmployeeRecommendations(): Promise<EmployeeRecommendationsResponse> {
+export async function fetchEmployeeRecommendations(
+  fallbackMessage = "Failed to load recommendation data."
+): Promise<EmployeeRecommendationsResponse> {
   const response = await fetch("/api/employee/recommends", { cache: "no-store" });
   if (!response.ok) {
-    throw new Error(await apiErrorMessage(response, "추천 데이터를 불러오지 못했습니다."));
+    throw new Error(await apiErrorMessage(response, fallbackMessage));
   }
 
   return response.json() as Promise<EmployeeRecommendationsResponse>;

@@ -1,9 +1,9 @@
 'use client';
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
+import { Link, useRouter } from "@i18n/navigation";
 import { getCurrentMarket } from "@shared/market";
 import {
   type BridgeUserRole,
@@ -16,6 +16,7 @@ function roleDestination(role: BridgeUserRole) {
 }
 
 export default function RoleEntry() {
+  const t = useTranslations("signup");
   const router = useRouter();
   const [market, setMarket] = useState(getCurrentMarket());
   const [storedRole, setStoredRole] = useState<BridgeUserRole | null>(null);
@@ -41,9 +42,9 @@ export default function RoleEntry() {
           <div className="mb-4 inline-flex rounded-full bg-bridge-primary/10 px-4 py-1 text-caption font-black uppercase tracking-widest text-bridge-teal">
             {market.sourceCountry} to {market.targetCountry}
           </div>
-          <h1 className="text-display1 font-black tracking-tight text-ink">Bridge IT 시작하기</h1>
+          <h1 className="text-display1 font-black tracking-tight text-ink">{t("startTitle")}</h1>
           <p className="mt-3 max-w-2xl text-body leading-6 text-gray-500">
-            역할을 먼저 선택하면 가입과 이후 화면은 해당 역할의 흐름만 보여줍니다.
+            {t("startDescription")}
           </p>
           {storedRole ? (
             <button
@@ -51,7 +52,7 @@ export default function RoleEntry() {
               onClick={() => router.push(roleDestination(storedRole))}
               className="mt-5 rounded-full border border-bridge-primary bg-white px-4 py-2 text-body font-bold text-bridge-teal hover:bg-bridge-primary/10"
             >
-              저장된 역할로 계속하기
+              {t("continueSavedRole")}
             </button>
           ) : null}
         </header>
@@ -63,12 +64,12 @@ export default function RoleEntry() {
             className="group rounded-2xl border border-gray-200 bg-white p-7 text-left shadow-panel transition-all hover:-translate-y-0.5 hover:border-bridge-primary"
           >
             <p className="text-caption font-black uppercase tracking-widest text-bridge-teal">Applicant</p>
-            <h2 className="mt-3 text-display2 font-black text-ink">지원자</h2>
+            <h2 className="mt-3 text-display2 font-black text-ink">{t("employeeCardTitle")}</h2>
             <p className="mt-3 text-body leading-6 text-gray-500">
-              기업 정보를 보고 포트폴리오를 정리한 뒤 지원 흐름으로 이동합니다.
+              {t("employeeCardDescription")}
             </p>
             <span className="mt-6 inline-flex rounded-full bg-bridge-primary px-4 py-2 text-body font-bold text-white">
-              지원자로 가입
+              {t("employeeCta")}
             </span>
           </button>
 
@@ -78,18 +79,18 @@ export default function RoleEntry() {
             className="group rounded-2xl border border-gray-200 bg-white p-7 text-left shadow-panel transition-all hover:-translate-y-0.5 hover:border-bridge-coral"
           >
             <p className="text-caption font-black uppercase tracking-widest text-bridge-coral">Hiring Company</p>
-            <h2 className="mt-3 text-display2 font-black text-ink">채용자</h2>
+            <h2 className="mt-3 text-display2 font-black text-ink">{t("employerCardTitle")}</h2>
             <p className="mt-3 text-body leading-6 text-gray-500">
-              지원자 목록과 채용 공고 흐름을 중심으로 서비스를 이용합니다.
+              {t("employerCardDescription")}
             </p>
             <span className="mt-6 inline-flex rounded-full bg-ink px-4 py-2 text-body font-bold text-white">
-              채용자로 가입
+              {t("employerCta")}
             </span>
           </button>
         </div>
 
         <Link href="/signin" className="mt-8 text-body font-bold text-gray-400 hover:text-bridge-primary">
-          로그인 화면으로 이동
+          {t("backSignin")}
         </Link>
       </div>
     </div>

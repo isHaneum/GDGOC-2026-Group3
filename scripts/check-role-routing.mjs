@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -11,6 +11,18 @@ function read(relativePath) {
 
 function fail(message) {
   failures.push(message);
+}
+
+function assertExists(relativePath, context) {
+  if (!existsSync(path.join(root, relativePath))) {
+    fail(`${relativePath}: missing (${context})`);
+  }
+}
+
+function assertNotExists(relativePath, context) {
+  if (existsSync(path.join(root, relativePath))) {
+    fail(`${relativePath}: should not exist (${context})`);
+  }
 }
 
 function assertNotContains(relativePath, forbidden, context) {
@@ -31,8 +43,16 @@ function assertContains(relativePath, required, context) {
   }
 }
 
+assertExists("app/[locale]/layout.tsx", "locale-prefixed routes must own the user-facing shell");
+assertExists("app/[locale]/signin/page.tsx", "signin must be locale-prefixed");
+assertExists("app/[locale]/employee/companies/page.tsx", "employee routes must be locale-prefixed");
+assertExists("app/[locale]/employer/postings/page.tsx", "employer routes must be locale-prefixed");
+assertNotExists("app/signin/page.tsx", "unprefixed signin is redirected by proxy");
+assertNotExists("app/employee/page.tsx", "unprefixed employee routes are redirected by proxy");
+assertNotExists("app/employer/page.tsx", "unprefixed employer routes are redirected by proxy");
+
 assertNotContains(
-  "app/layout.tsx",
+  "app/[locale]/layout.tsx",
   ["Developer", "Applicants", "Hiring Companies", "Signal Lab", "Apply"],
   "global layout must not hardcode mixed navigation labels"
 );
@@ -50,21 +70,21 @@ assertNotContains(
 );
 
 assertContains(
-  "app/page.tsx",
-  ['redirect("/signin")'],
-  "root must redirect to signin"
+  "proxy.ts",
+  ["defaultLocale", "localizePathname", "stripLocaleFromPathname"],
+  "unprefixed routes must redirect to default locale"
 );
 
 assertContains(
   "src/lib/roleStorage.ts",
-  ['pathname.startsWith("/employee")', 'pathname.startsWith("/employer")', 'pathname === "/signup/portfolio"'],
+  ["stripBridgeLocale", 'normalizedPathname.startsWith("/employee")', 'normalizedPathname.startsWith("/employer")', 'normalizedPathname === "/signup/portfolio"'],
   "route gate must protect employee, employer, and applicant portfolio signup paths"
 );
 
 assertContains(
   "src/components/RoleAwareNav.tsx",
-  ["/employee/companies", "/employee/portfolio", "/employer/postings", "/employer/applicants", "/community/posts"],
-  "role navigation must expose normalized route tree"
+  ["/employee/companies", "/employee/portfolio", "/employer/postings", "/employer/applicants", "/community/posts", 'locale={nextLocale}'],
+  "role navigation must expose normalized route tree and language switching"
 );
 
 const proxy = read("proxy.ts");

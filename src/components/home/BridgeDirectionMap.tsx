@@ -1,3 +1,7 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+
 import type { BridgeDirectionId } from "./landingData";
 
 export function BridgeDirectionMap({
@@ -9,6 +13,8 @@ export function BridgeDirectionMap({
   onHover: (direction: BridgeDirectionId | null) => void;
   onSelect: (direction: BridgeDirectionId) => void;
 }) {
+  const t = useTranslations("home");
+
   return (
     <div className="relative w-full max-w-5xl aspect-[16/9] flex items-center justify-center">
       <svg
@@ -124,12 +130,10 @@ export function BridgeDirectionMap({
             {hovered === "kr-jp" ? "South Korea 🇰🇷 → Japan 🇯🇵" : "Japan 🇯🇵 → South Korea 🇰🇷"}
           </h3>
           <p className="text-gray-600 text-body font-medium leading-relaxed">
-            {hovered === "kr-jp"
-              ? "하이컨텍스트 기술 커뮤니케이션과 UI 정교함에 중점을 둔 일본 IT 생태계에 합류하세요."
-              : "민첩성과 다문화 기술 리더십을 활용하여 빠른 속도의 한국 스타트업 환경에 진출하세요."}
+            {hovered === "kr-jp" ? t("bridgeToJapan") : t("bridgeToKorea")}
           </p>
           <div className="mt-4 text-body font-bold text-bridge-primary">
-            클릭하여 역할 선택 &rarr;
+            {t("selectRoleCta")} &rarr;
           </div>
         </div>
       </div>

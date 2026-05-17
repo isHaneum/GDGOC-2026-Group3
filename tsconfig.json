@@ -27,6 +27,9 @@
     "jsx": "preserve",
     "paths": {
       "@/*": ["./app/*"],
+      "@i18n/*": ["./i18n/*"],
+      "@data/*": ["./public/data/*"],
+      "@docs/*": ["./docs/*"],
       "@shared/*": ["./shared/*"],
       "@server/*": ["./server/*"],
       "@src/*": ["./src/*"]
@@ -35,6 +38,8 @@
   "include": [
     "next-env.d.ts",
     "app",
+    "i18n",
+    "messages",
     "src",
     "shared",
     "server",
