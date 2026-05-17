@@ -11,6 +11,7 @@ function unauthenticatedResponse(message?: string): EmployeeRecommendationsRespo
     recommendations: [],
     companies: [],
     generatedAt: new Date().toISOString(),
+    aiEvaluation: null,
     message,
   }
 }
@@ -28,7 +29,7 @@ export async function GET() {
     }
 
     const data = await getEmployeeProfile(db, user.id)
-    return jsonResponse(buildEmployeeRecommendationsPayload(data))
+    return jsonResponse(await buildEmployeeRecommendationsPayload(data))
   } catch (error) {
     return jsonError(error)
   }

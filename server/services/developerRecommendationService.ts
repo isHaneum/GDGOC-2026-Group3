@@ -2,16 +2,21 @@ import companyJobProfiles from "../../public/data/company-criteria/companyJobPro
 import companyRubrics from "../../public/data/company-criteria/companyRubrics.json";
 import companySignals from "../../public/data/company-criteria/companySignals.json";
 import type {
+  CandidateEvaluationResult,
+  CandidateProfileInput,
   CompanyEvaluationRubric,
   CompanyHiringSignal,
   CompanyJobProfile,
   CompanyRubricCriterion,
   DeveloperPreference,
+  DeveloperToCompanyFitResult,
 } from "../../shared/companyCriteriaTypes";
 import type { EmployeeRecommendationsResponse } from "../../shared/employeeRecommendations";
 import type { EmployeeProfileFull } from "../../shared/types";
 import { mergeCompanySalaryDataList } from "../../src/lib/companySalaryEnrichment";
 import { rankCompaniesForDeveloper } from "../../src/lib/twoSidedFitEngine";
+import { evaluateCandidateForRubric } from "./candidateEvaluator";
+import { getGeminiConfiguration } from "./gemini";
 
 type RawRubricCriterion = Omit<CompanyRubricCriterion, "recommendedVerificationActivity"> & {
   recommendedVerificationActivity: string | string[];
@@ -20,6 +25,12 @@ type RawRubricCriterion = Omit<CompanyRubricCriterion, "recommendedVerificationA
 type RawCompanyEvaluationRubric = Omit<CompanyEvaluationRubric, "criteria"> & {
   criteria: RawRubricCriterion[];
 };
+
+const MAX_AI_EVALUATIONS = 10;
+
+function unique(values: string[]) {
+  return [...new Set(values.map((value) => value.trim()).filter(Boolean))];
+}
 
 function sanitizeString(value?: string | null): string | undefined {
   const trimmed = value?.trim();
@@ -92,6 +103,7 @@ export function mapDeveloperProfileFullToPreference(record: EmployeeProfileFull)
 
   return {
     developerId: String(profile.user_id ?? profile.id),
+    employeeProfileId: employeeProfile.id,
     name: sanitizeString(employeeProfile.full_name) ?? "지원자",
     nationality: normalizeNationality(employeeProfile.nationality),
     preferredSalaryMin: typeof employeeProfile.preferred_salary_min === "number" ? employeeProfile.preferred_salary_min : undefined,
@@ -107,13 +119,91 @@ export function mapDeveloperProfileFullToPreference(record: EmployeeProfileFull)
     relocationAvailable: Boolean(employeeProfile.relocation_available),
     visaSupportNeeded: employeeProfile.visa_support_needed,
     resumeText: [selfIntroduction, projectExperience, motivation, techStack.join(", ")].filter(Boolean).join("\n\n"),
-    portfolioText: [
-      sanitizeString(employeeProfile.github_url),
-      projectExperience,
-    ].filter(Boolean).join("\n\n") || undefined,
+    portfolioText: [sanitizeString(employeeProfile.github_url), projectExperience].filter(Boolean).join("\n\n") || undefined,
     motivation,
     concerns: concerns ? [concerns] : [],
+    githubUrl: sanitizeString(employeeProfile.github_url),
   };
+}
+
+function buildCandidateProfileInput(developer: DeveloperPreference): CandidateProfileInput {
+  return {
+    candidateName: developer.name,
+    targetRole: developer.targetRoles[0],
+    resumeText: developer.resumeText,
+    portfolioText: developer.portfolioText,
+    githubSummary: [developer.githubUrl, developer.availableTechStacks.join(", ")].filter(Boolean).join("\n"),
+    languageSkills: developer.languageCertifications.map((certification) =>
+      [certification.language, certification.level, certification.certification].filter(Boolean).join(" ")
+    ),
+    projectExperience: developer.portfolioText,
+    selfIntroduction: developer.resumeText,
+    motivation: developer.motivation,
+  };
+}
+
+function findRubricForCompany(company: CompanyJobProfile, rubrics: CompanyEvaluationRubric[]) {
+  return rubrics.find((rubric) => rubric.companyId === company.rubricId || rubric.companyId === company.companyId) ?? null;
+}
+
+function mapCandidateNextStep(
+  step: CandidateEvaluationResult["recommendedNextStep"]
+): DeveloperToCompanyFitResult["recommendedNextStep"] {
+  switch (step) {
+    case "casual_interview":
+      return "casual_interview";
+    case "trial_project":
+      return "trial_project";
+    case "bridge_labs_activity":
+      return "bridge_labs_activity";
+    case "office_tour":
+      return "research_company";
+    case "not_ready_yet":
+    default:
+      return "rewrite_motivation";
+  }
+}
+
+function mergeRecommendationWithEvaluation(
+  recommendation: DeveloperToCompanyFitResult,
+  evaluation: CandidateEvaluationResult
+): DeveloperToCompanyFitResult {
+  return {
+    ...recommendation,
+    overallFitScore: evaluation.overallFitScore,
+    matchedReasons: unique([...evaluation.strengths, ...recommendation.matchedReasons]).slice(0, 6),
+    missingSignals: unique([...evaluation.gaps, ...evaluation.recommendedActions, ...recommendation.missingSignals]).slice(0, 6),
+    risks: unique([...evaluation.risks, ...recommendation.risks]).slice(0, 5),
+    recommendedNextStep: mapCandidateNextStep(evaluation.recommendedNextStep),
+    explanation: evaluation.recruiterLensSummary,
+  };
+}
+
+function buildAiEvaluationMessage(
+  geminiConfigured: boolean,
+  evaluatedCompanyCount: number,
+  geminiUsedCount: number,
+  fallbackCount: number
+) {
+  if (!evaluatedCompanyCount) {
+    return geminiConfigured
+      ? "추천 후보가 없어 Gemini 평가를 진행하지 않았습니다."
+      : "현재 서버에 GEMINI_API_KEY가 없어 포트폴리오 AI 평가를 진행하지 못했습니다.";
+  }
+
+  if (!geminiConfigured) {
+    return "현재 서버에 GEMINI_API_KEY가 없어 추천은 로컬 fallback 기준으로 계산되었습니다.";
+  }
+
+  if (geminiUsedCount === evaluatedCompanyCount) {
+    return "포트폴리오를 기준으로 Google Gemini 평가를 반영한 추천 결과입니다.";
+  }
+
+  if (geminiUsedCount > 0) {
+    return `총 ${evaluatedCompanyCount}개 후보 중 ${geminiUsedCount}개는 Gemini 평가를 사용했고 ${fallbackCount}개는 fallback으로 계산되었습니다.`;
+  }
+
+  return "Gemini 평가를 시도했지만 모두 fallback으로 계산되었습니다. API 키와 쿼터 상태를 확인하세요.";
 }
 
 function hasEnoughRecommendationInput(developer: DeveloperPreference): boolean {
@@ -126,8 +216,9 @@ function hasEnoughRecommendationInput(developer: DeveloperPreference): boolean {
   );
 }
 
-export function buildEmployeeRecommendationsPayload(record: EmployeeProfileFull): EmployeeRecommendationsResponse {
+export async function buildEmployeeRecommendationsPayload(record: EmployeeProfileFull): Promise<EmployeeRecommendationsResponse> {
   const developer = mapDeveloperProfileFullToPreference(record);
+  const geminiConfiguration = getGeminiConfiguration();
   const summary = {
     developerId: developer.developerId,
     name: developer.name,
@@ -143,6 +234,13 @@ export function buildEmployeeRecommendationsPayload(record: EmployeeProfileFull)
       recommendations: [],
       companies: [],
       generatedAt: new Date().toISOString(),
+      aiEvaluation: {
+        geminiConfigured: geminiConfiguration.configured,
+        evaluatedCompanyCount: 0,
+        geminiUsedCount: 0,
+        fallbackCount: 0,
+        message: buildAiEvaluationMessage(geminiConfiguration.configured, 0, 0, 0),
+      },
       message: "포트폴리오를 저장하면 로그인한 지원자 기준 추천 직무가 생성됩니다.",
     };
   }
@@ -150,7 +248,38 @@ export function buildEmployeeRecommendationsPayload(record: EmployeeProfileFull)
   const profiles = mergeCompanySalaryDataList(companyJobProfiles as CompanyJobProfile[]);
   const rubrics = normalizeRubrics(companyRubrics as RawCompanyEvaluationRubric[]);
   const signals = companySignals as CompanyHiringSignal[];
-  const recommendations = rankCompaniesForDeveloper(developer, profiles, rubrics, signals).slice(0, 10);
+  const baseRecommendations = rankCompaniesForDeveloper(developer, profiles, rubrics, signals).slice(0, MAX_AI_EVALUATIONS);
+  const candidateInput = buildCandidateProfileInput(developer);
+  const companiesByRoleId = new Map(profiles.map((company) => [company.roleId, company]));
+
+  const evaluatedResults = await Promise.all(
+    baseRecommendations.map(async (recommendation) => {
+      const company = companiesByRoleId.get(recommendation.roleId);
+      if (!company) {
+        return { recommendation, evaluation: null as CandidateEvaluationResult | null };
+      }
+
+      const rubric = findRubricForCompany(company, rubrics);
+      if (!rubric) {
+        return { recommendation, evaluation: null as CandidateEvaluationResult | null };
+      }
+
+      try {
+        const evaluation = await evaluateCandidateForRubric(candidateInput, rubric);
+        return { recommendation, evaluation };
+      } catch {
+        return { recommendation, evaluation: null as CandidateEvaluationResult | null };
+      }
+    })
+  );
+
+  const recommendations = evaluatedResults
+    .map(({ recommendation, evaluation }) => (evaluation ? mergeRecommendationWithEvaluation(recommendation, evaluation) : recommendation))
+    .sort((left, right) => right.overallFitScore - left.overallFitScore);
+
+  const evaluatedCompanyCount = evaluatedResults.filter((item) => item.evaluation !== null).length;
+  const geminiUsedCount = evaluatedResults.filter((item) => item.evaluation?.debug.geminiUsed).length;
+  const fallbackCount = evaluatedResults.filter((item) => item.evaluation && !item.evaluation.debug.geminiUsed).length;
   const recommendedRoleIds = new Set(recommendations.map((item) => item.roleId));
 
   return {
@@ -159,6 +288,13 @@ export function buildEmployeeRecommendationsPayload(record: EmployeeProfileFull)
     recommendations,
     companies: profiles.filter((company) => recommendedRoleIds.has(company.roleId)),
     generatedAt: new Date().toISOString(),
+    aiEvaluation: {
+      geminiConfigured: geminiConfiguration.configured,
+      evaluatedCompanyCount,
+      geminiUsedCount,
+      fallbackCount,
+      message: buildAiEvaluationMessage(geminiConfiguration.configured, evaluatedCompanyCount, geminiUsedCount, fallbackCount),
+    },
     message: recommendations.length ? undefined : "저장된 포트폴리오 기준으로 아직 추천 직무를 계산하지 못했습니다.",
   };
 }
