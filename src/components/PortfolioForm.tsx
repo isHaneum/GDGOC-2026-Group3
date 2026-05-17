@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, KeyboardEvent, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
 import { useRouter } from "@i18n/navigation";
@@ -347,12 +347,11 @@ export default function PortfolioForm({
             placeholder={t("targetRolesPlaceholder")}
             required
           />
-          <Field
+          <TechStackField
             label={t("techStack")}
             value={draft.techStack}
             onChange={(value) => updateDraft("techStack", value)}
-            placeholder={t("techStackPlaceholder")}
-            required
+            placeholder={t("techStackSearchPlaceholder")}
           />
           <Field
             label={t("languageCertifications")}
@@ -596,6 +595,171 @@ function Textarea({
         onChange={(event) => onChange(event.target.value)}
         className="mt-2 w-full resize-y rounded-xl border border-gray-200 bg-bridge-paper px-4 py-3 text-body leading-6 text-ink outline-none focus:border-bridge-teal"
       />
+    </label>
+  );
+}
+
+const TECH_STACK_CATALOG = [
+  "JavaScript", "TypeScript", "Python", "Go", "Rust", "Java", "Kotlin", "Swift",
+  "C", "C++", "C#", "Ruby", "PHP", "Scala", "Elixir", "Dart", "Objective-C",
+  "React", "Next.js", "Vue", "Nuxt", "Svelte", "SvelteKit", "Angular", "Remix",
+  "Astro", "Solid.js", "jQuery", "Redux", "Zustand", "TanStack Query",
+  "Node.js", "Express", "NestJS", "Fastify", "Koa", "Deno", "Bun",
+  "Django", "Flask", "FastAPI", "Spring", "Spring Boot", "Ruby on Rails",
+  "Laravel", "ASP.NET", "Gin", "Echo", "Fiber",
+  "React Native", "Flutter", "Expo", "Jetpack Compose", "SwiftUI",
+  "MySQL", "PostgreSQL", "SQLite", "MariaDB", "Oracle", "MSSQL",
+  "MongoDB", "DynamoDB", "Redis", "Elasticsearch", "Cassandra", "Neo4j",
+  "Supabase", "Firebase", "Prisma", "Drizzle", "TypeORM", "Sequelize",
+  "AWS", "GCP", "Azure", "Vercel", "Netlify", "Cloudflare", "Heroku",
+  "Docker", "Kubernetes", "Terraform", "Ansible", "Helm",
+  "GitHub Actions", "GitLab CI", "CircleCI", "Jenkins", "ArgoCD",
+  "Kafka", "RabbitMQ", "gRPC", "GraphQL", "REST", "WebSocket",
+  "Tailwind CSS", "Styled Components", "Emotion", "Sass", "CSS Modules",
+  "Jest", "Vitest", "Playwright", "Cypress", "Testing Library", "JUnit", "Pytest",
+  "TensorFlow", "PyTorch", "scikit-learn", "Pandas", "NumPy", "LangChain",
+  "OpenAI API", "Gemini API", "Hugging Face",
+  "Linux", "Bash", "Nginx", "Apache",
+];
+
+function parseTechValue(value: string): string[] {
+  return value.split(/[,，、\n/;]+/).map((item) => item.trim()).filter(Boolean);
+}
+
+function TechStackField({
+  label,
+  value,
+  onChange,
+  placeholder,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+}) {
+  const t = useTranslations("portfolio");
+  const [query, setQuery] = useState("");
+  const [open, setOpen] = useState(false);
+  const selected = parseTechValue(value);
+  const selectedLower = new Set(selected.map((item) => item.toLowerCase()));
+
+  const trimmedQuery = query.trim();
+  const suggestions = TECH_STACK_CATALOG.filter((item) => {
+    if (selectedLower.has(item.toLowerCase())) return false;
+    if (!trimmedQuery) return true;
+    return item.toLowerCase().includes(trimmedQuery.toLowerCase());
+  }).slice(0, 12);
+
+  const canAddCustom =
+    trimmedQuery.length > 0 &&
+    !selectedLower.has(trimmedQuery.toLowerCase()) &&
+    !TECH_STACK_CATALOG.some((item) => item.toLowerCase() === trimmedQuery.toLowerCase());
+
+  function commit(next: string[]) {
+    onChange(next.join(", "));
+  }
+
+  function addTag(tag: string) {
+    const trimmed = tag.trim();
+    if (!trimmed) return;
+    if (selectedLower.has(trimmed.toLowerCase())) {
+      setQuery("");
+      return;
+    }
+    commit([...selected, trimmed]);
+    setQuery("");
+  }
+
+  function removeTag(tag: string) {
+    commit(selected.filter((item) => item.toLowerCase() !== tag.toLowerCase()));
+  }
+
+  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (suggestions.length > 0) {
+        addTag(suggestions[0]);
+      } else if (trimmedQuery) {
+        addTag(trimmedQuery);
+      }
+      return;
+    }
+    if (event.key === "Backspace" && !query && selected.length > 0) {
+      event.preventDefault();
+      removeTag(selected[selected.length - 1]);
+    }
+  }
+
+  return (
+    <label className="relative block">
+      <span className="text-caption font-black uppercase tracking-widest text-gray-400">{label}</span>
+      <div className="mt-2 flex min-h-[3rem] flex-wrap items-center gap-2 rounded-xl border border-gray-200 bg-bridge-paper px-3 py-2 focus-within:border-bridge-teal">
+        {selected.map((tag) => (
+          <span
+            key={tag}
+            className="inline-flex items-center gap-1 rounded-full bg-bridge-primary/15 px-2.5 py-1 text-caption font-bold text-bridge-teal"
+          >
+            {tag}
+            <button
+              type="button"
+              onClick={() => removeTag(tag)}
+              aria-label={t("removeTechTag", { tag })}
+              className="rounded-full px-1 text-bridge-teal/70 hover:text-bridge-coral"
+            >
+              ×
+            </button>
+          </span>
+        ))}
+        <input
+          type="text"
+          value={query}
+          onChange={(event) => {
+            setQuery(event.target.value);
+            setOpen(true);
+          }}
+          onFocus={() => setOpen(true)}
+          onBlur={() => setTimeout(() => setOpen(false), 120)}
+          onKeyDown={handleKeyDown}
+          placeholder={selected.length ? "" : placeholder}
+          className="min-w-[8rem] flex-1 bg-transparent px-1 py-1 text-body text-ink outline-none"
+        />
+      </div>
+      {selected.length === 0 ? (
+        <input
+          type="text"
+          tabIndex={-1}
+          required
+          value={value}
+          onChange={() => undefined}
+          aria-hidden
+          className="sr-only"
+        />
+      ) : null}
+      {open && (suggestions.length > 0 || canAddCustom) ? (
+        <div className="absolute left-0 right-0 z-20 mt-1 max-h-64 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-lg">
+          {suggestions.map((item) => (
+            <button
+              key={item}
+              type="button"
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={() => addTag(item)}
+              className="block w-full px-4 py-2 text-left text-body text-ink hover:bg-bridge-paper"
+            >
+              {item}
+            </button>
+          ))}
+          {canAddCustom ? (
+            <button
+              type="button"
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={() => addTag(trimmedQuery)}
+              className="block w-full border-t border-gray-100 px-4 py-2 text-left text-body font-bold text-bridge-teal hover:bg-bridge-paper"
+            >
+              {t("addCustomTech", { tech: trimmedQuery })}
+            </button>
+          ) : null}
+        </div>
+      ) : null}
     </label>
   );
 }

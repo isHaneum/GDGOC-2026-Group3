@@ -237,8 +237,8 @@ export default function EmployeeRecommendsPage() {
   }
 
   return (
-    <main className="min-h-[calc(100vh-64px)] overflow-hidden bg-bridge-paper px-4 py-8">
-      <div className="mx-auto flex max-h-[calc(100vh-112px)] max-w-7xl flex-col gap-5">
+    <main className="min-h-[calc(100vh-64px)] bg-bridge-paper px-4 py-8 lg:overflow-hidden">
+      <div className="mx-auto flex max-w-7xl flex-col gap-5 lg:max-h-[calc(100vh-112px)]">
         <header className="shrink-0 rounded-2xl border border-gray-100 bg-white p-6 shadow-panel">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
