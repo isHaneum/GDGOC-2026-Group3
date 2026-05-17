@@ -268,28 +268,6 @@ export default function EmployeeRecommendsPage() {
               </Link>
             </div>
           </div>
-
-          {payload?.aiEvaluation ? (
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-              <SummaryStat
-                label={t("aiStatus")}
-                value={payload.aiEvaluation.geminiConfigured ? t("aiGeminiConnected") : t("aiFallbackMode")}
-                tone={payload.aiEvaluation.geminiConfigured ? "teal" : "amber"}
-              />
-              <SummaryStat
-                label={t("aiEvaluatedCompanies")}
-                value={t("companiesCount", { count: payload.aiEvaluation.evaluatedCompanyCount })}
-              />
-              <SummaryStat
-                label={t("aiGeminiUsed")}
-                value={t("itemsCount", { count: payload.aiEvaluation.geminiUsedCount })}
-              />
-              <SummaryStat
-                label={t("aiFallback")}
-                value={t("itemsCount", { count: payload.aiEvaluation.fallbackCount })}
-              />
-            </div>
-          ) : null}
         </header>
 
         {!payload?.authenticated || !recommendations.length ? (
@@ -439,30 +417,6 @@ function Metric({ label, value }: { label: string; value: string }) {
     <div className="rounded-xl bg-bridge-paper p-3">
       <dt className="text-caption font-black uppercase tracking-widest text-gray-400">{label}</dt>
       <dd className="mt-1 font-bold text-ink">{value}</dd>
-    </div>
-  );
-}
-
-function SummaryStat({
-  label,
-  value,
-  tone = "neutral",
-}: {
-  label: string;
-  value: string;
-  tone?: "neutral" | "teal" | "amber";
-}) {
-  const toneClass =
-    tone === "teal"
-      ? "bg-bridge-primary/15 text-bridge-teal"
-      : tone === "amber"
-        ? "bg-amber-50 text-amber-700"
-        : "bg-bridge-paper text-ink";
-
-  return (
-    <div className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
-      <p className="text-caption font-black uppercase tracking-widest text-gray-400">{label}</p>
-      <p className={["mt-2 inline-flex rounded-full px-3 py-1 text-body font-black", toneClass].join(" ")}>{value}</p>
     </div>
   );
 }
